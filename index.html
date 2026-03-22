@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K Auto Tech LLC | Government Software Development & Automation Consulting</title>
+    <meta name="description" content="K Auto Tech LLC delivers custom software development, workflow automation, and digital modernization consulting for government agencies, public authorities, and operationally complex organizations.">
+    <meta property="og:title" content="K Auto Tech LLC | Software Development & Automation Consulting">
+    <meta property="og:description" content="Custom software, workflow automation, and digital modernization for government and public-sector organizations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kautotech.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           CSS RESET & BASE
+           ======================================== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* ========================================
+           CSS VARIABLES
+           ======================================== */
+        :root {
+            --navy: #0a1628;
+            --navy-light: #121e36;
+            --navy-mid: #1a2a4a;
+            --blue: #2563eb;
+            --blue-dark: #1d4ed8;
+            --blue-light: #3b82f6;
+            --blue-pale: #eff6ff;
+            --slate: #475569;
+            --slate-light: #64748b;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --white: #ffffff;
+            --accent: #0ea5e9;
+            --accent-green: #10b981;
+            --section-pad: 100px 0;
+            --container: 1200px;
+            --radius: 8px;
+            --radius-lg: 12px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.1);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ========================================
+           UTILITY CLASSES
+           ======================================== */
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+        .section-label--light { color: var(--accent); }
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--slate);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+        .section-subtitle--light { color: #94a3b8; }
+        .section-header {
+            margin-bottom: 56px;
+        }
+        .section-header--center {
+            text-align: center;
+        }
+        .section-header--center .section-subtitle {
+            margin: 0 auto;
+        }
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: var(--blue);
+            color: var(--white);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+        }
+        .btn-primary:hover {
+            background: var(--blue-dark);
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255,255,255,0.3);
+        }
+        .btn-secondary:hover {
+            border-color: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.05);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--blue);
+            border: 1.5px solid var(--blue);
+        }
+        .btn-outline:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+        .btn-dark {
+            background: var(--navy);
+            color: var(--white);
+        }
+        .btn-dark:hover {
+            background: var(--navy-light);
+            transform: translateY(-1px);
+        }
+        .btn-arrow::after {
+            content: '\2192';
+            transition: transform var(--transition);
+        }
+        .btn-arrow:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* ========================================
+           SCROLL REVEAL ANIMATION
+           ======================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-6 { transition-delay: 0.6s; }
+
+        /* ========================================
+           HEADER / NAV
+           ======================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all var(--transition);
+        }
+        .header.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            background: var(--blue);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: white;
+        }
+        .nav { display: flex; align-items: center; gap: 32px; }
+        .nav a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.7);
+            transition: color var(--transition);
+        }
+        .nav a:hover { color: var(--white); }
+        .nav .btn { padding: 10px 20px; font-size: 0.85rem; }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: white;
+            margin: 6px 0;
+            transition: all var(--transition);
+        }
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--navy);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+        }
+        .mobile-nav.active { display: flex; }
+        .mobile-nav a {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+        }
+        .mobile-nav-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            background: var(--navy);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0 80px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(14, 165, 233, 0.06) 0%, transparent 50%);
+        }
+        /* Grid pattern overlay */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .hero .container { position: relative; z-index: 2; }
+        .hero-content {
+            max-width: 720px;
+        }
+        .hero-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hero-label::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--accent);
+        }
+        .hero h1 {
+            font-size: clamp(2.25rem, 5.5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--blue-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: #94a3b8;
+            line-height: 1.75;
+            margin-bottom: 36px;
+            max-width: 580px;
+        }
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 64px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .hero-stat h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        .hero-stat p {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 0;
+        }
+
+        /* ========================================
+           CREDIBILITY STRIP
+           ======================================== */
+        .credibility {
+            background: var(--gray-100);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 32px 0;
+        }
+        .credibility-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .credibility-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--slate);
+        }
+        .credibility-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--blue);
+            flex-shrink: 0;
+        }
+
+        /* ========================================
+           SERVICES SECTION
+           ======================================== */
+        .services { padding: var(--section-pad); }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .service-card {
+            padding: 36px 32px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), var(--accent));
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .service-card:hover {
+            border-color: transparent;
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+        .service-card:hover::before { opacity: 1; }
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: var(--blue-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+        }
+        .service-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           GOVERNMENT SOLUTIONS SECTION
+           ======================================== */
+        .gov-solutions {
+            padding: var(--section-pad);
+            background: var(--navy);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .gov-solutions::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+        .gov-solutions .container { position: relative; z-index: 1; }
+        .gov-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+        .gov-content .section-title { color: var(--white); }
+        .gov-content p {
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.75;
+            margin-bottom: 24px;
+        }
+        .gov-capabilities {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .gov-cap-item {
+            padding: 20px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius);
+            transition: all var(--transition);
+        }
+        .gov-cap-item:hover {
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+        .gov-cap-item h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .gov-cap-item p {
+            font-size: 0.8rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* ========================================
+           INDUSTRIES SECTION
+           ======================================== */
+        .industries { padding: var(--section-pad); }
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .industry-card {
+            padding: 28px 24px;
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            transition: all var(--transition);
+            border: 1px solid transparent;
+        }
+        .industry-card:hover {
+            background: var(--white);
+            border-color: var(--gray-200);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .industry-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--blue-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-size: 1.1rem;
+        }
+        .industry-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .industry-card p {
+            font-size: 0.8rem;
+            color: var(--slate-light);
+            line-height: 1.5;
+        }
+
+        /* ========================================
+           WHY US SECTION
+           ======================================== */
+        .why-us {
+            padding: var(--section-pad);
+            background: var(--gray-100);
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+        .why-list { display: flex; flex-direction: column; gap: 24px; }
+        .why-item {
+            display: flex;
+            gap: 16px;
+            align-items: start;
+        }
+        .why-item-marker {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .why-item-marker svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+        .why-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .why-item p {
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.65;
+        }
+        .why-visual {
+            background: var(--navy);
+            border-radius: var(--radius-lg);
+            padding: 48px 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .why-visual::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .why-visual-content { position: relative; z-index: 1; }
+        .why-visual blockquote {
+            font-size: 1.35rem;
+            font-weight: 600;
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+            margin-bottom: 24px;
+        }
+        .why-visual p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           PROCESS SECTION
+           ======================================== */
+        .process { padding: var(--section-pad); }
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .process-step {
+            text-align: center;
+            padding: 36px 24px;
+            position: relative;
+        }
+        .process-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gray-200);
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+        .process-step h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .process-step p {
+            font-size: 0.875rem;
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .process-connector {
+            position: absolute;
+            top: 50px;
+            right: -12px;
+            width: 24px;
+            height: 2px;
+            background: var(--gray-200);
+        }
+        .process-step:last-child .process-connector { display: none; }
+
+        /* ========================================
+           RESULTS SECTION
+           ======================================== */
+        .results {
+            padding: var(--section-pad);
+            background: var(--navy);
+            color: var(--white);
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .result-card {
+            padding: 32px 28px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition);
+        }
+        .result-card:hover {
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+        .result-metric {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+        .result-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .result-card p {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           CTA SECTION
+           ======================================== */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+        .cta-section .container { position: relative; z-index: 1; }
+        .cta-section h2 {
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .cta-section p {
+            font-size: 1.05rem;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .cta-section .btn-secondary { border-color: rgba(255,255,255,0.4); }
+        .cta-section .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); }
+        .btn-white {
+            background: white;
+            color: var(--blue-dark);
+            font-weight: 700;
+        }
+        .btn-white:hover {
+            background: var(--gray-100);
+            transform: translateY(-1px);
+        }
+
+        /* ========================================
+           ABOUT SECTION
+           ======================================== */
+        .about { padding: var(--section-pad); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+        .about-content p {
+            font-size: 1rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .about-highlight {
+            padding: 20px;
+            background: var(--gray-100);
+            border-radius: var(--radius);
+        }
+        .about-highlight h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--blue);
+            margin-bottom: 4px;
+        }
+        .about-highlight p {
+            font-size: 0.8rem;
+            color: var(--slate);
+            margin-bottom: 0;
+        }
+
+        /* ========================================
+           CONTACT SECTION
+           ======================================== */
+        .contact {
+            padding: var(--section-pad);
+            background: var(--gray-100);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 64px;
+        }
+        .contact-info h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            margin-top: 28px;
+        }
+        .contact-info h3:first-of-type { margin-top: 0; }
+        .contact-info p {
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .contact-info a {
+            color: var(--blue);
+            font-weight: 500;
+        }
+        .contact-info a:hover { text-decoration: underline; }
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius);
+            background: var(--white);
+            color: var(--navy);
+            transition: all var(--transition);
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .form-group select { cursor: pointer; }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--navy);
+            color: #94a3b8;
+            padding: 48px 0 32px;
+        }
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 24px;
+        }
+        .footer-brand .logo { margin-bottom: 12px; }
+        .footer-brand p {
+            font-size: 0.85rem;
+            max-width: 320px;
+            line-height: 1.6;
+        }
+        .footer-links {
+            display: flex;
+            gap: 48px;
+        }
+        .footer-links h4 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+        .footer-links a {
+            display: block;
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 8px;
+            transition: color var(--transition);
+        }
+        .footer-links a:hover { color: white; }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #475569;
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .gov-grid { grid-template-columns: 1fr; gap: 40px; }
+            .industries-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: 1fr; gap: 40px; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .hero-stats { gap: 32px; }
+        }
+        @media (max-width: 768px) {
+            :root { --section-pad: 64px 0; }
+            .nav { display: none; }
+            .mobile-toggle { display: block; }
+            .services-grid { grid-template-columns: 1fr; }
+            .gov-capabilities { grid-template-columns: 1fr; }
+            .industries-grid { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr 1fr; }
+            .process-connector { display: none; }
+            .results-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; gap: 24px; }
+            .hero h1 { font-size: 2rem; }
+            .hero-ctas { flex-direction: column; }
+            .hero-ctas .btn { text-align: center; justify-content: center; }
+            .credibility-grid { flex-direction: column; gap: 16px; }
+            .footer-top { flex-direction: column; gap: 32px; }
+            .footer-links { flex-direction: column; gap: 24px; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+            .contact-form { padding: 24px; }
+            .about-highlights { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .process-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================
+         HEADER
+         ======================================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-mark">KA</div>
+                K Auto Tech
+            </a>
+            <nav class="nav">
+                <a href="#services">Services</a>
+                <a href="#government">Government</a>
+                <a href="#industries">Industries</a>
+                <a href="#about">About</a>
+                <a href="#contact" class="btn btn-primary">Request Consultation</a>
+            </nav>
+            <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Close menu">&times;</button>
+        <a href="#services" onclick="toggleMobileNav()">Services</a>
+        <a href="#government" onclick="toggleMobileNav()">Government</a>
+        <a href="#industries" onclick="toggleMobileNav()">Industries</a>
+        <a href="#about" onclick="toggleMobileNav()">About</a>
+        <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+    </div>
+
+    <!-- ========================================
+         HERO
+         ======================================== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label">Software Development &amp; Automation Consulting</div>
+                <h1>Modernize operations with systems that <span class="highlight">actually work.</span></h1>
+                <p>We build custom software, automate workflows, and implement practical digital systems for government agencies and operationally complex organizations. Less administrative burden. More visibility. Measurable results.</p>
+                <div class="hero-ctas">
+                    <a href="#contact" class="btn btn-primary btn-arrow">Request a Consultation</a>
+                    <a href="#services" class="btn btn-secondary btn-arrow">View Capabilities</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <h3>End-to-End</h3>
+                        <p>Assessment through implementation</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h3>48-Hour</h3>
+                        <p>Typical scoping turnaround</p>
+                    </div>
+                    <div class="hero-stat">
+                        <h3>Public Sector</h3>
+                        <p>Government-ready processes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CREDIBILITY STRIP
+         ======================================== -->
+    <section class="credibility">
+        <div class="container">
+            <div class="credibility-grid">
+                <div class="credibility-item"><span class="credibility-dot"></span>Workflow Automation</div>
+                <div class="credibility-item"><span class="credibility-dot"></span>Custom Software</div>
+                <div class="credibility-item"><span class="credibility-dot"></span>Systems Integration</div>
+                <div class="credibility-item"><span class="credibility-dot"></span>Operational Dashboards</div>
+                <div class="credibility-item"><span class="credibility-dot"></span>Process Modernization</div>
+                <div class="credibility-item"><span class="credibility-dot"></span>Public Sector Transformation</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SERVICES
+         ======================================== -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header section-header--center reveal">
+                <span class="section-label">What We Do</span>
+                <h2 class="section-title">Technical capabilities built around<br>real operational needs</h2>
+                <p class="section-subtitle">Every engagement starts with understanding how your organization actually works. We design and build systems that fit your operations, not the other way around.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+                    </div>
+                    <h3>Workflow Automation</h3>
+                    <p>Replace manual, repetitive processes with automated workflows that reduce errors, save time, and give your team capacity back. From document routing to approval chains to data entry elimination.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <h3>Custom Software Development</h3>
+                    <p>Purpose-built applications designed for your specific workflows. Internal tools, public-facing portals, data processing systems, and operational platforms that solve the problems off-the-shelf software cannot.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="service-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    </div>
+                    <h3>Data Dashboards &amp; Reporting</h3>
+                    <p>Operational dashboards that give leadership and staff real-time visibility into what matters. KPI tracking, performance reporting, and data visualization that turns raw information into decisions.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-4">
+                    <div class="service-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M16.36 16.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M16.36 7.64l1.42-1.42"/></svg>
+                    </div>
+                    <h3>Systems Integration</h3>
+                    <p>Connect the tools your organization already uses. We build secure integrations between legacy systems, cloud platforms, databases, and third-party services so data flows where it needs to go.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-5">
+                    <div class="service-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    </div>
+                    <h3>Digital Modernization Consulting</h3>
+                    <p>Strategic advisory for organizations ready to move past paper-based processes, disconnected spreadsheets, and legacy workflows. We assess, plan, and execute modernization projects that deliver real improvements.</p>
+                </div>
+                <div class="service-card reveal reveal-delay-6">
+                    <div class="service-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>AI-Enabled Process Improvement</h3>
+                    <p>Practical applications of machine learning and intelligent automation where they make operational sense. Document processing, classification, routing, and decision support tools that reduce workload without adding complexity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         GOVERNMENT SOLUTIONS
+         ======================================== -->
+    <section class="gov-solutions" id="government">
+        <div class="container">
+            <div class="gov-grid">
+                <div class="gov-content reveal">
+                    <span class="section-label section-label--light">Public Sector</span>
+                    <h2 class="section-title">Built for how government<br>actually operates</h2>
+                    <p>Government agencies face a specific set of challenges: compliance requirements, procurement constraints, legacy systems, limited IT resources, and high public accountability. We understand these realities because we build specifically for them.</p>
+                    <p>Our approach is practical. We assess your current processes, identify where manual work and fragmented systems create bottlenecks, and build focused solutions that improve operations without requiring a massive organizational overhaul.</p>
+                    <a href="#contact" class="btn btn-primary btn-arrow" style="margin-top: 12px;">Discuss Your Requirements</a>
+                </div>
+                <div class="gov-capabilities reveal reveal-delay-2">
+                    <div class="gov-cap-item">
+                        <h4>Administrative Workflows</h4>
+                        <p>Automate approval chains, document routing, and internal request processing</p>
+                    </div>
+                    <div class="gov-cap-item">
+                        <h4>Manual Process Reduction</h4>
+                        <p>Eliminate redundant data entry, paper forms, and spreadsheet-based tracking</p>
+                    </div>
+                    <div class="gov-cap-item">
+                        <h4>Reporting &amp; Visibility</h4>
+                        <p>Dashboards and automated reports for departmental and executive oversight</p>
+                    </div>
+                    <div class="gov-cap-item">
+                        <h4>Internal Department Tools</h4>
+                        <p>Custom applications for permitting, licensing, procurement, and case management</p>
+                    </div>
+                    <div class="gov-cap-item">
+                        <h4>Citizen Service Systems</h4>
+                        <p>Public-facing portals, request tracking, and service delivery platforms</p>
+                    </div>
+                    <div class="gov-cap-item">
+                        <h4>Document &amp; Procurement</h4>
+                        <p>Digitize and streamline document workflows, RFP processes, and contract management</p>
+                    </div>
+                    <div class="gov-cap-item">
+                        <h4>Legacy Enhancement</h4>
+                        <p>Extend or replace aging systems without disrupting ongoing operations</p>
+                    </div>
+                    <div class="gov-cap-item">
+                        <h4>Cross-System Interoperability</h4>
+                        <p>Connect siloed systems so departments can share data securely and efficiently</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         INDUSTRIES
+         ======================================== -->
+    <section class="industries" id="industries">
+        <div class="container">
+            <div class="section-header section-header--center reveal">
+                <span class="section-label">Industries</span>
+                <h2 class="section-title">Sectors we serve</h2>
+                <p class="section-subtitle">We work with organizations where operations are complex, compliance matters, and systems need to perform reliably under real-world conditions.</p>
+            </div>
+            <div class="industries-grid">
+                <div class="industry-card reveal reveal-delay-1">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    </div>
+                    <h3>Local Government</h3>
+                    <p>Cities, counties, and municipal agencies</p>
+                </div>
+                <div class="industry-card reveal reveal-delay-2">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <h3>Transportation</h3>
+                    <p>Transit authorities and fleet operations</p>
+                </div>
+                <div class="industry-card reveal reveal-delay-3">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="12" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                    </div>
+                    <h3>Infrastructure</h3>
+                    <p>Capital projects and public works</p>
+                </div>
+                <div class="industry-card reveal reveal-delay-4">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <h3>Permitting &amp; Licensing</h3>
+                    <p>Application processing and compliance tracking</p>
+                </div>
+                <div class="industry-card reveal reveal-delay-1">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+                    </div>
+                    <h3>Procurement</h3>
+                    <p>Purchasing workflows and vendor management</p>
+                </div>
+                <div class="industry-card reveal reveal-delay-2">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h3>Utilities</h3>
+                    <p>Service delivery and operational systems</p>
+                </div>
+                <div class="industry-card reveal reveal-delay-3">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>Economic Development</h3>
+                    <p>Grant management and program tracking</p>
+                </div>
+                <div class="industry-card reveal reveal-delay-4">
+                    <div class="industry-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>Regulated Industry</h3>
+                    <p>Compliance-aware systems for complex operations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         WHY US
+         ======================================== -->
+    <section class="why-us" id="why">
+        <div class="container">
+            <div class="why-grid">
+                <div class="reveal">
+                    <span class="section-label">Why Us</span>
+                    <h2 class="section-title">The right size firm for<br>the right kind of work</h2>
+                    <div class="why-list">
+                        <div class="why-item">
+                            <div class="why-item-marker">
+                                <svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Operations-first mindset</h4>
+                                <p>We start with how your organization actually works, not with a technology stack looking for a problem. Every solution is grounded in operational reality.</p>
+                            </div>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-item-marker">
+                                <svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Faster than the big firms</h4>
+                                <p>No six-month discovery phases. No 40-page decks before anyone writes a line of code. We scope quickly, build iteratively, and deliver working systems.</p>
+                            </div>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-item-marker">
+                                <svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>
+                            </div>
+                            <div>
+                                <h4>More technical than typical consultants</h4>
+                                <p>We do not hand off implementation to a third party. We design and build the systems ourselves, which means fewer gaps between what was promised and what gets delivered.</p>
+                            </div>
+                        </div>
+                        <div class="why-item">
+                            <div class="why-item-marker">
+                                <svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>
+                            </div>
+                            <div>
+                                <h4>Procurement-ready</h4>
+                                <p>We understand government procurement processes, documentation requirements, and compliance expectations. We work within your structure, not around it.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-visual reveal reveal-delay-2">
+                    <div class="why-visual-content">
+                        <blockquote>"We are not a bloated enterprise integrator. We are a focused, execution-oriented technical consulting firm that understands operations and delivers practical systems."</blockquote>
+                        <p>K Auto Tech LLC exists because too many modernization projects fail. They fail because the people building the system do not understand the operation it supports. We take the opposite approach: understand the work first, then build the right tool for it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         PROCESS
+         ======================================== -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-header section-header--center reveal">
+                <span class="section-label">How We Work</span>
+                <h2 class="section-title">A clear path from assessment<br>to operational improvement</h2>
+            </div>
+            <div class="process-grid">
+                <div class="process-step reveal reveal-delay-1">
+                    <div class="process-number">01</div>
+                    <h3>Assess</h3>
+                    <p>We map your current workflows, systems, and pain points. No assumptions. We learn how your operation actually runs before proposing anything.</p>
+                    <div class="process-connector"></div>
+                </div>
+                <div class="process-step reveal reveal-delay-2">
+                    <div class="process-number">02</div>
+                    <h3>Design</h3>
+                    <p>We define the solution architecture, user experience, integration points, and implementation plan. You see the blueprint before any development starts.</p>
+                    <div class="process-connector"></div>
+                </div>
+                <div class="process-step reveal reveal-delay-3">
+                    <div class="process-number">03</div>
+                    <h3>Build</h3>
+                    <p>We develop, test, and deploy in iterative cycles. You see working software early and often, with the ability to provide feedback at every stage.</p>
+                    <div class="process-connector"></div>
+                </div>
+                <div class="process-step reveal reveal-delay-4">
+                    <div class="process-number">04</div>
+                    <h3>Improve</h3>
+                    <p>After launch, we monitor, optimize, and refine. Systems improve over time based on real usage data and evolving operational needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         RESULTS / OUTCOMES
+         ======================================== -->
+    <section class="results" id="results">
+        <div class="container">
+            <div class="section-header section-header--center reveal">
+                <span class="section-label section-label--light">Outcomes</span>
+                <h2 class="section-title" style="color: white;">Systems that deliver<br>measurable operational improvement</h2>
+                <p class="section-subtitle section-subtitle--light">Every project is designed to produce specific, measurable improvements in how your organization operates.</p>
+            </div>
+            <div class="results-grid">
+                <div class="result-card reveal reveal-delay-1">
+                    <div class="result-metric">Efficiency</div>
+                    <h3>Reduce manual process steps</h3>
+                    <p>Eliminate redundant data entry, manual routing, and paper-based handoffs that consume staff time and introduce errors.</p>
+                </div>
+                <div class="result-card reveal reveal-delay-2">
+                    <div class="result-metric">Visibility</div>
+                    <h3>Improve reporting and oversight</h3>
+                    <p>Give leadership real-time access to operational data, performance metrics, and status tracking without waiting for someone to compile a spreadsheet.</p>
+                </div>
+                <div class="result-card reveal reveal-delay-3">
+                    <div class="result-metric">Integration</div>
+                    <h3>Replace fragmented workflows</h3>
+                    <p>Connect disconnected systems and processes into unified workflows where data flows automatically and nothing falls through the cracks.</p>
+                </div>
+                <div class="result-card reveal reveal-delay-1">
+                    <div class="result-metric">Control</div>
+                    <h3>Create better operational control</h3>
+                    <p>Build audit trails, enforce process consistency, and give managers the tools to track work from request through completion.</p>
+                </div>
+                <div class="result-card reveal reveal-delay-2">
+                    <div class="result-metric">Speed</div>
+                    <h3>Accelerate response times</h3>
+                    <p>Reduce the time it takes to process requests, generate reports, approve workflows, and respond to internal and external stakeholders.</p>
+                </div>
+                <div class="result-card reveal reveal-delay-3">
+                    <div class="result-metric">Adoption</div>
+                    <h3>Build systems people actually use</h3>
+                    <p>Design interfaces and workflows that match how people actually work, so adoption happens naturally instead of requiring constant enforcement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CTA - CAPABILITY STATEMENT
+         ======================================== -->
+    <section class="cta-section">
+        <div class="container reveal">
+            <h2>Need a technical partner for modernization,<br>workflow automation, or custom software?</h2>
+            <p>We work with government agencies, public authorities, and operationally complex organizations to build systems that deliver real results.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-white btn-arrow">Request a Consultation</a>
+                <a href="#services" class="btn btn-secondary btn-arrow">View Our Capabilities</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         ABOUT
+         ======================================== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="reveal">
+                    <span class="section-label">About</span>
+                    <h2 class="section-title">A consulting firm built<br>around execution</h2>
+                    <div class="about-content">
+                        <p>K Auto Tech LLC is a technical consulting and software development firm focused on helping organizations modernize their operations. We work primarily with government agencies, public authorities, and regulated organizations that need practical digital systems built by people who understand how operations actually run.</p>
+                        <p>Our team combines software engineering, systems architecture, and operational consulting into a single delivery model. We do not separate "strategy" from "implementation." The same people who assess your workflows and design the solution are the ones who build and deploy it.</p>
+                        <p>We are not trying to be all things to all people. We focus on a specific type of work: custom software, workflow automation, systems integration, and digital modernization for organizations where reliability, compliance, and operational fit matter more than flashy demos.</p>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <div class="about-highlights">
+                        <div class="about-highlight">
+                            <h4>100%</h4>
+                            <p>In-house development. No outsourced builds.</p>
+                        </div>
+                        <div class="about-highlight">
+                            <h4>Gov</h4>
+                            <p>Public-sector procurement ready</p>
+                        </div>
+                        <div class="about-highlight">
+                            <h4>E2E</h4>
+                            <p>Assessment through deployment and support</p>
+                        </div>
+                        <div class="about-highlight">
+                            <h4>Ops</h4>
+                            <p>Operations-first approach to every engagement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CONTACT
+         ======================================== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="reveal">
+                    <span class="section-label">Contact</span>
+                    <h2 class="section-title">Start a conversation</h2>
+                    <p class="section-subtitle">Whether you have a defined project scope or an operational challenge you are trying to solve, we are happy to discuss how we can help.</p>
+
+                    <h3>Email</h3>
+                    <p><a href="mailto:info@kautotech.com">info@kautotech.com</a></p>
+
+                    <h3>Response Time</h3>
+                    <p>We typically respond within one business day. For active RFP or procurement inquiries, we can accommodate faster timelines.</p>
+
+                    <h3>Engagement Types</h3>
+                    <p>We support project-based engagements, retainer arrangements, and staff augmentation models depending on your needs and procurement requirements.</p>
+                </div>
+                <div class="reveal reveal-delay-2">
+                    <form class="contact-form" onsubmit="handleSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="Your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="org">Organization *</label>
+                                <input type="text" id="org" name="organization" required placeholder="Agency or company name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required placeholder="you@organization.gov">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="project-type">Project Type</label>
+                            <select id="project-type" name="project_type">
+                                <option value="" disabled selected>Select a project type</option>
+                                <option value="workflow-automation">Workflow Automation</option>
+                                <option value="custom-software">Custom Software Development</option>
+                                <option value="dashboards">Data Dashboards &amp; Reporting</option>
+                                <option value="systems-integration">Systems Integration</option>
+                                <option value="modernization">Digital Modernization</option>
+                                <option value="ai-process">AI-Enabled Process Improvement</option>
+                                <option value="consulting">General Consulting</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required placeholder="Describe your project, challenge, or requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-arrow" style="width:100%; justify-content: center;">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         FOOTER
+         ======================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-mark">KA</div>
+                        K Auto Tech
+                    </div>
+                    <p>Custom software development, workflow automation, and digital modernization consulting for government and public-sector organizations.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Services</h4>
+                        <a href="#services">Workflow Automation</a>
+                        <a href="#services">Custom Software</a>
+                        <a href="#services">Dashboards &amp; Reporting</a>
+                        <a href="#services">Systems Integration</a>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <a href="#about">About</a>
+                        <a href="#government">Government Solutions</a>
+                        <a href="#industries">Industries</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 K Auto Tech LLC. All rights reserved.</span>
+                <span>Houston, Texas</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================
+         JAVASCRIPT
+         ======================================== -->
+    <script>
+        /* Sticky header scroll effect */
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        /* Scroll reveal animation */
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        /* Mobile navigation */
+        function toggleMobileNav() {
+            document.getElementById('mobileNav').classList.toggle('active');
+        }
+
+        /* Form submission handler (placeholder) */
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Submitted Successfully &#10003;';
+            btn.style.background = '#10b981';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+                e.target.reset();
+            }, 3000);
+        }
+
+        /* Smooth scroll for anchor links */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const offset = 80;
+                    const pos = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top: pos, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
