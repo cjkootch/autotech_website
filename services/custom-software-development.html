@@ -9,6 +9,7 @@
     <meta property="og:description" content="Purpose-built software solutions for government agencies and public-sector organizations. End-to-end development from requirements to maintenance.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kautotech.com/services/custom-software-development.html">
+    <link rel="icon" type="image/png" href="../k icon.png">
     <meta name="canonical" content="https://kautotech.com/services/custom-software-development.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,17 +39,17 @@
             --navy: #0a1628;
             --navy-light: #121e36;
             --navy-mid: #1a2a4a;
-            --blue: #2563eb;
-            --blue-dark: #1d4ed8;
-            --blue-light: #3b82f6;
-            --blue-pale: #eff6ff;
+            --coral: #E8604C;
+            --coral-dark: #D4503E;
+            --coral-light: #F07A68;
+            --coral-pale: #FFF1EE;
             --slate: #475569;
             --slate-light: #64748b;
             --gray-100: #f8fafc;
             --gray-200: #e2e8f0;
             --gray-300: #cbd5e1;
             --white: #ffffff;
-            --accent: #0ea5e9;
+            --accent: #E8604C;
             --accent-green: #10b981;
             --section-pad: 100px 0;
             --container: 1200px;
@@ -100,13 +101,13 @@
             white-space: nowrap;
         }
         .btn-primary {
-            background: var(--blue);
+            background: var(--coral);
             color: var(--white);
-            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 2px 8px rgba(232, 96, 76, 0.3);
         }
         .btn-primary:hover {
-            background: var(--blue-dark);
-            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+            background: var(--coral-dark);
+            box-shadow: 0 4px 16px rgba(232, 96, 76, 0.4);
             transform: translateY(-1px);
         }
 
@@ -142,17 +143,11 @@
             align-items: center;
             gap: 8px;
         }
-        .logo-mark {
+        .logo-icon {
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, var(--blue), var(--accent));
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: var(--white);
+            border-radius: 0;
+            display: block;
         }
         .nav {
             display: flex;
@@ -375,7 +370,7 @@
             color: var(--navy);
         }
         .faq-question:hover {
-            background: var(--blue-pale);
+            background: var(--coral-pale);
         }
         .faq-toggle {
             transition: transform var(--transition);
@@ -416,7 +411,7 @@
 
         .related-services {
             padding: 60px 0;
-            background: var(--blue-pale);
+            background: var(--coral-pale);
         }
         .related-services h3 {
             font-size: 1.3rem;
@@ -435,11 +430,11 @@
             border: 1px solid var(--gray-300);
             border-radius: var(--radius-lg);
             transition: all var(--transition);
-            color: var(--blue);
+            color: var(--coral);
             font-weight: 600;
         }
         .related-link:hover {
-            border-color: var(--blue);
+            border-color: var(--coral);
             box-shadow: var(--shadow-md);
             transform: translateY(-2px);
         }
@@ -462,7 +457,7 @@
     <header class="header" id="header">
         <div class="container">
             <a href="/" class="logo">
-                <div class="logo-mark">KA</div>
+                <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
                 K Auto Tech
             </a>
             <nav class="nav">
@@ -676,7 +671,7 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <div class="logo">
-                        <div class="logo-mark">KA</div>
+                        <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
                         K Auto Tech
                     </div>
                     <p>Custom software development, workflow automation, and digital modernization consulting for government and public-sector organizations.</p>

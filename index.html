@@ -9,6 +9,7 @@
     <meta property="og:description" content="Custom software, workflow automation, and digital modernization for government and public-sector organizations.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kautotech.com">
+    <link rel="icon" type="image/png" href="/k icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -37,17 +38,17 @@
             --navy: #0a1628;
             --navy-light: #121e36;
             --navy-mid: #1a2a4a;
-            --blue: #2563eb;
-            --blue-dark: #1d4ed8;
-            --blue-light: #3b82f6;
-            --blue-pale: #eff6ff;
+            --coral: #E8604C;
+            --coral-dark: #D4503E;
+            --coral-light: #F07A68;
+            --coral-pale: #FFF1EE;
             --slate: #475569;
             --slate-light: #64748b;
             --gray-100: #f8fafc;
             --gray-200: #e2e8f0;
             --gray-300: #cbd5e1;
             --white: #ffffff;
-            --accent: #0ea5e9;
+            --accent: #E8604C;
             --accent-green: #10b981;
             --section-pad: 100px 0;
             --container: 1200px;
@@ -73,7 +74,7 @@
             font-weight: 500;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--blue);
+            color: var(--coral);
             margin-bottom: 12px;
             display: inline-block;
         }
@@ -120,13 +121,13 @@
             white-space: nowrap;
         }
         .btn-primary {
-            background: var(--blue);
+            background: var(--coral);
             color: var(--white);
-            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 2px 8px rgba(232, 96, 76, 0.3);
         }
         .btn-primary:hover {
-            background: var(--blue-dark);
-            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+            background: var(--coral-dark);
+            box-shadow: 0 4px 16px rgba(232, 96, 76, 0.4);
             transform: translateY(-1px);
         }
         .btn-secondary {
@@ -140,11 +141,11 @@
         }
         .btn-outline {
             background: transparent;
-            color: var(--blue);
-            border: 1.5px solid var(--blue);
+            color: var(--coral);
+            border: 1.5px solid var(--coral);
         }
         .btn-outline:hover {
-            background: var(--blue);
+            background: var(--coral);
             color: var(--white);
         }
         .btn-dark {
@@ -214,18 +215,11 @@
             align-items: center;
             gap: 10px;
         }
-        .logo-mark {
+        .logo-icon {
             width: 32px;
             height: 32px;
-            background: var(--blue);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: white;
+            border-radius: 0;
+            display: block;
         }
         .nav { display: flex; align-items: center; gap: 32px; }
         .nav a {
@@ -341,7 +335,7 @@
             margin-bottom: 24px;
         }
         .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--blue-light), var(--accent));
+            background: linear-gradient(135deg, var(--coral-light), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -404,7 +398,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--blue);
+            background: var(--coral);
             flex-shrink: 0;
         }
 
@@ -430,7 +424,7 @@
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--blue), var(--accent));
+            background: linear-gradient(90deg, var(--coral), var(--accent));
             opacity: 0;
             transition: opacity var(--transition);
         }
@@ -444,7 +438,7 @@
             width: 48px;
             height: 48px;
             border-radius: 10px;
-            background: var(--blue-pale);
+            background: var(--coral-pale);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -518,7 +512,7 @@
         }
         .gov-cap-item:hover {
             background: rgba(255,255,255,0.07);
-            border-color: rgba(37, 99, 235, 0.3);
+            border-color: rgba(232, 96, 76, 0.3);
         }
         .gov-cap-item h4 {
             font-size: 0.9rem;
@@ -559,7 +553,7 @@
             width: 44px;
             height: 44px;
             border-radius: 10px;
-            background: var(--blue-pale);
+            background: var(--coral-pale);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -600,7 +594,7 @@
             width: 32px;
             height: 32px;
             border-radius: 8px;
-            background: var(--blue);
+            background: var(--coral);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -731,7 +725,7 @@
         }
         .result-card:hover {
             background: rgba(255,255,255,0.07);
-            border-color: rgba(37, 99, 235, 0.3);
+            border-color: rgba(232, 96, 76, 0.3);
         }
         .result-metric {
             font-family: 'JetBrains Mono', monospace;
@@ -798,7 +792,7 @@
         .cta-section .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); }
         .btn-white {
             background: white;
-            color: var(--blue-dark);
+            color: var(--coral-dark);
             font-weight: 700;
         }
         .btn-white:hover {
@@ -837,7 +831,7 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.5rem;
             font-weight: 800;
-            color: var(--blue);
+            color: var(--coral);
             margin-bottom: 4px;
         }
         .about-highlight p {
@@ -871,7 +865,7 @@
             line-height: 1.7;
         }
         .contact-info a {
-            color: var(--blue);
+            color: var(--coral);
             font-weight: 500;
         }
         .contact-info a:hover { text-decoration: underline; }
@@ -913,7 +907,7 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--blue);
+            border-color: var(--coral);
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
         .form-group textarea { min-height: 120px; resize: vertical; }
@@ -1016,7 +1010,7 @@
     <header class="header" id="header">
         <div class="container">
             <a href="#" class="logo">
-                <div class="logo-mark">KA</div>
+                <img src="/k icon.png" alt="K Auto Tech" class="logo-icon">
                 K Auto Tech
             </a>
             <nav class="nav">
@@ -1102,42 +1096,42 @@
             <div class="services-grid">
                 <div class="service-card reveal reveal-delay-1">
                     <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
                     </div>
                     <h3>Workflow Automation</h3>
                     <p>Replace manual, repetitive processes with automated workflows that reduce errors, save time, and give your team capacity back. From document routing to approval chains to data entry elimination.</p>
                 </div>
                 <div class="service-card reveal reveal-delay-2">
                     <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                     </div>
                     <h3>Custom Software Development</h3>
                     <p>Purpose-built applications designed for your specific workflows. Internal tools, public-facing portals, data processing systems, and operational platforms that solve the problems off-the-shelf software cannot.</p>
                 </div>
                 <div class="service-card reveal reveal-delay-3">
                     <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
                     </div>
                     <h3>Data Dashboards &amp; Reporting</h3>
                     <p>Operational dashboards that give leadership and staff real-time visibility into what matters. KPI tracking, performance reporting, and data visualization that turns raw information into decisions.</p>
                 </div>
                 <div class="service-card reveal reveal-delay-4">
                     <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M16.36 16.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M16.36 7.64l1.42-1.42"/></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M16.36 16.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M16.36 7.64l1.42-1.42"/></svg>
                     </div>
                     <h3>Systems Integration</h3>
                     <p>Connect the tools your organization already uses. We build secure integrations between legacy systems, cloud platforms, databases, and third-party services so data flows where it needs to go.</p>
                 </div>
                 <div class="service-card reveal reveal-delay-5">
                     <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
                     </div>
                     <h3>Digital Modernization Consulting</h3>
                     <p>Strategic advisory for organizations ready to move past paper-based processes, disconnected spreadsheets, and legacy workflows. We assess, plan, and execute modernization projects that deliver real improvements.</p>
                 </div>
                 <div class="service-card reveal reveal-delay-6">
                     <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                     </div>
                     <h3>AI-Enabled Process Improvement</h3>
                     <p>Practical applications of machine learning and intelligent automation where they make operational sense. Document processing, classification, routing, and decision support tools that reduce workload without adding complexity.</p>
@@ -1213,56 +1207,56 @@
             <div class="industries-grid">
                 <div class="industry-card reveal reveal-delay-1">
                     <div class="industry-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
                     </div>
                     <h3>Local Government</h3>
                     <p>Cities, counties, and municipal agencies</p>
                 </div>
                 <div class="industry-card reveal reveal-delay-2">
                     <div class="industry-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                     </div>
                     <h3>Transportation</h3>
                     <p>Transit authorities and fleet operations</p>
                 </div>
                 <div class="industry-card reveal reveal-delay-3">
                     <div class="industry-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="12" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="12" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
                     </div>
                     <h3>Infrastructure</h3>
                     <p>Capital projects and public works</p>
                 </div>
                 <div class="industry-card reveal reveal-delay-4">
                     <div class="industry-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                     </div>
                     <h3>Permitting &amp; Licensing</h3>
                     <p>Application processing and compliance tracking</p>
                 </div>
                 <div class="industry-card reveal reveal-delay-1">
                     <div class="industry-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
                     </div>
                     <h3>Procurement</h3>
                     <p>Purchasing workflows and vendor management</p>
                 </div>
                 <div class="industry-card reveal reveal-delay-2">
                     <div class="industry-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     </div>
                     <h3>Utilities</h3>
                     <p>Service delivery and operational systems</p>
                 </div>
                 <div class="industry-card reveal reveal-delay-3">
                     <div class="industry-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                     </div>
                     <h3>Economic Development</h3>
                     <p>Grant management and program tracking</p>
                 </div>
                 <div class="industry-card reveal reveal-delay-4">
                     <div class="industry-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
                     <h3>Regulated Industry</h3>
                     <p>Compliance-aware systems for complex operations</p>
@@ -1543,7 +1537,7 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <div class="logo">
-                        <div class="logo-mark">KA</div>
+                        <img src="/k icon.png" alt="K Auto Tech" class="logo-icon">
                         K Auto Tech
                     </div>
                     <p>Custom software development, workflow automation, and digital modernization consulting for government and public-sector organizations.</p>

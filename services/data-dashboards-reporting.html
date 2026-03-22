@@ -8,6 +8,7 @@
     <meta property="og:title" content="Data Dashboards & Reporting | K Auto Tech">
     <meta property="og:description" content="Government operational dashboards and reporting. Real-time metrics, automated reports, and data visualization for better decision-making.">
     <meta property="og:url" content="https://kautotech.com/services/data-dashboards-reporting.html">
+    <link rel="icon" type="image/png" href="../k icon.png">
     <meta name="canonical" content="https://kautotech.com/services/data-dashboards-reporting.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,15 +30,15 @@
         :root {
             --navy: #0a1628;
             --navy-mid: #1a2a4a;
-            --blue: #2563eb;
-            --blue-dark: #1d4ed8;
-            --blue-pale: #eff6ff;
+            --coral: #E8604C;
+            --coral-dark: #D4503E;
+            --coral-pale: #FFF1EE;
             --slate: #475569;
             --gray-100: #f8fafc;
             --gray-200: #e2e8f0;
             --gray-300: #cbd5e1;
             --white: #ffffff;
-            --accent: #0ea5e9;
+            --accent: #E8604C;
             --container: 1200px;
             --radius-lg: 12px;
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -60,11 +61,11 @@
             transition: all var(--transition);
         }
         .btn-primary {
-            background: var(--blue);
+            background: var(--coral);
             color: var(--white);
         }
         .btn-primary:hover {
-            background: var(--blue-dark);
+            background: var(--coral-dark);
             transform: translateY(-1px);
         }
         .header {
@@ -95,17 +96,11 @@
             align-items: center;
             gap: 8px;
         }
-        .logo-mark {
+        .logo-icon {
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, var(--blue), var(--accent));
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: var(--white);
+            border-radius: 0;
+            display: block;
         }
         .nav {
             display: flex;
@@ -315,7 +310,7 @@
             color: var(--navy);
         }
         .faq-question:hover {
-            background: var(--blue-pale);
+            background: var(--coral-pale);
         }
         .faq-toggle {
             transition: transform var(--transition);
@@ -356,7 +351,7 @@
         }
         .related-services {
             padding: 60px 0;
-            background: var(--blue-pale);
+            background: var(--coral-pale);
         }
         .related-services h3 {
             font-size: 1.3rem;
@@ -374,12 +369,12 @@
             background: var(--white);
             border: 1px solid var(--gray-300);
             border-radius: var(--radius-lg);
-            color: var(--blue);
+            color: var(--coral);
             font-weight: 600;
             transition: all var(--transition);
         }
         .related-link:hover {
-            border-color: var(--blue);
+            border-color: var(--coral);
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             transform: translateY(-2px);
         }
@@ -398,7 +393,7 @@
     <header class="header" id="header">
         <div class="container">
             <a href="/" class="logo">
-                <div class="logo-mark">KA</div>
+                <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
                 K Auto Tech
             </a>
             <nav class="nav">
@@ -586,7 +581,7 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <div class="logo">
-                        <div class="logo-mark">KA</div>
+                        <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
                         K Auto Tech
                     </div>
                     <p>Custom software development, workflow automation, and digital modernization consulting for government and public-sector organizations.</p>
