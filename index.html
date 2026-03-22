@@ -290,14 +290,15 @@
             position: relative;
             overflow: hidden;
             padding: 120px 0 80px;
+            background-image: url('images/hero-bg.png');
+            background-size: cover;
+            background-position: center;
         }
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(14, 165, 233, 0.06) 0%, transparent 50%);
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.85) 0%, rgba(10, 22, 40, 0.6) 50%, rgba(10, 22, 40, 0.85) 100%);
         }
         /* Grid pattern overlay */
         .hero::after {
@@ -305,8 +306,8 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background-image:
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
             background-size: 60px 60px;
         }
         .hero .container { position: relative; z-index: 2; }
@@ -481,6 +482,14 @@
                 linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
             background-size: 48px 48px;
         }
+        .gov-illustration {
+            margin-top: 40px;
+        }
+        .gov-illustration img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            opacity: 0.9;
+        }
         .gov-solutions .container { position: relative; z-index: 1; }
         .gov-grid {
             display: grid;
@@ -616,19 +625,22 @@
         .why-visual {
             background: var(--navy);
             border-radius: var(--radius-lg);
-            padding: 48px 40px;
+            padding: 0;
             color: white;
             position: relative;
             overflow: hidden;
         }
+        .why-visual-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+        .why-visual-text {
+            padding: 36px 40px;
+            position: relative;
+        }
         .why-visual::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 32px 32px;
+            display: none;
         }
         .why-visual-content { position: relative; z-index: 1; }
         .why-visual blockquote {
@@ -693,6 +705,17 @@
             padding: var(--section-pad);
             background: var(--navy);
             color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .results-bg-image {
+            position: absolute;
+            top: 50%;
+            right: -10%;
+            transform: translateY(-50%);
+            width: 45%;
+            opacity: 0.12;
+            pointer-events: none;
         }
         .results-grid {
             display: grid;
@@ -735,7 +758,10 @@
            ======================================== */
         .cta-section {
             padding: 80px 0;
-            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            background: var(--navy);
+            background-image: url('images/cta-bg.png');
+            background-size: cover;
+            background-position: center;
             color: var(--white);
             text-align: center;
             position: relative;
@@ -745,10 +771,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-            background-size: 48px 48px;
+            background: rgba(10, 22, 40, 0.7);
         }
         .cta-section .container { position: relative; z-index: 1; }
         .cta-section h2 {
@@ -1135,6 +1158,9 @@
                     <p>Government agencies face a specific set of challenges: compliance requirements, procurement constraints, legacy systems, limited IT resources, and high public accountability. We understand these realities because we build specifically for them.</p>
                     <p>Our approach is practical. We assess your current processes, identify where manual work and fragmented systems create bottlenecks, and build focused solutions that improve operations without requiring a massive organizational overhaul.</p>
                     <a href="#contact" class="btn btn-primary btn-arrow" style="margin-top: 12px;">Discuss Your Requirements</a>
+                    <div class="gov-illustration">
+                        <img src="images/gov-solutions.png" alt="Digital government workflow systems and connected infrastructure" loading="lazy">
+                    </div>
                 </div>
                 <div class="gov-capabilities reveal reveal-delay-2">
                     <div class="gov-cap-item">
@@ -1294,7 +1320,8 @@
                     </div>
                 </div>
                 <div class="why-visual reveal reveal-delay-2">
-                    <div class="why-visual-content">
+                    <img src="images/dashboard.png" alt="Modern operational dashboard visualization" class="why-visual-img" loading="lazy">
+                    <div class="why-visual-text">
                         <blockquote>"We are not a bloated enterprise integrator. We are a focused, execution-oriented technical consulting firm that understands operations and delivers practical systems."</blockquote>
                         <p>K Auto Tech LLC exists because too many modernization projects fail. They fail because the people building the system do not understand the operation it supports. We take the opposite approach: understand the work first, then build the right tool for it.</p>
                     </div>
@@ -1305,6 +1332,7 @@
 
     <!-- ========================================
          PROCESS
+
          ======================================== -->
     <section class="process" id="process">
         <div class="container">
@@ -1344,7 +1372,8 @@
          RESULTS / OUTCOMES
          ======================================== -->
     <section class="results" id="results">
-        <div class="container">
+        <img src="images/dashboard.png" alt="" class="results-bg-image" loading="lazy" aria-hidden="true">
+        <div class="container" style="position:relative; z-index:1;">
             <div class="section-header section-header--center reveal">
                 <span class="section-label section-label--light">Outcomes</span>
                 <h2 class="section-title" style="color: white;">Systems that deliver<br>measurable operational improvement</h2>
@@ -1415,6 +1444,7 @@
                     </div>
                 </div>
                 <div class="reveal reveal-delay-2">
+                    <img src="images/about-team.png" alt="Auto Tech consulting team collaborating on digital solutions" style="width:100%; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 8px 40px rgba(0,0,0,0.15);" loading="lazy">
                     <div class="about-highlights">
                         <div class="about-highlight">
                             <h4>100%</h4>
