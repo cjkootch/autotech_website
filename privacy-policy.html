@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | K Auto Tech LLC</title>
+    <meta name="description" content="Privacy policy for K Auto Tech LLC. Learn how we collect, use, and protect your personal information in compliance with GDPR, CCPA, PIPEDA, and Caribbean data protection laws.">
+    <link rel="icon" type="image/png" href="/k icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           CSS RESET & BASE
+           ======================================== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* ========================================
+           CSS VARIABLES
+           ======================================== */
+        :root {
+            --navy: #0a1628;
+            --navy-light: #121e36;
+            --navy-mid: #1a2a4a;
+            --coral: #E8604C;
+            --coral-dark: #D4503E;
+            --coral-light: #F07A68;
+            --coral-pale: #FFF1EE;
+            --slate: #475569;
+            --slate-light: #64748b;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --white: #ffffff;
+            --accent: #E8604C;
+            --container: 1200px;
+            --radius: 8px;
+            --radius-lg: 12px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.1);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ========================================
+           UTILITY CLASSES
+           ======================================== */
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        /* ========================================
+           HEADER / NAV
+           ======================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all var(--transition);
+        }
+        .header.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .logo-name { font-size: 1.1rem; font-weight: 700; }
+        .logo-descriptor { font-size: 0.6rem; font-weight: 400; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            display: block;
+            filter: brightness(0) invert(1);
+        }
+        .nav { display: flex; align-items: center; gap: 32px; }
+        .nav a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.7);
+            transition: color var(--transition);
+        }
+        .nav a:hover { color: var(--white); }
+        .nav a.active { color: var(--coral); }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: white;
+            margin: 6px 0;
+            transition: all var(--transition);
+        }
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: var(--coral);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--coral-dark);
+        }
+
+        /* ========================================
+           PAGE HEADER
+           ======================================== */
+        .page-header {
+            background: var(--navy);
+            color: white;
+            padding: 100px 0 60px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(232, 96, 76, 0.15) 0%, rgba(232, 96, 76, 0.05) 40%, transparent 70%);
+        }
+        .page-header .container {
+            position: relative;
+            z-index: 2;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .breadcrumb {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            margin-bottom: 24px;
+        }
+        .breadcrumb a {
+            color: var(--coral);
+            transition: color var(--transition);
+        }
+        .breadcrumb a:hover {
+            color: var(--coral-light);
+        }
+
+        /* ========================================
+           CONTENT SECTION
+           ======================================== */
+        .privacy-content {
+            padding: 60px 0;
+        }
+        .privacy-main {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .privacy-section {
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .privacy-section:last-child {
+            border-bottom: none;
+        }
+        .privacy-section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--navy);
+            scroll-margin-top: 100px;
+        }
+        .privacy-section h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 28px;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+        .privacy-section p {
+            line-height: 1.8;
+            color: var(--slate);
+            margin-bottom: 16px;
+        }
+        .privacy-section ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+        .privacy-section li {
+            list-style: disc;
+            color: var(--slate);
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        .privacy-section strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+        .highlight-box {
+            background: var(--coral-pale);
+            border-left: 4px solid var(--coral);
+            padding: 20px;
+            border-radius: var(--radius);
+            margin: 24px 0;
+        }
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+        .privacy-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        .privacy-table th {
+            background: var(--gray-100);
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--navy);
+            border-bottom: 2px solid var(--gray-300);
+        }
+        .privacy-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--gray-200);
+            color: var(--slate);
+        }
+        .privacy-table tr:hover {
+            background: #fafafa;
+        }
+
+        /* ========================================
+           TABLE OF CONTENTS
+           ======================================== */
+        .toc {
+            background: var(--gray-100);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 48px;
+        }
+        .toc h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            margin-top: 0;
+            color: var(--navy);
+        }
+        .toc ul {
+            margin-left: 0;
+        }
+        .toc li {
+            list-style: none;
+            margin-bottom: 8px;
+        }
+        .toc a {
+            color: var(--coral);
+            transition: color var(--transition);
+        }
+        .toc a:hover {
+            color: var(--coral-dark);
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--navy);
+            color: white;
+            padding: 64px 0 32px;
+            margin-top: 80px;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 64px;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .footer-brand .logo {
+            margin-bottom: 8px;
+        }
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+        .footer-links h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 16px;
+            color: white;
+        }
+        .footer-links a {
+            display: block;
+            font-size: 0.875rem;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            transition: color var(--transition);
+        }
+        .footer-links a:hover {
+            color: var(--coral);
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #64748b;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 768px) {
+            .header .container { flex-direction: column; gap: 16px; }
+            .nav { display: none; }
+            .mobile-toggle { display: block; }
+            .page-header h1 { font-size: 1.75rem; }
+            .privacy-section h2 { font-size: 1.25rem; }
+            .footer-top { grid-template-columns: 1fr; gap: 32px; }
+            .footer-links { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .footer-bottom { flex-direction: column; justify-content: center; }
+            .privacy-table { font-size: 0.85rem; }
+            .privacy-table th,
+            .privacy-table td { padding: 8px; }
+        }
+
+        @media (max-width: 480px) {
+            .page-header { padding: 80px 0 40px; }
+            .page-header h1 { font-size: 1.5rem; }
+            .privacy-content { padding: 40px 0; }
+            .privacy-section { margin-bottom: 32px; padding-bottom: 32px; }
+            .footer-links { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========================================
+         HEADER / NAVIGATION
+         ======================================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/k icon.png" alt="K Auto Tech" class="logo-icon">
+                <div class="logo-text">
+                    <span class="logo-name">K Auto Tech</span>
+                    <span class="logo-descriptor">Automation & Modernization Consulting</span>
+                </div>
+            </a>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/#about">About</a>
+                <a href="/#contact">Contact</a>
+                <a href="privacy-policy.html" class="active">Privacy</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========================================
+         PAGE HEADER
+         ======================================== -->
+    <section class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/">Home</a> <span>&nbsp;/&nbsp;</span> <span>Privacy Policy</span>
+            </div>
+            <h1>Privacy Policy</h1>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CONTENT
+         ======================================== -->
+    <section class="privacy-content">
+        <div class="privacy-main">
+            <div class="toc">
+                <h3>Quick Navigation</h3>
+                <ul>
+                    <li><a href="#information-we-collect">Information We Collect</a></li>
+                    <li><a href="#how-we-use">How We Use Your Information</a></li>
+                    <li><a href="#legal-basis">Legal Basis for Processing (GDPR)</a></li>
+                    <li><a href="#cookies">Cookies and Tracking Technologies</a></li>
+                    <li><a href="#data-sharing">Data Sharing and Third Parties</a></li>
+                    <li><a href="#data-transfers">International Data Transfers</a></li>
+                    <li><a href="#data-retention">Data Retention</a></li>
+                    <li><a href="#your-rights">Your Rights</a></li>
+                    <li><a href="#children">Children's Privacy</a></li>
+                    <li><a href="#security">Security</a></li>
+                    <li><a href="#changes">Changes to This Policy</a></li>
+                    <li><a href="#contact-info">Contact Information</a></li>
+                </ul>
+            </div>
+
+            <div class="privacy-section">
+                <p><strong>Effective Date:</strong> March 2026</p>
+                <p>K Auto Tech LLC ("Company," "we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website kautotech.com (the "Website") and when you interact with us.</p>
+                <p>We serve clients across the United States, Canada, and the Caribbean. This policy complies with data protection requirements in multiple jurisdictions, including the European Union (GDPR), California (CCPA), Canada (PIPEDA), and Caribbean nations with their own data protection laws.</p>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="privacy-section" id="information-we-collect">
+                <h2>1. Information We Collect</h2>
+
+                <h3>Contact Form Information</h3>
+                <p>When you complete our contact form, we collect the following information:</p>
+                <ul>
+                    <li><strong>Name</strong> - Your full name</li>
+                    <li><strong>Organization</strong> - The agency or company you represent</li>
+                    <li><strong>Email Address</strong> - Your professional email</li>
+                    <li><strong>Phone Number</strong> - Your contact phone (optional)</li>
+                    <li><strong>Project Type</strong> - The nature of your inquiry or project</li>
+                    <li><strong>Message</strong> - Your project description, question, or request</li>
+                </ul>
+
+                <h3>Website Analytics and Cookies</h3>
+                <p>We use Google Analytics to understand how visitors interact with our Website. This may include:</p>
+                <ul>
+                    <li>Pages visited and time spent on each page</li>
+                    <li>Click patterns and user flow through the site</li>
+                    <li>Referral source (how you found our Website)</li>
+                    <li>Device type and browser information</li>
+                    <li>Geographic location (at country/region level)</li>
+                    <li>Internet Protocol (IP) address</li>
+                </ul>
+
+                <h3>Device and Usage Information</h3>
+                <p>We automatically collect certain information about your device and how you use the Website:</p>
+                <ul>
+                    <li>Browser type and version</li>
+                    <li>Operating system</li>
+                    <li>Device type (desktop, mobile, tablet)</li>
+                    <li>Screen resolution</li>
+                    <li>Pages accessed and duration of access</li>
+                    <li>Referring website or application</li>
+                </ul>
+
+                <h3>Information You Provide Voluntarily</h3>
+                <p>Beyond the contact form, you may voluntarily provide additional information through emails, support requests, or other communications. This information is stored securely and used only for the purposes you specified.</p>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="privacy-section" id="how-we-use">
+                <h2>2. How We Use Your Information</h2>
+
+                <p>We use the information we collect for the following purposes:</p>
+
+                <h3>Primary Uses</h3>
+                <ul>
+                    <li><strong>Business Communication</strong> - Responding to your inquiry, scheduling discovery calls, and discussing your project requirements</li>
+                    <li><strong>Service Delivery</strong> - If you engage our services, we use your information to deliver those services, manage the relationship, and provide support</li>
+                    <li><strong>Proposal and Quotation Development</strong> - Preparing detailed proposals and pricing information for your project</li>
+                    <li><strong>Procurement and Compliance</strong> - Meeting government procurement requirements, compliance verification, and documentation</li>
+                    <li><strong>Performance Analytics</strong> - Analyzing Website performance and user behavior to improve our site and user experience</li>
+                </ul>
+
+                <h3>Secondary Uses</h3>
+                <ul>
+                    <li>Maintaining records for business administration and accounting</li>
+                    <li>Responding to legal requests and compliance requirements</li>
+                    <li>Protecting against fraud, security threats, or abuse</li>
+                    <li>Conducting business analysis and planning</li>
+                    <li>Improving our products and services</li>
+                </ul>
+
+                <p><strong>We do not use your information for marketing purposes without your explicit consent.</strong> If you request to be added to our mailing list for industry updates or news, you may opt in and can unsubscribe at any time.</p>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="privacy-section" id="legal-basis">
+                <h2>3. Legal Basis for Processing (GDPR)</h2>
+
+                <p>For users located in the European Union, the United Kingdom, or other jurisdictions following similar data protection frameworks, we process your personal data based on the following lawful bases:</p>
+
+                <div class="table-wrapper">
+                    <table class="privacy-table">
+                        <thead>
+                            <tr>
+                                <th>Data Category</th>
+                                <th>Legal Basis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Contact form information (name, email, organization, message)</td>
+                                <td>Contractual necessity and legitimate business interest</td>
+                            </tr>
+                            <tr>
+                                <td>Phone number and project details</td>
+                                <td>Legitimate business interest and consent (if provided)</td>
+                            </tr>
+                            <tr>
+                                <td>Analytics and website usage data</td>
+                                <td>Legitimate business interest in optimizing website performance</td>
+                            </tr>
+                            <tr>
+                                <td>Device and browser information</td>
+                                <td>Legitimate business interest in maintaining website security</td>
+                            </tr>
+                            <tr>
+                                <td>IP address and location</td>
+                                <td>Legitimate business interest and website functionality</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Legitimate Business Interests</h3>
+                <p>We rely on legitimate business interests to process certain categories of information. These interests include:</p>
+                <ul>
+                    <li>Understanding and improving our Website and services</li>
+                    <li>Responding to inquiries and providing customer service</li>
+                    <li>Protecting against fraud and security threats</li>
+                    <li>Conducting business analysis and strategic planning</li>
+                    <li>Maintaining compliance with legal and regulatory obligations</li>
+                </ul>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="privacy-section" id="cookies">
+                <h2>4. Cookies and Tracking Technologies</h2>
+
+                <h3>What Are Cookies?</h3>
+                <p>Cookies are small text files stored on your device that help us recognize you when you return to our Website. They do not contain executable code and cannot access files on your device.</p>
+
+                <h3>How We Use Cookies</h3>
+                <p>Our Website uses cookies for the following purposes:</p>
+                <ul>
+                    <li><strong>Essential Cookies</strong> - Required for website functionality, security, and basic operations</li>
+                    <li><strong>Analytics Cookies</strong> - Google Analytics uses cookies to track user behavior, page visits, and session duration</li>
+                    <li><strong>Preference Cookies</strong> - Store your preferences (language, theme, accessibility settings)</li>
+                    <li><strong>Security Cookies</strong> - Protect against fraud and ensure secure transmission of data</li>
+                </ul>
+
+                <h3>Google Analytics</h3>
+                <p>We use Google Analytics to analyze Website traffic and user behavior. Google Analytics places cookies on your device and collects data about your Website usage. Google may also use this data to display advertisements on other websites based on your website activity (remarketing).</p>
+
+                <p>You can opt out of Google Analytics by:</p>
+                <ul>
+                    <li>Installing the Google Analytics Opt-Out Browser Add-on</li>
+                    <li>Adjusting your cookie preferences in your browser settings</li>
+                    <li>Visiting Google's privacy policy at https://policies.google.com/privacy</li>
+                </ul>
+
+                <h3>Third-Party Cookies</h3>
+                <p>Third-party services may place cookies on your device. We do not control these cookies and encourage you to review the privacy policies of third-party providers. Currently, we work with Google for analytics services only.</p>
+
+                <h3>Managing Your Cookie Preferences</h3>
+                <p>You can control cookies through your browser settings. Most browsers allow you to refuse cookies or alert you when cookies are being sent. However, blocking cookies may limit your ability to use certain features of the Website. For instructions on managing cookies, visit your browser's help section or settings.</p>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="privacy-section" id="data-sharing">
+                <h2>5. Data Sharing and Third Parties</h2>
+
+                <h3>Who We Share Your Information With</h3>
+                <p>We do not sell, rent, or lease your personal information to third parties. We only share your information in the following circumstances:</p>
+
+                <h3>Service Providers</h3>
+                <p>We may share information with trusted service providers who assist us in operating our Website and conducting our business, including:</p>
+                <ul>
+                    <li><strong>Google Analytics</strong> - For website analytics and traffic analysis</li>
+                    <li><strong>Email Service Providers</strong> - For sending transactional emails (confirmations, responses to inquiries)</li>
+                    <li><strong>Cloud Hosting Providers</strong> - For storing and maintaining Website infrastructure</li>
+                    <li><strong>CRM Systems</strong> - For managing customer relationships and business leads</li>
+                </ul>
+
+                <h3>Legal Requirements and Protection</h3>
+                <p>We may disclose your information when required by law or when we believe in good faith that disclosure is necessary to:</p>
+                <ul>
+                    <li>Comply with legal obligations, court orders, or government requests</li>
+                    <li>Protect our rights, privacy, safety, or property</li>
+                    <li>Protect against fraud, security threats, or illegal activity</li>
+                    <li>Enforce our terms of service or other agreements</li>
+                </ul>
+
+                <h3>Business Transactions</h3>
+                <p>If we are involved in a merger, acquisition, reorganization, bankruptcy, or similar transaction, your information may be transferred as part of that transaction. You will receive notice of any such change and any options you may have regarding your information.</p>
+
+                <h3>Data Processing Agreements</h3>
+                <p>All service providers who process your personal data on our behalf have entered into Data Processing Agreements (DPAs) that comply with GDPR, CCPA, PIPEDA, and other applicable data protection laws. These agreements ensure your information is processed securely and only for the purposes specified.</p>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="privacy-section" id="data-transfers">
+                <h2>6. International Data Transfers</h2>
+
+                <h3>Cross-Border Data Transfers</h3>
+                <p>K Auto Tech LLC is based in Houston, Texas, United States. Our Website is hosted on servers in the United States. If you are located in the European Union, Canada, or the Caribbean, your personal data will be transferred to and processed in the United States.</p>
+
+                <h3>GDPR Compliance for EU Users</h3>
+                <p>For users in the European Union, the United Kingdom, and countries with similar data protection laws, we implement the following safeguards for international transfers:</p>
+                <ul>
+                    <li><strong>Standard Contractual Clauses (SCCs)</strong> - We use approved Standard Contractual Clauses for transfers from the EU to the US</li>
+                    <li><strong>Data Protection Adequacy Assessments</strong> - We assess the data protection standards of recipient countries</li>
+                    <li><strong>Limited Transfer Scope</strong> - We only transfer data necessary to provide the requested services</li>
+                    <li><strong>Encryption and Security</strong> - Data is encrypted in transit and at rest to protect against unauthorized access</li>
+                </ul>
+
+                <h3>PIPEDA Compliance for Canadian Users</h3>
+                <p>Under Canada's Personal Information Protection and Electronic Documents Act (PIPEDA), we ensure that personal information transferred across borders to the United States is handled according to PIPEDA requirements. We maintain appropriate safeguards and security measures for all transferred data.</p>
+
+                <h3>Caribbean Data Protection</h3>
+                <p>For users in Caribbean jurisdictions with data protection laws, we comply with local requirements regarding cross-border data flows and maintain appropriate security measures equivalent to or exceeding local standards.</p>
+
+                <h3>Your Rights Regarding Transfers</h3>
+                <p>If you have concerns about your data being transferred internationally, you have the right to request more information about how we protect your data in transit and at rest. See Section 12 for contact information.</p>
+            </div>
+
+            <!-- Section 7 -->
+            <div class="privacy-section" id="data-retention">
+                <h2>7. Data Retention</h2>
+
+                <h3>How Long We Keep Your Information</h3>
+                <p>We retain your personal information only for as long as necessary to fulfill the purposes for which it was collected, unless longer retention is required by law.</p>
+
+                <div class="table-wrapper">
+                    <table class="privacy-table">
+                        <thead>
+                            <tr>
+                                <th>Data Type</th>
+                                <th>Retention Period</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Contact form inquiries (no engagement)</td>
+                                <td>12 months</td>
+                            </tr>
+                            <tr>
+                                <td>Active client information</td>
+                                <td>Duration of engagement + 7 years</td>
+                            </tr>
+                            <tr>
+                                <td>Website analytics data</td>
+                                <td>26 months (Google Analytics default)</td>
+                            </tr>
+                            <tr>
+                                <td>Cookie data</td>
+                                <td>As specified by cookie settings (typically 1-2 years)</td>
+                            </tr>
+                            <tr>
+                                <td>Server logs and IP data</td>
+                                <td>90 days</td>
+                            </tr>
+                            <tr>
+                                <td>Email communications</td>
+                                <td>Duration of engagement + 7 years for compliance</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Legal and Compliance Retention</h3>
+                <p>We may retain certain information longer than standard periods if required by:</p>
+                <ul>
+                    <li>Federal, state, or local tax requirements</li>
+                    <li>Government procurement and compliance audits (typically 5-7 years)</li>
+                    <li>Litigation and legal disputes</li>
+                    <li>Contractual obligations with clients</li>
+                </ul>
+
+                <h3>Secure Deletion</h3>
+                <p>When your information is no longer needed, we delete or anonymize it securely. Deletion may include securely erasing files or rendering them unreadable while maintaining backups for business continuity purposes.</p>
+            </div>
+
+            <!-- Section 8 -->
+            <div class="privacy-section" id="your-rights">
+                <h2>8. Your Rights</h2>
+
+                <p>You have rights regarding your personal data under data protection laws in your jurisdiction. Below are your rights under major applicable frameworks:</p>
+
+                <h3>GDPR Rights (EU, UK, and Similar Jurisdictions)</h3>
+                <p>If you are located in the European Union or a country with equivalent data protection laws, you have the following rights:</p>
+
+                <h3>Right of Access (Data Subject Access Request)</h3>
+                <p>You have the right to request a copy of the personal data we hold about you. We will provide this information in a structured, commonly used, and machine-readable format within 30 days of your request.</p>
+
+                <h3>Right to Rectification</h3>
+                <p>You have the right to request correction of inaccurate or incomplete personal data. We will update your information promptly upon verification of the correction.</p>
+
+                <h3>Right to Erasure ("Right to be Forgotten")</h3>
+                <p>Under certain circumstances, you can request that we delete your personal data, including:</p>
+                <ul>
+                    <li>When the data is no longer necessary for the purposes it was collected</li>
+                    <li>When you withdraw consent for processing</li>
+                    <li>When you object to processing on grounds of legitimate interest</li>
+                    <li>When the data has been processed unlawfully</li>
+                </ul>
+                <p><strong>Note:</strong> We may retain data when legally required or for legitimate business reasons (e.g., compliance, litigation).</p>
+
+                <h3>Right to Restrict Processing</h3>
+                <p>You can request that we limit how we use your personal data while we verify accuracy or assess our legal rights to process it.</p>
+
+                <h3>Right to Data Portability</h3>
+                <p>You have the right to receive your personal data in a structured, commonly used format and to transmit it to another controller.</p>
+
+                <h3>Right to Object</h3>
+                <p>You have the right to object to processing of your personal data when we rely on legitimate business interests. We will respect your objection unless we have compelling legitimate reasons to continue processing.</p>
+
+                <h3>Right to Lodge a Complaint</h3>
+                <p>You have the right to lodge a complaint with your local data protection authority if you believe we have violated your rights. Contact information for EU data protection authorities is available at https://edpb.ec.europa.eu/about-edpb/board/members_en.</p>
+
+                <h3>CCPA Rights (California Residents)</h3>
+                <p>If you are a California resident, the California Consumer Privacy Act (CCPA) provides you with the following rights:</p>
+
+                <h3>Right to Know</h3>
+                <p>You have the right to request what personal information we collect, use, disclose, and share about you.</p>
+
+                <h3>Right to Delete</h3>
+                <p>You can request deletion of personal information we have collected from you, subject to certain exceptions (e.g., information needed for transactions, legal compliance).</p>
+
+                <h3>Right to Opt-Out of Sales and Sharing</h3>
+                <p>While we do not "sell" personal information in the traditional sense, under CCPA's definition, you can request we do not sell or share your information for cross-context behavioral advertising.</p>
+
+                <h3>Right to Correct</h3>
+                <p>You can request correction of inaccurate personal information we maintain about you.</p>
+
+                <h3>Right to Non-Discrimination</h3>
+                <p>We will not discriminate against you for exercising your CCPA rights through denial of goods/services, differential pricing, or reduced quality of service.</p>
+
+                <h3>PIPEDA Rights (Canadian Residents)</h3>
+                <p>Under Canada's Personal Information Protection and Electronic Documents Act (PIPEDA), you have the following rights:</p>
+
+                <h3>Right of Access</h3>
+                <p>You have the right to request access to your personal information that we hold. We will respond within 30 days.</p>
+
+                <h3>Right to Request Correction</h3>
+                <p>You can request that we correct any inaccurate, incomplete, or irrelevant personal information.</p>
+
+                <h3>Right to Withdraw Consent</h3>
+                <p>You can withdraw consent for collection, use, or disclosure of your personal information at any time (though this may affect our ability to serve you).</p>
+
+                <h3>Right to File a Complaint</h3>
+                <p>You can lodge a complaint with the Privacy Commissioner of Canada if you believe we have violated PIPEDA requirements. Visit https://www.priv.gc.ca/ for more information.</p>
+
+                <h3>Caribbean Data Protection Rights</h3>
+                <p>If you are located in a Caribbean jurisdiction with data protection legislation, your rights under local law are recognized and protected. Common rights typically include access, correction, deletion, and lodging complaints with local data protection authorities.</p>
+
+                <h3>How to Exercise Your Rights</h3>
+                <p>To exercise any of these rights, please contact us with your request (see Section 12 for contact information). Include enough detail to help us identify your information and your specific request. We will respond within the timeframes required by applicable law.</p>
+            </div>
+
+            <!-- Section 9 -->
+            <div class="privacy-section" id="children">
+                <h2>9. Children's Privacy</h2>
+
+                <p>Our Website and services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If we become aware that a child has provided us with personal information, we will take steps to delete such information and terminate the child's account.</p>
+
+                <p><strong>For parents or guardians:</strong> If you believe your child has provided personal information to us, please contact us immediately at info@kautotech.com. We will promptly investigate and delete the information if appropriate.</p>
+
+                <h3>Compliance with Laws</h3>
+                <ul>
+                    <li><strong>COPPA (US)</strong> - Children's Online Privacy Protection Act</li>
+                    <li><strong>GDPR (EU)</strong> - Special protections for users under 16 (or local age of digital consent)</li>
+                    <li><strong>PIPEDA (Canada)</strong> - Special consent requirements for minors</li>
+                </ul>
+            </div>
+
+            <!-- Section 10 -->
+            <div class="privacy-section" id="security">
+                <h2>10. Security</h2>
+
+                <h3>Security Measures</h3>
+                <p>We implement comprehensive technical, administrative, and organizational measures to protect your personal information against unauthorized access, disclosure, alteration, and destruction. These measures include:</p>
+
+                <ul>
+                    <li><strong>Encryption</strong> - Data transmitted over the internet is encrypted using HTTPS/TLS</li>
+                    <li><strong>Access Controls</strong> - Personal information is accessible only to authorized employees on a need-to-know basis</li>
+                    <li><strong>Data Minimization</strong> - We collect and retain only the minimum personal data necessary</li>
+                    <li><strong>Employee Training</strong> - Our staff receives regular training on data protection and privacy practices</li>
+                    <li><strong>Firewalls and Intrusion Detection</strong> - Our systems are protected by firewalls and monitored for intrusions</li>
+                    <li><strong>Regular Security Audits</strong> - We conduct periodic security assessments and penetration testing</li>
+                    <li><strong>Secure Backups</strong> - Data backups are encrypted and securely stored</li>
+                    <li><strong>Vendor Security</strong> - Third-party service providers must meet our security standards</li>
+                </ul>
+
+                <h3>Limitations of Security</h3>
+                <p>While we maintain strong security measures, no method of transmission over the internet or electronic storage is 100% secure. We cannot guarantee absolute security of your information. You transmit information at your own risk. We encourage you to use strong passwords and keep your login credentials confidential.</p>
+
+                <h3>Data Breach Notification</h3>
+                <p>In the event of a data breach involving your personal information, we will notify affected individuals and relevant authorities as required by law. Notifications will be made without undue delay and in accordance with GDPR, CCPA, PIPEDA, and other applicable requirements.</p>
+
+                <h3>Your Responsibility</h3>
+                <p>You are responsible for maintaining the confidentiality of your passwords and contact information. If you believe your account has been compromised, contact us immediately.</p>
+            </div>
+
+            <!-- Section 11 -->
+            <div class="privacy-section" id="changes">
+                <h2>11. Changes to This Policy</h2>
+
+                <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make material changes, we will notify you by:</p>
+
+                <ul>
+                    <li>Updating the "Effective Date" at the top of this policy</li>
+                    <li>Posting the updated policy on our Website</li>
+                    <li>Sending you an email notification if you are an active client or have specifically requested updates</li>
+                </ul>
+
+                <p>Your continued use of the Website after changes become effective constitutes your acceptance of the updated Privacy Policy. We encourage you to review this policy periodically to stay informed about how we protect your information.</p>
+
+                <h3>Significant Changes</h3>
+                <p>For significant changes that materially affect your privacy rights (e.g., new third-party sharing practices, new uses of data), we will provide more prominent notice and may request explicit consent.</p>
+            </div>
+
+            <!-- Section 12 -->
+            <div class="privacy-section" id="contact-info">
+                <h2>12. Contact Information</h2>
+
+                <p>If you have questions about this Privacy Policy, want to exercise your rights, or have privacy concerns, please contact us:</p>
+
+                <h3>K Auto Tech LLC</h3>
+                <p>
+                    <strong>Email:</strong> <a href="mailto:info@kautotech.com">info@kautotech.com</a><br>
+                    <strong>Address:</strong> Houston, Texas, United States<br>
+                    <strong>Website:</strong> kautotech.com
+                </p>
+
+                <h3>Data Protection Officer / Privacy Contact</h3>
+                <p>For data protection inquiries, GDPR subject access requests, and privacy concerns, please email info@kautotech.com with "Privacy Request" in the subject line.</p>
+
+                <h3>Response Times</h3>
+                <p>We will respond to privacy inquiries and data subject access requests within:</p>
+                <ul>
+                    <li><strong>GDPR:</strong> 30 days (extendable by 60 days for complex requests)</li>
+                    <li><strong>CCPA:</strong> 45 days</li>
+                    <li><strong>PIPEDA:</strong> 30 days</li>
+                </ul>
+
+                <h3>Regulatory Authorities</h3>
+                <p>If you are unsatisfied with our response to your privacy request or complaint, you have the right to lodge a complaint with your local data protection authority:</p>
+                <ul>
+                    <li><strong>EU/UK:</strong> Your national data protection authority (list: https://edpb.ec.europa.eu/)</li>
+                    <li><strong>California:</strong> California Attorney General's Office (https://oag.ca.gov/privacy)</li>
+                    <li><strong>Canada:</strong> Office of the Privacy Commissioner of Canada (https://www.priv.gc.ca/)</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>Last Updated:</strong> March 22, 2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         FOOTER
+         ======================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="/k icon.png" alt="K Auto Tech" class="logo-icon">
+                        <div class="logo-text">
+                            <span class="logo-name">K Auto Tech</span>
+                            <span class="logo-descriptor">Automation & Modernization Consulting</span>
+                        </div>
+                    </div>
+                    <p>Custom software development, workflow automation, and digital modernization consulting for government and public-sector organizations.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Services</h4>
+                        <a href="/">Custom Software</a>
+                        <a href="/">Web Applications</a>
+                        <a href="/">Mobile Development</a>
+                        <a href="/">System Integration</a>
+                        <a href="/">Legacy Modernization</a>
+                        <a href="/">Cloud Migration</a>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <a href="/">About</a>
+                        <a href="/">Contact</a>
+                        <a href="privacy-policy.html">Privacy Policy</a>
+                    </div>
+                    <div>
+                        <h4>Markets</h4>
+                        <a href="/">US Government</a>
+                        <a href="/">US Private Sector</a>
+                        <a href="/">Canada</a>
+                        <a href="/">Caribbean</a>
+                    </div>
+                    <div>
+                        <h4>Industries</h4>
+                        <a href="/">Local Government</a>
+                        <a href="/">Transportation</a>
+                        <a href="/">Infrastructure</a>
+                        <a href="/">Permitting & Licensing</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 K Auto Tech LLC. All rights reserved.</span>
+                <span>Houston, Texas</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================
+         JAVASCRIPT
+         ======================================== -->
+    <script>
+        /* Sticky header scroll effect */
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        /* Smooth scroll for anchor links */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const offset = 100;
+                    const pos = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top: pos, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -8,6 +8,14 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://katechconsulting.com/privacy-policy.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Service Pages -->
   <url>
     <loc>https://katechconsulting.com/services/custom-software-development</loc>
