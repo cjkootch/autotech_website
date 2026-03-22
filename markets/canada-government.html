@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canada Government Modernization Solutions | K Auto Tech Consulting</title>
+    <meta name="description" content="Enterprise technology solutions for Canadian federal, provincial, and municipal government agencies. Digital transformation with compliance for privacy regulations and bilingual requirements.">
+    <style>
+        :root {
+            --primary-navy: #001a4d;
+            --primary-blue: #0047ab;
+            --light-blue: #e6f0ff;
+            --accent-green: #00a86b;
+            --text-dark: #222;
+            --text-light: #666;
+            --border-gray: #e0e0e0;
+            --hover-blue: #003d99;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 26, 77, 0.1);
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-navy);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: white;
+                display: none;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 1rem;
+                border-bottom: 1px solid var(--border-gray);
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+        }
+
+        /* Main content */
+        main {
+            margin-top: 70px;
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1rem 2rem;
+            background: var(--light-blue);
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Feature cards */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border-left: 4px solid var(--primary-blue);
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 71, 171, 0.15);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Services section */
+        .services-section {
+            background: var(--light-blue);
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-radius: 4px;
+        }
+
+        .services-section h2 {
+            color: var(--primary-navy);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .services-list li {
+            list-style: none;
+            padding-left: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .services-list li:before {
+            content: "✓";
+            color: var(--accent-green);
+            font-weight: bold;
+            margin-right: 0.75rem;
+            margin-left: -1.5rem;
+        }
+
+        /* FAQ */
+        .faq-section {
+            margin: 3rem 0;
+        }
+
+        .faq-section h2 {
+            color: var(--primary-navy);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-gray);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--light-blue);
+        }
+
+        .faq-question.active {
+            background: var(--light-blue);
+        }
+
+        .faq-question span {
+            font-weight: 600;
+            color: var(--primary-navy);
+            flex: 1;
+        }
+
+        .faq-toggle {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            background: white;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* CTA section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 4px;
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-green);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #009357;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 168, 107, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-navy);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .services-list {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">K Auto Tech</a>
+            <button class="mobile-toggle" onclick="toggleNav()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/">Home</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/markets">Markets</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Canada Government Modernization Solutions</h1>
+            <p>Transform federal, provincial, and municipal government operations across Canada. Our solutions meet rigorous privacy standards (PIPEDA), support bilingual requirements, and deliver world-class digital services to citizens.</p>
+        </section>
+
+        <div class="breadcrumb">
+            <a href="/">Home</a> / <a href="/markets">Markets</a> / Canada Government
+        </div>
+
+        <div class="container">
+            <section class="features">
+                <div class="feature-card">
+                    <h3>Federal Government Operations</h3>
+                    <p>Modernize national agencies managing defense, immigration, tax administration, and social programs. Build integrated systems supporting bilingual services and inter-ministerial coordination.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Provincial Government Services</h3>
+                    <p>Transform provincial administration including health, education, social services, and resource management. Enable province-to-citizen digital engagement with cultural and linguistic appropriateness.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Municipal Government Solutions</h3>
+                    <p>Streamline city and town operations: permits, zoning, utilities, waste management, and public services. Improve citizen engagement through accessible, responsive digital platforms.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Healthcare & Social Programs</h3>
+                    <p>Modernize provincial health systems, healthcare delivery coordination, and social program administration. Ensure seamless citizen access to services across health and social domains.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Education & Research</h3>
+                    <p>Transform education administration, student services, research coordination, and institutional systems for schools, colleges, and universities across Canada's diverse provincial systems.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Public Safety & Justice</h3>
+                    <p>Enhance law enforcement coordination, court management systems, correctional services, and emergency response with integrated platforms serving federal and provincial justice systems.</p>
+                </div>
+            </section>
+
+            <section class="services-section">
+                <h2>Our Services for Canadian Government</h2>
+                <ul class="services-list">
+                    <li>Bilingual system design and implementation (English/French)</li>
+                    <li>PIPEDA compliance and data privacy governance</li>
+                    <li>Legacy system modernization and cloud migration strategies</li>
+                    <li>Enterprise resource planning (ERP) implementation</li>
+                    <li>Citizen portal and digital service delivery platforms</li>
+                    <li>Inter-government data sharing and integration architecture</li>
+                    <li>Federal-provincial-municipal coordination systems</li>
+                    <li>Cybersecurity and infrastructure hardening</li>
+                    <li>Healthcare information systems and interoperability</li>
+                    <li>Accessibility compliance (AODA in Ontario, similar standards across provinces)</li>
+                    <li>Change management and organizational transformation</li>
+                    <li>Training, documentation, and knowledge transfer services</li>
+                </ul>
+            </section>
+
+            <section class="faq-section">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do you ensure PIPEDA compliance and data privacy in government solutions?</span>
+                        <div class="faq-toggle">⌄</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>PIPEDA compliance is built into our solution architecture from design through implementation. We incorporate data minimization principles, implement robust access controls, establish clear data retention policies, create audit trails for accountability, and provide transparent privacy mechanisms. Our solutions support government's obligations for citizen consent, breach notification, and data portability. We also address provincial privacy laws (like Quebec's Law 25) that may be more stringent than PIPEDA.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What's involved in making systems truly bilingual (English and French)?</span>
+                        <div class="faq-toggle">⌄</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>True bilingualism goes beyond simple translation. We design systems with dual-language support built in from the database layer through user interface, ensuring both languages have equal functionality, performance, and user experience. This includes proper character encoding, right-to-left support if needed, language-specific formatting (dates, currency), cultural appropriateness, and professional translation by native speakers. Our systems allow citizens to seamlessly switch languages and maintain their language preference across sessions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do you manage federal-provincial-municipal coordination?</span>
+                        <div class="faq-toggle">⌄</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We design systems with clear data governance and sharing frameworks that respect constitutional divisions of power while enabling coordination where needed. Our solutions use secure APIs, audit trails, and consent mechanisms to support appropriate information sharing. We understand the unique dynamics of each jurisdiction and help establish governance frameworks that clarify roles, authorities, and data sharing protocols while maintaining system independence.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What accessibility standards must Canadian government systems meet?</span>
+                        <div class="faq-toggle">⌄</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Requirements vary by jurisdiction. Ontario's AODA sets standards, but other provinces have similar accessibility requirements (e.g., British Columbia, Alberta). Federal systems must meet ATIA standards. We design solutions meeting WCAG 2.1 AA standards as a baseline, implement proper semantic HTML, support assistive technologies, provide alternative text, ensure keyboard navigation, and use appropriate color contrast. We conduct accessibility audits and provide remediation guidance.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do you handle procurement and funding across government jurisdictions?</span>
+                        <div class="faq-toggle">⌄</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We understand federal procurement (GETS), provincial frameworks, and municipal processes. We're experienced with Treasury Board requirements, provincial government procurement policies, and municipal contracting. We can structure solutions to work with existing vendor relationships, leverage approved procurement channels, align with multi-year budget cycles, and support grant funding requirements. Our approach accommodates the unique fiscal and procurement landscape of different Canadian jurisdictions.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <h2>Ready to Transform Canada's Government Services?</h2>
+                <p>Let's discuss how we can help your government agency deliver modern, secure, and citizen-centered services.</p>
+                <a href="/contact" class="cta-button">Start the Conversation</a>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 K Auto Tech Consulting. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function toggleFaq(element) {
+            const question = element;
+            const answer = question.nextElementSibling;
+            question.classList.toggle('active');
+            answer.classList.toggle('active');
+        }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "K Auto Tech Consulting - Canada Government Solutions",
+        "description": "Enterprise technology solutions for Canadian federal, provincial, and municipal government",
+        "url": "https://autotech-consulting.com/markets/canada-government",
+        "areaServed": "CA",
+        "serviceType": "Technology Consulting",
+        "keywords": "Canadian government modernization, federal technology, provincial systems, municipal solutions"
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industries | K Auto Tech Consulting</title>
+    <meta name="description" content="Industry-specific technology solutions for government, transportation, infrastructure, utilities, and regulated private sectors.">
+    <style>
+        :root {
+            --primary-navy: #1a3a52;
+            --primary-blue: #2c5aa0;
+            --light-blue: #e8f1f8;
+            --accent-green: #00a86b;
+            --text-dark: #333;
+            --text-light: #666;
+            --border-light: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        header {
+            background-color: var(--primary-navy);
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-green);
+        }
+
+        main {
+            margin-top: 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: var(--primary-navy);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-left: 4px solid var(--primary-blue);
+            padding: 2rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        .card h2 {
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .card a {
+            display: inline-block;
+            color: var(--primary-blue);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .card a:hover {
+            color: var(--primary-navy);
+        }
+
+        footer {
+            background-color: var(--primary-navy);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            main {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">K Auto Tech Consulting</div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/#services">Services</a>
+                <a href="/markets/">Markets</a>
+                <a href="/industries/">Industries</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>Industry Solutions</h1>
+        <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 3rem;">
+            K Auto Tech Consulting delivers technology solutions tailored to industry-specific challenges, regulations, and operational requirements across government and private sectors.
+        </p>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Local Government</h2>
+                <p>Comprehensive technology solutions for municipalities including permitting, licensing, procurement, utilities management, and citizen services.</p>
+                <a href="/industries/local-government">Explore Solutions →</a>
+            </div>
+
+            <div class="card">
+                <h2>Transportation & Logistics</h2>
+                <p>Fleet management, supply chain visibility, route optimization, driver safety, and telematics systems for transportation companies and logistics operators.</p>
+                <a href="/industries/transportation">Explore Solutions →</a>
+            </div>
+
+            <div class="card">
+                <h2>Infrastructure</h2>
+                <p>Asset management, project coordination, field operations, safety compliance, and data integration systems for infrastructure projects and asset-intensive organizations.</p>
+                <a href="/industries/infrastructure">Explore Solutions →</a>
+            </div>
+
+            <div class="card">
+                <h2>Permitting & Licensing</h2>
+                <p>Digital workflow systems for online applications, inspection scheduling, compliance documentation, and citizen communication in permitting and licensing operations.</p>
+                <a href="/industries/permitting-licensing">Explore Solutions →</a>
+            </div>
+
+            <div class="card">
+                <h2>Procurement & Administration</h2>
+                <p>E-procurement platforms, RFP management, vendor systems, contract administration, and compliance controls for government and enterprise procurement.</p>
+                <a href="/industries/procurement-administration">Explore Solutions →</a>
+            </div>
+
+            <div class="card">
+                <h2>Utilities</h2>
+                <p>Customer billing, smart metering, grid management, distributed energy resources, and regulatory compliance systems for electric, gas, water, and telecom utilities.</p>
+                <a href="/industries/utilities">Explore Solutions →</a>
+            </div>
+
+            <div class="card">
+                <h2>Economic Development</h2>
+                <p>Business attraction, workforce development, incentive management, site selection, and economic data platforms for economic development agencies.</p>
+                <a href="/industries/economic-development">Explore Solutions →</a>
+            </div>
+
+            <div class="card">
+                <h2>Regulated Private Industry</h2>
+                <p>Compliance-first digital transformation for healthcare, finance, energy, telecommunications, and other regulated sectors with strict compliance requirements.</p>
+                <a href="/industries/regulated-private-industry">Explore Solutions →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 K Auto Tech Consulting. All rights reserved.</p>
+    </footer>
+</body>
+</html>

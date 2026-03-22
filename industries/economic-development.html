@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economic Development | K Auto Tech Consulting</title>
+    <meta name="description" content="Technology solutions for economic development agencies, workforce development, and business attraction initiatives.">
+    <style>
+        :root {
+            --primary-navy: #1a3a52;
+            --primary-blue: #2c5aa0;
+            --light-blue: #e8f1f8;
+            --accent-green: #00a86b;
+            --text-dark: #333;
+            --text-light: #666;
+            --border-light: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        header {
+            background-color: var(--primary-navy);
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-navy);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+
+            nav.active {
+                max-height: 400px;
+            }
+
+            nav a {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .breadcrumb {
+            background-color: var(--light-blue);
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-navy);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.5rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-navy);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .faq-section {
+            background-color: var(--light-blue);
+            padding: 2rem;
+            border-radius: 4px;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1rem;
+            background-color: var(--primary-blue);
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: var(--primary-navy);
+        }
+
+        .faq-question.active {
+            background-color: var(--primary-navy);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 1rem;
+            color: var(--text-light);
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 1rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background-color: #008c5a;
+        }
+
+        footer {
+            background-color: var(--primary-navy);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">K Auto Tech Consulting</div>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+            <nav id="nav-menu">
+                <a href="/">Home</a>
+                <a href="/#services">Services</a>
+                <a href="/markets/">Markets</a>
+                <a href="/industries/">Industries</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="/">Home</a> / <a href="/industries/">Industries</a> / Economic Development
+        </div>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Economic Development Technology Solutions</h1>
+                <p>Attract and support businesses with integrated workforce development, incentive management, and business intelligence tools.</p>
+            </div>
+        </section>
+
+        <section class="section container">
+            <h2 class="section-title">Core Solutions for Economic Development</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Business Attraction & Retention</h3>
+                    <p>Streamlined portals and CRM systems for managing prospect pipelines, incentive packages, and business development activities with automated workflows and analytics.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Workforce Development Integration</h3>
+                    <p>Coordinate with training providers, job boards, and skills assessment platforms to match talent with employer needs and track workforce development outcomes.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Incentive & Tax Credit Management</h3>
+                    <p>Automate incentive application, approval, and compliance tracking. Manage tax credits, grants, and rebate programs with audit trails and ROI measurement.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Real Estate & Site Selection</h3>
+                    <p>Market available properties, industrial parks, and commercial sites with GIS mapping, demographic data, and infrastructure information accessible to site selection consultants.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Economic Data & Business Intelligence</h3>
+                    <p>Centralized dashboards displaying labor market data, business demographics, industry trends, competitive benchmarking, and economic indicators for strategic planning.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Regional Collaboration & Partnerships</h3>
+                    <p>Portal systems enabling collaboration between economic development organizations, municipal partners, chambers of commerce, and universities for coordinated initiatives.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">How do these tools improve business attraction success rates?</div>
+                    <div class="faq-answer">
+                        <p>Integrated technology platforms enable ED professionals to manage larger prospect pipelines, automate follow-up workflows, and provide faster response times. Real-time analytics identify which prospects are most likely to close, allowing teams to prioritize high-value opportunities. Centralized data ensures consistent messaging and coordinated outreach across teams, reducing gaps in the sales process.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">What's the ROI of implementing workforce development integration?</div>
+                    <div class="faq-answer">
+                        <p>Organizations typically see faster job placement rates, reduced time-to-fill for employers, and better skill-match outcomes. By automating job matching and tracking outcomes, programs can demonstrate impact to funders and stakeholders. Integration with training providers reduces administrative overhead, and real-time data enables program adjustments that improve employment sustainability and wage outcomes.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">How can we manage incentive compliance and prevent fraud?</div>
+                    <div class="faq-answer">
+                        <p>Digital incentive management systems create complete audit trails for all approvals, modifications, and payments. Automated compliance monitoring tracks job creation targets, wage requirements, and investment commitments throughout the incentive period. Scheduled verification workflows prompt follow-up audits, and integrated reporting provides oversight for elected officials and stakeholders. These controls reduce fraud risk and improve program credibility.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">How do site selection tools integrate with real estate databases?</div>
+                    <div class="faq-answer">
+                        <p>Modern site selection platforms aggregate property listings, zoning data, utility capacity, transportation infrastructure, and environmental information into searchable maps. Integration with MLS data and commercial real estate platforms ensures current inventory. GIS mapping visualizes demographic profiles, labor availability, and commute times. APIs can connect to municipal development databases for permitting and approval timelines.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">What business intelligence metrics matter most for economic development?</div>
+                    <div class="faq-answer">
+                        <p>Key metrics include job creation and retention, business starts and closures, unemployment and labor force participation, wage growth, industry sector trends, tax base growth, and return on ED investment. Dashboards should track prospect pipeline velocity, time-to-close for business acquisitions, incentive ROI, and workforce program outcomes. Benchmarking against peer regions helps organizations identify competitive advantages and improvement opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to Accelerate Economic Development?</h2>
+                <p>Let's discuss how technology can enhance your business attraction, workforce development, and incentive management capabilities.</p>
+                <a href="#contact" class="cta-button">Schedule a Consultation</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 K Auto Tech Consulting. All rights reserved.</p>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "K Auto Tech Consulting",
+        "description": "Economic development technology solutions including business attraction, workforce development integration, incentive management, and business intelligence.",
+        "url": "https://katechconsulting.com/industries/economic-development",
+        "knowsAbout": [
+            "Business Attraction & Retention",
+            "Workforce Development Integration",
+            "Incentive & Tax Credit Management",
+            "Real Estate & Site Selection",
+            "Economic Data & Business Intelligence",
+            "Regional Collaboration & Partnerships"
+        ]
+    }
+    </script>
+
+    <script>
+        function toggleNav() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('active');
+        }
+
+        function toggleFaq(element) {
+            const question = element;
+            const answer = element.nextElementSibling;
+
+            document.querySelectorAll('.faq-question').forEach(q => {
+                if (q !== question) {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                }
+            });
+
+            question.classList.toggle('active');
+            answer.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

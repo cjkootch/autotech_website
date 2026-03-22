@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markets | K Auto Tech Consulting</title>
+    <meta name="description" content="Technology consulting across North American government and private sector markets.">
+    <style>
+        :root {
+            --primary-navy: #1a3a52;
+            --primary-blue: #2c5aa0;
+            --light-blue: #e8f1f8;
+            --accent-green: #00a86b;
+            --text-dark: #333;
+            --text-light: #666;
+            --border-light: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        header {
+            background-color: var(--primary-navy);
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-green);
+        }
+
+        main {
+            margin-top: 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: var(--primary-navy);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-left: 4px solid var(--primary-blue);
+            padding: 2rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        .card h2 {
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .card a {
+            display: inline-block;
+            color: var(--primary-blue);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .card a:hover {
+            color: var(--primary-navy);
+        }
+
+        footer {
+            background-color: var(--primary-navy);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            main {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">K Auto Tech Consulting</div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/#services">Services</a>
+                <a href="/markets/">Markets</a>
+                <a href="/industries/">Industries</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>Market Solutions</h1>
+        <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 3rem;">
+            K Auto Tech Consulting serves government and private sector organizations across North America with tailored technology solutions for their unique operational challenges.
+        </p>
+
+        <div class="grid">
+            <div class="card">
+                <h2>US Government</h2>
+                <p>Technology solutions for federal, state, and local government agencies focused on operational efficiency, constituent services, and regulatory compliance.</p>
+                <a href="/markets/us-government">View Market Details →</a>
+            </div>
+
+            <div class="card">
+                <h2>US Private Sector</h2>
+                <p>Enterprise software development and digital transformation for mid-market and large private companies operating in complex regulatory and operational environments.</p>
+                <a href="/markets/us-private-sector">View Market Details →</a>
+            </div>
+
+            <div class="card">
+                <h2>Canada Government</h2>
+                <p>Federal, provincial, and municipal government solutions with expertise in Canadian regulatory requirements, bilingual systems, and public sector operations.</p>
+                <a href="/markets/canada-government">View Market Details →</a>
+            </div>
+
+            <div class="card">
+                <h2>Canada Private Sector</h2>
+                <p>Technology consulting for Canadian enterprises with deep understanding of provincial regulations, industry standards, and regional operational requirements.</p>
+                <a href="/markets/canada-private-sector">View Market Details →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 K Auto Tech Consulting. All rights reserved.</p>
+    </footer>
+</body>
+</html>

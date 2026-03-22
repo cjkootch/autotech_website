@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Process Improvement Services | K Auto Tech LLC</title>
+    <meta name="description" content="Apply artificial intelligence and machine learning to government processes. Improve efficiency, reduce errors, and enable smarter decision-making with K Auto Tech.">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta property="og:title" content="AI & Process Improvement Services | K Auto Tech LLC">
+    <meta property="og:description" content="Apply AI and machine learning to improve government operations and decision-making.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kautotech.com/services/ai-process-improvement">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI & Process Improvement Services | K Auto Tech LLC">
+    <meta name="twitter:description" content="Apply AI and machine learning to improve government operations.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "AI & Process Improvement Services",
+      "description": "Artificial intelligence and process improvement services helping government agencies optimize operations, automate routine tasks, and enable data-driven decision-making.",
+      "provider": {
+        "@type": "Organization",
+        "name": "K Auto Tech LLC",
+        "url": "https://kautotech.com",
+        "logo": "https://kautotech.com/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-XXX-XXX-XXXX",
+          "contactType": "Sales"
+        }
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Jamaica"
+        },
+        {
+          "@type": "Country",
+          "name": "Trinidad and Tobago"
+        },
+        {
+          "@type": "Country",
+          "name": "Bahamas"
+        },
+        {
+          "@type": "Country",
+          "name": "Barbados"
+        },
+        {
+          "@type": "Country",
+          "name": "Guyana"
+        },
+        {
+          "@type": "Country",
+          "name": "Dominican Republic"
+        },
+        {
+          "@type": "Country",
+          "name": "United States"
+        },
+        {
+          "@type": "Country",
+          "name": "Canada"
+        }
+      ],
+      "serviceType": "AI and Machine Learning",
+      "image": "https://kautotech.com/images/ai-process-improvement.jpg"
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-navy: #0a1929;
+            --primary-blue: #1e40af;
+            --light-blue: #dbeafe;
+            --accent-blue: #3b82f6;
+            --text-dark: #1a202c;
+            --text-light: #4b5563;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --footer-bg: #0f172a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-navy);
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary-navy);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: white;
+                padding: 1rem;
+                gap: 0.5rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 0.75rem;
+                display: block;
+            }
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            margin: 0 0.25rem;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Content Container */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--light-blue);
+            padding-bottom: 0.5rem;
+        }
+
+        .section p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .section ul {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .section li {
+            color: var(--text-light);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .section li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Related Services */
+        .related-services {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .related-services h3 {
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .service-links a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            display: block;
+            font-weight: 500;
+        }
+
+        .service-links a:hover {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        /* FAQ Section */
+        .faq {
+            margin: 3rem 0;
+        }
+
+        .faq h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--light-blue);
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: var(--bg-light);
+            padding: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #eef2f7;
+        }
+
+        .faq-question-text {
+            font-weight: 600;
+            color: var(--primary-navy);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 1.25rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            background: white;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-navy), var(--primary-blue));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            border-bottom: none;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--success-green);
+            color: white;
+            padding: 0.85rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-bg);
+            color: white;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">K Auto Tech</a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="nav">
+                <a href="/">Home</a>
+                <a href="/services">Services</a>
+                <a href="/markets">Markets</a>
+                <a href="/industries">Industries</a>
+                <a href="mailto:contact@kautotech.com">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="/">Home</a> > <a href="/services">Services</a> > AI & Process Improvement
+        </div>
+
+        <section class="hero">
+            <h1>AI & Process Improvement Services</h1>
+            <p>Leverage artificial intelligence and machine learning to optimize government operations, reduce costs, and enable smarter decision-making.</p>
+        </section>
+
+        <div class="content">
+            <section class="section">
+                <h2>The AI Opportunity in Government</h2>
+                <p>Artificial intelligence and machine learning technologies offer significant opportunities for government agencies to improve operations, reduce costs, and better serve citizens. From document processing and permit approvals to predictive maintenance and fraud detection, AI applications can automate routine work, improve accuracy, and enable insights that support better decision-making.</p>
+                <p>Successful AI implementation requires more than just technology. It demands clear understanding of the problem you're solving, quality data to train models, organizational readiness for change, and ethical governance frameworks. Our AI and process improvement services guide you through discovery, implementation, and optimization to ensure AI delivers measurable value aligned with your mission.</p>
+            </section>
+
+            <section class="section">
+                <h2>Our AI & Process Improvement Approach</h2>
+                <p>We follow a structured methodology to identify, develop, and implement AI solutions that drive real business value:</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Problem Identification</h3>
+                        <p>Work with stakeholders to identify high-impact processes where AI can deliver value. Focus on problems with repetitive work, high error rates, or time-consuming manual tasks.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Data Assessment</h3>
+                        <p>Evaluate data quality, volume, and availability for AI model training. Identify data gaps and plan data collection or enrichment strategies.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Solution Design</h3>
+                        <p>Design AI solutions tailored to your specific use case. Select appropriate machine learning techniques and model architectures for your problem.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Model Development</h3>
+                        <p>Build, train, and validate machine learning models with rigorous testing. Ensure models meet accuracy and fairness requirements before deployment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Integration & Deployment</h3>
+                        <p>Integrate AI models into operational systems. Deploy with monitoring to track model performance and detect model drift or accuracy degradation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Continuous Optimization</h3>
+                        <p>Monitor model performance and retrain with new data. Continuously improve accuracy and adapt to changing business conditions.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem;">This disciplined approach ensures AI delivers consistent value while managing risks and maintaining trust in automated decision-making.</p>
+            </section>
+
+            <section class="section">
+                <h2>AI Applications in Government</h2>
+                <p>We help government agencies apply AI across a range of operational and citizen-facing processes:</p>
+                <ul>
+                    <li><strong>Document Processing & Classification</strong> — Automatically extract information from forms, permits, or applications. Classify documents and route to appropriate teams for processing.</li>
+                    <li><strong>Permit & License Approvals</strong> — Automate routine approval decisions for permits or licenses that meet standard criteria. Identify complex cases requiring human review.</li>
+                    <li><strong>Fraud Detection</strong> — Identify suspicious patterns in applications or transactions that may indicate fraud. Alert investigators to suspicious cases for follow-up.</li>
+                    <li><strong>Predictive Maintenance</strong> — Predict equipment failures before they occur. Optimize maintenance schedules and reduce unplanned downtime.</li>
+                    <li><strong>Citizen Service Routing</strong> — Route citizen requests to appropriate departments based on content analysis. Reduce call center workload through intelligent chatbots.</li>
+                    <li><strong>Anomaly Detection</strong> — Identify unusual patterns in operational data that may indicate problems or opportunities for improvement.</li>
+                    <li><strong>Demand Forecasting</strong> — Predict service demand to optimize resource allocation and staffing levels.</li>
+                    <li><strong>Process Optimization</strong> — Analyze operational data to identify bottlenecks and opportunities for process improvement.</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>AI Benefits & ROI</h2>
+                <p>AI and process improvement delivers measurable business value for government agencies:</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Cost Reduction</h3>
+                        <p>Automate routine tasks and reduce manual work hours. Eliminate costs associated with errors and rework. Achieve significant operational cost reduction.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Improved Accuracy</h3>
+                        <p>Reduce human error through AI automation. Consistent application of rules and policies. Better compliance with regulations and standards.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Faster Processing</h3>
+                        <p>Process applications and requests in seconds rather than days. Reduce citizen wait times. Improve service delivery timelines.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Better Decisions</h3>
+                        <p>AI-generated insights support human decision-making. Identify patterns and opportunities humans might miss. Enable data-driven policy decisions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Staff Productivity</h3>
+                        <p>Free staff from routine tasks to focus on complex, high-value work. Improve job satisfaction through more meaningful work. Reduce staff turnover.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Risk Reduction</h3>
+                        <p>Identify fraud and compliance risks earlier. Prevent costly errors before they impact operations. Improve security and governance.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem;">Most government agencies achieve ROI within 12-18 months from AI implementation through cost reduction and improved operational efficiency.</p>
+            </section>
+
+            <section class="section">
+                <h2>Responsible AI & Governance</h2>
+                <p>Government AI deployments require particular attention to fairness, transparency, and accountability. We build responsible AI practices into every engagement:</p>
+                <ul>
+                    <li><strong>Bias Detection & Mitigation</strong> — Evaluate AI models for bias and fairness. Test models across demographic groups to ensure equitable treatment.</li>
+                    <li><strong>Explainability</strong> — Develop interpretable models that decision-makers and citizens can understand. Document how AI models reach specific decisions.</li>
+                    <li><strong>Transparency</strong> — Clearly communicate when AI is being used in decision-making. Disclose limitations and potential errors in AI systems.</li>
+                    <li><strong>Human Oversight</strong> — Maintain human review of AI decisions, particularly for consequential decisions affecting citizens' rights or access to services.</li>
+                    <li><strong>Compliance & Audit</strong> — Ensure AI systems comply with regulations (FCRA, fair lending laws, disability access requirements). Maintain audit trails documenting AI decisions.</li>
+                    <li><strong>Data Privacy</strong> — Protect citizen data used to train and operate AI models. Implement data governance and access controls.</li>
+                    <li><strong>Model Monitoring</strong> — Continuously monitor model performance and fairness metrics. Detect and address model drift or changing patterns.</li>
+                    <li><strong>Stakeholder Engagement</strong> — Engage with affected communities and civil rights organizations to identify potential issues and build trust.</li>
+                </ul>
+                <p style="margin-top: 1.5rem;">Responsible AI governance is essential for public trust and regulatory compliance in government applications.</p>
+            </section>
+
+            <section class="related-services">
+                <h3>Related Services</h3>
+                <div class="service-links">
+                    <a href="/services/data-dashboards-reporting">Data Dashboards & Reporting</a>
+                    <a href="/services/custom-software-development">Custom Software Development</a>
+                    <a href="/services/workflow-automation">Workflow Automation</a>
+                    <a href="/services/systems-integration">Systems Integration</a>
+                    <a href="/services/digital-modernization">Digital Modernization</a>
+                </div>
+            </section>
+
+            <section class="faq">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How much data do we need to build an AI model?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Data requirements vary significantly based on the problem complexity and model type. Simple models might work with 1,000-10,000 examples, while complex deep learning models may need millions of examples. Quality matters more than quantity—100,000 high-quality labeled examples often outperforms 10 million low-quality examples. We conduct data assessments to evaluate what you have and what you might need to collect or synthesize. For many government agencies, historical data from existing systems provides sufficient training data.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do we ensure AI decisions are fair and don't discriminate?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Fairness is critical in government AI systems. We implement multiple approaches: test models across demographic groups to identify disparate impacts, use fairness-aware machine learning techniques to mitigate bias, maintain human review of consequential decisions, and implement transparency mechanisms so decisions can be understood and challenged. We also help establish governance processes to monitor fairness over time as data patterns change. Regular audits and bias testing ensure the system remains fair throughout its operational life.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What if our staff is concerned about AI replacing their jobs?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        AI typically replaces routine, repetitive tasks rather than entire jobs. Staff can be redirected to more complex, higher-value work like exception handling, complex cases requiring judgment, citizen engagement, and continuous improvement. Many agencies find that AI implementation improves job satisfaction by eliminating boring routine work. We develop change management and training plans to help staff transition to new roles. Open communication about how AI will change roles is critical to gaining staff buy-in.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How long before we see ROI from AI implementation?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Timelines vary based on complexity, but most government agencies see measurable value within 6-12 months of deployment. Quick wins from automation deliver immediate cost savings. Larger-scale value from process transformation takes longer to realize. We develop detailed ROI models before implementation to set clear expectations. Many agencies see payback of the initial AI investment within 18-24 months, with ongoing benefits accruing in subsequent years.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What happens when the AI model makes a mistake?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        All AI models make mistakes, so we build error handling into deployment. Lower-confidence predictions are routed to human reviewers. We maintain monitoring dashboards to detect when error rates increase. When mistakes occur, we investigate root causes and retrain models with new data or adjust thresholds. We also maintain human appeal processes for citizens who disagree with AI decisions. Regular model audits and fairness testing help identify systemic issues before they cause problems.
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <h2>Ready to Leverage AI for Government Operations?</h2>
+                <p>Let's discuss how artificial intelligence can improve efficiency, reduce costs, and enable better decision-making in your agency. Contact us to schedule a discovery conversation and AI opportunity assessment.</p>
+                <a href="mailto:contact@kautotech.com" class="cta-button">Get Started Today</a>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 K Auto Tech LLC. All rights reserved.</p>
+        <p><a href="mailto:contact@kautotech.com">contact@kautotech.com</a></p>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const nav = document.getElementById('nav');
+
+        mobileToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+
+        // FAQ toggle functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

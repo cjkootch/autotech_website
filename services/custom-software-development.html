@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Software Development | K Auto Tech LLC</title>
+    <meta name="description" content="Custom software development for government and public-sector organizations. Build purpose-built applications that address unique operational challenges with proven development methodologies.">
+    <meta property="og:title" content="Custom Software Development | K Auto Tech">
+    <meta property="og:description" content="Purpose-built software solutions for government agencies and public-sector organizations. End-to-end development from requirements to maintenance.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kautotech.com/services/custom-software-development.html">
+    <meta name="canonical" content="https://kautotech.com/services/custom-software-development.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           CSS RESET & BASE
+           ======================================== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* ========================================
+           CSS VARIABLES
+           ======================================== */
+        :root {
+            --navy: #0a1628;
+            --navy-light: #121e36;
+            --navy-mid: #1a2a4a;
+            --blue: #2563eb;
+            --blue-dark: #1d4ed8;
+            --blue-light: #3b82f6;
+            --blue-pale: #eff6ff;
+            --slate: #475569;
+            --slate-light: #64748b;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --white: #ffffff;
+            --accent: #0ea5e9;
+            --accent-green: #10b981;
+            --section-pad: 100px 0;
+            --container: 1200px;
+            --radius: 8px;
+            --radius-lg: 12px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.1);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ========================================
+           UTILITY CLASSES
+           ======================================== */
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--slate);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: var(--blue);
+            color: var(--white);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+        }
+        .btn-primary:hover {
+            background: var(--blue-dark);
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
+            transform: translateY(-1px);
+        }
+
+        /* ========================================
+           HEADER & FOOTER
+           ======================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            background: var(--navy);
+            transition: all var(--transition);
+        }
+        .header.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--blue), var(--accent));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .nav a {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+        .nav a:hover {
+            color: var(--white);
+        }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 8px;
+        }
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 1px;
+        }
+        .mobile-nav {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .mobile-toggle { display: flex; }
+            .mobile-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--navy);
+                z-index: 999;
+                padding-top: 80px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 80px 24px 24px;
+            }
+            .mobile-nav.hidden { display: none; }
+            .mobile-nav a {
+                color: #cbd5e1;
+                padding: 12px 0;
+            }
+            .mobile-nav-close {
+                position: absolute;
+                top: 16px;
+                right: 24px;
+                background: none;
+                border: none;
+                color: var(--white);
+                font-size: 32px;
+                cursor: pointer;
+            }
+        }
+
+        .footer {
+            background: var(--navy);
+            color: #94a3b8;
+            padding: 64px 0 32px;
+            margin-top: 120px;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 64px;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-brand p {
+            margin-top: 16px;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+        }
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .footer-links a {
+            display: block;
+            padding: 8px 0;
+            transition: color var(--transition);
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        /* ========================================
+           PAGE SPECIFIC
+           ======================================== */
+        .breadcrumb {
+            padding: 120px 0 40px;
+            background: var(--navy);
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        .breadcrumb a {
+            color: var(--accent);
+        }
+
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            color: var(--white);
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 800px;
+        }
+
+        .content-section {
+            padding: var(--section-pad);
+        }
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            margin-top: 40px;
+        }
+        .content-section h2:first-child {
+            margin-top: 0;
+        }
+        .content-section p {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .content-section ul {
+            list-style: disc;
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+        .content-section li {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+        }
+        .feature-card {
+            padding: 32px;
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+        .feature-card p {
+            color: var(--slate);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .faq-section {
+            padding: var(--section-pad);
+            background: var(--gray-100);
+        }
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            margin-bottom: 20px;
+        }
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--navy);
+        }
+        .faq-question:hover {
+            background: var(--blue-pale);
+        }
+        .faq-toggle {
+            transition: transform var(--transition);
+        }
+        .faq-item.open .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .faq-item.open .faq-answer {
+            padding: 0 24px 24px 24px;
+            max-height: 500px;
+        }
+        .faq-answer p {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            padding: var(--section-pad);
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+        .cta-section h2 {
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+        .cta-section p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+
+        .related-services {
+            padding: 60px 0;
+            background: var(--blue-pale);
+        }
+        .related-services h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .related-link {
+            padding: 20px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition);
+            color: var(--blue);
+            font-weight: 600;
+        }
+        .related-link:hover {
+            border-color: var(--blue);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================
+         HEADER
+         ======================================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-mark">KA</div>
+                K Auto Tech
+            </a>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/services/workflow-automation.html">Services</a>
+                <a href="/markets/caribbean.html">Markets</a>
+                <a href="/industries/local-government.html">Industries</a>
+                <a href="#contact" class="btn btn-primary">Request Consultation</a>
+            </nav>
+            <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-nav hidden" id="mobileNav">
+        <button class="mobile-nav-close" onclick="toggleMobileNav()">&times;</button>
+        <a href="/">Home</a>
+        <a href="/services/workflow-automation.html">Services</a>
+        <a href="/markets/caribbean.html">Markets</a>
+        <a href="/industries/local-government.html">Industries</a>
+        <a href="#contact" onclick="toggleMobileNav()">Request Consultation</a>
+    </div>
+
+    <!-- ========================================
+         BREADCRUMB
+         ======================================== -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="/">Home</a> / <a href="/services/">Services</a> / <span>Custom Software Development</span>
+        </div>
+    </div>
+
+    <!-- ========================================
+         HERO
+         ======================================== -->
+    <section class="hero">
+        <div class="container">
+            <h1>Custom Software Development</h1>
+            <p>Purpose-built applications designed specifically for your organization's unique requirements. From requirements gathering to deployment and ongoing maintenance, we deliver software solutions that solve real problems and drive measurable business value.</p>
+            <a href="#contact" class="btn btn-primary">Start Your Project</a>
+        </div>
+    </section>
+
+    <!-- ========================================
+         MAIN CONTENT
+         ======================================== -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Why Custom Software Development?</h2>
+            <p>Off-the-shelf software solutions work well for common, standardized needs. But government agencies and operationally complex organizations often have unique requirements that generic solutions cannot address. Custom software development builds applications tailored to your specific operational workflows, compliance requirements, and business objectives.</p>
+            <p>Custom solutions provide flexibility, integration with existing systems, and the ability to evolve as your organization's needs change. Rather than forcing your workflows into predetermined software patterns, custom development lets you build software that matches how your organization actually works.</p>
+
+            <h2>Our Custom Software Development Process</h2>
+            <p>We follow a structured, collaborative approach to ensure your software meets requirements and delivers value:</p>
+            <ul>
+                <li><strong>Requirements Analysis:</strong> We conduct detailed discovery sessions with stakeholders to understand business objectives, user needs, system constraints, and compliance requirements. This phase produces comprehensive requirements documentation.</li>
+                <li><strong>Architecture & Design:</strong> Based on requirements, we design system architecture, database schemas, user interfaces, and security frameworks. We review designs with your team to ensure alignment before development begins.</li>
+                <li><strong>Agile Development:</strong> We build your application in iterative sprints, delivering working software incrementally. This approach allows for early feedback, course correction, and reduced risk compared to traditional waterfall methods.</li>
+                <li><strong>Quality Assurance:</strong> Comprehensive testing ensures functionality, performance, security, and compliance. We test across browsers, devices, and scenarios to guarantee reliability.</li>
+                <li><strong>Deployment & Training:</strong> We manage production deployment, data migration, system configuration, and staff training. Post-launch support ensures smooth adoption.</li>
+                <li><strong>Ongoing Maintenance:</strong> We provide ongoing support, bug fixes, performance optimization, and feature enhancements as your needs evolve.</li>
+            </ul>
+
+            <h2>Technology Stack</h2>
+            <p>We leverage modern, proven technologies appropriate for each project:</p>
+            <ul>
+                <li><strong>Backend:</strong> Node.js, Python, Java, .NET for scalable, maintainable business logic</li>
+                <li><strong>Frontend:</strong> React, Vue, Angular for responsive, interactive user interfaces</li>
+                <li><strong>Databases:</strong> PostgreSQL, MySQL, MongoDB for reliable data management</li>
+                <li><strong>Infrastructure:</strong> Cloud platforms (AWS, Azure, Google Cloud) or on-premises deployment</li>
+                <li><strong>Security:</strong> HTTPS, OAuth 2.0, JWT, encryption, vulnerability testing</li>
+            </ul>
+
+            <h2>Government Software Development Expertise</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Compliance & Regulations</h3>
+                    <p>Deep expertise in government compliance requirements including FISMA, Section 508 accessibility, FERPA privacy rules, records retention, and audit requirements. We build compliance into the application from the ground up.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Data Security</h3>
+                    <p>Implement security practices appropriate for government and sensitive data: encryption at rest and in transit, role-based access control, audit logging, vulnerability scanning, and security testing.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>System Integration</h3>
+                    <p>Connect your new application with existing government systems: databases, authentication systems, document management, payment processing, and third-party services.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Scalability</h3>
+                    <p>Design applications that scale to handle growing transaction volumes, user counts, and data. Cloud-native architecture ensures performance as your organization grows.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Usability for Citizens</h3>
+                    <p>Build user-friendly applications that serve diverse audiences. Accessibility, mobile responsiveness, and intuitive design ensure broad adoption among citizens and staff.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Long-Term Maintainability</h3>
+                    <p>Write clean, well-documented code with comprehensive testing. This ensures your development team can maintain and enhance the application for years to come.</p>
+                </div>
+            </div>
+
+            <h2>Custom Software Applications We've Delivered</h2>
+            <p>Our custom development experience spans:</p>
+            <ul>
+                <li><strong>Permit & Licensing Systems:</strong> End-to-end systems for permit applications, fee collection, inspections, and compliance tracking</li>
+                <li><strong>Asset Management:</strong> Track government assets, maintenance schedules, depreciation, and compliance documentation</li>
+                <li><strong>Citizen Engagement Portals:</strong> Allow citizens to request services, track status, and communicate with government agencies</li>
+                <li><strong>HR & Payroll Systems:</strong> Employee management, benefits administration, time tracking, and payroll processing</li>
+                <li><strong>Financial Management:</strong> Budget tracking, purchase order management, vendor management, and financial reporting</li>
+                <li><strong>Transportation & Logistics:</strong> Vehicle management, maintenance tracking, route optimization, and driver management</li>
+                <li><strong>Document Management:</strong> Digital document storage, workflow routing, e-signatures, and compliance tracking</li>
+            </ul>
+
+            <h2>Project Timeline & Investment</h2>
+            <p>Custom software project timelines and costs vary based on scope. A simple web application might take 3-4 months and cost $80,000-150,000. Complex enterprise systems may require 12-24 months and investments of $500,000+. We structure projects transparently with clear milestones, deliverables, and payment schedules.</p>
+            <p>We typically begin with a detailed requirements and design phase (2-4 weeks) before committing to a full-project estimate. This approach reduces risk and ensures alignment before significant investment.</p>
+        </div>
+    </section>
+
+    <!-- ========================================
+         RELATED SERVICES
+         ======================================== -->
+    <section class="related-services">
+        <div class="container">
+            <h3>Complementary Services</h3>
+            <div class="related-links">
+                <a href="/services/workflow-automation.html" class="related-link">Workflow Automation</a>
+                <a href="/services/systems-integration.html" class="related-link">Systems Integration</a>
+                <a href="/services/data-dashboards-reporting.html" class="related-link">Data Dashboards & Reporting</a>
+                <a href="/services/ai-process-improvement.html" class="related-link">AI Process Improvement</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         FAQ
+         ======================================== -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 48px;">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How long does custom software development take?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Timeline depends on project complexity and scope. Simple applications take 3-4 months, moderate projects take 6-9 months, and complex enterprise systems can take 12-24+ months. We structure development in sprints with regular deliverables and feedback cycles to ensure progress and early value realization.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What if requirements change during development?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <p>We use agile development methodologies that expect and accommodate requirement changes. We review work at the end of each sprint and adjust priorities based on learnings. Change requests are tracked, documented, and assessed for impact on timeline and budget. Our iterative approach makes it easy to pivot when needed.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What happens after the software is deployed?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <p>We provide ongoing support including bug fixes, performance optimization, security updates, and feature enhancements. We can either provide support directly or transfer the codebase and documentation to your team for in-house maintenance. Support models can be time-and-materials, fixed annual retainers, or usage-based, depending on your preference.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Do we own the code and intellectual property?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. All code, documentation, and intellectual property developed under our engagement belongs to you. We provide comprehensive source code documentation and can transfer development responsibilities to your team or another vendor if needed. Your organization has complete control over the software.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can the software integrate with our existing systems?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. Integration is a core part of our development process. We build APIs, data synchronization, and connection layers to integrate with your existing systems, databases, and applications. We assess compatibility during the requirements phase and plan integration strategy accordingly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CTA
+         ======================================== -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Ready to Build Custom Software?</h2>
+            <p>Let's discuss your software requirements and how we can help build solutions tailored to your organization.</p>
+            <a href="mailto:info@kautotech.com" class="btn btn-primary">Schedule a Consultation</a>
+        </div>
+    </section>
+
+    <!-- ========================================
+         FOOTER
+         ======================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-mark">KA</div>
+                        K Auto Tech
+                    </div>
+                    <p>Custom software development, workflow automation, and digital modernization consulting for government and public-sector organizations.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Services</h4>
+                        <a href="/services/workflow-automation.html">Workflow Automation</a>
+                        <a href="/services/custom-software-development.html">Custom Software</a>
+                        <a href="/services/data-dashboards-reporting.html">Dashboards & Reporting</a>
+                        <a href="/services/systems-integration.html">Systems Integration</a>
+                    </div>
+                    <div>
+                        <h4>Markets</h4>
+                        <a href="/markets/caribbean.html">Caribbean</a>
+                        <a href="/markets/us-government.html">US Government</a>
+                        <a href="/markets/us-private-sector.html">US Private Sector</a>
+                        <a href="/markets/canada-government.html">Canada</a>
+                    </div>
+                    <div>
+                        <h4>Industries</h4>
+                        <a href="/industries/local-government.html">Local Government</a>
+                        <a href="/industries/transportation.html">Transportation</a>
+                        <a href="/industries/utilities.html">Utilities</a>
+                        <a href="/industries/permitting-licensing.html">Permitting</a>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <a href="/">About</a>
+                        <a href="mailto:info@kautotech.com">Contact</a>
+                        <a href="/">Privacy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 K Auto Tech LLC. All rights reserved.</span>
+                <span>Houston, Texas</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================
+         SCHEMA MARKUP
+         ======================================== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Service",
+        "name": "Custom Software Development",
+        "description": "Purpose-built software development for government and public-sector organizations. End-to-end development from requirements to maintenance.",
+        "provider": {
+            "@type": "Organization",
+            "name": "K Auto Tech LLC",
+            "url": "https://kautotech.com",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Houston",
+                "addressRegion": "Texas",
+                "addressCountry": "US"
+            }
+        },
+        "areaServed": ["Caribbean Islands", "United States", "Canada"],
+        "serviceType": "Software Development"
+    }
+    </script>
+
+    <!-- ========================================
+         JAVASCRIPT
+         ======================================== -->
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        function toggleMobileNav() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('hidden');
+        }
+
+        function toggleFAQ(element) {
+            element.parentElement.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>

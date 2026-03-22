@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilities Industry Solutions | K Auto Tech Consulting</title>
+    <meta name="description" content="Technology solutions for utilities companies. Billing systems, customer service, grid management, asset management, and regulatory compliance.">
+    <meta name="keywords" content="utilities software, billing systems, customer service, grid management, smart meters, asset management">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-navy: #003366;
+            --primary-blue: #0066cc;
+            --light-blue: #e6f2ff;
+            --accent-green: #00a86b;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border-light: #e0e0e0;
+            --background: #f8f9fa;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--primary-navy);
+            color: white;
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: var(--primary-navy);
+                padding: 1rem;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            
+            nav.active {
+                max-height: 400px;
+            }
+            
+            nav a {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            header .container {
+                padding: 0 1rem;
+            }
+        }
+        
+        main {
+            margin-top: 80px;
+        }
+        
+        .breadcrumb {
+            background-color: var(--background);
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-navy);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+            transform: translateY(-4px);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-navy);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .faq-section {
+            background-color: var(--background);
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+        
+        .faq-question {
+            padding: 1.25rem;
+            cursor: pointer;
+            background-color: white;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background-color 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: var(--light-blue);
+        }
+        
+        .faq-question.active {
+            background-color: var(--light-blue);
+        }
+        
+        .faq-toggle {
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: #f5f8fc;
+        }
+        
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 1.25rem;
+        }
+        
+        .faq-answer p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: white;
+            padding: 0.75rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .cta-button:hover {
+            background-color: #008c5a;
+        }
+        
+        footer {
+            background-color: var(--primary-navy);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">K Auto Tech Consulting</div>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+            <nav id="nav-menu">
+                <a href="/">Home</a>
+                <a href="/markets/">Markets</a>
+                <a href="/industries/">Industries</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="/">Home</a> / <a href="/industries/">Industries</a> / Utilities
+        </div>
+
+        <section class="hero">
+            <div class="container">
+                <h1>Utilities Industry Solutions</h1>
+                <p>Modernize utility operations with smart metering, billing systems, customer portals, and grid management technology</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Core Solutions for Utilities</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Customer Billing & Accounts</h3>
+                        <p>Implement modern billing systems supporting multiple rate structures, automated meter reading, online billing, payment processing, account management, and customer communication for electric, gas, water, or telecom utilities.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Smart Metering & AMI Systems</h3>
+                        <p>Deploy smart meter infrastructure with Advanced Metering Infrastructure (AMI) for real-time consumption data collection, advanced analytics, demand response capabilities, and improved revenue assurance through accurate metering.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Customer Service Portals</h3>
+                        <p>Create customer portals enabling bill viewing, consumption analysis, outage reporting, service requests, account management, payment setup, and communication with the utility, reducing call center volume by 30-40%.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Grid Management & Operations</h3>
+                        <p>Build systems for grid monitoring, outage detection, asset management, maintenance scheduling, demand forecasting, and load balancing that optimize reliability and operational efficiency across distribution networks.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Distributed Energy Resources</h3>
+                        <p>Manage integration of solar, wind, battery storage, and other distributed energy resources with systems for monitoring output, managing grid impact, and coordinating demand response programs.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Regulatory Compliance & Reporting</h3>
+                        <p>Maintain compliance with utility regulations, prepare required reports for regulatory bodies, track reliability metrics, manage environmental reporting, and document quality-of-service measures.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2>Utilities Industry FAQs</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How can smart metering and AMI systems improve utility operations and customer experience?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Smart metering eliminates manual meter reading, providing real-time consumption data for accurate billing. AMI systems enable rapid outage detection and notification, demand response capabilities, and consumption analytics for customers. Non-technical losses drop 5-15% through improved accuracy. Customers gain visibility into consumption patterns enabling conservation. Utilities can implement time-of-use pricing and demand management programs that reduce peak load and improve grid efficiency.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What ROI can utilities expect from modern customer portals and billing systems?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Modern billing systems reduce billing errors by 70-85%, accelerate cash collection by 5-10 days through online payments, and reduce call center costs by 30-40% as customers self-serve for account management and bill viewing. Customer portals enable consumption analytics that drive conservation behavior, reducing peak load. Online payment processing increases collection rates from 95% to 98%+. These improvements typically generate payback within 24-36 months.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do utilities manage integration of distributed energy resources like solar and battery storage?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Utilities implement systems that monitor real-time output from distributed resources, forecast generation patterns, manage reverse power flow, and coordinate demand response programs. These systems enable utilities to optimize grid stability while managing the variability of renewable resources. Battery storage systems can be dispatched to balance supply and demand. Utilities can incentivize customer-owned resources to provide grid services during peak demand periods.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What cybersecurity measures protect utility operations and customer data?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Utility systems require industry-standard cybersecurity including NERC CIP compliance for generation and transmission systems, secure communication between meters and collection systems, authentication and encryption for customer portals, and monitoring for anomalous behavior indicating attacks. Systems maintain segregation between operational technology and business systems. Regular security assessments and penetration testing ensure defenses against evolving threats.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do utilities track reliability metrics and prepare regulatory reports?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Systems capture outage data including location, duration, number of customers affected, and cause, enabling calculation of reliability indices like SAIDI (System Average Interruption Duration Index) and SAIFI (System Average Interruption Frequency Index). Automated reporting generates compliance documents for regulatory bodies. Performance trending enables utilities to identify problematic circuits and target improvement investments. Benchmarking against peer utilities informs reliability improvement strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Modernize Your Utility Operations?</h2>
+                <p>Let's discuss how technology can improve reliability, customer experience, and operational efficiency</p>
+                <a href="/contact/" class="cta-button">Schedule a Consultation</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 K Auto Tech Consulting. All rights reserved.</p>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "K Auto Tech Consulting",
+      "description": "Technology consulting solutions for utilities including smart metering, customer billing, grid management, and distributed energy resource integration",
+      "serviceArea": {
+        "@type": "AdministrativeArea",
+        "name": "North America"
+      },
+      "knowsAbout": [
+        "Customer Billing Systems",
+        "Smart Metering",
+        "Customer Service Portals",
+        "Grid Management",
+        "Distributed Energy Resources",
+        "Regulatory Compliance"
+      ]
+    }
+    </script>
+
+    <script>
+        function toggleNav() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('active');
+        }
+
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            element.classList.toggle('active');
+            answer.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

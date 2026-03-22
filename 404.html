@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | K Auto Tech Consulting</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Return to K Auto Tech Consulting homepage.">
+    <style>
+        :root {
+            --primary-navy: #1a3a52;
+            --primary-blue: #2c5aa0;
+            --light-blue: #e8f1f8;
+            --accent-green: #00a86b;
+            --text-dark: #333;
+            --text-light: #666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-blue);
+        }
+
+        header {
+            background-color: var(--primary-navy);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-navy);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+
+            nav.active {
+                max-height: 400px;
+            }
+
+            nav a {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .error-container {
+            background: white;
+            border-radius: 8px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .error-code {
+            font-size: 4rem;
+            color: var(--primary-navy);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .suggestions {
+            background-color: var(--light-blue);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 2rem 0;
+            text-align: left;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .suggestions h3 {
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+        }
+
+        .suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .suggestions li {
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+        }
+
+        .suggestions a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .suggestions a:hover {
+            text-decoration: underline;
+        }
+
+        .buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .button-primary {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .button-primary:hover {
+            background-color: var(--primary-navy);
+        }
+
+        .button-secondary {
+            background-color: var(--accent-green);
+            color: white;
+        }
+
+        .button-secondary:hover {
+            background-color: #008c5a;
+        }
+
+        footer {
+            background-color: var(--primary-navy);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 3rem;
+            }
+
+            .error-title {
+                font-size: 1.5rem;
+            }
+
+            .error-container {
+                padding: 2rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">K Auto Tech Consulting</div>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+            <nav id="nav-menu">
+                <a href="/">Home</a>
+                <a href="/#services">Services</a>
+                <a href="/markets/">Markets</a>
+                <a href="/industries/">Industries</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="error-container">
+            <div class="error-code">404</div>
+            <div class="error-title">Page Not Found</div>
+            <div class="error-message">
+                The page you're looking for doesn't exist or has been moved. Let's get you back on track.
+            </div>
+
+            <div class="suggestions">
+                <h3>What you might be looking for:</h3>
+                <ul>
+                    <li><a href="/">Home</a> - Return to our homepage</li>
+                    <li><a href="/#services">Services</a> - Explore our offerings</li>
+                    <li><a href="/markets/">Markets</a> - View our market expertise</li>
+                    <li><a href="/industries/">Industries</a> - Browse our industry solutions</li>
+                    <li><a href="#contact">Contact</a> - Reach out to our team</li>
+                </ul>
+            </div>
+
+            <div class="buttons">
+                <a href="/" class="button button-primary">Go to Homepage</a>
+                <a href="/#services" class="button button-secondary">View Services</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 K Auto Tech Consulting. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

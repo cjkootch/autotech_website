@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Modernization Services | K Auto Tech LLC</title>
+    <meta name="description" content="Transform your government operations through digital modernization. Upgrade legacy systems, improve service delivery, and enable innovation with K Auto Tech.">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta property="og:title" content="Digital Modernization Services | K Auto Tech LLC">
+    <meta property="og:description" content="Transform your government operations through digital modernization and technology renewal.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kautotech.com/services/digital-modernization">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Digital Modernization Services | K Auto Tech LLC">
+    <meta name="twitter:description" content="Transform your government operations through digital modernization.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Digital Modernization Services",
+      "description": "Comprehensive digital modernization services helping government agencies transform operations, upgrade technology infrastructure, and improve citizen-facing services.",
+      "provider": {
+        "@type": "Organization",
+        "name": "K Auto Tech LLC",
+        "url": "https://kautotech.com",
+        "logo": "https://kautotech.com/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-XXX-XXX-XXXX",
+          "contactType": "Sales"
+        }
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Jamaica"
+        },
+        {
+          "@type": "Country",
+          "name": "Trinidad and Tobago"
+        },
+        {
+          "@type": "Country",
+          "name": "Bahamas"
+        },
+        {
+          "@type": "Country",
+          "name": "Barbados"
+        },
+        {
+          "@type": "Country",
+          "name": "Guyana"
+        },
+        {
+          "@type": "Country",
+          "name": "Dominican Republic"
+        },
+        {
+          "@type": "Country",
+          "name": "United States"
+        },
+        {
+          "@type": "Country",
+          "name": "Canada"
+        }
+      ],
+      "serviceType": "Digital Transformation",
+      "image": "https://kautotech.com/images/digital-modernization.jpg"
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-navy: #0a1929;
+            --primary-blue: #1e40af;
+            --light-blue: #dbeafe;
+            --accent-blue: #3b82f6;
+            --text-dark: #1a202c;
+            --text-light: #4b5563;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --footer-bg: #0f172a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-navy);
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary-navy);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: white;
+                padding: 1rem;
+                gap: 0.5rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 0.75rem;
+                display: block;
+            }
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            margin: 0 0.25rem;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Content Container */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--light-blue);
+            padding-bottom: 0.5rem;
+        }
+
+        .section p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .section ul {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .section li {
+            color: var(--text-light);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .section li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Related Services */
+        .related-services {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .related-services h3 {
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .service-links a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            display: block;
+            font-weight: 500;
+        }
+
+        .service-links a:hover {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        /* FAQ Section */
+        .faq {
+            margin: 3rem 0;
+        }
+
+        .faq h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--light-blue);
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: var(--bg-light);
+            padding: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #eef2f7;
+        }
+
+        .faq-question-text {
+            font-weight: 600;
+            color: var(--primary-navy);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 1.25rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            background: white;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-navy), var(--primary-blue));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            border-bottom: none;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--success-green);
+            color: white;
+            padding: 0.85rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-bg);
+            color: white;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">K Auto Tech</a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="nav">
+                <a href="/">Home</a>
+                <a href="/services">Services</a>
+                <a href="/markets">Markets</a>
+                <a href="/industries">Industries</a>
+                <a href="mailto:contact@kautotech.com">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="/">Home</a> > <a href="/services">Services</a> > Digital Modernization
+        </div>
+
+        <section class="hero">
+            <h1>Digital Modernization Services</h1>
+            <p>Transform your government operations through strategic technology renewal. Modernize legacy systems, improve citizen services, and enable organizational innovation.</p>
+        </section>
+
+        <div class="content">
+            <section class="section">
+                <h2>The Digital Modernization Imperative</h2>
+                <p>Government agencies face mounting pressure to modernize aging technology infrastructure while maintaining 24/7 operational continuity. Legacy systems become increasingly expensive to maintain, harder to find qualified staff to support, and unable to meet citizen expectations for digital services. Strategic digital modernization addresses these challenges by systematically replacing or upgrading outdated technology with modern, cloud-native, citizen-centric solutions.</p>
+                <p>Successful modernization goes beyond technology refreshes. It requires reimagining business processes, updating organizational capabilities, managing stakeholder change, and creating a culture of continuous innovation. Our approach combines technical transformation with organizational change management to ensure lasting, sustainable modernization outcomes.</p>
+            </section>
+
+            <section class="section">
+                <h2>Our Modernization Framework</h2>
+                <p>We guide agencies through modernization using a proven framework that balances innovation with operational stability:</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Assessment & Strategy</h3>
+                        <p>Evaluate your technology portfolio, identify modernization candidates, and develop a strategic roadmap aligned with your mission and budget.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Pilot & Proof of Concept</h3>
+                        <p>Reduce risk by piloting modernization with lower-risk systems first. Prove value before full-scale implementation and build organizational support.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Cloud Adoption</h3>
+                        <p>Migrate to cloud platforms that offer scalability, flexibility, and cost efficiency. Meet FedRAMP and government compliance requirements.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Process Redesign</h3>
+                        <p>Reimagine business processes enabled by modern technology. Eliminate legacy workarounds and optimize for the new system environment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Citizen Experience</h3>
+                        <p>Design modern, mobile-first citizen interfaces. Improve service delivery through omnichannel capabilities and self-service options.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Organizational Change</h3>
+                        <p>Provide training, support, and cultural change management. Ensure staff embraces modernization and new ways of working.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem;">This structured approach ensures that modernization initiatives deliver measurable value, manage risk, and build organizational capability for sustained digital evolution.</p>
+            </section>
+
+            <section class="section">
+                <h2>Key Modernization Areas</h2>
+                <p>We help government agencies modernize across critical operational areas:</p>
+                <ul>
+                    <li><strong>Legacy System Replacement</strong> — Retire outdated mainframe systems and replace with modern, cloud-based alternatives. Manage data migration carefully while preserving institutional knowledge.</li>
+                    <li><strong>Cloud Platform Migration</strong> — Move applications and data to cloud platforms (AWS GovCloud, Azure Government, Google Cloud for Government). Achieve economies of scale and operational flexibility.</li>
+                    <li><strong>Citizen-Facing Services</strong> — Modernize public-facing systems to meet citizen expectations for digital, mobile-accessible services with reduced wait times and improved accessibility.</li>
+                    <li><strong>Data Analytics & Intelligence</strong> — Move from static reports to real-time analytics and data-driven decision-making. Enable predictive analytics and intelligence capabilities.</li>
+                    <li><strong>Mobile-First Applications</strong> — Build responsive, mobile-optimized applications. Support remote work and field operations with modern connectivity and functionality.</li>
+                    <li><strong>Cybersecurity Modernization</strong> — Implement modern security architectures with zero-trust models, advanced threat detection, and continuous compliance monitoring.</li>
+                    <li><strong>Enterprise Architecture</strong> — Develop modern, scalable enterprise architectures based on microservices, APIs, and containerization for flexibility and resilience.</li>
+                    <li><strong>DevOps & Continuous Delivery</strong> — Adopt agile development practices, continuous integration/deployment, and DevOps operations for faster delivery of updates and features.</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>Modernization Benefits & Outcomes</h2>
+                <p>Strategic digital modernization delivers significant operational and financial benefits:</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Cost Reduction</h3>
+                        <p>Eliminate expensive legacy system maintenance costs. Leverage cloud economies of scale and reduce operational overhead through automation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Improved Service Delivery</h3>
+                        <p>Faster transaction processing, reduced service delivery times, improved citizen satisfaction through modern, user-friendly interfaces and digital channels.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Enhanced Security</h3>
+                        <p>Modern security architecture, continuous compliance monitoring, rapid security updates, and built-in disaster recovery improve overall system security posture.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Operational Agility</h3>
+                        <p>Deploy new features and respond to changing requirements faster. Enable rapid adaptation to policy changes or emerging citizen needs.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Workforce Enablement</h3>
+                        <p>Modern systems are easier to use and support. Reduce staff training requirements and enable better recruitment of tech-savvy employees.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Sustainability</h3>
+                        <p>Cloud platforms reduce physical infrastructure footprint. Modernization supports sustainability goals and reduces operational carbon impact.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem;">Most government agencies achieve cost payback within 2-3 years while realizing improved citizen service delivery immediately.</p>
+            </section>
+
+            <section class="section">
+                <h2>Government Modernization Expertise</h2>
+                <p>We bring specialized experience in government-scale digital transformation:</p>
+                <ul>
+                    <li><strong>Regulatory Compliance</strong> — Navigate FISMA, FedRAMP, HIPAA, and state-specific compliance requirements throughout modernization initiatives</li>
+                    <li><strong>Zero-Downtime Migration</strong> — Plan and execute system migrations with zero service interruption for mission-critical operations</li>
+                    <li><strong>Legacy System Decommissioning</strong> — Safely retire legacy systems after ensuring data archival and compliance requirements are met</li>
+                    <li><strong>Citizen Experience Design</strong> — Design modern, accessible citizen interfaces that meet diverse population needs and accessibility standards</li>
+                    <li><strong>Multi-Jurisdictional Modernization</strong> — Coordinate modernization across multiple government agencies and jurisdictions</li>
+                    <li><strong>Change Management at Scale</strong> — Manage organizational change impacting thousands of employees across multiple locations</li>
+                    <li><strong>Budget Management</strong> — Deliver modernization within constrained government budgets using phased approaches and ROI-focused prioritization</li>
+                    <li><strong>Stakeholder Management</strong> — Navigate complex government stakeholder environments and build consensus for modernization initiatives</li>
+                </ul>
+            </section>
+
+            <section class="related-services">
+                <h3>Related Services</h3>
+                <div class="service-links">
+                    <a href="/services/custom-software-development">Custom Software Development</a>
+                    <a href="/services/systems-integration">Systems Integration</a>
+                    <a href="/services/data-dashboards-reporting">Data Dashboards & Reporting</a>
+                    <a href="/services/workflow-automation">Workflow Automation</a>
+                    <a href="/services/ai-process-improvement">AI & Process Improvement</a>
+                </div>
+            </section>
+
+            <section class="faq">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do we modernize without disrupting critical operations?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Zero-downtime modernization requires careful planning. We typically run legacy and modern systems in parallel during transition, with gradual migration of transactions and users. We start with non-critical systems to build confidence and processes. Critical operational systems are migrated during low-usage periods with full rollback capability. Some agencies maintain read-only access to legacy systems for a period during transition. Modern architecture with redundancy ensures that if anything goes wrong, we can quickly failback to legacy systems without losing data.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What is the typical timeline and cost for digital modernization?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Modernization timelines and costs vary significantly based on portfolio complexity. Assessment typically takes 2-3 months. A single system modernization might take 6-12 months, while enterprise-wide modernization spanning 20+ systems could take 3-5 years. We break modernization into phases with business value delivered in each phase. Early phases often reduce operational costs, which can partially fund later phases. Initial investment typically breaks even within 2-3 years through operational savings. We provide detailed budget estimates and ROI projections after the assessment phase.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do you ensure citizen data remains secure during modernization?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Data security is paramount during modernization. We implement encryption for all data in transit and at rest. Data migration is done in isolated, controlled environments with audit trails. Modern cloud platforms provide enhanced security capabilities compared to legacy systems. We conduct thorough security testing before any system goes live. Compliance with regulations like HIPAA, FedRAMP, or state privacy laws is built into the migration plan. We conduct penetration testing and security audits throughout the modernization process.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What happens to employees when we modernize systems?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Successful modernization requires significant change management and employee engagement. We conduct training programs to help employees transition to modern systems. Modern systems are typically easier to use than legacy systems, which improves employee satisfaction. We identify opportunities for employees to take on more strategic roles as routine tasks are automated. Some positions may be redefined rather than eliminated. We work with HR and leadership to plan career paths and reskilling programs for employees. Proper change management is critical to modernization success.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do we know modernization is delivering value?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        We establish clear metrics before modernization begins to measure success. These include cost metrics (operational cost reduction, licensing savings), service delivery metrics (faster transaction processing, reduced service delivery time), employee metrics (staff productivity, training requirements), and citizen metrics (satisfaction scores, digital adoption rates). We track these metrics throughout and after modernization to demonstrate ROI. Regular executive reviews ensure modernization stays on track and delivers promised benefits. If metrics show gaps, we adjust approach and accelerate value realization.
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <h2>Start Your Digital Modernization Journey</h2>
+                <p>Let's assess your technology environment and develop a modernization strategy aligned with your mission and budget. Contact us to schedule a discovery conversation and technology assessment.</p>
+                <a href="mailto:contact@kautotech.com" class="cta-button">Get Started Today</a>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 K Auto Tech LLC. All rights reserved.</p>
+        <p><a href="mailto:contact@kautotech.com">contact@kautotech.com</a></p>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const nav = document.getElementById('nav');
+
+        mobileToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+
+        // FAQ toggle functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

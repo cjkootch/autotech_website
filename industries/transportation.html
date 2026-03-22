@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transportation Industry Solutions | K Auto Tech Consulting</title>
+    <meta name="description" content="Technology consulting solutions for transportation and logistics companies. Fleet management, supply chain visibility, and operational efficiency.">
+    <meta name="keywords" content="transportation consulting, logistics technology, fleet management, supply chain visibility, transportation software">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-navy: #003366;
+            --primary-blue: #0066cc;
+            --light-blue: #e6f2ff;
+            --accent-green: #00a86b;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border-light: #e0e0e0;
+            --background: #f8f9fa;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--primary-navy);
+            color: white;
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: var(--primary-navy);
+                padding: 1rem;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            
+            nav.active {
+                max-height: 400px;
+            }
+            
+            nav a {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            header .container {
+                padding: 0 1rem;
+            }
+        }
+        
+        main {
+            margin-top: 80px;
+        }
+        
+        .breadcrumb {
+            background-color: var(--background);
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-navy);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+            transform: translateY(-4px);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-navy);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .faq-section {
+            background-color: var(--background);
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+        
+        .faq-question {
+            padding: 1.25rem;
+            cursor: pointer;
+            background-color: white;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background-color 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: var(--light-blue);
+        }
+        
+        .faq-question.active {
+            background-color: var(--light-blue);
+        }
+        
+        .faq-toggle {
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: #f5f8fc;
+        }
+        
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 1.25rem;
+        }
+        
+        .faq-answer p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: white;
+            padding: 0.75rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .cta-button:hover {
+            background-color: #008c5a;
+        }
+        
+        footer {
+            background-color: var(--primary-navy);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            section {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">K Auto Tech Consulting</div>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+            <nav id="nav-menu">
+                <a href="/">Home</a>
+                <a href="/markets/">Markets</a>
+                <a href="/industries/">Industries</a>
+                <a href="/contact/">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="/">Home</a> / <a href="/industries/">Industries</a> / Transportation
+        </div>
+
+        <section class="hero">
+            <div class="container">
+                <h1>Transportation Industry Solutions</h1>
+                <p>Optimize fleet operations, enhance supply chain visibility, and streamline logistics with advanced technology consulting</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Core Solutions for Transportation</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Fleet Management Systems</h3>
+                        <p>Implement integrated platforms for vehicle tracking, maintenance scheduling, driver management, and fuel optimization to maximize fleet efficiency and reduce operational costs.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Supply Chain Visibility</h3>
+                        <p>Deploy real-time tracking and monitoring systems that provide end-to-end visibility across your transportation network, enabling better decision-making and customer communication.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Route Optimization</h3>
+                        <p>Leverage data analytics and AI-driven algorithms to optimize delivery routes, reduce fuel consumption, improve on-time performance, and enhance customer satisfaction.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Driver Safety & Compliance</h3>
+                        <p>Develop systems for driver training, safety monitoring, hours-of-service compliance, and incident management to reduce risk and ensure regulatory adherence.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Logistics & Warehouse Integration</h3>
+                        <p>Connect transportation operations with warehouse management systems and distribution networks for seamless coordination, inventory tracking, and order fulfillment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Telematics & Analytics</h3>
+                        <p>Capture vehicle and driver performance data through telematics systems, analyze patterns, and generate actionable insights for continuous operational improvement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2>Transportation Industry FAQs</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How can fleet management technology improve driver safety and compliance?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Modern fleet management systems provide real-time monitoring of driver behavior, vehicle maintenance status, and regulatory compliance metrics. They enable automated alerts for unsafe driving patterns, track hours-of-service compliance, maintain inspection records, and generate compliance reports required by DOT and other regulatory bodies. This reduces accidents, improves insurance ratings, and mitigates liability exposure.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What's the ROI on implementing route optimization and supply chain visibility?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Transportation companies typically see 10-20% reductions in fuel costs, 15-25% improvements in on-time delivery rates, and 5-10% reductions in fleet size requirements through optimized routing. Supply chain visibility reduces customer service costs by 20-30% and improves customer retention through better communication. These improvements typically pay back implementation costs within 12-18 months.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do you integrate transportation systems with existing warehouse and inventory management platforms?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We design API-based integrations that connect transportation management systems (TMS) with warehouse management systems (WMS) and inventory platforms. This ensures real-time visibility across all operations, automatic shipment notifications, inventory synchronization, and streamlined order fulfillment. Integration can be phased to minimize disruption to current operations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What cybersecurity measures protect transportation systems and driver data?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Transportation systems require comprehensive security including encrypted data transmission, secure vehicle-to-cloud communication, access controls for driver and vehicle information, audit logging, and compliance with industry standards. We implement protections against GPS spoofing, ensure data privacy for driver monitoring information, and maintain compliance with data protection regulations affecting personal driver information.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do we manage the transition to new transportation technology systems?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We provide comprehensive change management including driver training on new systems, phased rollout starting with pilot locations, parallel operation of legacy and new systems during transition, and dedicated support for addressing workflow changes. Success depends on involving drivers and dispatchers in the process, clear communication about benefits, and patience during the learning curve—typically 4-8 weeks for full adoption.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Transform Your Transportation Operations?</h2>
+                <p>Let's discuss how technology can optimize your fleet, improve safety, and enhance profitability</p>
+                <a href="/contact/" class="cta-button">Schedule a Consultation</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 K Auto Tech Consulting. All rights reserved.</p>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "K Auto Tech Consulting",
+      "description": "Technology consulting solutions for transportation companies including fleet management, supply chain visibility, and logistics optimization",
+      "serviceArea": {
+        "@type": "AdministrativeArea",
+        "name": "North America"
+      },
+      "knowsAbout": [
+        "Fleet Management Systems",
+        "Supply Chain Visibility",
+        "Route Optimization",
+        "Driver Safety and Compliance",
+        "Telematics",
+        "Logistics Integration"
+      ]
+    }
+    </script>
+
+    <script>
+        function toggleNav() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('active');
+        }
+
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            element.classList.toggle('active');
+            answer.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

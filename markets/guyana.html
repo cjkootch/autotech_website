@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guyana Digital Transformation Services | K Auto Tech</title>
+    <meta name="description" content="K Auto Tech delivers enterprise software modernization and digital transformation services for Guyana government, energy, mining, and private sector organizations. Cloud integration, data analytics, cybersecurity solutions.">
+    <meta name="keywords" content="digital transformation Guyana, software modernization, oil and gas technology, enterprise solutions, government IT services">
+    <style>
+        :root {
+            --primary-navy: #0a1f3d;
+            --primary-blue: #1e5a96;
+            --secondary-blue: #2e7cb5;
+            --light-blue: #e8f1f8;
+            --accent-green: #10b981;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --border-light: #e5e7eb;
+            --bg-light: #f9fafb;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-green);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: var(--primary-navy);
+                padding: 1rem;
+                border-top: 1px solid var(--border-light);
+                display: none;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 0.75rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            header {
+                padding: 1rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 60px;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero {
+                padding: 2.5rem 1.5rem;
+            }
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-navy);
+            border-bottom: 3px solid var(--accent-green);
+            padding-bottom: 0.75rem;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary-blue);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        ul li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background-color: var(--light-blue);
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-blue);
+            border-radius: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card h3 {
+            margin-top: 0;
+            color: var(--primary-navy);
+        }
+
+        .feature-card p {
+            margin-bottom: 0;
+            color: var(--text-dark);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background-color: var(--bg-light);
+            padding: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary-navy);
+            user-select: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #eff5fb;
+        }
+
+        .faq-toggle {
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 1.25rem;
+            background-color: #fff;
+            display: none;
+            color: var(--text-dark);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            border-bottom-color: var(--accent-green);
+            display: block;
+            width: 100%;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: white;
+            padding: 0.875rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #059669;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-navy);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent-green);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                margin-bottom: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="/index.html" class="logo">K Auto Tech</a>
+            <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+            <nav>
+                <a href="/index.html">Home</a>
+                <a href="/markets/caribbean.html">Markets</a>
+                <a href="/industries/local-government.html">Industries</a>
+                <a href="/services/legacy-modernization.html">Services</a>
+                <a href="mailto:contact@kautotech.com">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Guyana Digital Transformation</h1>
+        <p>Enterprise software modernization for Guyana's rapidly growing economy. Energy sector technology, government modernization, and digital transformation solutions for oil and gas, mining, agriculture, and government organizations.</p>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="/index.html">Home</a> > <a href="/markets/caribbean.html">Markets</a> > Guyana
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Guyana Digital Transformation Market -->
+        <section>
+            <h2>Guyana Digital Transformation Market</h2>
+            <p>Guyana stands at an unprecedented inflection point in its economic history. The discovery and development of world-class oil and gas reserves has catalyzed rapid economic growth and created an urgent need for modern technology infrastructure across government, energy, mining, and supporting private sector organizations. The national government and energy sector must modernize legacy systems while managing explosive growth in operational demands and international regulatory requirements.</p>
+            <p>K Auto Tech brings proven expertise in modernizing infrastructure for resource-dependent economies and managing rapid technological change in complex operational environments. Our experience across Caribbean government and private sector modernization, combined with deep expertise in energy sector digital transformation, positions us uniquely to support Guyana's critical modernization needs during this transformative period.</p>
+        </section>
+
+        <!-- Key Industries & Growth Sectors -->
+        <section>
+            <h2>Key Industries & Growth Sectors</h2>
+            <p>Guyana's economic structure is undergoing fundamental transformation, creating distinct modernization requirements across multiple sectors:</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Oil & Gas Energy</h3>
+                    <p>The oil and gas sector drives economic growth and government revenue. Energy companies require modern SCADA systems, production optimization platforms, enterprise resource planning systems, and data analytics infrastructure meeting international operational standards and safety requirements.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Government Services & Administration</h3>
+                    <p>Government agencies require digital transformation to manage growing administrative demands, coordinate across ministries, and support service delivery. Modernized government systems improve efficiency, transparency, and citizen engagement while supporting regulatory oversight of energy sector operations.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Mining & Minerals Extraction</h3>
+                    <p>Mining operations require modern enterprise systems for production management, environmental monitoring, compliance reporting, and operational optimization. Legacy systems constrain growth and regulatory compliance in competitive global minerals markets.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Agriculture & Land Management</h3>
+                    <p>Agricultural operations and supporting infrastructure require digital platforms for supply chain management, market linkages, and land administration. Modern technology enables productivity improvements and export market access.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Financial Services & Banking</h3>
+                    <p>Financial institutions support growing economic activity and require modernized platforms for corporate lending, retail banking, and investment services. Digital transformation enables competitive capability in a growing economy.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Logistics & International Trade</h3>
+                    <p>Expanding international trade and energy exports require modern supply chain, customs, and logistics infrastructure. Digital platforms optimize cargo handling, customs clearance, and trade documentation supporting economic growth.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guyana-Specific Solutions -->
+        <section>
+            <h2>Guyana Solutions & Services</h2>
+            <p>Our modernization approach addresses Guyana's unique requirements as a rapidly growing energy economy integrating complex energy sector operations with developing government and private sector infrastructure:</p>
+            
+            <h3>Energy Sector Digital Transformation</h3>
+            <p>Oil and gas operations require enterprise-scale modernization including production systems, SCADA platform upgrades, resource planning systems, and operations data integration. Our energy sector expertise ensures systems meet international safety standards, production optimization requirements, and regulatory compliance across upstream, midstream, and downstream operations.</p>
+            
+            <h3>Government Modernization at Scale</h3>
+            <p>Government agencies must modernize systems rapidly to support economic growth while managing constrained IT resources and infrastructure. Our approach prioritizes high-impact improvements enabling government to administer growing economy, coordinate across agencies, and support energy sector regulatory oversight.</p>
+            
+            <h3>Mining Operations Technology</h3>
+            <p>Mining companies require modern enterprise systems for production optimization, environmental monitoring, and compliance management. Our mining industry expertise addresses production scheduling, resource management, environmental data integration, and regulatory reporting requirements.</p>
+            
+            <h3>Financial Services Modernization</h3>
+            <p>Banking and financial services institutions require enterprise platforms to support growing lending, investment, and trade finance activities in Guyana's expanding economy. Modern systems enable competitive capability and support capital mobilization.</p>
+            
+            <h3>Supply Chain & Trade Infrastructure</h3>
+            <p>Modern logistics and supply chain platforms optimize cargo handling, customs operations, and trade documentation supporting rapid export growth. Digital infrastructure enables Guyana to serve as a regional logistics hub for Caribbean and South American trade.</p>
+        </section>
+
+        <!-- Why Organizations Choose K Auto Tech -->
+        <section>
+            <h2>Why Guyana Organizations Choose K Auto Tech</h2>
+            <p>Organizations across Guyana benefit from K Auto Tech's unique combination of Caribbean market expertise and energy sector specialization:</p>
+            
+            <ul>
+                <li><strong>Energy Sector Specialization:</strong> Proven experience modernizing oil and gas operations, production systems, and enterprise infrastructure ensures Guyana energy companies implement world-class technology meeting international standards.</li>
+                <li><strong>Resource Economy Expertise:</strong> Deep experience modernizing government and infrastructure in resource-dependent economies provides insight into rapid growth management, revenue cycle administration, and economic transition planning.</li>
+                <li><strong>Caribbean Government Experience:</strong> Extensive government modernization across Caribbean creates proven approaches to delivering capability improvements with constrained IT resources and institutional capacity.</li>
+                <li><strong>Rapid Deployment Capability:</strong> Proven ability to mobilize teams and deliver results quickly ensures Guyana organizations can keep pace with economic growth and operational demands.</li>
+                <li><strong>Infrastructure Development Perspective:</strong> Holistic understanding of how energy sector, government systems, and private sector infrastructure must integrate enables comprehensive modernization planning.</li>
+                <li><strong>Regulatory & Compliance Expertise:</strong> Deep knowledge of energy sector regulations, environmental compliance requirements, and international operational standards ensures systems meet all regulatory obligations.</li>
+                <li><strong>Business Continuity Expertise:</strong> Energy sector operations cannot tolerate extended downtime. Our systematic approach ensures seamless transitions managing business continuity during system replacement.</li>
+                <li><strong>Scalable Engagement Model:</strong> Flexible engagement approaches accommodate phased implementations, team augmentation, and managed services enabling organizations to access required capability without large permanent staff increases.</li>
+            </ul>
+        </section>
+
+        <!-- Service Offerings -->
+        <section>
+            <h2>Service Offerings</h2>
+            <p>Our comprehensive service portfolio addresses every aspect of enterprise digital transformation across Guyana's energy and government sectors:</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3><a href="/services/legacy-modernization.html" style="color: var(--primary-blue); text-decoration: none;">Legacy System Modernization</a></h3>
+                    <p>Strategic replacement of aging systems with modern, scalable platforms designed for growth. Manages business continuity in mission-critical energy and government operations.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><a href="/services/cloud-integration.html" style="color: var(--primary-blue); text-decoration: none;">Cloud Integration & Migration</a></h3>
+                    <p>Safe migration of on-premises systems to cloud platforms supporting scalability, disaster recovery, and operational flexibility required by growing organizations.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><a href="/services/data-analytics.html" style="color: var(--primary-blue); text-decoration: none;">Data Analytics & Reporting</a></h3>
+                    <p>Enterprise data integration and analytics platforms supporting production optimization, government administration, and data-driven decision-making across organizational operations.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><a href="/services/cybersecurity-compliance.html" style="color: var(--primary-blue); text-decoration: none;">Cybersecurity & Compliance</a></h3>
+                    <p>Comprehensive security architecture, threat management, and regulatory compliance addressing energy sector, government, and critical infrastructure security requirements.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><a href="/services/api-integration.html" style="color: var(--primary-blue); text-decoration: none;">API Integration & System Connectivity</a></h3>
+                    <p>Real-time system integration connecting operational systems, enterprise platforms, and data sources supporting cross-organizational information flow.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><a href="/services/managed-services.html" style="color: var(--primary-blue); text-decoration: none;">Managed Services & Support</a></h3>
+                    <p>Ongoing operational support, monitoring, and optimization extending organizational IT capacity and ensuring continuous system performance as operations scale.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+            <h2>Guyana Market FAQ</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What technology modernization priorities should energy companies address first?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Energy operations should prioritize production optimization systems, real-time data integration for decision-making, and enterprise resource planning platforms supporting operational scale. SCADA system modernization, cybersecurity infrastructure, and data analytics capabilities enable competitive operational efficiency. Our approach sequences investments to deliver immediate operational value while building toward comprehensive enterprise modernization. We work with energy companies to identify highest-impact improvements relative to operational risk and capital requirements.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How should government manage IT modernization during rapid economic growth?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Government modernization must balance immediate operational demands with longer-term capability building. Our approach prioritizes quick wins delivering operational improvements while establishing modern technology foundations supporting sustained growth. We identify high-impact initiatives—revenue administration, service delivery platforms, cross-agency data integration—that improve government effectiveness and support economic administration. Phased implementation spreads investment across budget cycles while building internal technical capacity through training and knowledge transfer programs.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What are Guyana's regulatory and compliance requirements for technology systems?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Guyana energy operations must comply with requirements from the Guyana Energy Agency, Environmental Protection Agency, and international standards for oil and gas operations. Government systems must meet data protection and cybersecurity requirements. Our modernization approach embeds regulatory compliance requirements throughout system architecture, including environmental data integration, cybersecurity controls, audit logging, and operational monitoring capabilities addressing all applicable regulatory obligations.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do you manage technology implementations in remote or resource-constrained operational environments?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Guyana's geography and operational environment present deployment challenges. Our approach includes detailed connectivity assessment, distributed system architectures supporting remote operations, offline-capable systems, and comprehensive training enabling local teams to manage operations. We design for resilience addressing potential infrastructure limitations, implement robust monitoring and alerting, and establish clear support and escalation procedures. Our managed services approach provides remote monitoring and support extending local technical capacity.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What should organizations expect in timeline and investment for major modernization projects?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Enterprise modernization timelines vary based on system complexity and scope. Energy sector projects typically require 12-24 months for comprehensive implementation. Government projects may span 18-36 months for full organizational transition. We structure engagements through phases enabling incremental deployment, benefit realization, and budget spreading. Clear phasing allows organizations to adjust scope based on realized benefits and emerging priorities. We provide transparent cost structures and defined deliverables enabling informed investment decisions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta-section">
+            <h2>Lead Guyana's Digital Transformation</h2>
+            <p>Guyana's energy-driven economic growth creates unprecedented opportunity for modern technology infrastructure. Organizations across energy, government, and private sectors are modernizing operations. Connect with K Auto Tech to explore transformation opportunities specific to your sector and organizational requirements.</p>
+            <a href="mailto:contact@kautotech.com" class="cta-button">Contact Us About Guyana Solutions</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 K Auto Tech LLC. All rights reserved. | <a href="mailto:contact@kautotech.com">contact@kautotech.com</a></p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('nav').classList.remove('active');
+            });
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                this.parentElement.classList.toggle('active');
+            });
+        });
+    </script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "K Auto Tech - Guyana Solutions",
+        "description": "Enterprise software modernization and digital transformation services for Guyana energy sector, government, mining, and private sector organizations.",
+        "url": "https://kautotech.com/markets/guyana.html",
+        "areaServed": "GY",
+        "telephone": "contact@kautotech.com",
+        "email": "contact@kautotech.com",
+        "sameAs": [
+            "https://kautotech.com"
+        ],
+        "image": "https://kautotech.com/images/kautotech-guyana.jpg",
+        "priceRange": "$$",
+        "serviceType": [
+            "Enterprise Software Modernization",
+            "Energy Sector Digital Transformation",
+            "Cloud Integration",
+            "Data Analytics",
+            "Cybersecurity & Compliance",
+            "Managed Services"
+        ]
+    }
+    </script>
+</body>
+</html>

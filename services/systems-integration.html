@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Systems Integration Consulting | K Auto Tech LLC</title>
+    <meta name="description" content="Enterprise systems integration services for government agencies. Connect legacy and modern systems seamlessly with K Auto Tech's integration expertise.">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta property="og:title" content="Systems Integration Consulting | K Auto Tech LLC">
+    <meta property="og:description" content="Enterprise systems integration services for government agencies. Connect legacy and modern systems seamlessly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kautotech.com/services/systems-integration">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Systems Integration Consulting | K Auto Tech LLC">
+    <meta name="twitter:description" content="Enterprise systems integration services for government agencies.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Systems Integration Consulting",
+      "description": "Enterprise systems integration services connecting legacy systems with modern applications for government agencies across the Caribbean, US, and Canada.",
+      "provider": {
+        "@type": "Organization",
+        "name": "K Auto Tech LLC",
+        "url": "https://kautotech.com",
+        "logo": "https://kautotech.com/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-XXX-XXX-XXXX",
+          "contactType": "Sales"
+        }
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Jamaica"
+        },
+        {
+          "@type": "Country",
+          "name": "Trinidad and Tobago"
+        },
+        {
+          "@type": "Country",
+          "name": "Bahamas"
+        },
+        {
+          "@type": "Country",
+          "name": "Barbados"
+        },
+        {
+          "@type": "Country",
+          "name": "Guyana"
+        },
+        {
+          "@type": "Country",
+          "name": "Dominican Republic"
+        },
+        {
+          "@type": "Country",
+          "name": "United States"
+        },
+        {
+          "@type": "Country",
+          "name": "Canada"
+        }
+      ],
+      "serviceType": "Systems Integration",
+      "image": "https://kautotech.com/images/systems-integration.jpg"
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-navy: #0a1929;
+            --primary-blue: #1e40af;
+            --light-blue: #dbeafe;
+            --accent-blue: #3b82f6;
+            --text-dark: #1a202c;
+            --text-light: #4b5563;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --footer-bg: #0f172a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-navy);
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary-navy);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: white;
+                padding: 1rem;
+                gap: 0.5rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 0.75rem;
+                display: block;
+            }
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            margin: 0 0.25rem;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Content Container */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--light-blue);
+            padding-bottom: 0.5rem;
+        }
+
+        .section p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .section ul {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .section li {
+            color: var(--text-light);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .section li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.1);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Related Services */
+        .related-services {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .related-services h3 {
+            color: var(--primary-navy);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .service-links a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            display: block;
+            font-weight: 500;
+        }
+
+        .service-links a:hover {
+            background: var(--light-blue);
+            border-color: var(--primary-blue);
+        }
+
+        /* FAQ Section */
+        .faq {
+            margin: 3rem 0;
+        }
+
+        .faq h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--light-blue);
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: var(--bg-light);
+            padding: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #eef2f7;
+        }
+
+        .faq-question-text {
+            font-weight: 600;
+            color: var(--primary-navy);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 1.25rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            background: white;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-navy), var(--primary-blue));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            border-bottom: none;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--success-green);
+            color: white;
+            padding: 0.85rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-bg);
+            color: white;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">K Auto Tech</a>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="nav">
+                <a href="/">Home</a>
+                <a href="/services">Services</a>
+                <a href="/markets">Markets</a>
+                <a href="/industries">Industries</a>
+                <a href="mailto:contact@kautotech.com">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="/">Home</a> > <a href="/services">Services</a> > Systems Integration
+        </div>
+
+        <section class="hero">
+            <h1>Systems Integration Consulting</h1>
+            <p>Seamlessly connect legacy systems with modern applications. Enable unified data flow and operational efficiency across your entire enterprise ecosystem.</p>
+        </section>
+
+        <div class="content">
+            <section class="section">
+                <h2>Why Systems Integration Matters</h2>
+                <p>Modern government agencies operate across multiple systems—legacy mainframes, departmental applications, cloud services, and specialized software. Without proper integration, data silos develop, duplicate data entry errors occur, and operational efficiency suffers. Systems integration creates a unified technology environment where information flows seamlessly between systems, enabling better decision-making and improved service delivery.</p>
+                <p>Government agencies face unique integration challenges: security requirements demand encrypted data transfer, compliance regulations require audit trails, legacy systems may lack modern APIs, and mission-critical operations cannot tolerate downtime. Our systems integration consulting addresses these constraints while modernizing your technology infrastructure.</p>
+            </section>
+
+            <section class="section">
+                <h2>Our Integration Approach</h2>
+                <p>We begin every integration project with a comprehensive assessment of your existing systems, data flows, and business processes. This discovery phase identifies integration opportunities, potential bottlenecks, and compliance requirements that will drive our integration architecture.</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>System Assessment</h3>
+                        <p>Evaluate existing systems, data models, APIs, and integration points. Identify legacy system constraints and modernization opportunities.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Architecture Design</h3>
+                        <p>Design scalable integration architecture using event-driven patterns, message queues, or API gateways. Plan for security, redundancy, and performance.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Implementation</h3>
+                        <p>Deploy integration solutions with minimal disruption. Implement data transformation, validation, and error handling. Test thoroughly before production rollout.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Data Governance</h3>
+                        <p>Establish data quality standards, master data management processes, and data lineage tracking. Ensure compliance with regulatory requirements.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Monitoring & Support</h3>
+                        <p>Deploy monitoring systems to track integration health. Provide ongoing support and optimization to ensure sustained performance.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Training & Documentation</h3>
+                        <p>Train your teams on integration management, troubleshooting, and system administration. Provide comprehensive technical documentation.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem;">Our approach ensures minimal business disruption while creating a stable, scalable, and secure integrated system environment that supports current operations and enables future growth.</p>
+            </section>
+
+            <section class="section">
+                <h2>Integration Technologies & Platforms</h2>
+                <p>We work with enterprise-grade integration platforms and tools designed for government-scale implementations:</p>
+                <ul>
+                    <li><strong>MuleSoft Anypoint Platform</strong> — Cloud-native iPaaS for API-led integration with strong security and scalability</li>
+                    <li><strong>Apache Kafka</strong> — Event streaming platform for real-time data integration across systems</li>
+                    <li><strong>AWS / Azure Integration Services</strong> — Cloud-based integration solutions with government compliance certifications</li>
+                    <li><strong>Boomi AtomSphere</strong> — Low-code iPaaS platform for rapid integration deployment</li>
+                    <li><strong>TIBCO EMS & BusinessWorks</strong> — Enterprise messaging and integration framework</li>
+                    <li><strong>Custom API Development</strong> — Build tailored integration layers for legacy system modernization</li>
+                    <li><strong>ETL Tools</strong> — Talend, Informatica, or custom solutions for data integration and transformation</li>
+                    <li><strong>Message Queuing</strong> — RabbitMQ, ActiveMQ for asynchronous system communication</li>
+                </ul>
+                <p>We select technologies based on your specific requirements, existing infrastructure, performance needs, and budget constraints. Each platform offers different strengths—we match the technology to your integration architecture and long-term strategy.</p>
+            </section>
+
+            <section class="section">
+                <h2>Integration Benefits & ROI</h2>
+                <p>Proper systems integration delivers measurable business value:</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Reduced Data Silos</h3>
+                        <p>Enable seamless data flow between systems. Eliminate duplicate data entry and inconsistent information. Create single source of truth for critical data.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Improved Efficiency</h3>
+                        <p>Automate data transfer between systems. Reduce manual workarounds. Accelerate business processes that span multiple applications.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Better Decisions</h3>
+                        <p>Unified data enables comprehensive analytics and reporting. Leadership gets accurate, real-time information for strategic decisions.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Cost Reduction</h3>
+                        <p>Eliminate duplicate software licenses and data entry staff. Reduce errors that cause rework. Lower operational overhead through automation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Enhanced Security</h3>
+                        <p>Centralized data governance improves compliance. Audit trails document all data movements. Encryption secures data in transit and at rest.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Scalability</h3>
+                        <p>Modern integration architecture supports growth. Add new systems without rearchitecting. Handle increasing transaction volumes.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem;">Most government agencies recover integration investment within 18-24 months through efficiency gains, error reduction, and improved operational decision-making.</p>
+            </section>
+
+            <section class="section">
+                <h2>Government Integration Expertise</h2>
+                <p>We bring deep experience integrating complex government environments:</p>
+                <ul>
+                    <li><strong>Compliance & Regulation</strong> — Navigate FISMA, FedRAMP, HIPAA, and state-specific compliance requirements during integration projects</li>
+                    <li><strong>Legacy System Integration</strong> — Connect decades-old mainframe systems with modern cloud applications without disrupting operations</li>
+                    <li><strong>Multi-Agency Coordination</strong> — Integrate systems across multiple government agencies and jurisdictions</li>
+                    <li><strong>High Availability Requirements</strong> — Design 24/7 uptime integration architectures that support mission-critical operations</li>
+                    <li><strong>Security & Encryption</strong> — Implement government-grade encryption, audit logging, and access controls</li>
+                    <li><strong>Data Sovereignty</strong> — Ensure data remains within required jurisdictions and complies with data residency laws</li>
+                    <li><strong>Performance at Scale</strong> — Handle millions of daily transactions across integrated government systems</li>
+                    <li><strong>Change Management</strong> — Manage organizational transition to integrated systems with training and stakeholder support</li>
+                </ul>
+            </section>
+
+            <section class="related-services">
+                <h3>Related Services</h3>
+                <div class="service-links">
+                    <a href="/services/custom-software-development">Custom Software Development</a>
+                    <a href="/services/workflow-automation">Workflow Automation</a>
+                    <a href="/services/data-dashboards-reporting">Data Dashboards & Reporting</a>
+                    <a href="/services/digital-modernization">Digital Modernization</a>
+                    <a href="/services/ai-process-improvement">AI & Process Improvement</a>
+                </div>
+            </section>
+
+            <section class="faq">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How long does a systems integration project typically take?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Integration timelines vary significantly based on scope, system complexity, and existing infrastructure. A simple two-system integration might take 3-4 months, while enterprise-wide integration connecting 10+ systems could take 12-18 months. We break projects into phases, with each phase delivering value. Assessment typically takes 2-3 weeks, architecture design takes 4-6 weeks, implementation spans 3-6 months depending on complexity, and testing/deployment takes 4-8 weeks. We provide detailed project schedules after the discovery phase.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">Can you integrate our legacy mainframe with cloud applications?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, this is one of our core competencies. Legacy mainframes often have limited API capabilities, so we build integration layers that extract data from mainframe outputs, transform it into standard formats, and deliver it to cloud applications. We can also build reverse integration to push cloud data back to the mainframe. Common approaches include file-based integration, message queue integration, or custom API development on the mainframe. This allows you to modernize incrementally without ripping and replacing entire systems.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What about data quality and validation during integration?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Data quality is critical in integration projects. We implement validation rules at each integration point to catch errors before they propagate through systems. This includes format validation, referential integrity checks, business logic validation, and completeness checks. We establish data quality metrics and monitoring to identify problems quickly. Bad data is quarantined with detailed error reporting so your teams can investigate and correct issues. We also help establish master data management practices to prevent data quality issues at the source.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">How do you ensure security and compliance during integration?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Security is built into integration architecture from the start. We implement encryption for data in transit and at rest, use secure authentication/authorization mechanisms, implement audit logging to track all data movements, and design for compliance with your regulatory requirements (FISMA, FedRAMP, HIPAA, etc.). All integration components are deployed in secure environments with proper access controls. We conduct security testing throughout development and provide compliance documentation for your audit requirements.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-question-text">What happens after integration is deployed?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        We provide ongoing support and monitoring after deployment. This includes 24/7 monitoring of integration components, alert management for failures or anomalies, performance optimization, regular maintenance and updates, and helpdesk support for your teams. We provide training so your staff can manage day-to-day operations and troubleshoot common issues. We also conduct regular health checks and optimization reviews to ensure the integration continues meeting your needs as your business evolves.
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <h2>Ready to Integrate Your Systems?</h2>
+                <p>Let's discuss how systems integration can unlock the full potential of your technology environment. Contact us to schedule a discovery conversation and integration assessment.</p>
+                <a href="mailto:contact@kautotech.com" class="cta-button">Get Started Today</a>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 K Auto Tech LLC. All rights reserved.</p>
+        <p><a href="mailto:contact@kautotech.com">contact@kautotech.com</a></p>
+    </footer>
+
+    <script>
+        // Mobile navigation toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const nav = document.getElementById('nav');
+
+        mobileToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+
+        // FAQ toggle functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
