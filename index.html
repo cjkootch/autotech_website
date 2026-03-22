@@ -215,6 +215,9 @@
             align-items: center;
             gap: 10px;
         }
+        .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .logo-name { font-size: 1.1rem; font-weight: 700; }
+        .logo-descriptor { font-size: 0.6rem; font-weight: 400; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
         .logo-icon {
             width: 40px;
             height: 40px;
@@ -1047,7 +1050,123 @@
             .about-grid { grid-template-columns: 1fr; gap: 40px; }
             .contact-grid { grid-template-columns: 1fr; }
             .hero-stats { gap: 32px; }
+            .buyer-paths-grid { grid-template-columns: repeat(2, 1fr); }
+            .project-scopes-grid { grid-template-columns: 1fr; }
         }
+        /* ========================================
+           BUYER PATHS
+           ======================================== */
+        .buyer-paths { padding: 80px 0; }
+        .buyer-paths-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .buyer-path-card {
+            display: flex;
+            flex-direction: column;
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition);
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+        }
+        .buyer-path-card:hover {
+            border-color: var(--coral);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+        .buyer-path-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+        .buyer-path-card p { font-size: 0.85rem; color: var(--slate); line-height: 1.6; flex: 1; }
+        .buyer-path-icon { margin-bottom: 14px; }
+        .buyer-path-arrow {
+            color: var(--coral);
+            font-size: 1.2rem;
+            margin-top: 12px;
+            transition: transform var(--transition);
+        }
+        .buyer-path-card:hover .buyer-path-arrow { transform: translateX(4px); }
+
+        /* ========================================
+           PROJECT SCOPES
+           ======================================== */
+        .project-scopes { padding: 80px 0; background: var(--gray-100); }
+        .project-scopes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .project-scope-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition);
+        }
+        .project-scope-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--coral);
+        }
+        .project-scope-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
+        .project-scope-card p { font-size: 0.95rem; color: var(--slate); line-height: 1.7; margin-bottom: 16px; }
+        .scope-timeline {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            background: var(--coral-pale);
+            color: var(--coral);
+            border-radius: var(--radius);
+            margin-bottom: 16px;
+        }
+        .scope-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--coral);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition);
+        }
+        .scope-cta:hover {
+            gap: 10px;
+        }
+
+        /* ========================================
+           CTA BUTTONS
+           ======================================== */
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* ========================================
+           CONTACT OPTIONS
+           ======================================== */
+        .contact-options {
+            margin-bottom: 32px;
+        }
+        .contact-option {
+            display: block;
+            padding: 20px 24px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            color: inherit;
+            transition: all var(--transition);
+        }
+        .contact-option:hover {
+            border-color: var(--coral);
+            box-shadow: var(--shadow-md);
+        }
+        .contact-option strong { display: block; font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+        .contact-option span { display: block; font-size: 0.85rem; color: var(--slate); }
+
         @media (max-width: 768px) {
             :root { --section-pad: 64px 0; }
             .nav { display: none; }
@@ -1064,6 +1183,10 @@
             .hero-ctas { flex-direction: column; }
             .hero-ctas .btn { text-align: center; justify-content: center; }
             .credibility-grid { flex-direction: column; gap: 16px; }
+            .buyer-paths-grid { grid-template-columns: 1fr; }
+            .project-scopes-grid { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; }
+            .cta-buttons .btn { width: 100%; justify-content: center; }
             .footer-top { flex-direction: column; gap: 32px; }
             .footer-links { flex-direction: column; gap: 24px; }
             .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
@@ -1084,7 +1207,10 @@
         <div class="container">
             <a href="#" class="logo">
                 <img src="/k icon.png" alt="K Auto Tech" class="logo-icon">
-                K Auto Tech
+                <div class="logo-text">
+                    <span class="logo-name">K Auto Tech</span>
+                    <span class="logo-descriptor">Automation & Modernization Consulting</span>
+                </div>
             </a>
             <nav class="nav">
                 <a href="#services">Services</a>
@@ -1165,6 +1291,68 @@
     </section>
 
     <!-- ========================================
+         WHO WE SERVE (BUYER PATHS)
+         ======================================== -->
+    <section class="buyer-paths">
+        <div class="container">
+            <div class="section-header section-header--center reveal">
+                <span class="section-label">Who We Serve</span>
+                <h2 class="section-title">Find solutions for your organization</h2>
+            </div>
+            <div class="buyer-paths-grid">
+                <a href="industries/local-government.html" class="buyer-path-card reveal reveal-delay-1">
+                    <div class="buyer-path-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3>For Municipalities</h3>
+                    <p>Workflow automation, citizen service portals, and internal department tools</p>
+                    <span class="buyer-path-arrow">&rarr;</span>
+                </a>
+                <a href="industries/utilities.html" class="buyer-path-card reveal reveal-delay-2">
+                    <div class="buyer-path-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <h3>For Utilities</h3>
+                    <p>Operational dashboards, service delivery systems, and reporting automation</p>
+                    <span class="buyer-path-arrow">&rarr;</span>
+                </a>
+                <a href="industries/permitting-licensing.html" class="buyer-path-card reveal reveal-delay-3">
+                    <div class="buyer-path-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+                    </div>
+                    <h3>For Permitting Departments</h3>
+                    <p>Application processing, compliance tracking, and legacy system replacement</p>
+                    <span class="buyer-path-arrow">&rarr;</span>
+                </a>
+                <a href="industries/procurement-administration.html" class="buyer-path-card reveal reveal-delay-4">
+                    <div class="buyer-path-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    </div>
+                    <h3>For Procurement Teams</h3>
+                    <p>Document workflows, vendor management, and purchasing automation</p>
+                    <span class="buyer-path-arrow">&rarr;</span>
+                </a>
+                <a href="industries/transportation.html" class="buyer-path-card reveal reveal-delay-5">
+                    <div class="buyer-path-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="17" r="1"/><circle cx="19" cy="17" r="1"/><path d="M7 18H3c-1 0-1-1-1-1V7c0-1 0-2 1-2h14c1 0 2 1 2 2v8c0 1-1 2-2 2h-4l2 3h2c2 0 3-1 3-3V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"/></svg>
+                    </div>
+                    <h3>For Transportation Agencies</h3>
+                    <p>Fleet operations, scheduling systems, and data integration</p>
+                    <span class="buyer-path-arrow">&rarr;</span>
+                </a>
+                <a href="industries/regulated-private-industry.html" class="buyer-path-card reveal reveal-delay-6">
+                    <div class="buyer-path-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>For Regulated Businesses</h3>
+                    <p>Compliance-aware systems, operational visibility, and process modernization</p>
+                    <span class="buyer-path-arrow">&rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
          SERVICES
          ======================================== -->
     <section class="services" id="services">
@@ -1216,6 +1404,44 @@
                     </div>
                     <h3>AI-Enabled Process Improvement</h3>
                     <p>Practical applications of machine learning and intelligent automation where they make operational sense. Document processing, classification, routing, and decision support tools that reduce workload without adding complexity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         PROJECT SCOPES
+         ======================================== -->
+    <section class="project-scopes">
+        <div class="container">
+            <div class="section-header section-header--center reveal">
+                <span class="section-label">Example Project Scopes</span>
+                <h2 class="section-title">Real projects we build</h2>
+            </div>
+            <div class="project-scopes-grid">
+                <div class="project-scope-card reveal reveal-delay-1">
+                    <h3>Municipal Permit Tracking System</h3>
+                    <p>Custom web application to digitize permit applications, automate routing, track status, and generate compliance reports. Replaces paper-based process handling 2,000+ applications annually.</p>
+                    <span class="scope-timeline">Typical Timeline: 12-16 weeks</span>
+                    <a href="#contact" class="scope-cta">Discuss Similar Projects &rarr;</a>
+                </div>
+                <div class="project-scope-card reveal reveal-delay-2">
+                    <h3>Fuel Distribution Dashboard</h3>
+                    <p>Real-time operational dashboard integrating fleet GPS, delivery scheduling, and inventory data. Provides dispatch visibility and automated daily reporting.</p>
+                    <span class="scope-timeline">Typical Timeline: 8-10 weeks</span>
+                    <a href="#contact" class="scope-cta">Discuss Similar Projects &rarr;</a>
+                </div>
+                <div class="project-scope-card reveal reveal-delay-3">
+                    <h3>County Procurement Workflow</h3>
+                    <p>End-to-end digitization of RFP creation, vendor response collection, evaluation scoring, and award documentation. Eliminates manual document assembly.</p>
+                    <span class="scope-timeline">Typical Timeline: 10-14 weeks</span>
+                    <a href="#contact" class="scope-cta">Discuss Similar Projects &rarr;</a>
+                </div>
+                <div class="project-scope-card reveal reveal-delay-4">
+                    <h3>Utility Service Request Portal</h3>
+                    <p>Public-facing portal for service requests with automated routing to field teams, status tracking for citizens, and management reporting.</p>
+                    <span class="scope-timeline">Typical Timeline: 14-18 weeks</span>
+                    <a href="#contact" class="scope-cta">Discuss Similar Projects &rarr;</a>
                 </div>
             </div>
         </div>
@@ -1494,11 +1720,12 @@
          ======================================== -->
     <section class="cta-section">
         <div class="container reveal">
-            <h2>Need a technical partner for modernization,<br>workflow automation, or custom software?</h2>
-            <p>We work with government agencies, public authorities, and operationally complex organizations to build systems that deliver real results.</p>
+            <h2>Ready to modernize?</h2>
+            <p>Choose the next step that fits your needs.</p>
             <div class="cta-buttons">
-                <a href="#contact" class="btn btn-white btn-arrow">Request a Consultation</a>
-                <a href="#services" class="btn btn-secondary btn-arrow">View Our Capabilities</a>
+                <a href="K-Auto-Tech-Capability-Statement.pdf" class="btn btn-white btn-arrow" target="_blank">Download Capability Statement</a>
+                <a href="#contact" class="btn btn-secondary btn-arrow">Schedule Discovery Call</a>
+                <a href="#contact" class="btn btn-secondary btn-arrow">Discuss an RFP</a>
             </div>
         </div>
     </section>
@@ -1564,6 +1791,12 @@
                     <p>We support project-based engagements, retainer arrangements, and staff augmentation models depending on your needs and procurement requirements.</p>
                 </div>
                 <div class="reveal reveal-delay-2">
+                    <div class="contact-options">
+                        <a href="K-Auto-Tech-Capability-Statement.pdf" class="contact-option" target="_blank">
+                            <strong>Download Capability Statement</strong>
+                            <span>One-page overview with NAICS codes and core competencies</span>
+                        </a>
+                    </div>
                     <form class="contact-form" onsubmit="handleSubmit(event)">
                         <div class="form-row">
                             <div class="form-group">
@@ -1603,7 +1836,7 @@
                             <label for="message">Message *</label>
                             <textarea id="message" name="message" required placeholder="Describe your project, challenge, or requirements..."></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-arrow" style="width:100%; justify-content: center;">Submit Inquiry</button>
+                        <button type="submit" class="btn btn-primary btn-arrow" style="width:100%; justify-content: center;">Schedule Discovery Call</button>
                     </form>
                 </div>
             </div>
@@ -1619,7 +1852,10 @@
                 <div class="footer-brand">
                     <div class="logo">
                         <img src="/k icon.png" alt="K Auto Tech" class="logo-icon">
-                        K Auto Tech
+                        <div class="logo-text">
+                            <span class="logo-name">K Auto Tech</span>
+                            <span class="logo-descriptor">Automation & Modernization Consulting</span>
+                        </div>
                     </div>
                     <p>Custom software development, workflow automation, and digital modernization consulting for government and public-sector organizations.</p>
                 </div>
