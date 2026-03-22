@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Service Portal Solution | K Auto Tech</title>
+    <meta name="description" content="Centralized citizen service request management portal with automated routing, case tracking, and SLA management for municipalities.">
+    
+    <style>
+        :root {
+            --navy: #0a1628;
+            --coral: #E8604C;
+            --slate: #556b82;
+            --light-slate: #f0f3f7;
+            --white: #ffffff;
+            --border: #dde4ed;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--navy);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(10, 22, 40, 0.08);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg) var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: var(--spacing-2xl);
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--slate);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--coral);
+        }
+
+        .btn-primary {
+            background: var(--coral);
+            color: var(--white);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #d04a37;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(232, 96, 76, 0.3);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg) var(--spacing-lg);
+            font-size: 13px;
+            color: var(--slate);
+        }
+
+        .breadcrumb a {
+            color: var(--coral);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        section {
+            padding: var(--spacing-2xl) 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--coral);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        h1, h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 32px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--slate);
+            margin-bottom: var(--spacing-2xl);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: var(--spacing-2xl) 0 var(--spacing-xl) 0;
+        }
+
+        .scenario-box {
+            background: var(--light-slate);
+            border-left: 4px solid var(--coral);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-top: var(--spacing-lg);
+        }
+
+        .scenario-box strong {
+            color: var(--coral);
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .card:hover {
+            border-color: var(--coral);
+            box-shadow: 0 12px 24px rgba(10, 22, 40, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .card p {
+            color: var(--slate);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Metrics */
+        .metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a2d4a 100%);
+            color: var(--white);
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .metric-card .number {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .metric-card .label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        /* Impacts */
+        .impacts {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .impact-item {
+            padding-left: var(--spacing-lg);
+            border-left: 3px solid var(--coral);
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .impact-item h4 {
+            color: var(--navy);
+            font-size: 16px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .impact-item p {
+            color: var(--slate);
+            font-size: 14px;
+        }
+
+        /* Architecture */
+        .architecture-layer {
+            background: var(--light-slate);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            border-left: 4px solid var(--coral);
+        }
+
+        .architecture-layer h4 {
+            color: var(--navy);
+            font-size: 16px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .architecture-layer p {
+            color: var(--slate);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Deliverables */
+        .deliverables {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .deliverable-item {
+            display: flex;
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg);
+            background: var(--light-slate);
+            border-radius: 8px;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .deliverable-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--coral);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .deliverable-content h4 {
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .deliverable-content p {
+            color: var(--slate);
+            font-size: 13px;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .timeline-phase {
+            background: var(--light-slate);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid var(--coral);
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .timeline-phase h4 {
+            color: var(--navy);
+            font-size: 16px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .timeline-phase p {
+            color: var(--slate);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: var(--spacing-lg) 0;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--spacing-md);
+            color: var(--navy);
+            font-weight: 600;
+            font-size: 16px;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--coral);
+        }
+
+        .faq-toggle {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-slate);
+            border-radius: 50%;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            background: var(--coral);
+            color: var(--white);
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--slate);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: var(--spacing-md);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--light-slate);
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            margin: var(--spacing-2xl) 0;
+        }
+
+        .cta-section h3 {
+            color: var(--navy);
+            font-size: 28px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-section p {
+            color: var(--slate);
+            font-size: 16px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .footer-section h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: var(--spacing-sm);
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--coral);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--spacing-lg);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                gap: var(--spacing-lg);
+            }
+
+            h1, h2 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: var(--spacing-md);
+            }
+
+            nav {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            h1, h2 {
+                font-size: 24px;
+            }
+
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-label {
+                font-size: 11px;
+            }
+
+            h1, h2 {
+                font-size: 20px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-content">
+            <a href="/" class="logo">K Auto Tech</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/solutions/">Solutions</a>
+                <a href="/government.html">Government</a>
+                <a href="/#contact">Contact</a>
+                <a href="#" class="btn-primary">Schedule Demo</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="/">Home</a> / <a href="/solutions/">Solutions</a> / Citizen Service Portal
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="section-label">Solution</div>
+            <h1>Citizen Service Portal</h1>
+            <p class="subtitle">Unified request management platform that streamlines how residents interact with municipal services, enabling automated routing, real-time tracking, and proactive SLA management across departments.</p>
+            
+            <div class="scenario-box">
+                <strong>Scenario:</strong> A mid-sized municipality receives 500+ service requests monthly through multiple channels (phone, email, web forms, social media). Request types range from pothole reports and streetlight repairs to permit inquiries and parking complaints. Currently, requests are manually logged in disparate systems, leading to delays, duplicates, and frustrated residents who can't track their request status.
+            </div>
+        </section>
+
+        <!-- Challenge Section -->
+        <section>
+            <div class="section-label">Challenges</div>
+            <h2>Current State Problems</h2>
+            <p class="subtitle">Multi-channel requests, lack of visibility, and siloed departmental systems create inefficiencies and poor citizen experience.</p>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Fragmented Request Collection</h3>
+                    <p>Service requests arrive through phone calls, emails, in-person visits, and social media with no centralized intake process, causing requests to get lost or duplicated.</p>
+                </div>
+                <div class="card">
+                    <h3>Manual Routing Delays</h3>
+                    <p>Staff manually interpret requests and email them between departments, causing 3-5 day delays before work actually begins on addressing the issue.</p>
+                </div>
+                <div class="card">
+                    <h3>No Citizen Visibility</h3>
+                    <p>Residents cannot check request status and must call back for updates, increasing call volume and frustration while tying up staff time.</p>
+                </div>
+                <div class="card">
+                    <h3>Inconsistent SLA Tracking</h3>
+                    <p>No automated SLA monitoring means urgent requests aren't prioritized, and performance metrics are compiled manually from scattered records.</p>
+                </div>
+                <div class="card">
+                    <h3>Duplicate and Invalid Requests</h3>
+                    <p>Multiple channels and no cross-system visibility result in duplicate requests being processed, wasting resources on the same issue twice.</p>
+                </div>
+                <div class="card">
+                    <h3>Limited Data for Planning</h3>
+                    <p>Without aggregated request data, the municipality lacks insights into service demand patterns, preventing proactive resource allocation and planning.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section>
+            <div class="section-label">Solution</div>
+            <h2>Citizen Service Portal Platform</h2>
+            <p class="subtitle">An integrated portal that captures all service requests, intelligently routes them, tracks progress, and provides citizens with transparency while giving staff actionable insights.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Unified Request Intake</h3>
+                    <p>Capture requests from web portal, mobile app, email-to-ticket API, phone (IVR), and social media monitoring into a single queue with automatic deduplication.</p>
+                </div>
+                <div class="card">
+                    <h3>Intelligent Routing Engine</h3>
+                    <p>Rules-based engine automatically categorizes requests and routes to appropriate departments based on issue type, location, and priority, eliminating manual assignment.</p>
+                </div>
+                <div class="card">
+                    <h3>Citizen Portal & Mobile App</h3>
+                    <p>Mobile-first portal where residents submit requests, view real-time status, receive notifications, and provide feedback, reducing inquiry calls by 40%.</p>
+                </div>
+                <div class="card">
+                    <h3>SLA Management & Escalation</h3>
+                    <p>Automated SLA tracking with escalation workflows ensures urgent requests surface at top of queue and managers are alerted to at-risk requests.</p>
+                </div>
+                <div class="card">
+                    <h3>Department Work Dashboard</h3>
+                    <p>Each department views assigned requests in priority order with customer context, historical data, and recommended actions, improving first-contact resolution.</p>
+                </div>
+                <div class="card">
+                    <h3>Analytics & Reporting</h3>
+                    <p>Executive dashboard visualizing request volume, resolution times, departmental performance, and demand patterns for data-driven service planning.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Section -->
+        <section>
+            <div class="section-label">Technical Architecture</div>
+            <h2>System Design</h2>
+            <p class="subtitle">A modern, scalable architecture that supports high request volume while maintaining real-time responsiveness across multiple client platforms.</p>
+            
+            <div class="architecture-layer">
+                <h4>Frontend Layer</h4>
+                <p>React/Vue web portal with responsive design optimized for mobile. React Native mobile app for iOS/Android. Real-time notification system using WebSocket connections for instant status updates.</p>
+            </div>
+            
+            <div class="architecture-layer">
+                <h4>Integration Layer</h4>
+                <p>Email gateway for capturing incoming emails as tickets. Social media monitoring API to capture mentions and direct messages. IVR/phone system integration for voice-to-ticket conversion. Third-party service integrations via webhooks for connected systems.</p>
+            </div>
+            
+            <div class="architecture-layer">
+                <h4>Core Services Layer</h4>
+                <p>Request management service (CRUD operations, deduplication logic). Routing engine service (category detection, assignment rules, queue management). Notification service (email, SMS, push notifications). SLA management service (tracking, escalation rules, deadline calculations).</p>
+            </div>
+            
+            <div class="architecture-layer">
+                <h4>Data & Infrastructure Layer</h4>
+                <p>PostgreSQL for request data and configuration. Elasticsearch for full-text search across request history. Redis for real-time queue and session management. S3 for attachment storage. AWS Lambda for batch processing and scheduled tasks.</p>
+            </div>
+        </section>
+
+        <!-- Deliverables Section -->
+        <section>
+            <div class="section-label">Deliverables</div>
+            <h2>Complete Solution Package</h2>
+            <p class="subtitle">Everything required for successful deployment and operation of the citizen service portal platform.</p>
+            
+            <div class="deliverables">
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">1</div>
+                    <div class="deliverable-content">
+                        <h4>Citizen Portal & Mobile Apps</h4>
+                        <p>React web portal, React Native iOS/Android apps with request submission, tracking, notifications, and account management.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">2</div>
+                    <div class="deliverable-content">
+                        <h4>Staff Dashboard & Workflows</h4>
+                        <p>Department-specific interface showing assigned requests, work order management, photo/note capture, and completion workflows.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">3</div>
+                    <div class="deliverable-content">
+                        <h4>Automated Routing Engine</h4>
+                        <p>Configurable rules system for request categorization and automatic assignment to correct departments based on issue type and location.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">4</div>
+                    <div class="deliverable-content">
+                        <h4>Multi-Channel Intake System</h4>
+                        <p>Web form, mobile app, email API gateway, IVR phone system, and social media monitoring with automatic deduplication.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">5</div>
+                    <div class="deliverable-content">
+                        <h4>SLA & Escalation Management</h4>
+                        <p>Automated SLA tracking with configurable thresholds, escalation rules, and manager alerts for at-risk requests.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">6</div>
+                    <div class="deliverable-content">
+                        <h4>Analytics Dashboard</h4>
+                        <p>Real-time executive dashboards showing request volume, resolution times, departmental KPIs, and demand forecasting.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">7</div>
+                    <div class="deliverable-content">
+                        <h4>Legacy System Integration</h4>
+                        <p>Connectors to existing GIS systems, maintenance systems, permitting platforms, and other municipal databases.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">8</div>
+                    <div class="deliverable-content">
+                        <h4>Training & Change Management</h4>
+                        <p>Staff training, citizen awareness campaign, documentation, and support during rollout across all departments.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">9</div>
+                    <div class="deliverable-content">
+                        <h4>Data Migration Services</h4>
+                        <p>Migration of historical request data from legacy systems, data validation, and archive strategy for compliance.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">10</div>
+                    <div class="deliverable-content">
+                        <h4>Custom Reporting & APIs</h4>
+                        <p>REST API for third-party integrations, custom report templates, and real-time data export capabilities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Outcomes Section -->
+        <section>
+            <div class="section-label">Outcomes</div>
+            <h2>Measurable Impact</h2>
+            <p class="subtitle">Within 12 months of deployment, the municipality achieves significant efficiency gains and dramatically improves citizen experience.</p>
+            
+            <div class="metrics">
+                <div class="metric-card">
+                    <div class="number">72%</div>
+                    <div class="label">Reduction in Request Cycle Time</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">85%</div>
+                    <div class="label">Self-Service Adoption Rate</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">4.6/5</div>
+                    <div class="label">Citizen Satisfaction Score</div>
+                </div>
+            </div>
+
+            <div class="impacts">
+                <div class="impact-item">
+                    <h4>Faster Request Resolution</h4>
+                    <p>Automated routing eliminates 3-5 day manual assignment delays. Average first-response time drops from 7 days to 2 days. Urgent requests flagged for same-day response.</p>
+                </div>
+                <div class="impact-item">
+                    <h4>Reduced Citizen Contacts</h4>
+                    <p>Automated status notifications eliminate 40% of "where's my request" inquiry calls. Citizens check portal instead. Call center volume drops by 2,400 calls annually.</p>
+                </div>
+                <div class="impact-item">
+                    <h4>Improved Staff Efficiency</h4>
+                    <p>Staff receive pre-categorized, prioritized requests reducing decision-making time. Automated workflows eliminate redundant manual steps. One FTE equivalent freed from administrative work annually.</p>
+                </div>
+                <div class="impact-item">
+                    <h4>Data-Driven Decision Making</h4>
+                    <p>Aggregate demand data reveals service patterns enabling proactive resource allocation. Peak season planning improves by 35%. Demand forecasting prevents bottlenecks.</p>
+                </div>
+                <div class="impact-item">
+                    <h4>Enhanced Accountability</h4>
+                    <p>Transparent SLA tracking ensures consistent performance. Public dashboard improves municipal reputation. Departmental performance metrics drive continuous improvement culture.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section>
+            <div class="section-label">Implementation Timeline</div>
+            <h2>24-Week Phased Rollout</h2>
+            <p class="subtitle">Staged deployment approach that validates functionality in pilot departments before full municipal rollout.</p>
+            
+            <div class="timeline">
+                <div class="timeline-phase">
+                    <h4>Phase 1: Foundation (Weeks 1-6)</h4>
+                    <p><strong>Setup & Development:</strong> Infrastructure provisioning, database design, core API development. Begins building citizen portal and staff dashboard. Integrates with two legacy systems as proof-of-concept.</p>
+                </div>
+                <div class="timeline-phase">
+                    <h4>Phase 2: Pilot Launch (Weeks 7-12)</h4>
+                    <p><strong>Pilot Department Testing:</strong> Deploy to Public Works and Parks & Recreation departments serving 30% of incoming requests. Real-world testing identifies workflow gaps. Refine routing rules based on actual request patterns.</p>
+                </div>
+                <div class="timeline-phase">
+                    <h4>Phase 3: Enhancement (Weeks 13-18)</h4>
+                    <p><strong>Feedback Integration & Mobile:</strong> Incorporate pilot feedback. Complete mobile app development. Implement analytics dashboard. Add email and social media intake channels. Train additional 3-4 departments.</p>
+                </div>
+                <div class="timeline-phase">
+                    <h4>Phase 4: Full Rollout (Weeks 19-24)</h4>
+                    <p><strong>Complete Deployment:</strong> Launch across all departments. Citizen awareness campaign. Cut over remaining legacy systems. Establish SLA baseline metrics. Begin continuous optimization based on production data.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section>
+            <div class="section-label">Technology Stack</div>
+            <h2>Modern & Scalable Infrastructure</h2>
+            <p class="subtitle">Production-grade technology selected for scalability, reliability, and long-term supportability across a growing user base.</p>
+            
+            <p>The solution utilizes React and React Native for responsive web and mobile interfaces, Node.js or Python microservices for the core API, and PostgreSQL for relational data storage. Real-time request updates leverage WebSocket connections. Elasticsearch provides fast full-text search across request history. Redis manages real-time queues and session state. AWS services (EC2, RDS, S3, Lambda) provide elastic infrastructure. Docker containerization enables reliable deployments. Authentication uses OAuth 2.0 with SAML integration for existing citizen credential systems. API-first architecture allows easy future integrations.</p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section>
+            <div class="section-label">FAQ</div>
+            <h2>Common Questions</h2>
+            <p class="subtitle">Quick answers to frequently asked questions about the Citizen Service Portal implementation.</p>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How much time will staff need to learn the new system?</span>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Staff training takes 4-6 hours for basic proficiency. The dashboard design matches existing workflows, so learning curve is minimal. We provide on-site training during Phase 2 pilot, and for subsequent rollout phases, train-the-trainer sessions leverage pilot department expertise. Mobile apps are intuitive for mobile-first workers. Most staff report comfort with core functions within first week of production use.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can we migrate our existing request history?</span>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. We handle data migration from legacy systems as part of Phase 1-2. Historical data enables the system to learn request patterns and improve routing rules from day one. We validate data quality, handle duplicate deduplication, and establish archival strategy for compliance. Older data can be accessed via read-only reporting interface. Most municipalities keep 7 years of history for reference.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What happens if the system goes down during business hours?</span>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <p>We maintain 99.5% uptime SLA with automatic failover. Infrastructure spans multiple AWS availability zones. Database replication ensures no data loss. We provide 24/7 monitoring and incident response team on-call. During any outage, staff can revert to phone/email intake temporarily (logged manually and imported when system restores). Critical requests have email backup workflow. Scheduled maintenance windows occur during off-peak times with advance notice.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can citizens access the portal on their mobile phones without an app?</span>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely. The web portal is fully responsive and mobile-optimized. Citizens can submit requests, check status, and receive notifications via browser on any device. The native mobile apps provide additional features like photo capture for more complex requests, but aren't required. Many citizens prefer the web portal since it doesn't require app installation. Both approaches support push notifications.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do we handle requests that span multiple departments?</span>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <p>The system supports multi-department workflows. Complex requests get routed to the primary responsible department, which can create sub-tasks and involve other departments via the dashboard. The routing engine can be configured to automatically split certain request types across departments. The citizen sees one unified request while departments coordinate internally. Completion only occurs when all sub-tasks finish.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h3>Ready to Transform Citizen Services?</h3>
+            <p>Let's discuss how this platform can work for your municipality and improve the experience for your residents.</p>
+            <a href="#" class="btn-primary">Schedule a Demo</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <a href="/solutions/">Solutions</a>
+                <a href="/government.html">Government</a>
+                <a href="/">Home</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Security</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <a href="#">hello@kautotech.com</a>
+                <a href="#">+1 (555) 123-4567</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 K Auto Tech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky header effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .metric-card, .impact-item, .deliverable-item, .timeline-phase, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

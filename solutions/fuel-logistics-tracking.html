@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Logistics Tracking System | K Auto Tech Solutions</title>
+    <meta name="description" content="Optimize fuel distribution with real-time GPS fleet tracking, automated delivery scheduling, inventory management, and driver mobile app integration for regional fuel distributors.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a1628;
+            --navy-light: #121e36;
+            --navy-lighter: #1a2f4d;
+            --coral: #E8604C;
+            --coral-dark: #D4503E;
+            --coral-light: #f0806f;
+            --slate: #6b7280;
+            --slate-light: #d1d5db;
+            --slate-lighter: #f3f4f6;
+            --section-pad: 100px 0;
+            --container: 1200px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--navy);
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(232, 96, 76, 0.1);
+            transition: all var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-content {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        nav a {
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color var(--transition);
+            margin-left: 32px;
+        }
+
+        nav a:hover {
+            color: var(--coral);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: var(--container);
+            margin: 100px auto 0;
+            padding: 24px;
+            display: flex;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--slate);
+        }
+
+        .breadcrumb a {
+            color: var(--coral);
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: var(--section-pad);
+            background: linear-gradient(135deg, #f8fafb 0%, #f3f4f6 100%);
+        }
+
+        .hero-content {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 16px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--slate);
+            line-height: 1.6;
+            max-width: 700px;
+            margin-bottom: 32px;
+        }
+
+        .scenario-box {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            border-left: 4px solid var(--coral);
+            margin-top: 40px;
+        }
+
+        .scenario-box h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        .scenario-box p {
+            color: var(--slate);
+            line-height: 1.8;
+        }
+
+        /* Content Sections */
+        section {
+            padding: var(--section-pad);
+        }
+
+        section > div {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 48px;
+            color: var(--navy);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        p {
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border: 1px solid var(--slate-light);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--coral);
+            box-shadow: 0 12px 32px rgba(232, 96, 76, 0.12);
+        }
+
+        .card h3 {
+            margin-bottom: 16px;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--slate-lighter);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        /* Metrics */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .metric {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        ul li {
+            padding-left: 28px;
+            margin-bottom: 12px;
+            position: relative;
+            color: var(--slate);
+            line-height: 1.8;
+        }
+
+        ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        /* Architecture Section */
+        .architecture {
+            background: var(--slate-lighter);
+            border-radius: 12px;
+            padding: 48px;
+            margin-top: 48px;
+        }
+
+        .architecture-layer {
+            margin-bottom: 32px;
+        }
+
+        .architecture-layer:last-child {
+            margin-bottom: 0;
+        }
+
+        .layer-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .layer-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: white;
+            border: 1px solid var(--slate-light);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            font-weight: 600;
+            color: var(--navy);
+            transition: all var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--slate-lighter);
+        }
+
+        .faq-toggle {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transition);
+            font-size: 20px;
+            color: var(--coral);
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 24px 24px;
+            display: none;
+            color: var(--slate);
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--coral);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--coral);
+            color: var(--coral);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--coral);
+            color: white;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: white;
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .cta h2 {
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .cta p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            margin-bottom: 32px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: white;
+            padding: 60px 24px 0;
+        }
+
+        .footer-content {
+            max-width: var(--container);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .footer-links h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--coral);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-bottom: 40px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .reveal.visible {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            h1 { font-size: 36px; }
+            h2 { font-size: 28px; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 32px; }
+            .metrics { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 28px; }
+            h2 { font-size: 24px; }
+            nav { display: none; }
+            .hero { padding: 60px 0; }
+            section { padding: 60px 0; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 24px; }
+            .subtitle { font-size: 16px; }
+            .scenario-box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="8" fill="#E8604C"/>
+                    <path d="M12 20h16M20 12v16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                K Auto Tech
+            </a>
+            <nav>
+                <a href="/index.html">Home</a>
+                <a href="/solutions/">Solutions</a>
+                <a href="/government.html">Government</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="/index.html">Home</a>
+        <span>/</span>
+        <a href="/solutions/">Solutions</a>
+        <span>/</span>
+        <span>Fuel Logistics Tracking</span>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="section-label">Solution</div>
+            <h1>Fuel Logistics Tracking System</h1>
+            <p class="subtitle">Optimize regional fuel distribution with real-time GPS fleet tracking, automated delivery scheduling, terminal inventory management, and driver mobile app integration for complete operational visibility.</p>
+            
+            <div class="scenario-box">
+                <h3>The Scenario</h3>
+                <p>A regional fuel distributor operates 40+ delivery vehicles serving 500+ retail stations across a three-state area. Currently, dispatchers coordinate deliveries using manual scheduling, drivers lack real-time navigation and delivery info, terminals don't track inventory automatically, and management has no visibility into fleet efficiency, fuel consumption patterns, or delivery performance. The company loses time and revenue to inefficient routing, unplanned downtime, and customer service issues from late deliveries.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h2>The Challenge</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Fleet Operations Pain Points</h3>
+                    <p>Dispatchers spend hours manually planning routes without real-time traffic data. Drivers navigate using outdated maps, face unexpected delays, and can't update customers on ETA. Vehicle maintenance is reactive instead of predictive, and fuel consumption metrics aren't tracked.</p>
+                </div>
+                <div>
+                    <h3>Inventory & Asset Visibility</h3>
+                    <p>Terminal tank levels are estimated visually instead of measured accurately. Stockouts happen without warning, overstocking ties up capital, and no data exists on product movement patterns to optimize distribution. Customer requests for delivery windows can't be reliably committed to.</p>
+                </div>
+            </div>
+
+            <ul style="margin-top: 32px;">
+                <li>Route planning takes 1-2 hours per day with poor optimization for traffic and vehicle capacity</li>
+                <li>Delivery times average 15-20% longer than optimal due to inefficient routing and traffic inefficiency</li>
+                <li>No real-time visibility into vehicle location, status, or ETA from dispatch or customer perspective</li>
+                <li>Drivers lack delivery-specific information (product type, volume, special handling requirements)</li>
+                <li>Terminal inventory managed manually with no automated tracking or predictive reordering</li>
+                <li>Customer service issues from missed delivery windows and inability to provide accurate ETAs</li>
+            </ul>
+        </div>
+    </section>
+
+    <section style="background: var(--slate-lighter);">
+        <div>
+            <h2>Our Solution</h2>
+            <p style="margin-bottom: 40px;">We deliver an integrated fleet logistics platform combining real-time GPS tracking, intelligent route optimization, automated inventory management, and mobile driver tools to maximize efficiency, safety, and customer satisfaction.</p>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">🗺️</div>
+                    <h3>Intelligent Route Optimization</h3>
+                    <p>AI-powered routing engine that accounts for traffic, vehicle capacity, delivery time windows, driver availability, and fuel efficiency. Dispatchers generate optimized routes in minutes instead of hours.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📍</div>
+                    <h3>Real-Time GPS Tracking</h3>
+                    <p>Live vehicle location updates every 30 seconds visible to dispatch and customers. Geofencing alerts for arrivals/departures, and historical movement data for performance analysis and audit trails.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📱</div>
+                    <h3>Driver Mobile App</h3>
+                    <p>Turn-by-turn navigation, digital delivery confirmations with photos and signatures, real-time communication with dispatch, job details including product specs and special handling, and live ETA transmission to customers.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⛽</div>
+                    <h3>Inventory Management</h3>
+                    <p>Automatic tank level monitoring via IoT sensors at all terminals. Predictive reordering based on consumption patterns, stock-out prevention, and visibility into product movement by location and customer type.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Performance Analytics</h3>
+                    <p>Dashboards showing fuel efficiency per vehicle, delivery on-time percentage, average miles-per-gallon, idle time analysis, and driver behavior scoring. Predictive maintenance alerts based on vehicle diagnostics.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔐</div>
+                    <h3>Security & Compliance</h3>
+                    <p>Tank monitoring prevents fuel theft and overfill incidents. Delivery verification with photo documentation. Digital record retention for audits. Driver duty hour compliance tracking for safety regulation adherence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h2>System Architecture</h2>
+            <div class="architecture">
+                <div class="architecture-layer">
+                    <div class="layer-label">Mobile & Dispatch Layer</div>
+                    <div class="layer-title">Driver App & Dispatcher Console</div>
+                    <p>Native mobile app (iOS/Android) for drivers with offline-first capability, real-time push notifications, and background GPS tracking. Dispatcher web console for route assignment, live fleet tracking, customer communication, and alert management. Both interfaces sync with the backend in real-time.</p>
+                </div>
+                <div class="architecture-layer">
+                    <div class="layer-label">Logistics Engine</div>
+                    <div class="layer-title">Route Optimization & Fleet Management</div>
+                    <p>AI-powered route optimizer using historical traffic data and real-time congestion, vehicle constraint modeling (capacity, fuel type), delivery window scheduling, and multi-objective optimization (time, fuel, distance). Fleet management handles driver assignments, performance scoring, maintenance scheduling, and duty hour tracking.</p>
+                </div>
+                <div class="architecture-layer">
+                    <div class="layer-label">Data Layer</div>
+                    <div class="layer-title">Tracking & Inventory Management</div>
+                    <p>Time-series database for GPS tracking points, vehicle telemetry, and inventory measurements streamed from IoT sensors. PostgreSQL for relational data (routes, deliveries, customers, vehicles, terminals). Redis for caching vehicle state and real-time updates.</p>
+                </div>
+                <div class="architecture-layer">
+                    <div class="layer-label">Integration Layer</div>
+                    <div class="layer-title">External Systems & IoT</div>
+                    <p>IoT sensor integration with tank monitoring devices. Webhook subscriptions for vehicle telematics (OBD data, GPS). API integrations with customer systems for ETA updates. Email/SMS for customer notifications and driver communications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--slate-lighter);">
+        <div>
+            <h2>Deliverables</h2>
+            <ul>
+                <li>Native iOS and Android mobile app for drivers with offline navigation and delivery management</li>
+                <li>Web-based dispatcher console with map view, route optimization, and real-time alerts</li>
+                <li>Customer portal showing delivery status with real-time ETA and driver contact</li>
+                <li>Real-time vehicle tracking with geofencing and historical playback</li>
+                <li>Tank monitoring and inventory management system with predictive reordering</li>
+                <li>Route optimization engine with multi-objective algorithm</li>
+                <li>Performance analytics dashboards for fuel efficiency, on-time performance, driver behavior</li>
+                <li>Integration with telematics platforms for vehicle diagnostics and predictive maintenance</li>
+                <li>Compliance reporting for duty hours and delivery verification</li>
+                <li>Training and documentation for dispatch team and drivers</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h2>Expected Outcomes</h2>
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">22%</div>
+                    <div class="metric-label">Route Efficiency Gain</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">18%</div>
+                    <div class="metric-label">Fuel Cost Reduction</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">94%</div>
+                    <div class="metric-label">On-Time Delivery Rate</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 48px;">Key Impacts</h3>
+            <ul>
+                <li>22% improvement in route efficiency and miles-per-delivery through AI optimization</li>
+                <li>18% reduction in fuel costs from optimized routing and driver behavior coaching</li>
+                <li>94% on-time delivery rate vs. prior 75%, improving customer satisfaction</li>
+                <li>Real-time ETA visibility enabling customer communication and reducing missed deliveries</li>
+                <li>Preventive inventory management eliminating stockouts and reducing excess inventory</li>
+                <li>8-12% reduction in overtime through better schedule matching and predictable delivery times</li>
+                <li>Data-driven driver coaching improving safety metrics and reducing insurance claims</li>
+            </ul>
+        </div>
+    </section>
+
+    <section style="background: var(--slate-lighter);">
+        <div>
+            <h2>Timeline & Engagement</h2>
+            <p style="margin-bottom: 32px;">Our phased implementation approach ensures rapid deployment while managing operational continuity:</p>
+
+            <div class="grid-2">
+                <div>
+                    <h3>Phase 1: Infrastructure (Weeks 1-5)</h3>
+                    <p>Setup cloud infrastructure and backend systems. Integrate with vehicle telematics and IoT platforms. Database schema design for tracking and inventory. API development for mobile and web clients.</p>
+                </div>
+                <div>
+                    <h3>Phase 2: Mobile & Dispatch (Weeks 6-10)</h3>
+                    <p>Mobile app development and initial testing with pilot group. Dispatcher console development with real-time mapping. Route optimizer integration. Beta deployment with 5-10 vehicles and drivers.</p>
+                </div>
+                <div>
+                    <h3>Phase 3: Optimization & Scale (Weeks 11-15)</h3>
+                    <p>Full fleet deployment of mobile app. Customer portal launch. Advanced analytics dashboard. Performance tuning of route optimizer. Integration with customer notification systems.</p>
+                </div>
+                <div>
+                    <h3>Phase 4: Refinement (Weeks 16-20)</h3>
+                    <p>Predictive maintenance integration. Driver behavior analysis and coaching workflows. Terminal IoT sensor deployment. Training completion and full handoff to operations team.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">Technology Stack</h3>
+            <p><strong>Mobile:</strong> React Native or native (Swift/Kotlin) for iOS and Android, offline-first architecture with background services, push notifications via Firebase Cloud Messaging</p>
+            <p><strong>Backend:</strong> Node.js or Python microservices, WebSocket server for real-time updates, route optimization engine (OSRM or custom OR-Tools implementation)</p>
+            <p><strong>Database:</strong> InfluxDB for time-series GPS and telemetry data, PostgreSQL for relational data, Redis for real-time caching and session management</p>
+            <p><strong>Infrastructure:</strong> Cloud deployment (AWS/Azure/GCP), containerized services with Kubernetes, CDN for map tiles, S3/Cloud Storage for photos and documents</p>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How does the route optimizer account for real-time traffic and driver preferences?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    The optimizer uses real-time traffic data from mapping services (Google Maps, HERE) and historical traffic patterns for your region. It can be configured with constraints like vehicle capacity, fuel type compatibility, special handling requirements, and driver availability. You can set multi-objective optimization to balance time, fuel cost, and distance based on your priorities.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What happens if a driver goes offline or loses GPS connectivity?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    The mobile app works offline with cached navigation data and delivery information. GPS points are queued and transmitted when connectivity returns. Drivers can complete deliveries offline with photo confirmation and signatures saved locally. The dispatcher console shows last-known location and syncs when connection resumes.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do IoT tank sensors integrate with the inventory system?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    Wireless IoT sensors installed on terminal tanks transmit level readings at configurable intervals (typically 15 minutes). The system correlates consumption with deliveries to calculate burn rates. Predictive algorithms forecast stockout dates based on demand patterns, triggering reorder workflows. Historical data enables optimization of terminal stock levels by location.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can the system communicate ETAs to customers automatically?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    Yes. Customers receive SMS or email notifications with ETA windows whenever a delivery is dispatched. The system updates notifications periodically as the driver approaches (within 30 min, 15 min, 5 min windows). For high-value accounts, a customer portal shows real-time driver location and allows direct communication with the dispatcher.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What kind of driver behavior metrics does the system track?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    Metrics include harsh braking events, speeding incidents, excessive idling, sharp turns, and fuel efficiency per driver. The system calculates a safety score for each driver and generates coaching reports highlighting improvement areas. Gamification features (leaderboards, incentives) can encourage safe driving habits and cost-conscious behavior.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Ready to Optimize Your Fuel Logistics?</h2>
+        <p>Gain real-time fleet visibility, reduce fuel costs, and improve on-time delivery with our integrated logistics platform.</p>
+        <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Schedule a Demo</button>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>K Auto Tech</h3>
+                <p>Intelligent workflow automation and data systems for government agencies.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="/index.html">Home</a>
+                <a href="/solutions/">Solutions</a>
+                <a href="/government.html">Government</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 K Auto Tech LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky header on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal animation on scroll
+        const reveals = document.querySelectorAll('.card, .metric');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        reveals.forEach(reveal => {
+            reveal.classList.add('reveal');
+            observer.observe(reveal);
+        });
+
+        // FAQ toggles
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Fuel Logistics Tracking System",
+        "description": "Optimize regional fuel distribution with real-time GPS fleet tracking, automated delivery scheduling, terminal inventory management, and driver mobile app integration.",
+        "provider": {
+            "@type": "Organization",
+            "name": "K Auto Tech LLC",
+            "url": "https://katechsolutions.com"
+        },
+        "areaServed": "US",
+        "serviceType": "Fleet Management Software"
+    }
+    </script>
+</body>
+</html>

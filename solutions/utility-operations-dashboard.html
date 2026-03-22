@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utility Operations Dashboard Solution | K Auto Tech</title>
+    <meta name="description" content="Unified operations dashboard integrating billing, field operations, outage management, and customer service for municipal utilities.">
+    
+    <style>
+        :root {
+            --navy: #0a1628;
+            --coral: #E8604C;
+            --slate: #556b82;
+            --light-slate: #f0f3f7;
+            --white: #ffffff;
+            --border: #dde4ed;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--navy);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(10, 22, 40, 0.08);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg) var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: var(--spacing-2xl);
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--slate);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--coral);
+        }
+
+        .btn-primary {
+            background: var(--coral);
+            color: var(--white);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #d04a37;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(232, 96, 76, 0.3);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg) var(--spacing-lg);
+            font-size: 13px;
+            color: var(--slate);
+        }
+
+        .breadcrumb a {
+            color: var(--coral);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        section {
+            padding: var(--spacing-2xl) 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--coral);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        h1, h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 32px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--slate);
+            margin-bottom: var(--spacing-2xl);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: var(--spacing-2xl) 0 var(--spacing-xl) 0;
+        }
+
+        .scenario-box {
+            background: var(--light-slate);
+            border-left: 4px solid var(--coral);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-top: var(--spacing-lg);
+        }
+
+        .scenario-box strong {
+            color: var(--coral);
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .card:hover {
+            border-color: var(--coral);
+            box-shadow: 0 12px 24px rgba(10, 22, 40, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .card p {
+            color: var(--slate);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Metrics */
+        .metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a2d4a 100%);
+            color: var(--white);
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .metric-card .number {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .metric-card .label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        /* Impacts */
+        .impacts {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .impact-item {
+            padding-left: var(--spacing-lg);
+            border-left: 3px solid var(--coral);
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .impact-item h4 {
+            color: var(--navy);
+            font-size: 16px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .impact-item p {
+            color: var(--slate);
+            font-size: 14px;
+        }
+
+        /* Architecture */
+        .architecture-layer {
+            background: var(--light-slate);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            border-left: 4px solid var(--coral);
+        }
+
+        .architecture-layer h4 {
+            color: var(--navy);
+            font-size: 16px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .architecture-layer p {
+            color: var(--slate);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Deliverables */
+        .deliverables {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .deliverable-item {
+            display: flex;
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg);
+            background: var(--light-slate);
+            border-radius: 8px;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .deliverable-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--coral);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .deliverable-content h4 {
+            color: var(--navy);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .deliverable-content p {
+            color: var(--slate);
+            font-size: 13px;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .timeline-phase {
+            background: var(--light-slate);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid var(--coral);
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .timeline-phase h4 {
+            color: var(--navy);
+            font-size: 16px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .timeline-phase p {
+            color: var(--slate);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: var(--spacing-lg) 0;
+            opacity: 0;
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--spacing-md);
+            color: var(--navy);
+            font-weight: 600;
+            font-size: 16px;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--coral);
+        }
+
+        .faq-toggle {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-slate);
+            border-radius: 50%;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            background: var(--coral);
+            color: var(--white);
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--slate);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: var(--spacing-md);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--light-slate);
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            margin: var(--spacing-2xl) 0;
+        }
+
+        .cta-section h3 {
+            color: var(--navy);
+            font-size: 28px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-section p {
+            color: var(--slate);
+            font-size: 16px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .footer-section h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: var(--spacing-sm);
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--coral);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--spacing-lg);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                gap: var(--spacing-lg);
+            }
+
+            h1, h2 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: var(--spacing-md);
+            }
+
+            nav {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            h1, h2 {
+                font-size: 24px;
+            }
+
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-label {
+                font-size: 11px;
+            }
+
+            h1, h2 {
+                font-size: 20px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-content">
+            <a href="/" class="logo">K Auto Tech</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/solutions/">Solutions</a>
+                <a href="/government.html">Government</a>
+                <a href="/#contact">Contact</a>
+                <a href="#" class="btn-primary">Schedule Demo</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="/">Home</a> / <a href="/solutions/">Solutions</a> / Utility Operations Dashboard
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="section-label">Solution</div>
+            <h1>Utility Operations Dashboard</h1>
+            <p class="subtitle">Unified command center integrating billing, field operations, outage management, and customer service into one cohesive platform, enabling utilities to operate efficiently and respond rapidly to service disruptions.</p>
+            
+            <div class="scenario-box">
+                <strong>Scenario:</strong> A municipal utility serving 25,000 water and electric accounts operates with disconnected systems—legacy billing platform, separate field service scheduling system, manual outage reporting, and siloed customer service. When outages occur, information flows slowly between departments, crews lack real-time updates, and customers receive conflicting information. Billing disputes are complicated by lack of visibility into service history, and the utility struggles to forecast maintenance needs or optimize field operations.
+            </div>
+        </section>
+
+        <!-- Challenge Section -->
+        <section>
+            <div class="section-label">Challenges</div>
+            <h2>Current State Problems</h2>
+            <p class="subtitle">Siloed systems, manual processes, and poor information flow create operational inefficiencies and inadequate customer communication during critical service events.</p>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Disconnected System Islands</h3>
+                    <p>Billing platform, field operations, customer service, and outage management don't communicate, requiring manual data entry and creating inconsistencies.</p>
+                </div>
+                <div class="card">
+                    <h3>Slow Outage Response</h3>
+                    <p>Outages reported to customer service must be manually entered into dispatch system. Crews lack real-time information. Restoration status updates are delayed, keeping customers in the dark.</p>
+                </div>
+                <div class="card">
+                    <h3>Poor Asset Management</h3>
+                    <p>No unified view of infrastructure assets, maintenance history, or failure patterns prevents predictive maintenance and reactive to-rule decisions dominate.</p>
+                </div>
+                <div class="card">
+                    <h3>Inefficient Field Operations</h3>
+                    <p>Crews spend time navigating between systems and lack instant access to account history, making service calls less efficient and first-visit resolution rates low.</p>
+                </div>
+                <div class="card">
+                    <h3>Billing Disputes & Complaints</h3>
+                    <p>Customer service lacks context of outage events, maintenance records, and consumption patterns, making it difficult to quickly resolve billing disputes and complaints.</p>
+                </div>
+                <div class="card">
+                    <h3>Limited Forecasting</h3>
+                    <p>Fragmented data prevents forecasting of maintenance needs, capacity planning, and resource requirements, resulting in reactive rather than proactive operations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section>
+            <div class="section-label">Solution</div>
+            <h2>Unified Operations Platform</h2>
+            <p class="subtitle">A comprehensive dashboard that aggregates data from all utility operations, providing real-time visibility, intelligent automation, and predictive capabilities that transform the utility from reactive to proactive operations.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Executive Operations Dashboard</h3>
+                    <p>Real-time overview of system health, outages, crew locations, and key metrics. Drill-down capability into specific incidents. Critical alerts surface immediately.</p>
+                </div>
+                <div class="card">
+                    <h3>Intelligent Outage Management</h3>
+                    <p>Automated outage detection and notification. Smart crew dispatch based on availability and location. Real-time restoration tracking with public status updates.</p>
+                </div>
+                <div class="card">
+                    <h3>Field Operations Optimization</h3>
+                    <p>Mobile app for technicians with instant access to account history, service photos, equipment data, and real-time routing. Job priorities adjust based on overall system state.</p>
+                </div>
+                <div class="card">
+                    <h3>Unified Customer Service</h3>
+                    <p>Single view of account—billing, service history, outage events, outstanding requests. Enables first-contact resolution and empowered customer interactions.</p>
+                </div>
+                <div class="card">
+                    <h3>Predictive Maintenance</h3>
+                    <p>AI analysis of historical failure patterns, age data, and performance metrics to forecast maintenance needs and prioritize infrastructure replacement.</p>
+                </div>
+                <div class="card">
+                    <h3>Demand & Consumption Analytics</h3>
+                    <p>Real-time consumption data, demand forecasting, anomaly detection for water leaks or meter failures, and trend analysis for long-term planning.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Section -->
+        <section>
+            <div class="section-label">Technical Architecture</div>
+            <h2>System Design</h2>
+            <p class="subtitle">A modern event-driven architecture that ingests data from diverse legacy systems, normalizes it, and surfaces unified insights across the organization.</p>
+            
+            <div class="architecture-layer">
+                <h4>Frontend Layer</h4>
+                <p>React-based responsive dashboard for desktop operations centers. React Native mobile app for field technicians. Real-time update capability via WebSocket connections. Geolocation visualization with mapping integration.</p>
+            </div>
+            
+            <div class="architecture-layer">
+                <h4>Integration Layer</h4>
+                <p>Connectors for legacy billing platform, SCADA systems, meter reading systems, and service dispatch software. API adapters for GIS data, asset management, and customer portal. Real-time event streaming from IoT devices and sensors.</p>
+            </div>
+            
+            <div class="architecture-layer">
+                <h4>Core Services Layer</h4>
+                <p>Outage detection and management service. Work order management and crew dispatch service. Analytics and forecasting engine. Notification service for crews and customers. Asset lifecycle management service.</p>
+            </div>
+            
+            <div class="architecture-layer">
+                <h4>Data & Infrastructure Layer</h4>
+                <p>PostgreSQL for transactional data. InfluxDB for time-series metrics. Elasticsearch for historical search. Redis for real-time queue and session data. Apache Kafka for event streaming. S3 for asset storage.</p>
+            </div>
+        </section>
+
+        <!-- Deliverables Section -->
+        <section>
+            <div class="section-label">Deliverables</div>
+            <h2>Complete Solution Package</h2>
+            <p class="subtitle">End-to-end implementation including all software components, integrations, and organizational change management.</p>
+            
+            <div class="deliverables">
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">1</div>
+                    <div class="deliverable-content">
+                        <h4>Operations Center Dashboard</h4>
+                        <p>Real-time visualization of outages, crew status, consumption patterns, and system health with full drill-down analytics and alert management.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">2</div>
+                    <div class="deliverable-content">
+                        <h4>Field Technician Mobile App</h4>
+                        <p>iOS/Android app with account details, service history, navigation, work order management, photo capture, and two-way communication.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">3</div>
+                    <div class="deliverable-content">
+                        <h4>Outage Management System</h4>
+                        <p>Automated outage detection, crew dispatch optimization, restoration tracking, and public notification capabilities.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">4</div>
+                    <div class="deliverable-content">
+                        <h4>Customer Service Portal</h4>
+                        <p>Unified customer view—account info, consumption, bills, outages, requests. Enable customer self-service for common issues.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">5</div>
+                    <div class="deliverable-content">
+                        <h4>Legacy System Integration</h4>
+                        <p>Connectors for billing, SCADA, meter reading, dispatch, GIS, and asset management systems with data synchronization.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">6</div>
+                    <div class="deliverable-content">
+                        <h4>Predictive Analytics Engine</h4>
+                        <p>Machine learning models for maintenance forecasting, failure prediction, and demand estimation.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">7</div>
+                    <div class="deliverable-content">
+                        <h4>Real-time Alerting & Notifications</h4>
+                        <p>Multi-channel notification system (app, SMS, email, web) for outages, dispatch notifications, and customer updates.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">8</div>
+                    <div class="deliverable-content">
+                        <h4>GIS Integration & Mapping</h4>
+                        <p>Geospatial visualization of infrastructure, outage maps, crew locations, and service areas with heat maps for demand analysis.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">9</div>
+                    <div class="deliverable-content">
+                        <h4>Training & Change Management</h4>
+                        <p>Staff training across operations, field operations, customer service. Change management plan and support during transition.</p>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">10</div>
+                    <div class="deliverable-content">
+                        <h4>Data Migration & Historical Import</h4>
+                        <p>Migrate billing history, service records, asset data, and outage history from legacy systems into unified platform.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Outcomes Section -->
+        <section>
+            <div class="section-label">Outcomes</div>
+            <h2>Measurable Impact</h2>
+            <p class="subtitle">Within 18 months of deployment, the utility achieves significant operational improvements and demonstrably better customer satisfaction.</p>
+            
+            <div class="metrics">
+                <div class="metric-card">
+                    <div class="number">43%</div>
+                    <div class="label">Reduction in Mean Time to Restore</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">28%</div>
+                    <div class="label">Decrease in Service Calls</div>
+                </div>
+                <div class="metric-card">
+                    <div class="number">4.7/5</div>
+                    <div class="label">Customer Satisfaction Score</div>
+                </div>
+            </div>
+
+            <div class="impacts">
+                <div class="impact-item">
+                    <h4>Faster Outage Resolution</h4>
+                    <p>Automated outage detection triggers immediate crew dispatch. Real-time restoration updates keep customers informed. Mean time to restore drops from 4.2 hours to 2.4 hours. Public confidence in utility reliability increases measurably.</p>
+                </div>
+                <div class="impact-item">
+                    <h4>Optimized Field Operations</h4>
+                    <p>Technicians spend less time searching for information and more time serving customers. AI-optimized routing reduces travel time by 18%. First-visit resolution improves by 22% due to better access to historical context.</p>
+                </div>
+                <div class="impact-item">
+                    <h4>Reduced Customer Contacts</h4>
+                    <p>Proactive outage notifications eliminate unnecessary "is the power out" calls. Self-service portal handles 35% of routine inquiries. Customer satisfaction improves even though call volume decreases.</p>
+                </div>
+                <div class="impact-item">
+                    <h4>Predictive Maintenance Capabilities</h4>
+                    <p>Shift from reactive to predictive maintenance prevents 15-20% of infrastructure failures. Planned maintenance reduces emergency outages. Asset replacement timing optimized for cost efficiency.</p>
+                </div>
+                <div class="impact-item">
+                    <h4>Improved Revenue & Compliance</h4>
+                    <p>Consumption analytics detect water leaks and meter issues, improving collection. Outage event documentation supports regulatory compliance. Billing disputes resolve faster with complete service history visibility.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section>
+            <div class="section-label">Implementation Timeline</div>
+            <h2>28-Week Phased Deployment</h2>
+            <p class="subtitle">Careful integration of new platform with existing systems, extensive testing, and gradual rollout to minimize operational disruption.</p>
+            
+            <div class="timeline">
+                <div class="timeline-phase">
+                    <h4>Phase 1: Foundation (Weeks 1-8)</h4>
+                    <p><strong>Infrastructure & Core APIs:</strong> Set up cloud infrastructure. Build integration layer for legacy systems. Develop core API for billing, asset, and outage data. Complete historical data migration from existing systems.</p>
+                </div>
+                <div class="timeline-phase">
+                    <h4>Phase 2: Backend & Field (Weeks 9-16)</h4>
+                    <p><strong>Outage & Operations Services:</strong> Deploy outage detection service. Build crew dispatch optimization engine. Complete mobile app for field technicians. Test with limited field team (10 technicians). Refine routing and assignment logic.</p>
+                </div>
+                <div class="timeline-phase">
+                    <h4>Phase 3: Dashboards & Analytics (Weeks 17-24)</h4>
+                    <p><strong>Operations Center & Intelligence:</strong> Complete operations dashboard with real-time visualization. Deploy predictive analytics models. Build customer service portal. Conduct full system integration testing with all legacy platforms.</p>
+                </div>
+                <div class="timeline-phase">
+                    <h4>Phase 4: Full Rollout & Optimization (Weeks 25-28)</h4>
+                    <p><strong>Production Deployment:</strong> Deploy to all operations centers and field teams. Launch customer portal. Establish monitoring and optimization procedures. Train all staff and resolve operational issues. Begin continuous performance tuning.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Section -->
+        <section>
+            <div class="section-label">Technology Stack</div>
+            <h2>Modern & Scalable Infrastructure</h2>
+            <p class="subtitle">Enterprise-grade technology selected for reliability, performance, and integration capability with legacy utility systems.</p>
+            
+            <p>React and React Native provide responsive web and mobile interfaces. Python microservices handle business logic and analytics. PostgreSQL stores transactional data while InfluxDB captures time-series metrics from smart meters and sensors. Elasticsearch enables rapid search across historical records. Kafka provides event streaming for real-time outage alerts. Redis manages real-time queue state. AWS infrastructure provides elastic scalability. Apache Spark powers batch analytics and predictive models. GIS integration connects to ArcGIS or open-source mapping platforms. OAuth 2.0 with multi-factor authentication ensures security.</p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section>
+            <div class="section-label">FAQ</div>
+            <h2>Common Questions</h2>
+            <p class="subtitle">Answers to frequently asked questions about utility operations dashboard implementation.</p>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Will the dashboard work with our legacy billing system?</span>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. We build custom integration connectors for your specific legacy billing platform. Data synchronizes in near-real-time (typically 5-15 minute lag). Billing system continues running unchanged. The dashboard provides a modern interface while your legacy system remains operational. We handle data transformation to normalize between systems.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How long until field technicians can use the mobile app?</span>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Phase 2 (Weeks 9-16) includes mobile app development and pilot testing with a small field team. Full rollout across all technicians occurs in Phase 4 (Weeks 25-28). Training takes approximately 4-6 hours per technician. Most technicians achieve proficiency within the first week of production use.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What happens to our operations staff if we use AI for predictive maintenance?</span>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <p>AI augments staff capabilities rather than replacing them. Predictive maintenance shifts focus from emergency response to planned activities. Staff spend less time handling crisis calls and more time on strategic planning and preventive work. Operational analysts can now focus on optimization rather than manual data compilation. Typical outcome is redeployment to higher-value activities rather than headcount reduction.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do customers know about outages if they don't have an app?</span>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <p>The customer portal and app are optional. The utility maintains traditional communication channels—phone, email, social media, and web notifications continue. The platform enables new channels (push notifications, SMS, app) but doesn't require them. Customers without app still receive phone calls, emails, and can check web portal status. Adoption is optional but incentivized through convenience and faster information.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can we roll back to our old systems if the new platform fails?</span>
+                    <div class="faq-toggle">+</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, with caveats. During Phase 1-3 (weeks 1-24), legacy systems remain fully operational in parallel. Phase 4 gradually transitions operations. We maintain dual-system operation for 30-60 days allowing rollback if needed. High availability infrastructure with automatic failover means platform outage is extremely unlikely (99.95% uptime SLA). If needed, manual processes and legacy systems provide fallback for continued operations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h3>Ready to Unify Your Utility Operations?</h3>
+            <p>Let's explore how a unified operations platform can improve reliability, reduce costs, and enhance customer satisfaction for your utility.</p>
+            <a href="#" class="btn-primary">Schedule a Demo</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <a href="/solutions/">Solutions</a>
+                <a href="/government.html">Government</a>
+                <a href="/">Home</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Security</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <a href="#">hello@kautotech.com</a>
+                <a href="#">+1 (555) 123-4567</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 K Auto Tech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky header effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .metric-card, .impact-item, .deliverable-item, .timeline-phase, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

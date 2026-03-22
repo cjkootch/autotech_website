@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procurement Tracking Dashboard | K Auto Tech Solutions</title>
+    <meta name="description" content="Transform county procurement operations with our comprehensive vendor management and procurement tracking platform. Streamline RFP processes, automate evaluations, and gain real-time spend visibility.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0a1628;
+            --navy-light: #121e36;
+            --navy-lighter: #1a2f4d;
+            --coral: #E8604C;
+            --coral-dark: #D4503E;
+            --coral-light: #f0806f;
+            --slate: #6b7280;
+            --slate-light: #d1d5db;
+            --slate-lighter: #f3f4f6;
+            --section-pad: 100px 0;
+            --container: 1200px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--navy);
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(232, 96, 76, 0.1);
+            transition: all var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-content {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        nav a {
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color var(--transition);
+            margin-left: 32px;
+        }
+
+        nav a:hover {
+            color: var(--coral);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: var(--container);
+            margin: 100px auto 0;
+            padding: 24px;
+            display: flex;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--slate);
+        }
+
+        .breadcrumb a {
+            color: var(--coral);
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: var(--section-pad);
+            background: linear-gradient(135deg, #f8fafb 0%, #f3f4f6 100%);
+        }
+
+        .hero-content {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 16px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--slate);
+            line-height: 1.6;
+            max-width: 700px;
+            margin-bottom: 32px;
+        }
+
+        .scenario-box {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            border-left: 4px solid var(--coral);
+            margin-top: 40px;
+        }
+
+        .scenario-box h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        .scenario-box p {
+            color: var(--slate);
+            line-height: 1.8;
+        }
+
+        /* Content Sections */
+        section {
+            padding: var(--section-pad);
+        }
+
+        section > div {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 48px;
+            color: var(--navy);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        p {
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border: 1px solid var(--slate-light);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--coral);
+            box-shadow: 0 12px 32px rgba(232, 96, 76, 0.12);
+        }
+
+        .card h3 {
+            margin-bottom: 16px;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--slate-lighter);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        /* Metrics */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .metric {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        ul li {
+            padding-left: 28px;
+            margin-bottom: 12px;
+            position: relative;
+            color: var(--slate);
+            line-height: 1.8;
+        }
+
+        ul li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        /* Architecture Section */
+        .architecture {
+            background: var(--slate-lighter);
+            border-radius: 12px;
+            padding: 48px;
+            margin-top: 48px;
+        }
+
+        .architecture-layer {
+            margin-bottom: 32px;
+        }
+
+        .architecture-layer:last-child {
+            margin-bottom: 0;
+        }
+
+        .layer-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .layer-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: white;
+            border: 1px solid var(--slate-light);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            font-weight: 600;
+            color: var(--navy);
+            transition: all var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--slate-lighter);
+        }
+
+        .faq-toggle {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transition);
+            font-size: 20px;
+            color: var(--coral);
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 24px 24px;
+            display: none;
+            color: var(--slate);
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--coral);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--coral);
+            color: var(--coral);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--coral);
+            color: white;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: white;
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .cta h2 {
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .cta p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            margin-bottom: 32px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: white;
+            padding: 60px 24px 0;
+        }
+
+        .footer-content {
+            max-width: var(--container);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .footer-links h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--coral);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-bottom: 40px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .reveal.visible {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            h1 { font-size: 36px; }
+            h2 { font-size: 28px; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 32px; }
+            .metrics { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 28px; }
+            h2 { font-size: 24px; }
+            nav { display: none; }
+            .hero { padding: 60px 0; }
+            section { padding: 60px 0; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 24px; }
+            .subtitle { font-size: 16px; }
+            .scenario-box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="8" fill="#E8604C"/>
+                    <path d="M12 20h16M20 12v16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                K Auto Tech
+            </a>
+            <nav>
+                <a href="/index.html">Home</a>
+                <a href="/solutions/">Solutions</a>
+                <a href="/government.html">Government</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="/index.html">Home</a>
+        <span>/</span>
+        <a href="/solutions/">Solutions</a>
+        <span>/</span>
+        <span>Procurement Tracking Dashboard</span>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="section-label">Solution</div>
+            <h1>Procurement Tracking Dashboard</h1>
+            <p class="subtitle">Transform county procurement operations with intelligent vendor management, automated RFP processing, and real-time spend visibility across $45M+ annual purchasing.</p>
+            
+            <div class="scenario-box">
+                <h3>The Scenario</h3>
+                <p>A mid-sized county manages over $45 million in annual procurement across departments including transportation, utilities, facilities, and public works. Currently, the procurement team handles RFP creation manually, tracks vendor responses in spreadsheets, manages evaluations across multiple documents, and struggles to provide spending insights to leadership. With 12 procurement staff and 200+ active vendors, the process is bottlenecked by manual coordination and lacks visibility into contract performance and compliance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h2>The Challenge</h2>
+            <div class="grid-2">
+                <div>
+                    <h3>Operational Inefficiencies</h3>
+                    <p>RFP creation requires 3-4 weeks of manual preparation, vendor communication happens through email chains, evaluation scoring lacks standardization, and contract data lives in disconnected systems making compliance tracking difficult.</p>
+                </div>
+                <div>
+                    <h3>Visibility Gaps</h3>
+                    <p>Leadership has no real-time view of spending by vendor, category, or department. Contract status tracking requires manual inquiries, and performance metrics (on-time delivery, quality) aren't systematically captured or analyzed.</p>
+                </div>
+            </div>
+
+            <ul style="margin-top: 32px;">
+                <li>RFP cycle times exceeding 5-6 weeks from conception to vendor selection</li>
+                <li>Vendor response consolidation and comparison across 50+ respondents takes weeks</li>
+                <li>Scoring rubrics applied inconsistently by different evaluators</li>
+                <li>No automated alerts for contract renewals, deliverable deadlines, or SLA breaches</li>
+                <li>Spend analysis requires manual data compilation across 15+ departmental accounts</li>
+                <li>Vendor performance data not linked to contract terms and historical performance</li>
+            </ul>
+        </div>
+    </section>
+
+    <section style="background: var(--slate-lighter);">
+        <div>
+            <h2>Our Solution</h2>
+            <p style="margin-bottom: 40px;">We deliver a comprehensive procurement platform that streamlines every phase of the vendor management lifecycle—from requisition through contract close-out. The platform centralizes information, automates routine tasks, and provides executive dashboards for spend analytics and vendor performance visibility.</p>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">📋</div>
+                    <h3>RFP Management Engine</h3>
+                    <p>Create RFPs from templates in hours, not weeks. Automated distribution to qualified vendors, centralized response collection, and structured data capture for comparison.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Evaluation & Scoring</h3>
+                    <p>Standardized scoring rubrics, multi-evaluator workflows with audit trails, weighted criteria evaluation, and side-by-side vendor comparison with scoring justification.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📑</div>
+                    <h3>Contract Management</h3>
+                    <p>Digital contract repository with full-text search, version control, renewal alerts, deliverable tracking, and obligation calendars integrated with procurement workflows.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💰</div>
+                    <h3>Spend Analytics</h3>
+                    <p>Real-time dashboards showing spending by vendor, category, department, and fiscal period. Budget vs. actual analysis with drill-down to PO level.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⭐</div>
+                    <h3>Vendor Performance</h3>
+                    <p>Automated scorecard aggregating delivery timeliness, quality ratings, invoice accuracy, and SLA compliance. Historical performance feeds future RFP evaluations.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔔</div>
+                    <h3>Alerts & Compliance</h3>
+                    <p>Proactive notifications for contract renewals, deliverable milestones, payment terms, and policy violations. Audit-ready compliance documentation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h2>System Architecture</h2>
+            <div class="architecture">
+                <div class="architecture-layer">
+                    <div class="layer-label">Presentation Layer</div>
+                    <div class="layer-title">Web & Mobile Interfaces</div>
+                    <p>Responsive procurement dashboard for staff (RFP creation, evaluation, contract management), vendor portal for RFP response submission, and mobile app for on-the-go contract reference and notification management. Built with React/Vue, optimized for accessibility and responsive design.</p>
+                </div>
+                <div class="architecture-layer">
+                    <div class="layer-label">Business Logic Layer</div>
+                    <div class="layer-title">Procurement Engine</div>
+                    <p>RFP template management with field customization, vendor qualification scoring, multi-stage evaluation workflows with approval routing, spend categorization and budget tracking, contract term parsing and obligation scheduling, vendor performance metric aggregation, and notification/alert rule execution.</p>
+                </div>
+                <div class="architecture-layer">
+                    <div class="layer-label">Data Layer</div>
+                    <div class="layer-title">Information Management</div>
+                    <p>PostgreSQL database for relational data (RFPs, vendors, contracts, evaluations, spend transactions). Document management system for RFP attachments and contracts. Full-text search indexing on contract content. Historical data archive for audit and analytics. Encrypted storage for sensitive vendor information.</p>
+                </div>
+                <div class="architecture-layer">
+                    <div class="layer-label">Integration Layer</div>
+                    <div class="layer-title">External Systems</div>
+                    <p>Bidirectional sync with county ERP/accounting system for requisitions, POs, and expenditure data. Email integration for vendor communication. Calendar integration for deadline notifications. SFTP for bulk vendor data uploads. API endpoints for third-party applications. SSO integration with county directory services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--slate-lighter);">
+        <div>
+            <h2>Deliverables</h2>
+            <ul>
+                <li>Fully customizable RFP template library with 25+ predefined question banks</li>
+                <li>Vendor qualification and performance scorecard system</li>
+                <li>Multi-stage evaluation workflow with configurable approval chains</li>
+                <li>Contract lifecycle management with obligation tracking and renewal alerts</li>
+                <li>Real-time spend analytics dashboard with 50+ configurable reports</li>
+                <li>Vendor performance scorecards with historical benchmarking</li>
+                <li>Mobile app for contract reference and deadline management</li>
+                <li>Integration connectors to ERP, email, and calendar systems</li>
+                <li>Staff training and documentation for procurement workflows</li>
+                <li>Custom data migration from existing spreadsheets and legacy systems</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h2>Expected Outcomes</h2>
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">65%</div>
+                    <div class="metric-label">Faster RFP Cycle Times</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">$2.1M</div>
+                    <div class="metric-label">Annual Procurement Savings</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">4 FTE</div>
+                    <div class="metric-label">Time Freed for Strategy</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 48px;">Key Impacts</h3>
+            <ul>
+                <li>RFP cycle time reduced from 5-6 weeks to 2-3 weeks through template automation and vendor portal</li>
+                <li>Vendor scoring standardized across all evaluators with documented criteria and audit trails</li>
+                <li>Contract compliance improved through automated renewal alerts and deliverable tracking</li>
+                <li>Spend visibility enabling category managers to identify consolidation opportunities and negotiate volume discounts</li>
+                <li>Procurement staff freed from administrative tasks to focus on vendor relationship management and strategic sourcing</li>
+            </ul>
+        </div>
+    </section>
+
+    <section style="background: var(--slate-lighter);">
+        <div>
+            <h2>Timeline & Engagement</h2>
+            <p style="margin-bottom: 32px;">Our phased implementation approach minimizes disruption while rapidly delivering value:</p>
+
+            <div class="grid-2">
+                <div>
+                    <h3>Phase 1: Foundation (Weeks 1-6)</h3>
+                    <p>Discovery workshops to document current processes and pain points. System design and configuration of vendor master and contract templates. User interface customization. Development environment setup and initial testing.</p>
+                </div>
+                <div>
+                    <h3>Phase 2: Core Workflows (Weeks 7-12)</h3>
+                    <p>RFP creation workflow implementation and user testing. Integration with email and vendor portal launch. Evaluation scoring module deployment. Historical data migration from existing systems. Staff training begins.</p>
+                </div>
+                <div>
+                    <h3>Phase 3: Intelligence (Weeks 13-16)</h3>
+                    <p>ERP integration for spend data. Spend analytics dashboards and reporting. Vendor performance scorecard automation. Mobile app deployment. Advanced features like predictive spend analysis.</p>
+                </div>
+                <div>
+                    <h3>Phase 4: Optimization (Weeks 17-20)</h3>
+                    <p>Process refinement based on usage patterns. Additional training and documentation. Executive dashboard fine-tuning. Post-launch support and optimization recommendations.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">Technology Stack</h3>
+            <p><strong>Frontend:</strong> React or Vue.js with TypeScript, Material-UI or custom component library, responsive design framework</p>
+            <p><strong>Backend:</strong> Node.js/Express or Python/Django REST API, async task processing (Celery/Bull), webhook support for third-party integrations</p>
+            <p><strong>Database:</strong> PostgreSQL for relational data, Elasticsearch for full-text search on contracts and RFPs, Redis for caching and session management</p>
+            <p><strong>Infrastructure:</strong> Cloud deployment (AWS/Azure/GCP), containerized with Docker, Kubernetes orchestration for scalability, automated backups and disaster recovery</p>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How long does it take to see ROI from the procurement platform?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    Most clients see immediate operational benefits within 60 days of launch—faster RFP cycles, reduced manual work, and better vendor data visibility. Financial ROI from savings (category consolidation, volume discounts, reduced procurement overhead) typically appears within 6-9 months and compounds annually. We typically project payback within 18 months.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can you migrate our existing contract data from our current system?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    Yes, we handle full data migration from legacy systems, spreadsheets, and document repositories. We provide custom ETL scripts to parse and map your existing contract data into our system, including contract terms, renewal dates, vendor references, and historical spend data. Migration testing ensures data accuracy before production launch.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What if we have unique vendor qualification requirements or evaluation criteria?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    The platform is fully configurable. We work with your procurement leadership to define custom scoring rubrics, qualification criteria, approval workflows, and business rules. You can create custom evaluation templates, set weighted scoring for different categories, and define escalation paths for approvals.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How does the platform integrate with our ERP system for budget tracking?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    We build custom integrations with your ERP system (SAP, Oracle, Microsoft Dynamics, etc.) to pull requisition data, push purchase orders, and sync expenditure information. The platform updates spend analytics in real-time as invoices are processed, and budget alerts trigger if departmental spending approaches limits.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What compliance and audit documentation does the system provide?</span>
+                    <div class="faq-toggle">▼</div>
+                </div>
+                <div class="faq-answer">
+                    The platform maintains complete audit trails of all procurement activities—who created each RFP, who evaluated vendors, what scores were assigned, and approval chains. Contract repository includes version control and change tracking. Compliance reports document adherence to procurement policies, competitive bidding requirements, and documentation standards.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Ready to Transform Your Procurement Operations?</h2>
+        <p>Streamline vendor management, accelerate RFP cycles, and gain real-time visibility into $40M+ in annual spending.</p>
+        <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Schedule a Demo</button>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>K Auto Tech</h3>
+                <p>Intelligent workflow automation and data systems for government agencies.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="/index.html">Home</a>
+                <a href="/solutions/">Solutions</a>
+                <a href="/government.html">Government</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 K Auto Tech LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky header on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal animation on scroll
+        const reveals = document.querySelectorAll('.card, .metric');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        reveals.forEach(reveal => {
+            reveal.classList.add('reveal');
+            observer.observe(reveal);
+        });
+
+        // FAQ toggles
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Procurement Tracking Dashboard",
+        "description": "Transform county procurement operations with intelligent vendor management, automated RFP processing, and real-time spend visibility across $45M+ annual purchasing.",
+        "provider": {
+            "@type": "Organization",
+            "name": "K Auto Tech LLC",
+            "url": "https://katechsolutions.com"
+        },
+        "areaServed": "US",
+        "serviceType": "Procurement Management Software"
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Solutions | K Auto Tech LLC | Digital Transformation for Agencies</title>
+    <meta name="description" content="K Auto Tech specializes in digital transformation for government and municipal agencies. Discover how we modernize operations, improve citizen services, and integrate legacy systems.">
+    <meta property="og:title" content="Government Solutions | K Auto Tech LLC">
+    <meta property="og:description" content="Digital transformation solutions for government agencies. Modernize operations, improve citizen services, integrate legacy systems, and drive operational intelligence.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kautotech.com/government.html">
+    <link rel="icon" type="image/png" href="/k icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           CSS RESET & BASE
+           ======================================== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* ========================================
+           CSS VARIABLES
+           ======================================== */
+        :root {
+            --navy: #0a1628;
+            --navy-light: #121e36;
+            --navy-mid: #1a2a4a;
+            --coral: #E8604C;
+            --coral-dark: #D4503E;
+            --coral-light: #F07A68;
+            --coral-pale: #FFF1EE;
+            --slate: #475569;
+            --slate-light: #64748b;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --white: #ffffff;
+            --accent: #E8604C;
+            --accent-green: #10b981;
+            --section-pad: 100px 0;
+            --container: 1200px;
+            --radius: 8px;
+            --radius-lg: 12px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.1);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ========================================
+           UTILITY CLASSES
+           ======================================== */
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--slate);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+        .section-subtitle--light { color: #94a3b8; }
+        .section-header {
+            margin-bottom: 56px;
+        }
+        .section-header--center {
+            text-align: center;
+        }
+        .section-header--center .section-subtitle {
+            margin: 0 auto;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin: 0;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin: 0;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin: 0;
+        }
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: var(--coral);
+            color: var(--white);
+            box-shadow: 0 2px 8px rgba(232, 96, 76, 0.3);
+        }
+        .btn-primary:hover {
+            background: var(--coral-dark);
+            box-shadow: 0 4px 16px rgba(232, 96, 76, 0.4);
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255,255,255,0.3);
+        }
+        .btn-secondary:hover {
+            border-color: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.05);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--coral);
+            border: 1.5px solid var(--coral);
+        }
+        .btn-outline:hover {
+            background: var(--coral);
+            color: var(--white);
+        }
+        .btn-dark {
+            background: var(--navy);
+            color: var(--white);
+        }
+        .btn-dark:hover {
+            background: var(--navy-light);
+            transform: translateY(-1px);
+        }
+        .btn-arrow::after {
+            content: '\2192';
+            transition: transform var(--transition);
+        }
+        .btn-arrow:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* ========================================
+           SCROLL REVEAL ANIMATION
+           ======================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-6 { transition-delay: 0.6s; }
+
+        /* ========================================
+           HEADER / NAV
+           ======================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all var(--transition);
+        }
+        .header.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            transition: color var(--transition);
+        }
+        .header.scrolled .logo { color: var(--white); }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        nav a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+            transition: color var(--transition);
+        }
+        nav a:hover {
+            color: var(--white);
+        }
+        nav a.btn-primary {
+            color: var(--white);
+        }
+
+        /* ========================================
+           BREADCRUMB
+           ======================================== */
+        .breadcrumb {
+            padding: 120px 0 40px 0;
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--slate-light);
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 120px 24px 40px 24px;
+        }
+        .breadcrumb a {
+            color: var(--coral);
+            transition: color var(--transition);
+        }
+        .breadcrumb a:hover {
+            color: var(--coral-dark);
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            padding: 60px 0 100px 0;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.05) 0%, rgba(232, 96, 76, 0.05) 100%);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            color: var(--navy);
+        }
+        .hero .section-subtitle {
+            font-size: 1.25rem;
+            margin-top: 24px;
+        }
+
+        /* ========================================
+           CARD STYLES
+           ======================================== */
+        .card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            transition: all var(--transition);
+        }
+        .card:hover {
+            border-color: var(--coral);
+            box-shadow: 0 12px 40px rgba(232, 96, 76, 0.15);
+            transform: translateY(-4px);
+        }
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+        .card p {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           METRIC CARDS
+           ======================================== */
+        .metric-card {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a2d4a 100%);
+            color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            text-align: center;
+            transition: all var(--transition);
+        }
+        .metric-card:hover {
+            box-shadow: 0 12px 40px rgba(10, 22, 40, 0.2);
+            transform: translateY(-4px);
+        }
+        .metric-card .number {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 12px;
+            color: var(--coral);
+        }
+        .metric-card .label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           MAIN CONTENT
+           ======================================== */
+        main {
+            padding-top: 40px;
+        }
+        section {
+            padding: var(--section-pad);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* ========================================
+           FEATURE LIST
+           ======================================== */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .feature-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        .feature-list li::before {
+            content: '✓';
+            color: var(--coral);
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .feature-list li p {
+            margin: 0;
+            color: var(--slate);
+            line-height: 1.6;
+        }
+        .feature-list li strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* ========================================
+           CTA SECTION
+           ======================================== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 24px;
+        }
+        .cta-section h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+        .cta-section p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 640px;
+            margin: 0 auto 32px auto;
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 80px 24px 32px 24px;
+        }
+        .footer-content {
+            max-width: var(--container);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+        .footer-section h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 24px;
+            color: rgba(255,255,255,0.9);
+        }
+        .footer-section a {
+            display: block;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 12px;
+            transition: color var(--transition);
+        }
+        .footer-section a:hover {
+            color: var(--coral);
+        }
+        .footer-bottom {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+           ======================================== */
+        @media (max-width: 1024px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+        }
+        @media (max-width: 768px) {
+            nav {
+                gap: 16px;
+            }
+            nav a {
+                font-size: 0.8rem;
+            }
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .grid-4 {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .card {
+                padding: 24px;
+            }
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .cta-section {
+                padding: 60px 24px;
+            }
+            .metric-card .number {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 0 16px;
+            }
+            nav {
+                display: none;
+            }
+            .breadcrumb {
+                padding: 100px 16px 30px 16px;
+                font-size: 0.8rem;
+            }
+            .card {
+                padding: 20px;
+            }
+            .card h3 {
+                font-size: 1.1rem;
+            }
+            .hero {
+                padding: 40px 0 60px 0;
+            }
+            section {
+                padding: 40px 0;
+            }
+            .footer-content {
+                gap: 24px;
+            }
+            .metric-card {
+                padding: 28px;
+            }
+            .metric-card .number {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header id="header" class="header">
+        <div class="header-content">
+            <a href="/" class="logo">K Auto Tech</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/solutions/">Solutions</a>
+                <a href="/government.html">Government</a>
+                <a href="/#contact">Contact</a>
+                <a href="#" class="btn-primary">Schedule Demo</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="/">Home</a> / Government
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="container">
+                <div class="section-label">For Government</div>
+                <h1>Digital Transformation Solutions for Government & Municipal Agencies</h1>
+                <p class="section-subtitle">K Auto Tech specializes in designing and implementing enterprise software solutions that empower government agencies to modernize operations, improve citizen services, and gain operational intelligence. Our solutions are built for the unique requirements of the public sector.</p>
+            </div>
+        </section>
+
+        <!-- THE GOVERNMENT CHALLENGE -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">The Challenge</div>
+                    <h2 class="section-title">The Reality of Government Operations</h2>
+                    <p class="section-subtitle">Government agencies face a unique set of operational challenges that commercial software simply doesn't address.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card reveal reveal-delay-1">
+                        <h3>Legacy System Fragmentation</h3>
+                        <p>Critical operations run on disconnected systems—permitting in one platform, procurement in another, citizen services in a third. Data doesn't flow between systems, creating information silos and manual workarounds.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-2">
+                        <h3>Citizen Expectations</h3>
+                        <p>Citizens expect online services comparable to commercial experiences. Yet many agencies still rely on in-person visits, phone calls, and paper forms. The gap between citizen expectations and delivery creates frustration and low satisfaction scores.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-3">
+                        <h3>Staff Inefficiency</h3>
+                        <p>Manual data entry, excessive approvals, and redundant workflows consume 30-50% of staff time on non-value-added activities. Staff turnover means critical knowledge walks out the door with departing employees.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-4">
+                        <h3>Limited Visibility</h3>
+                        <p>Managers lack real-time insight into operations. Budget tracking, service performance, and bottlenecks are discovered in monthly reports, long after problems have compounded. Decisions are made with incomplete information.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-5">
+                        <h3>Compliance Complexity</h3>
+                        <p>Regulations change frequently. Systems must adapt to evolving compliance requirements while maintaining audit trails, access controls, and data integrity. Non-compliance can trigger penalties and erode public trust.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-6">
+                        <h3>Budget Constraints</h3>
+                        <p>Limited IT budgets mean aging infrastructure with costly maintenance, deferred modernization, and staff stretched thin. Every dollar spent on keeping old systems running is a dollar not spent on innovation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR APPROACH -->
+        <section style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.03) 0%, rgba(232, 96, 76, 0.03) 100%);">
+            <div class="container">
+                <div class="section-header section-header--center">
+                    <div class="section-label">Our Approach</div>
+                    <h2 class="section-title">How We Enable Digital Transformation</h2>
+                    <p class="section-subtitle">We combine deep government sector expertise, proven implementation methodologies, and cutting-edge technology to deliver transformational outcomes.</p>
+                </div>
+
+                <div class="grid-3">
+                    <div class="card reveal reveal-delay-1">
+                        <h3>1. Deep Discovery</h3>
+                        <p>We spend time understanding your current state—the systems you use, the workflows your staff follow, the pain points that matter most. We interview staff at all levels to uncover hidden requirements and identify quick wins.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-2">
+                        <h3>2. Legacy System Integration</h3>
+                        <p>Rather than rip-and-replace, we design modern systems that integrate seamlessly with existing infrastructure. Your AS/400, mainframe, or legacy database becomes part of the solution, not a constraint.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-3">
+                        <h3>3. Citizen-First Design</h3>
+                        <p>We design citizen-facing interfaces that are intuitive, accessible, and secure. User research with actual citizens informs design decisions. The result: portals that citizens want to use, not abandon.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-4">
+                        <h3>4. Phased Implementation</h3>
+                        <p>We don't do big-bang deployments. Our phased approach rolls out capabilities incrementally, manages risk, and allows for learning and adjustment. Early wins build momentum and organizational confidence.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-5">
+                        <h3>5. Change Management</h3>
+                        <p>Technology alone doesn't transform organizations. We provide comprehensive change management: staff training, communication planning, and support during transition. Success depends on people, not just software.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-6">
+                        <h3>6. Ongoing Partnership</h3>
+                        <p>We don't disappear after launch. Our support team is available for ongoing optimization, enhancement roadmapping, and evolution as your needs change. We're invested in your long-term success.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KEY CAPABILITIES -->
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Capabilities</div>
+                    <h2 class="section-title">What We Build For Government</h2>
+                </div>
+
+                <div class="grid-2">
+                    <div class="reveal reveal-delay-1">
+                        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; color: var(--navy);">Permitting & Licensing Systems</h3>
+                        <p style="color: var(--slate); margin-bottom: 20px; line-height: 1.7;">Digitize building permits, business licenses, and professional certifications. Automated routing, multi-stage approvals, online payment processing, and applicant tracking. Reduce cycle times by 60%+ while improving transparency.</p>
+                        <ul class="feature-list">
+                            <li><p><strong>Online Applications</strong> with document upload and payment</p></li>
+                            <li><p><strong>Automated Workflows</strong> with intelligent routing and escalation</p></li>
+                            <li><p><strong>Inspections Management</strong> with mobile apps for field staff</p></li>
+                            <li><p><strong>Compliance Tracking</strong> with renewal reminders and audit trails</p></li>
+                        </ul>
+                    </div>
+
+                    <div class="reveal reveal-delay-2">
+                        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; color: var(--navy);">Citizen Service Portals</h3>
+                        <p style="color: var(--slate); margin-bottom: 20px; line-height: 1.7;">Centralize citizen requests and complaints across all channels. Self-service capabilities, case tracking, and SLA management. Enable citizens to resolve issues online while reducing staff workload.</p>
+                        <ul class="feature-list">
+                            <li><p><strong>Multi-Channel Intake</strong> from web, mobile, IVR, and social media</p></li>
+                            <li><p><strong>Intelligent Routing</strong> to appropriate departments automatically</p></li>
+                            <li><p><strong>Case Self-Service</strong> with online tracking and status updates</p></li>
+                            <li><p><strong>SLA Management</strong> with escalation and performance analytics</p></li>
+                        </ul>
+                    </div>
+
+                    <div class="reveal reveal-delay-3">
+                        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; color: var(--navy);">Procurement & Vendor Management</h3>
+                        <p style="color: var(--slate); margin-bottom: 20px; line-height: 1.7;">Centralize purchasing, RFQ management, and supplier relationships. Reduce procurement cycle times, improve pricing through competitive bidding, and ensure compliance with procurement regulations.</p>
+                        <ul class="feature-list">
+                            <li><p><strong>RFQ/RFP Management</strong> with automated distribution to suppliers</p></li>
+                            <li><p><strong>Bid Scoring</strong> with weighted criteria and cost analysis</p></li>
+                            <li><p><strong>Contract Management</strong> with e-signature and renewal tracking</p></li>
+                            <li><p><strong>Supplier Performance</strong> scoring and relationship management</p></li>
+                        </ul>
+                    </div>
+
+                    <div class="reveal reveal-delay-4">
+                        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; color: var(--navy);">Operations Dashboards</h3>
+                        <p style="color: var(--slate); margin-bottom: 20px; line-height: 1.7;">Real-time visibility into operations with customizable dashboards for different roles. KPI tracking, anomaly detection, and predictive analytics. Enable data-driven decision-making at all levels.</p>
+                        <ul class="feature-list">
+                            <li><p><strong>Executive Dashboards</strong> with high-level KPIs and trends</p></li>
+                            <li><p><strong>Operational Dashboards</strong> for department managers and field staff</p></li>
+                            <li><p><strong>Alerts & Notifications</strong> for critical issues and thresholds</p></li>
+                            <li><p><strong>Historical Analytics</strong> with predictive models and forecasting</p></li>
+                        </ul>
+                    </div>
+
+                    <div class="reveal reveal-delay-5">
+                        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; color: var(--navy);">Public Records & FOIA Management</h3>
+                        <p style="color: var(--slate); margin-bottom: 20px; line-height: 1.7;">Manage public record requests and FOIA compliance. Automated request tracking, redaction workflows, and fulfillment. Reduce legal exposure and demonstrate transparency.</p>
+                        <ul class="feature-list">
+                            <li><p><strong>Request Intake</strong> online and via email integration</p></li>
+                            <li><p><strong>Automated Workflows</strong> with department routing and deadlines</p></li>
+                            <li><p><strong>Redaction Tools</strong> with approval workflow and document assembly</p></li>
+                            <li><p><strong>Compliance Tracking</strong> with deadline alerts and audit trail</p></li>
+                        </ul>
+                    </div>
+
+                    <div class="reveal reveal-delay-6">
+                        <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; color: var(--navy);">Fleet & Asset Management</h3>
+                        <p style="color: var(--slate); margin-bottom: 20px; line-height: 1.7;">Track municipal vehicles, equipment, and assets. Maintenance scheduling, fuel tracking, and utilization analytics. Reduce downtime and optimize capital expenditure.</p>
+                        <ul class="feature-list">
+                            <li><p><strong>Asset Inventory</strong> with location tracking and status monitoring</p></li>
+                            <li><p><strong>Maintenance Scheduling</strong> with work order management</p></li>
+                            <li><p><strong>Fuel & Mileage Tracking</strong> with consumption analytics</p></li>
+                            <li><p><strong>Utilization Analytics</strong> for cost per use and ROI tracking</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPLIANCE & SECURITY -->
+        <section style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.03) 0%, rgba(232, 96, 76, 0.03) 100%);">
+            <div class="container">
+                <div class="section-header section-header--center">
+                    <div class="section-label">Built for Government</div>
+                    <h2 class="section-title">Compliance, Security & Reliability</h2>
+                    <p class="section-subtitle">Government-grade security and compliance are not optional—they're foundational to everything we build.</p>
+                </div>
+
+                <div class="grid-4">
+                    <div class="card reveal reveal-delay-1">
+                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">SOC 2 Type II</h3>
+                        <p style="font-size: 0.9rem; color: var(--slate);">Independently audited controls for security, availability, processing integrity, confidentiality, and privacy.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-2">
+                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">HIPAA Ready</h3>
+                        <p style="font-size: 0.9rem; color: var(--slate);">If your agency handles health information, our systems support HIPAA-compliant workflows and data handling.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-3">
+                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">GDPR Compliant</h3>
+                        <p style="font-size: 0.9rem; color: var(--slate);">Data subject rights, consent management, and data minimization built into system architecture.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-4">
+                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">WCAG 2.1 AA</h3>
+                        <p style="font-size: 0.9rem; color: var(--slate);">Accessibility standards ensure citizens with disabilities can use services independently.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-5">
+                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">ADA Compliant</h3>
+                        <p style="font-size: 0.9rem; color: var(--slate);">Accessible design ensures equitable service delivery for all citizens regardless of ability.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-6">
+                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">FedRAMP Ready</h3>
+                        <p style="font-size: 0.9rem; color: var(--slate);">If you require federal cloud compliance, our infrastructure meets FedRAMP requirements.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-1">
+                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">99.9% Uptime SLA</h3>
+                        <p style="font-size: 0.9rem; color: var(--slate);">Government services can't go offline. Redundant infrastructure, automated failover, and monitoring.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-2">
+                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">Disaster Recovery</h3>
+                        <p style="font-size: 0.9rem; color: var(--slate);">Automated backups, geographically distributed copies, and tested recovery procedures.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-3">
+                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">Encryption</h3>
+                        <p style="font-size: 0.9rem; color: var(--slate);">AES-256 encryption at rest, TLS 1.3 in transit, with key management and HSM support.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-4">
+                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">Penetration Testing</h3>
+                        <p style="font-size: 0.9rem; color: var(--slate);">Annual third-party security assessments with remediation reporting.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-5">
+                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">Audit Logging</h3>
+                        <p style="font-size: 0.9rem; color: var(--slate);">Complete audit trail of all user actions for compliance demonstration and forensic investigation.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-6">
+                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 12px;">Multi-Tenancy Isolation</h3>
+                        <p style="font-size: 0.9rem; color: var(--slate);">If serving multiple agencies, database and application isolation ensures data separation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPACT -->
+        <section>
+            <div class="container">
+                <div class="section-header section-header--center">
+                    <div class="section-label">Results</div>
+                    <h2 class="section-title">Real Impact Across Government</h2>
+                </div>
+
+                <div class="grid-3">
+                    <div class="metric-card reveal reveal-delay-1">
+                        <div class="number">45%</div>
+                        <div class="label">Average reduction in process cycle time</div>
+                    </div>
+
+                    <div class="metric-card reveal reveal-delay-2">
+                        <div class="number">68%</div>
+                        <div class="label">Decrease in manual data entry</div>
+                    </div>
+
+                    <div class="metric-card reveal reveal-delay-3">
+                        <div class="number">4.6/5</div>
+                        <div class="label">Average citizen satisfaction score</div>
+                    </div>
+
+                    <div class="metric-card reveal reveal-delay-4">
+                        <div class="number">$2.3M</div>
+                        <div class="label">Average annual operational savings</div>
+                    </div>
+
+                    <div class="metric-card reveal reveal-delay-5">
+                        <div class="number">87%</div>
+                        <div class="label">Average self-service adoption rate</div>
+                    </div>
+
+                    <div class="metric-card reveal reveal-delay-6">
+                        <div class="number">25+</div>
+                        <div class="label">Government agencies served</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPLEMENTATION -->
+        <section style="background: linear-gradient(135deg, rgba(10, 22, 40, 0.03) 0%, rgba(232, 96, 76, 0.03) 100%);">
+            <div class="container">
+                <div class="section-header section-header--center">
+                    <div class="section-label">Implementation</div>
+                    <h2 class="section-title">Our Proven Implementation Methodology</h2>
+                    <p class="section-subtitle">We've learned from 25+ government implementations. Our methodology reduces risk, manages complexity, and ensures successful adoption.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card reveal reveal-delay-1">
+                        <h3>Phase 1: Discovery & Planning (4-6 weeks)</h3>
+                        <p>We conduct stakeholder interviews, system assessments, and workshops to understand current operations and define success criteria. Deliverables include detailed requirements, integration architecture, and a phased rollout plan.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-2">
+                        <h3>Phase 2: Design & Development (8-12 weeks)</h3>
+                        <p>Iterative design with user feedback. High-fidelity prototypes tested with staff and citizens. Parallel development of system architecture, API integrations, and legacy system connectors. Regular demonstrations keep stakeholders engaged.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-3">
+                        <h3>Phase 3: Testing & Refinement (4-6 weeks)</h3>
+                        <p>Comprehensive testing: functional, integration, performance, security, and user acceptance. Bug fixes and refinements based on feedback. Data migration dry runs to ensure integrity. Staff training development.</p>
+                    </div>
+
+                    <div class="card reveal reveal-delay-4">
+                        <h3>Phase 4: Deployment & Support (2-4 weeks)</h3>
+                        <p>Coordinated go-live with fallback procedures. Dedicated support team during launch and post-launch stabilization. Citizen communications and staff support. Measurement of early outcomes against baseline metrics.</p>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 48px; color: var(--slate); font-size: 1.05rem; line-height: 1.7;">Total typical implementation timeline: <strong>20-28 weeks</strong> depending on scope and complexity. Phased deployment allows for learning and adjustment without disrupting operations.</p>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="cta-section">
+            <h3>Ready to Transform Your Agency?</h3>
+            <p>Let's talk about how digital transformation can improve operations, citizen satisfaction, and staff efficiency in your agency.</p>
+            <a href="#" class="btn btn-primary">Schedule a Demo</a>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <a href="/solutions/">Solutions</a>
+                <a href="/government.html">For Government</a>
+                <a href="/#case-studies">Case Studies</a>
+                <a href="/#pricing">Pricing</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a href="/#about">About</a>
+                <a href="/#team">Team</a>
+                <a href="/#careers">Careers</a>
+                <a href="/#news">News</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="/blog">Blog</a>
+                <a href="/#documentation">Documentation</a>
+                <a href="/#api-docs">API Docs</a>
+                <a href="/#webinars">Webinars</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="/privacy">Privacy</a>
+                <a href="/terms">Terms</a>
+                <a href="/security">Security</a>
+                <a href="/compliance">Compliance</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 K Auto Tech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky header effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
