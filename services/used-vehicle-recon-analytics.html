@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Used Vehicle & Reconditioning Analytics | K Auto Tech LLC</title>
+    <meta name="description" content="Dealership used vehicle analytics: true days in inventory, acquisition source performance, cost-to-market, staged reconditioning cycle time, merchandising readiness, and wholesale loss analysis.">
+    <meta property="og:title" content="Used Vehicle & Reconditioning Analytics | K Auto Tech LLC">
+    <meta property="og:description" content="Dealership used vehicle analytics: true days in inventory, acquisition source performance, cost-to-market, staged reconditioning cycle time, merchandising readiness, and wholesale loss analysis.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kautotech.com/services/used-vehicle-recon-analytics">
+    <link rel="canonical" href="https://kautotech.com/services/used-vehicle-recon-analytics">
+    <link rel="icon" type="image/png" href="../k icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        :root {
+            --navy: #0a1628;
+            --navy-mid: #1a2a4a;
+            --coral: #E8604C;
+            --coral-dark: #D4503E;
+            --coral-pale: #FFF1EE;
+            --slate: #475569;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --white: #ffffff;
+            --accent: #E8604C;
+            --container: 1200px;
+            --radius-lg: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .btn-primary {
+            background: var(--coral);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--coral-dark);
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.35);
+        }
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            background: var(--navy);
+        }
+        .header.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 0;
+            display: block;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .nav a {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+        .nav a:hover {
+            color: var(--white);
+        }
+        .nav a.btn-primary { color: var(--white); }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+        }
+        .mobile-nav {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .mobile-toggle { display: flex; }
+            .mobile-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--navy);
+                z-index: 999;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 80px 24px 24px;
+            }
+            .mobile-nav.hidden { display: none; }
+            .mobile-nav a {
+                color: #cbd5e1;
+                padding: 12px 0;
+            }
+            .mobile-nav-close {
+                position: absolute;
+                top: 16px;
+                right: 24px;
+                background: none;
+                border: none;
+                color: var(--white);
+                font-size: 32px;
+                cursor: pointer;
+            }
+        }
+        .footer {
+            background: var(--navy);
+            color: #94a3b8;
+            padding: 64px 0 32px;
+            margin-top: 120px;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 64px;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-brand p {
+            margin-top: 16px;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+        }
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .footer-links a {
+            display: block;
+            padding: 8px 0;
+            transition: color var(--transition);
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .breadcrumb {
+            padding: 120px 0 40px;
+            background: var(--navy);
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        .breadcrumb a {
+            color: var(--accent);
+        }
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            color: var(--white);
+        }
+        .hero .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--coral);
+            display: block;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 800px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .stat-strip {
+            background: var(--gray-100);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 40px 0;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+        }
+        .stat-item h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
+        }
+        .stat-item p {
+            font-size: 0.92rem;
+            color: var(--slate);
+            line-height: 1.6;
+        }
+        .content-section {
+            padding: 100px 0;
+        }
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            margin-top: 40px;
+        }
+        .content-section h2:first-child {
+            margin-top: 0;
+        }
+        .content-section p {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .content-section ul {
+            list-style: disc;
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+        .content-section li {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .lead {
+            font-size: 1.15rem !important;
+            color: #334155 !important;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+        }
+        .feature-card {
+            padding: 32px;
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+        .feature-card p {
+            color: var(--slate);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+        .feature-card h3 a { color: var(--coral); }
+        .feature-card h3 a:hover { text-decoration: underline; }
+        .feature-card .tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--coral);
+            background: var(--coral-pale);
+            border-radius: 4px;
+            padding: 4px 8px;
+            margin-bottom: 12px;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            font-size: 0.98rem;
+        }
+        .spec-table th,
+        .spec-table td {
+            text-align: left;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-200);
+            vertical-align: top;
+        }
+        .spec-table th {
+            background: var(--navy);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .spec-table td {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .spec-table td:first-child {
+            color: var(--navy);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .spec-table tbody tr:hover {
+            background: var(--gray-100);
+        }
+        .table-scroll {
+            overflow-x: auto;
+        }
+        .callout {
+            border-left: 3px solid var(--coral);
+            background: var(--coral-pale);
+            padding: 24px 28px;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 32px 0;
+        }
+        .callout p {
+            margin-bottom: 0;
+            color: #3f2a26;
+        }
+        .callout p + p {
+            margin-top: 14px;
+        }
+        .faq-section {
+            padding: 100px 0;
+            background: var(--gray-100);
+        }
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            margin-bottom: 20px;
+        }
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--navy);
+            gap: 20px;
+        }
+        .faq-question:hover {
+            background: var(--coral-pale);
+        }
+        .faq-toggle {
+            transition: transform var(--transition);
+        }
+        .faq-item.open .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .faq-item.open .faq-answer {
+            padding: 0 24px 24px 24px;
+            max-height: 600px;
+        }
+        .faq-answer p {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .cta-section {
+            padding: 100px 0;
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+        .cta-section h2 {
+            color: var(--white);
+            margin-bottom: 24px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .cta-section p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+        .related-services {
+            padding: 60px 0;
+            background: var(--coral-pale);
+        }
+        .related-services h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .related-link {
+            padding: 20px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            color: var(--coral);
+            font-weight: 600;
+            transition: all var(--transition);
+        }
+        .related-link:hover {
+            border-color: var(--coral);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .content-section {
+                padding: 64px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
+                K Auto Tech
+            </a>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/#services">Services</a>
+                <a href="/solutions">Solutions</a>
+                <a href="/industries/automotive-retail">Who We Serve</a>
+                <a href="/#about">About</a>
+                <a href="#contact" class="btn btn-primary">Request Consultation</a>
+            </nav>
+            <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-nav hidden" id="mobileNav">
+        <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Close menu">&times;</button>
+        <a href="/">Home</a>
+        <a href="/#services">Services</a>
+        <a href="/solutions">Solutions</a>
+        <a href="/industries/automotive-retail">Who We Serve</a>
+        <a href="/#about">About</a>
+        <a href="#contact" onclick="toggleMobileNav()">Request Consultation</a>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="/">Home</a> / <a href="/#services">Services</a> / <span>Used Vehicle &amp; Recon Analytics</span>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <span class="eyebrow">Automotive Service</span>
+            <h1>Used Vehicle &amp; Reconditioning Analytics</h1>
+            <p>Used inventory is the fastest-moving money in the store and the slowest to report on. We build the reporting that shows aging by source, cost-to-market against the guide, and reconditioning time broken into stages &mdash; so the question stops being which units are old and becomes where the days went.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Request a Consultation</a>
+                <a href="/solutions/used-vehicle-inventory-dashboard" class="btn btn-outline">See a Build in Detail</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stat-strip">
+        <div class="container">
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <h3>Per Unit</h3>
+                    <p>Aging, cost, and recon tracked at the stock-number level, not by bucket average</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Staged Recon</h3>
+                    <p>Cycle time split into the steps where the days are actually lost</p>
+                </div>
+                <div class="stat-item">
+                    <h3>By Source</h3>
+                    <p>Trade, auction, street purchase, and lease return measured separately</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Guide-Aware</h3>
+                    <p>Cost-to-market and price-to-market against live market data</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2>Aging is a symptom, not a diagnosis</h2>
+            <p class="lead">Every used vehicle manager knows which units are over sixty days. Very few can say why those particular units are over sixty days &mdash; whether they were bought wrong, priced wrong, held in recon for nine days waiting on a part, or photographed two weeks after they hit the lot.</p>
+            <p>The distinction matters because the fixes are different and they sit with different people. An acquisition problem is a buying discipline conversation. A recon problem is a fixed-operations scheduling conversation. A merchandising problem is a photographer and a description. Aging reports collapse all three into one number, which is why the same conversation happens every month and nothing structural changes.</p>
+            <p>We build the reporting that separates them, at the unit level, with a clock that starts when the vehicle was acquired rather than when someone got around to stocking it in.</p>
+
+            <h2>What we measure</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>True Days in Inventory</h3>
+                    <p>Age measured from acquisition, not from stock-in. The gap between the two is often a week of invisible depreciation, and it is the first number most stores have never seen.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Acquisition Source Performance</h3>
+                    <p>Turn, gross, and recon spend by source &mdash; trade, auction, street purchase, lease return &mdash; and by the buyer who sourced it. Some channels look cheap until reconditioning is charged against them.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Cost-to-Market</h3>
+                    <p>Total investment against market value at each point in the life of the unit, so a pricing decision is made against where the vehicle actually sits rather than against what was paid for it.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Reconditioning Cycle Time</h3>
+                    <p>Split into stages: arrival to inspection, inspection to approval, approval to work start, work to parts wait, parts to completion, completion to photographs. The constraint is almost never the technician.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Recon Spend and Overage</h3>
+                    <p>Estimate against actual per unit, by shop and by service line, with the recurring overruns identified so the estimating gets better rather than the variance getting absorbed.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Merchandising Readiness</h3>
+                    <p>Days from lot-ready to fully merchandised: photographs taken, description written, listings live across every syndication feed. A ready unit nobody can see is an aging unit.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Price Change Discipline</h3>
+                    <p>Repricing frequency and magnitude against the store's own policy, and whether markdowns are actually happening at the intervals the policy claims.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Wholesale Loss Analysis</h3>
+                    <p>Which units get wholesaled, what they were bought for, what they cost to recondition, and what the pattern says about acquisition. Wholesale losses are a buying report card that most stores never read.</p>
+                </div>
+            </div>
+
+            <h2>The recon clock, and why it is worth the trouble</h2>
+            <p>Most stores can tell you an average reconditioning time. Almost none can tell you the distribution, and the distribution is the whole story: a five-day average made of mostly two-day units and a handful of three-week disasters is a different operation from one where everything takes five days, and it calls for a different fix.</p>
+            <p>Instrumenting the stages takes real work &mdash; it usually means timestamps that the DMS does not natively capture and a short discipline change in the shop. We are direct about that during scoping, because a client who is not willing to make the process change should not pay for the reporting that depends on it. Where the timestamps do exist, this is typically the single highest-return report in the engagement.</p>
+            <div class="callout">
+                <p><strong>What we will not claim.</strong> We can tell you where days are being lost and what they cost in depreciation and holding. We cannot tell you what a unit would have sold for had it been ready sooner &mdash; that number requires assumptions we would be inventing. Reporting that quantifies a counterfactual to two decimal places is selling confidence, not information.</p>
+            </div>
+
+            <h2>Data sources</h2>
+            <div class="table-scroll">
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>What it contributes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DMS</td>
+                        <td>Stock records, acquisition cost and date, internal recon repair orders, sale and wholesale transactions.</td>
+                    </tr>
+                    <tr>
+                        <td>Inventory management</td>
+                        <td>Pricing history, market rankings, days on lot as the merchandising tools count it, and syndication status.</td>
+                    </tr>
+                    <tr>
+                        <td>Guide and market data</td>
+                        <td>Market value over time, so cost-to-market is measured against a moving market rather than a stale appraisal.</td>
+                    </tr>
+                    <tr>
+                        <td>Auction platforms</td>
+                        <td>Purchase records, fees, and transport, which is where landed cost usually diverges from hammer price.</td>
+                    </tr>
+                    <tr>
+                        <td>Recon workflow tools</td>
+                        <td>Stage timestamps where a dedicated tool is in use. Where none is, we work with the store on the minimum viable set of touchpoints.</td>
+                    </tr>
+                    <tr>
+                        <td>Photography and merchandising</td>
+                        <td>Photo counts, timestamps, and description completeness, which turn merchandising readiness into a measurable date rather than an impression.</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h2>What you get</h2>
+            <ul>
+                <li><strong>A unit-level inventory view</strong> sortable by every dimension that matters, with the full history of one vehicle reachable in a click.</li>
+                <li><strong>A daily action list:</strong> units crossing an age threshold, units stalled in a recon stage, units ready but not merchandised, and units whose price has not moved against policy.</li>
+                <li><strong>A recon stage report</strong> with distribution rather than average, and the specific bottleneck named.</li>
+                <li><strong>Source and buyer scorecards</strong> that charge reconditioning back to acquisition, which is the only way the comparison is honest.</li>
+                <li><strong>A wholesale post-mortem</strong> that turns each loss into a data point about buying rather than a write-off.</li>
+            </ul>
+            <p>Typical engagements run six to ten weeks for a single rooftop where inventory and DMS data are already accessible, and longer where recon stage instrumentation has to be established first.</p>
+        </div>
+    </section>
+
+    <section class="related-services">
+        <div class="container">
+            <h3>Related capabilities</h3>
+            <div class="related-links">
+                <a href="/services/dealership-dashboard-platform" class="related-link">Dealership Dashboard Platform</a>
+                <a href="/services/fi-fixed-ops-analytics" class="related-link">F&amp;I &amp; Fixed Ops Analytics</a>
+                <a href="/services/dms-crm-integration" class="related-link">DMS &amp; CRM Integration</a>
+                <a href="/solutions/used-vehicle-inventory-dashboard" class="related-link">Used Vehicle Dashboard</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 48px; font-size: 2rem; font-weight: 700;">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>We already use vAuto. Why would we need this?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Inventory management tools are good at pricing and market position, and we read from them rather than replacing them. What they do not do is join their view to your DMS cost detail, your internal recon repair orders, and your acquisition records to produce a landed cost with recon charged against the buyer who sourced the unit. That join is the work.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Our recon stages are not tracked anywhere. Can you still help?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Partly, and we will tell you exactly which parts. Without stage timestamps we can still measure total recon duration, spend against estimate, and true days in inventory &mdash; useful on its own. The stage breakdown needs capture points that do not exist yet, so we scope that as a separate decision rather than quietly delivering a report built on guesses.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How is true days in inventory different from what our DMS reports?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Most DMS reporting counts from stock-in, which is an administrative event. We count from acquisition &mdash; the date you took ownership and started paying for the unit. In stores that have never measured the gap it is commonly five to ten days, all of it depreciation nobody was attributing to anything.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can this cover multiple rooftops sharing inventory?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, and groups that trade units between stores need it more than anyone. Transfers are tracked so age follows the vehicle rather than resetting at the receiving store, and a unit's full history stays intact across the move. Resetting the clock on transfer is one of the more common ways a group's aging report flatters itself.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Do you integrate with auction platforms?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Where the platform allows it, yes &mdash; purchase records, fees, and transport, so landed cost is real rather than hammer price plus an assumption. Where an integration is not available we ingest the statements on a schedule, which is slower but gets to the same number.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Find out where the days go</h2>
+            <p>Send us ninety days of used vehicle stock and recon repair order data. We will show you the stage breakdown before you commit to anything.</p>
+            <a href="mailto:info@kautotech.com" class="btn btn-primary">Schedule a Consultation</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
+                        K Auto Tech
+                    </div>
+                    <p>Dashboards, data integration, and custom software for automotive retail. We build the systems dealerships and dealer groups run on.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Services</h4>
+                        <a href="/services/dealership-dashboard-platform">Dealership Dashboard Platform</a>
+                        <a href="/services/fi-fixed-ops-analytics">F&amp;I &amp; Fixed Ops Analytics</a>
+                        <a href="/services/dms-crm-integration">DMS &amp; CRM Integration</a>
+                        <a href="/services/used-vehicle-recon-analytics">Used Vehicle &amp; Recon</a>
+                        <a href="/services/dealership-workflow-automation">Workflow Automation</a>
+                        <a href="/services/dealer-acquisition-diligence">Acquisition &amp; Diligence</a>
+                    </div>
+                    <div>
+                        <h4>Solutions</h4>
+                        <a href="/solutions/dealer-group-performance-dashboard">Dealer Group Dashboard</a>
+                        <a href="/solutions/fixed-ops-performance-dashboard">Fixed Ops Dashboard</a>
+                        <a href="/solutions/used-vehicle-inventory-dashboard">Used Vehicle Dashboard</a>
+                        <a href="/solutions">All Solutions</a>
+                    </div>
+                    <div>
+                        <h4>Who We Serve</h4>
+                        <a href="/industries/automotive-retail">Automotive Retail Overview</a>
+                        <a href="/industries/automotive-retail#dealer-groups">Dealer Groups</a>
+                        <a href="/industries/automotive-retail#single-rooftop">Single Rooftop Dealers</a>
+                        <a href="/industries/automotive-retail#acquisition">Acquisition Platforms</a>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <a href="/#about">About</a>
+                        <a href="/#contact">Contact</a>
+                        <a href="mailto:info@kautotech.com">info@kautotech.com</a>
+                        <a href="/privacy-policy">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 K Auto Tech LLC. All rights reserved.</span>
+                <span>Houston, Texas</span>
+            </div>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Used Vehicle and Reconditioning Analytics",
+        "description": "Dealership used vehicle analytics: true days in inventory, acquisition source performance, cost-to-market, staged reconditioning cycle time, merchandising readiness, and wholesale loss analysis.",
+        "provider": {
+            "@type": "Organization",
+            "name": "K Auto Tech LLC",
+            "url": "https://kautotech.com"
+        },
+        "areaServed": ["United States", "Canada", "Caribbean Islands"],
+        "serviceType": "Automotive Retail Analytics",
+        "audience": {
+            "@type": "Audience",
+            "audienceType": "Automobile dealerships and dealer groups"
+        }
+    }
+    </script>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        function toggleMobileNav() {
+            document.getElementById('mobileNav').classList.toggle('hidden');
+        }
+        function toggleFAQ(element) {
+            element.parentElement.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>

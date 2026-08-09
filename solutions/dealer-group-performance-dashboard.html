@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealer Group Performance Dashboard | Solution | K Auto Tech LLC</title>
+    <meta name="description" content="How we built a multi-rooftop dealer group dashboard: consolidated store performance, capital and covenants, scenario modeling, acquisition pipeline, and role-gated stakeholder access from one financial model.">
+    <meta property="og:title" content="Dealer Group Performance Dashboard | Solution | K Auto Tech LLC">
+    <meta property="og:description" content="How we built a multi-rooftop dealer group dashboard: consolidated store performance, capital and covenants, scenario modeling, acquisition pipeline, and role-gated stakeholder access from one financial model.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kautotech.com/solutions/dealer-group-performance-dashboard">
+    <link rel="canonical" href="https://kautotech.com/solutions/dealer-group-performance-dashboard">
+    <link rel="icon" type="image/png" href="../k icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        :root {
+            --navy: #0a1628;
+            --navy-mid: #1a2a4a;
+            --coral: #E8604C;
+            --coral-dark: #D4503E;
+            --coral-pale: #FFF1EE;
+            --slate: #475569;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --white: #ffffff;
+            --accent: #E8604C;
+            --container: 1200px;
+            --radius-lg: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .btn-primary {
+            background: var(--coral);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--coral-dark);
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.35);
+        }
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            background: var(--navy);
+        }
+        .header.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 0;
+            display: block;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .nav a {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+        .nav a:hover {
+            color: var(--white);
+        }
+        .nav a.btn-primary { color: var(--white); }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+        }
+        .mobile-nav {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .mobile-toggle { display: flex; }
+            .mobile-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--navy);
+                z-index: 999;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 80px 24px 24px;
+            }
+            .mobile-nav.hidden { display: none; }
+            .mobile-nav a {
+                color: #cbd5e1;
+                padding: 12px 0;
+            }
+            .mobile-nav-close {
+                position: absolute;
+                top: 16px;
+                right: 24px;
+                background: none;
+                border: none;
+                color: var(--white);
+                font-size: 32px;
+                cursor: pointer;
+            }
+        }
+        .footer {
+            background: var(--navy);
+            color: #94a3b8;
+            padding: 64px 0 32px;
+            margin-top: 120px;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 64px;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-brand p {
+            margin-top: 16px;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+        }
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .footer-links a {
+            display: block;
+            padding: 8px 0;
+            transition: color var(--transition);
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .breadcrumb {
+            padding: 120px 0 40px;
+            background: var(--navy);
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        .breadcrumb a {
+            color: var(--accent);
+        }
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            color: var(--white);
+        }
+        .hero .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--coral);
+            display: block;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 800px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .stat-strip {
+            background: var(--gray-100);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 40px 0;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+        }
+        .stat-item h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
+        }
+        .stat-item p {
+            font-size: 0.92rem;
+            color: var(--slate);
+            line-height: 1.6;
+        }
+        .content-section {
+            padding: 100px 0;
+        }
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            margin-top: 40px;
+        }
+        .content-section h2:first-child {
+            margin-top: 0;
+        }
+        .content-section p {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .content-section ul {
+            list-style: disc;
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+        .content-section li {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .lead {
+            font-size: 1.15rem !important;
+            color: #334155 !important;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+        }
+        .feature-card {
+            padding: 32px;
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+        .feature-card p {
+            color: var(--slate);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+        .feature-card h3 a { color: var(--coral); }
+        .feature-card h3 a:hover { text-decoration: underline; }
+        .feature-card .tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--coral);
+            background: var(--coral-pale);
+            border-radius: 4px;
+            padding: 4px 8px;
+            margin-bottom: 12px;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            font-size: 0.98rem;
+        }
+        .spec-table th,
+        .spec-table td {
+            text-align: left;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-200);
+            vertical-align: top;
+        }
+        .spec-table th {
+            background: var(--navy);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .spec-table td {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .spec-table td:first-child {
+            color: var(--navy);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .spec-table tbody tr:hover {
+            background: var(--gray-100);
+        }
+        .table-scroll {
+            overflow-x: auto;
+        }
+        .callout {
+            border-left: 3px solid var(--coral);
+            background: var(--coral-pale);
+            padding: 24px 28px;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 32px 0;
+        }
+        .callout p {
+            margin-bottom: 0;
+            color: #3f2a26;
+        }
+        .callout p + p {
+            margin-top: 14px;
+        }
+        .faq-section {
+            padding: 100px 0;
+            background: var(--gray-100);
+        }
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            margin-bottom: 20px;
+        }
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--navy);
+            gap: 20px;
+        }
+        .faq-question:hover {
+            background: var(--coral-pale);
+        }
+        .faq-toggle {
+            transition: transform var(--transition);
+        }
+        .faq-item.open .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .faq-item.open .faq-answer {
+            padding: 0 24px 24px 24px;
+            max-height: 600px;
+        }
+        .faq-answer p {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .cta-section {
+            padding: 100px 0;
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+        .cta-section h2 {
+            color: var(--white);
+            margin-bottom: 24px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .cta-section p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+        .related-services {
+            padding: 60px 0;
+            background: var(--coral-pale);
+        }
+        .related-services h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .related-link {
+            padding: 20px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            color: var(--coral);
+            font-weight: 600;
+            transition: all var(--transition);
+        }
+        .related-link:hover {
+            border-color: var(--coral);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .content-section {
+                padding: 64px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
+                K Auto Tech
+            </a>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/#services">Services</a>
+                <a href="/solutions">Solutions</a>
+                <a href="/industries/automotive-retail">Who We Serve</a>
+                <a href="/#about">About</a>
+                <a href="#contact" class="btn btn-primary">Request Consultation</a>
+            </nav>
+            <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-nav hidden" id="mobileNav">
+        <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Close menu">&times;</button>
+        <a href="/">Home</a>
+        <a href="/#services">Services</a>
+        <a href="/solutions">Solutions</a>
+        <a href="/industries/automotive-retail">Who We Serve</a>
+        <a href="/#about">About</a>
+        <a href="#contact" onclick="toggleMobileNav()">Request Consultation</a>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="/">Home</a> / <a href="/solutions/">Solutions</a> / <span>Dealer Group Performance Dashboard</span>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <span class="eyebrow">Solution &mdash; Automotive Retail</span>
+            <h1>Dealer Group Performance Dashboard</h1>
+            <p>A representative build: a seven-rooftop acquisition platform running its stores, its capital, and its deal pipeline out of one authenticated web application, where the dashboard, the written plan, the lender deck, and the Excel forecast are all generated from the same model.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Discuss a Similar Build</a>
+                <a href="/services/dealership-dashboard-platform" class="btn btn-outline">Platform Capabilities</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stat-strip">
+        <div class="container">
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <h3>7 Rooftops</h3>
+                    <p>Consolidated on one chart of accounts across four brands</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2 Roles</h3>
+                    <p>Owner and stakeholder, with the navigation itself as the access policy</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1 Model</h3>
+                    <p>Screen, plan, deck, and spreadsheet all downstream of the same calculation</p>
+                </div>
+                <div class="stat-item">
+                    <h3>~20 Weeks</h3>
+                    <p>Assessment to full deployment, with a usable release in week eight</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2>The situation</h2>
+            <p class="lead">A group assembling a multi-store platform was running the entire venture out of a spreadsheet workbook and a slide deck. Both were maintained by hand, and they had stopped agreeing with each other somewhere around the third revision.</p>
+            <p>The practical consequences were the ones every group of this kind eventually hits. A question from a capital partner took two days to answer because the answer meant rebuilding a tab. A change to one acquisition assumption meant touching the model, the narrative, and the deck separately, and remembering all three. Nobody could say with confidence which version of the seven-store forecast was current. And there was no way to give an outside partner a look at the numbers without either sending a file that would be stale in a week or granting access to everything, including live broker packages under NDA.</p>
+
+            <h2>What we built</h2>
+            <p>A private web application with a computational model underneath it, replacing the workbook rather than presenting it. The core decision was that every artifact &mdash; the dashboard, the written plan, the pitch deck, and the Excel forecast &mdash; is generated from one set of assumption files, so there is no second place where a number can be wrong.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="tag">Operating</span>
+                    <h3>Store and group performance</h3>
+                    <p>Consolidated P&amp;L with each rooftop underneath it, and departmental detail for new, used, F&amp;I, fixed operations, parts, and marketing. Every line carries a written definition and the benchmark it should be measured against, reachable in place.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">Financial</span>
+                    <h3>Capital, balance sheet, and covenants</h3>
+                    <p>Floorplan and acquisition debt, the equity call schedule, working capital and the cash conversion cycle, and the covenant tests the credit agreement applies. Covenant rows carry the basis being tested, because leverage measured one way passes while the other reads as a failure.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">Analysis</span>
+                    <h3>Scenarios that actually re-run</h3>
+                    <p>Levers for volume, debt draw, expense-to-gross, pay plans, and exit timing. Moving one re-runs the model rather than scaling a stored result, and each lever declares its units and range so an out-of-bounds input is reported instead of silently clamped into a different question.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">Analysis</span>
+                    <h3>Earnings bridge and value creation</h3>
+                    <p>A quality-of-earnings view separating reported profit from what survives diligence, and a decomposition of the projected return into its sources &mdash; operating improvement, deleveraging, and multiple &mdash; so the story a partner is told matches the arithmetic behind it.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">Execution</span>
+                    <h3>Deal pipeline and target evaluation</h3>
+                    <p>A record per acquisition target with the broker package, the evaluation, the diligence state, and the modeled effect of adding that store to the group. Notes and activity live on the deal rather than in an inbox.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">Execution</span>
+                    <h3>Documents and e-signature</h3>
+                    <p>Agreements rendered from live data, sent for signature with an ESIGN-compliant disclosure, countersigned, and stored so the executed copy can be produced again intact. A material change to a document re-triggers consent; an editorial one does not.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">Execution</span>
+                    <h3>Forms automation</h3>
+                    <p>Recurring lender and administrative PDFs scanned once, their fields mapped to data already in the system, and filled on demand rather than retyped.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">Assist</span>
+                    <h3>Ask, with its sources shown</h3>
+                    <p>A chat panel that answers over the live plan &mdash; reading the computed model, and re-running the engine for what-if questions &mdash; listing what it read and what it ran beneath each answer. It states plainly where a result cannot be computed instead of producing a plausible one.</p>
+                </div>
+            </div>
+
+            <h2>Three decisions worth copying</h2>
+
+            <h3 style="font-size:1.25rem; font-weight:700; color:#0a1628; margin-top:36px; margin-bottom:12px;">The navigation is the access policy</h3>
+            <p>Stakeholders &mdash; a capital partner, a lender, an OEM contact &mdash; see a curated set of pages: the plan, the schedule, what the money does, where the return comes from, and what is being asked for. They do not see the pipeline, the internal commentary, or the diligence detail that would start an argument before it has been asked for.</p>
+            <p>The routes a role may open are derived from the routes that role can see, from one definition. That closes the failure mode where a page is dropped from a menu but remains reachable by typing its URL &mdash; which looks like a security control and is not one. A build check verifies each page agrees with the policy, so the two cannot drift.</p>
+
+            <h3 style="font-size:1.25rem; font-weight:700; color:#0a1628; margin-top:36px; margin-bottom:12px;">Documentation that the build enforces</h3>
+            <p>Every P&amp;L line carries a definition and a benchmark, and every page carries a walkthrough explaining what it decides and what it is deliberately not claiming. None of that is optional: automated checks fail the build if a line has no definition, if a definition describes a line that no longer exists, if a page has no walkthrough, or if a walkthrough points at something that is no longer on the page.</p>
+            <p>Documentation that is merely intended goes stale within a quarter. Documentation the build refuses to ship without stays true, and it doubles as onboarding for a new manager.</p>
+
+            <h3 style="font-size:1.25rem; font-weight:700; color:#0a1628; margin-top:36px; margin-bottom:12px;">Stated limits instead of confident guesses</h3>
+            <p>Covenant tests are computed by the financial engine for the base case and the named scenarios, and are not derivable for an arbitrary user-defined run. Rather than extrapolating something that would look right, the system says which cases it can answer for and declines the rest &mdash; in the interface and in the assistant alike.</p>
+            <div class="callout">
+                <p><strong>This is the whole trust argument.</strong> A dashboard is believed because of what it refuses to claim. One number that quietly guesses, discovered later, costs more credibility than a dozen honest blanks.</p>
+            </div>
+
+            <h2>Build sequence</h2>
+            <div class="table-scroll">
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Work</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Weeks 1&ndash;3</td>
+                        <td>Assessment. Statement walkthrough, source inventory, and one written definition and benchmark per metric before any code.</td>
+                    </tr>
+                    <tr>
+                        <td>Weeks 3&ndash;8</td>
+                        <td>Model and data layer. Store P&amp;L through group consolidation, extracts running, reconciliation to the statement, and the consolidated dashboard live for a pilot group.</td>
+                    </tr>
+                    <tr>
+                        <td>Weeks 8&ndash;14</td>
+                        <td>Departmental modules, balance sheet and working capital, and the scenario engine once the base numbers were accepted.</td>
+                    </tr>
+                    <tr>
+                        <td>Weeks 12&ndash;18</td>
+                        <td>Execution modules: pipeline, target evaluation, documents with signature, forms automation.</td>
+                    </tr>
+                    <tr>
+                        <td>Weeks 16&ndash;20</td>
+                        <td>Stakeholder role, generated deck and report, assistant panel, and the walkthroughs. Deployment and handover.</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h2>Outcomes</h2>
+            <ul>
+                <li><strong>One current answer.</strong> The forecast, the narrative, and the deck cannot disagree, because all three are generated from the same assumption files.</li>
+                <li><strong>Partner questions answered in the meeting.</strong> A what-if is a lever move and a re-run rather than two days of spreadsheet work.</li>
+                <li><strong>Outside access without exposure.</strong> Stakeholders read a curated view; live broker packages and internal commentary are not reachable by them at all.</li>
+                <li><strong>Diligence artifacts as a by-product.</strong> The earnings bridge, the working-capital view, and the executed document trail already exist when they are asked for.</li>
+                <li><strong>Reporting time recovered.</strong> The recurring assembly work &mdash; rebuilding tabs, restating decks, retyping forms &mdash; is gone rather than redistributed.</li>
+            </ul>
+
+            <div class="callout">
+                <p><strong>About this page.</strong> This describes a real system and the decisions behind it. The store count and the phase dates reflect that build; your scope, your data sources, and your timeline will differ. We are describing an approach, not quoting a project.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-services">
+        <div class="container">
+            <h3>Related capabilities</h3>
+            <div class="related-links">
+                <a href="/services/dealership-dashboard-platform" class="related-link">Dealership Dashboard Platform</a>
+                <a href="/services/fi-fixed-ops-analytics" class="related-link">F&amp;I &amp; Fixed Ops Analytics</a>
+                <a href="/services/dms-crm-integration" class="related-link">DMS &amp; CRM Integration</a>
+                <a href="/industries/automotive-retail" class="related-link">Automotive Retail Overview</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 48px; font-size: 2rem; font-weight: 700;">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Does a single-store dealer need something this large?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>No, and we would not build this for one. A single rooftop typically wants the consolidated dashboard, the departmental modules, and the data layer underneath them &mdash; roughly the first two phases. The capital, pipeline, and stakeholder machinery exists because a group raising money and buying stores needs it.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can this run against our existing stores rather than a forecast?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, and for an operating group that is the normal configuration. The model computes from actuals loaded out of the DMS instead of from assumption files, and the scenario engine then runs forward from where the stores actually are. The forecast-driven setup described here reflects a platform being assembled, where much of the group did not exist yet.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How long before we see something usable?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>The first release that people actually use is around week eight: the consolidated dashboard, reconciled to the statement, live for a pilot group. Everything after that is additive. We sequence it this way on purpose &mdash; a project whose first demo is in month five has usually built the wrong thing by then.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What does the assistant cost to run?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Less than most people expect. It runs a mid-tier model at medium effort because the work is bounded tool use over structured data rather than open-ended reasoning, and the whole conversation is cached rather than just the system prompt &mdash; so each round of a tool loop re-reads the context at roughly a tenth of the price. At dealership question volumes it is a small monthly line item.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Who owns what at the end?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>You own the code, the data, and the infrastructure it runs on. It can be deployed into your cloud account. Nothing in the build is structured to make leaving difficult.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Building something similar?</h2>
+            <p>Whether you are running seven stores or buying your second, the hard part is the same: one set of numbers everyone agrees on. Let's talk about yours.</p>
+            <a href="mailto:info@kautotech.com" class="btn btn-primary">Schedule a Consultation</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
+                        K Auto Tech
+                    </div>
+                    <p>Dashboards, data integration, and custom software for automotive retail. We build the systems dealerships and dealer groups run on.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Services</h4>
+                        <a href="/services/dealership-dashboard-platform">Dealership Dashboard Platform</a>
+                        <a href="/services/fi-fixed-ops-analytics">F&amp;I &amp; Fixed Ops Analytics</a>
+                        <a href="/services/dms-crm-integration">DMS &amp; CRM Integration</a>
+                        <a href="/services/used-vehicle-recon-analytics">Used Vehicle &amp; Recon</a>
+                        <a href="/services/dealership-workflow-automation">Workflow Automation</a>
+                        <a href="/services/dealer-acquisition-diligence">Acquisition &amp; Diligence</a>
+                    </div>
+                    <div>
+                        <h4>Solutions</h4>
+                        <a href="/solutions/dealer-group-performance-dashboard">Dealer Group Dashboard</a>
+                        <a href="/solutions/fixed-ops-performance-dashboard">Fixed Ops Dashboard</a>
+                        <a href="/solutions/used-vehicle-inventory-dashboard">Used Vehicle Dashboard</a>
+                        <a href="/solutions">All Solutions</a>
+                    </div>
+                    <div>
+                        <h4>Who We Serve</h4>
+                        <a href="/industries/automotive-retail">Automotive Retail Overview</a>
+                        <a href="/industries/automotive-retail#dealer-groups">Dealer Groups</a>
+                        <a href="/industries/automotive-retail#single-rooftop">Single Rooftop Dealers</a>
+                        <a href="/industries/automotive-retail#acquisition">Acquisition Platforms</a>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <a href="/#about">About</a>
+                        <a href="/#contact">Contact</a>
+                        <a href="mailto:info@kautotech.com">info@kautotech.com</a>
+                        <a href="/privacy-policy">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 K Auto Tech LLC. All rights reserved.</span>
+                <span>Houston, Texas</span>
+            </div>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Dealer Group Performance Dashboard",
+        "description": "A representative build: a multi-rooftop dealer group running store performance, capital, deal pipeline, and document execution from one authenticated web application generated from a single financial model.",
+        "author": {
+            "@type": "Organization",
+            "name": "K Auto Tech LLC",
+            "url": "https://kautotech.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "K Auto Tech LLC",
+            "url": "https://kautotech.com"
+        },
+        "about": "Automotive dealer group performance dashboards and analytics"
+    }
+    </script>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        function toggleMobileNav() {
+            document.getElementById('mobileNav').classList.toggle('hidden');
+        }
+        function toggleFAQ(element) {
+            element.parentElement.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>

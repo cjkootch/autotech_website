@@ -3,10 +3,10 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>K Auto Tech LLC | Government Software Development & Automation Consulting</title>
- <meta name="description" content="K Auto Tech LLC delivers custom software development, workflow automation, and digital modernization consulting for government agencies, public authorities, and operationally complex organizations.">
- <meta property="og:title" content="K Auto Tech LLC | Software Development & Automation Consulting">
- <meta property="og:description" content="Custom software, workflow automation, and digital modernization for government and public-sector organizations.">
+ <title>K Auto Tech LLC | Dealership Dashboards, Analytics & Software</title>
+ <meta name="description" content="K Auto Tech LLC builds dashboards, data integration, and custom software for automotive retail — dealership and dealer group performance reporting, DMS and CRM integration, F&amp;I and fixed operations analytics, and used vehicle visibility.">
+ <meta property="og:title" content="K Auto Tech LLC | Dealership Dashboards, Analytics &amp; Software">
+ <meta property="og:description" content="Dashboards, DMS and CRM integration, and custom software for dealerships and dealer groups. Built for your account structure, not configured from a product.">
  <meta property="og:type" content="website">
  <meta property="og:url" content="https://kautotech.com">
  <link rel="icon" type="image/png" href="/k icon.png">
@@ -553,16 +553,16 @@
  }
 
  /* ========================================
- GOVERNMENT SOLUTIONS SECTION
+ PLATFORM SECTION
  ======================================== */
- .gov-solutions {
+ .platform-section {
  padding: var(--section-pad);
  background: var(--navy);
  color: var(--white);
  position: relative;
  overflow: hidden;
  }
- .gov-solutions::before {
+ .platform-section::before {
  content: '';
  position: absolute;
  top: 0; left: 0; right: 0; bottom: 0;
@@ -571,50 +571,52 @@
  linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
  background-size: 48px 48px;
  }
- .gov-illustration {
+ .platform-illustration {
  margin-top: 40px;
  }
- .gov-illustration img {
+ .platform-illustration img {
  width: 100%;
+ max-height: 380px;
+ object-fit: cover;
  border-radius: var(--radius-lg);
  opacity: 0.9;
  }
- .gov-solutions .container { position: relative; z-index: 1; }
- .gov-grid {
+ .platform-section .container { position: relative; z-index: 1; }
+ .platform-grid {
  display: grid;
  grid-template-columns: 1fr 1fr;
  gap: 64px;
  align-items: start;
  }
- .gov-content .section-title { color: var(--white); }
- .gov-content p {
+ .platform-content .section-title { color: var(--white); }
+ .platform-content p {
  color: #94a3b8;
  font-size: 1rem;
  line-height: 1.75;
  margin-bottom: 24px;
  }
- .gov-capabilities {
+ .platform-caps {
  display: grid;
  grid-template-columns: 1fr 1fr;
  gap: 16px;
  }
- .gov-cap-item {
+ .platform-cap {
  padding: 20px;
  background: rgba(255,255,255,0.04);
  border: 1px solid rgba(255,255,255,0.08);
  border-radius: var(--radius);
  transition: all var(--transition);
  }
- .gov-cap-item:hover {
+ .platform-cap:hover {
  background: rgba(255,255,255,0.07);
  border-color: rgba(232, 96, 76, 0.3);
  }
- .gov-cap-item h4 {
+ .platform-cap h4 {
  font-size: 0.9rem;
  font-weight: 600;
  margin-bottom: 6px;
  }
- .gov-cap-item p {
+ .platform-cap p {
  font-size: 0.8rem;
  color: #64748b;
  line-height: 1.6;
@@ -1063,7 +1065,7 @@
  ======================================== */
  @media (max-width: 1024px) {
  .services-grid { grid-template-columns: repeat(2, 1fr); }
- .gov-grid { grid-template-columns: 1fr; gap: 40px; }
+ .platform-grid { grid-template-columns: 1fr; gap: 40px; }
  .industries-grid { grid-template-columns: repeat(2, 1fr); }
  .why-grid { grid-template-columns: 1fr; gap: 40px; }
  .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1191,7 +1193,7 @@
  .nav { display: none; }
  .mobile-toggle { display: block; }
  .services-grid { grid-template-columns: 1fr; }
- .gov-capabilities { grid-template-columns: 1fr; }
+ .platform-caps { grid-template-columns: 1fr; }
  .industries-grid { grid-template-columns: 1fr; }
  .process-grid { grid-template-columns: 1fr 1fr; }
  .process-connector { display: none; }
@@ -1228,14 +1230,14 @@
  <img src="/k icon.png" alt="K Auto Tech" class="logo-icon">
  <div class="logo-text">
  <span class="logo-name">K Auto Tech</span>
- <span class="logo-descriptor">Automation & Modernization Consulting</span>
+ <span class="logo-descriptor">Dealership Systems &amp; Analytics</span>
  </div>
  </a>
  <nav class="nav">
  <a href="#services">Services</a>
- <a href="solutions/">Solutions</a>
- <a href="government.html">Government</a>
- <a href="/markets/">Markets</a>
+ <a href="#platform">Platform</a>
+ <a href="/solutions">Solutions</a>
+ <a href="/industries/automotive-retail">Who We Serve</a>
  <a href="#about">About</a>
  <a href="#contact" class="btn btn-primary">Schedule Discovery Call</a>
  </nav>
@@ -1249,9 +1251,9 @@
  <div class="mobile-nav" id="mobileNav">
  <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Close menu">&times;</button>
  <a href="#services" onclick="toggleMobileNav()">Services</a>
- <a href="solutions/" onclick="toggleMobileNav()">Solutions</a>
- <a href="government.html" onclick="toggleMobileNav()">Government</a>
- <a href="/markets/" onclick="toggleMobileNav()">Markets</a>
+ <a href="#platform" onclick="toggleMobileNav()">Platform</a>
+ <a href="/solutions" onclick="toggleMobileNav()">Solutions</a>
+ <a href="/industries/automotive-retail" onclick="toggleMobileNav()">Who We Serve</a>
  <a href="#about" onclick="toggleMobileNav()">About</a>
  <a href="#contact" onclick="toggleMobileNav()">Contact</a>
  </div>
@@ -1271,25 +1273,25 @@
  </div>
  <div class="container" style="position:relative; z-index:2;">
  <div class="hero-content">
- <div class="hero-label">Government &amp; Enterprise Automation Consulting</div>
- <h1>We Build the Systems That Run <span class="highlight">Your Operations.</span></h1>
- <p>We design and build internal tools, automation workflows, and data systems that help organizations operate more efficiently and make better decisions.</p>
+ <div class="hero-label">Dealership &amp; Dealer Group Systems Consulting</div>
+ <h1>The Numbers Your Store Already Has, <span class="highlight">On The Day You Need Them.</span></h1>
+ <p>We build dashboards, data integration, and custom software for automotive retail. One set of definitions across every rooftop, reconciled to the financial statement, in front of the people making the decision.</p>
  <div class="hero-ctas">
  <a href="#contact" class="btn btn-primary btn-arrow">Request a Consultation</a>
  <a href="#services" class="btn btn-secondary btn-arrow">View Services</a>
  </div>
  <div class="hero-stats">
  <div class="hero-stat">
- <h3>Houston, TX</h3>
- <p>Based in Texas, serving US, Canada &amp; Caribbean</p>
+ <h3>Rooftop to Group</h3>
+ <p>Single stores through multi-brand acquisition platforms</p>
  </div>
  <div class="hero-stat">
- <h3>Custom-Built</h3>
- <p>Designed for your operations</p>
+ <h3>Reconciled</h3>
+ <p>Every figure ties to the statement before anyone sees it</p>
  </div>
  <div class="hero-stat">
- <h3>End-to-End</h3>
- <p>Assessment through deployment &amp; support</p>
+ <h3>Built, Not Resold</h3>
+ <p>Developed in house for your accounts and your pay plans</p>
  </div>
  </div>
  </div>
@@ -1302,12 +1304,12 @@
  <section class="credibility">
  <div class="container">
  <div class="credibility-grid">
- <div class="credibility-item"><span class="credibility-dot"></span>Custom Software Development</div>
- <div class="credibility-item"><span class="credibility-dot"></span>Workflow Automation</div>
- <div class="credibility-item"><span class="credibility-dot"></span>Operational Dashboards</div>
- <div class="credibility-item"><span class="credibility-dot"></span>Systems Integration</div>
- <div class="credibility-item"><span class="credibility-dot"></span>Process Modernization</div>
- <div class="credibility-item"><span class="credibility-dot"></span>Internal Tools</div>
+ <div class="credibility-item"><span class="credibility-dot"></span>Dealership Dashboards</div>
+ <div class="credibility-item"><span class="credibility-dot"></span>DMS &amp; CRM Integration</div>
+ <div class="credibility-item"><span class="credibility-dot"></span>F&amp;I Analytics</div>
+ <div class="credibility-item"><span class="credibility-dot"></span>Fixed Operations</div>
+ <div class="credibility-item"><span class="credibility-dot"></span>Used Vehicle &amp; Recon</div>
+ <div class="credibility-item"><span class="credibility-dot"></span>Acquisition Diligence</div>
  </div>
  </div>
  </section>
@@ -1319,55 +1321,55 @@
  <div class="container">
  <div class="section-header section-header--center reveal">
  <span class="section-label">Who We Serve</span>
- <h2 class="section-title">Find solutions for your organization</h2>
+ <h2 class="section-title">Find what fits your operation</h2>
  </div>
  <div class="buyer-paths-grid">
- <a href="industries/local-government.html" class="buyer-path-card reveal reveal-delay-1">
+ <a href="/industries/automotive-retail#single-rooftop" class="buyer-path-card reveal reveal-delay-1">
  <div class="buyer-path-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3v-5l2-5h11l3 5h2v5h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
  </div>
- <h3>For Municipalities</h3>
- <p>Workflow automation, citizen service portals, and internal department tools</p>
+ <h3>Single-Rooftop Dealers</h3>
+ <p>One dashboard that replaces the month-end spreadsheet pack</p>
  <span class="buyer-path-arrow">&rarr;</span>
  </a>
- <a href="industries/utilities.html" class="buyer-path-card reveal reveal-delay-2">
+ <a href="/industries/automotive-retail#dealer-groups" class="buyer-path-card reveal reveal-delay-2">
  <div class="buyer-path-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
  </div>
- <h3>For Utilities</h3>
- <p>Operational dashboards, service delivery systems, and reporting automation</p>
+ <h3>Multi-Rooftop Groups</h3>
+ <p>Consolidation across stores on one chart of accounts</p>
  <span class="buyer-path-arrow">&rarr;</span>
  </a>
- <a href="industries/permitting-licensing.html" class="buyer-path-card reveal reveal-delay-3">
- <div class="buyer-path-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
- </div>
- <h3>For Permitting Departments</h3>
- <p>Application processing, compliance tracking, and legacy system replacement</p>
- <span class="buyer-path-arrow">&rarr;</span>
- </a>
- <a href="industries/procurement-administration.html" class="buyer-path-card reveal reveal-delay-4">
+ <a href="/industries/automotive-retail#acquisition" class="buyer-path-card reveal reveal-delay-3">
  <div class="buyer-path-icon">
  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
  </div>
- <h3>For Procurement Teams</h3>
- <p>Document workflows, vendor management, and purchasing automation</p>
+ <h3>Acquisition Platforms</h3>
+ <p>Deal pipeline, earnings bridge, and group roll-up modeling</p>
  <span class="buyer-path-arrow">&rarr;</span>
  </a>
- <a href="industries/transportation.html" class="buyer-path-card reveal reveal-delay-5">
+ <a href="/services/fi-fixed-ops-analytics" class="buyer-path-card reveal reveal-delay-4">
  <div class="buyer-path-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="17" r="1"/><circle cx="19" cy="17" r="1"/><path d="M7 18H3c-1 0-1-1-1-1V7c0-1 0-2 1-2h14c1 0 2 1 2 2v8c0 1-1 2-2 2h-4l2 3h2c2 0 3-1 3-3V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"/></svg>
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
  </div>
- <h3>For Transportation Agencies</h3>
- <p>Fleet operations, scheduling systems, and data integration</p>
+ <h3>F&amp;I Directors</h3>
+ <p>Penetration, per-copy gross, lender spread, and reinsurance</p>
  <span class="buyer-path-arrow">&rarr;</span>
  </a>
- <a href="industries/regulated-private-industry.html" class="buyer-path-card reveal reveal-delay-6">
+ <a href="/services/fi-fixed-ops-analytics" class="buyer-path-card reveal reveal-delay-5">
  <div class="buyer-path-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
  </div>
- <h3>For Regulated Businesses</h3>
- <p>Compliance-aware systems, operational visibility, and process modernization</p>
+ <h3>Fixed Operations Directors</h3>
+ <p>Absorption, effective labor rate, and technician productivity</p>
+ <span class="buyer-path-arrow">&rarr;</span>
+ </a>
+ <a href="/services/used-vehicle-recon-analytics" class="buyer-path-card reveal reveal-delay-6">
+ <div class="buyer-path-icon">
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+ </div>
+ <h3>Used Vehicle Managers</h3>
+ <p>Aging by source, landed cost, and where recon days are lost</p>
  <span class="buyer-path-arrow">&rarr;</span>
  </a>
  </div>
@@ -1380,52 +1382,52 @@
  <section class="services" id="services">
  <div class="container">
  <div class="section-header section-header--center reveal">
- <span class="section-label">What We Build For Our Clients</span>
- <h2 class="section-title">What we build for our clients</h2>
- <p class="section-subtitle">Every engagement starts with understanding how your organization works. We design and build systems that solve real operational problems.</p>
+ <span class="section-label">What We Build</span>
+ <h2 class="section-title">What we build for dealerships</h2>
+ <p class="section-subtitle">Every engagement starts with how your store actually runs — your accounts, your pay plans, your DMS. We design and build systems that answer the questions your current reporting cannot.</p>
  </div>
  <div class="services-grid">
  <div class="service-card reveal reveal-delay-1">
  <div class="service-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
  </div>
- <h3>Workflow Automation</h3>
- <p>Replace manual, repetitive processes with automated workflows that reduce errors, save time, and give your team capacity back. From document routing to approval chains to data entry elimination.</p>
+ <h3><a href="/services/dealership-dashboard-platform">Dealership Dashboard Platform</a></h3>
+ <p>A role-gated web dashboard covering the whole store or group: consolidated P&amp;L, variable and fixed operations, scenario modeling, and generated reporting. Owners see everything; lenders and capital partners see a curated subset. <a href="/services/dealership-dashboard-platform" style="color:var(--coral); font-weight:600; white-space:nowrap;">Learn more &rarr;</a></p>
  </div>
  <div class="service-card reveal reveal-delay-2">
  <div class="service-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
  </div>
- <h3>Custom Software Development</h3>
- <p>Purpose-built applications designed for your specific workflows. Internal tools, public-facing portals, data processing systems, and operational platforms that solve the problems off-the-shelf software cannot.</p>
+ <h3><a href="/services/fi-fixed-ops-analytics">F&amp;I &amp; Fixed Operations Analytics</a></h3>
+ <p>Product penetration, per-copy gross, lender spread and reinsurance on the variable side. Absorption, effective labor rate, technician and advisor productivity, parts and warranty on the fixed side — per store, per person. <a href="/services/fi-fixed-ops-analytics" style="color:var(--coral); font-weight:600; white-space:nowrap;">Learn more &rarr;</a></p>
  </div>
  <div class="service-card reveal reveal-delay-3">
  <div class="service-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M16.36 16.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M16.36 7.64l1.42-1.42"/></svg>
  </div>
- <h3>Data Dashboards &amp; Reporting</h3>
- <p>Operational dashboards that give leadership and staff real-time visibility into what matters. KPI tracking, performance reporting, and data visualization that turns raw information into decisions.</p>
+ <h3><a href="/services/dms-crm-integration">DMS &amp; CRM Integration</a></h3>
+ <p>Extracts from CDK, Reynolds, Dealertrack, Tekion, VinSolutions and the rest; account structures normalized across rooftops; everything reconciled to the financial statement in a warehouse you own. <a href="/services/dms-crm-integration" style="color:var(--coral); font-weight:600; white-space:nowrap;">Learn more &rarr;</a></p>
  </div>
  <div class="service-card reveal reveal-delay-4">
  <div class="service-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M16.36 16.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M16.36 7.64l1.42-1.42"/></svg>
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
  </div>
- <h3>Systems Integration</h3>
- <p>Connect the tools your organization already uses. We build secure integrations between legacy systems, cloud platforms, databases, and third-party services so data flows where it needs to go.</p>
+ <h3><a href="/services/used-vehicle-recon-analytics">Used Vehicle &amp; Recon Analytics</a></h3>
+ <p>True days in inventory, landed cost with reconditioning charged back to the buyer who sourced the unit, staged recon cycle time, merchandising readiness, and a wholesale post-mortem that informs buying. <a href="/services/used-vehicle-recon-analytics" style="color:var(--coral); font-weight:600; white-space:nowrap;">Learn more &rarr;</a></p>
  </div>
  <div class="service-card reveal reveal-delay-5">
  <div class="service-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+ <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
  </div>
- <h3>Digital Modernization Consulting</h3>
- <p>Strategic advisory for organizations ready to move past paper-based processes, disconnected spreadsheets, and legacy workflows. We assess, plan, and execute modernization projects that deliver real improvements.</p>
+ <h3><a href="/services/dealership-workflow-automation">Workflow &amp; Document Automation</a></h3>
+ <p>Documents rendered from live data, ESIGN-compliant signature and countersignature, PDF form fill, approval routing, deal jacket completeness, and month-end packages generated on a schedule. <a href="/services/dealership-workflow-automation" style="color:var(--coral); font-weight:600; white-space:nowrap;">Learn more &rarr;</a></p>
  </div>
  <div class="service-card reveal reveal-delay-6">
  <div class="service-icon">
  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
  </div>
- <h3>AI-Enabled Process Improvement</h3>
- <p>Practical applications of machine learning and intelligent automation where they make operational sense. Document processing, classification, routing, and decision support tools that reduce workload without adding complexity.</p>
+ <h3><a href="/services/dealer-acquisition-diligence">Acquisition &amp; Diligence Systems</a></h3>
+ <p>For groups that buy stores: deal pipeline, target evaluation against your own definitions, a quality-of-earnings bridge that itemizes every add-back, working capital at close, and group roll-up modeling. <a href="/services/dealer-acquisition-diligence" style="color:var(--coral); font-weight:600; white-space:nowrap;">Learn more &rarr;</a></p>
  </div>
  </div>
  </div>
@@ -1439,85 +1441,85 @@
  <div class="section-header section-header--center reveal">
  <span class="section-label">Example Engagements</span>
  <h2 class="section-title">Example engagements</h2>
- <p class="section-subtitle">These represent typical project scopes. Each engagement is scoped to the client's specific operational requirements.</p>
+ <p class="section-subtitle">These represent typical project scopes. Each engagement is scoped to the store or group's specific operation and data sources.</p>
  </div>
  <div class="project-scopes-grid">
  <div class="project-scope-card reveal reveal-delay-1">
- <h3>Municipal Permit Tracking System</h3>
- <p>Custom web application to digitize permit applications, automate routing, track status, and generate compliance reports. Replaces paper-based process handling 2,000+ applications annually.</p>
- <span class="scope-timeline">Typical Timeline: 12-16 weeks</span>
- <a href="#contact" class="scope-cta">Discuss Similar Projects &rarr;</a>
+ <h3>Dealer Group Performance Dashboard</h3>
+ <p>Multi-rooftop consolidation on one chart of accounts: store and department performance, capital and covenants, scenario modeling, acquisition pipeline, and role-gated access for lenders and capital partners.</p>
+ <span class="scope-timeline">Typical Timeline: 16-20 weeks</span>
+ <a href="/solutions/dealer-group-performance-dashboard" class="scope-cta">View This Solution &rarr;</a>
  </div>
  <div class="project-scope-card reveal reveal-delay-2">
- <h3>Fuel Distribution Dashboard</h3>
- <p>Real-time operational dashboard integrating fleet GPS, delivery scheduling, and inventory data. Provides dispatch visibility and automated daily reporting.</p>
+ <h3>Fixed Operations Performance Dashboard</h3>
+ <p>Service and parts instrumented daily: absorption, effective labor rate by pay type, technician and advisor productivity, throughput and capacity, parts fill rate, warranty aging, and service retention by cohort.</p>
  <span class="scope-timeline">Typical Timeline: 8-10 weeks</span>
- <a href="#contact" class="scope-cta">Discuss Similar Projects &rarr;</a>
+ <a href="/solutions/fixed-ops-performance-dashboard" class="scope-cta">View This Solution &rarr;</a>
  </div>
  <div class="project-scope-card reveal reveal-delay-3">
- <h3>County Procurement Workflow</h3>
- <p>End-to-end digitization of RFP creation, vendor response collection, evaluation scoring, and award documentation. Eliminates manual document assembly.</p>
- <span class="scope-timeline">Typical Timeline: 10-14 weeks</span>
- <a href="#contact" class="scope-cta">Discuss Similar Projects &rarr;</a>
+ <h3>Used Vehicle Inventory Dashboard</h3>
+ <p>Unit-level inventory reporting: true days in inventory, landed cost by acquisition source, staged reconditioning cycle time, merchandising readiness, and a daily action list with a named owner.</p>
+ <span class="scope-timeline">Typical Timeline: 6-8 weeks</span>
+ <a href="/solutions/used-vehicle-inventory-dashboard" class="scope-cta">View This Solution &rarr;</a>
  </div>
  <div class="project-scope-card reveal reveal-delay-4">
- <h3>Utility Service Request Portal</h3>
- <p>Public-facing portal for service requests with automated routing to field teams, status tracking for citizens, and management reporting.</p>
- <span class="scope-timeline">Typical Timeline: 14-18 weeks</span>
- <a href="#contact" class="scope-cta">Discuss Similar Projects &rarr;</a>
+ <h3>DMS Data Layer &amp; Reconciliation</h3>
+ <p>Nightly extracts from DMS, CRM, inventory and lender systems, account structures mapped to common definitions across rooftops, and reconciliation to the statement before anything is published.</p>
+ <span class="scope-timeline">Typical Timeline: 6-12 weeks</span>
+ <a href="/services/dms-crm-integration" class="scope-cta">See the Service &rarr;</a>
  </div>
  </div>
  </div>
  </section>
 
  <!-- ========================================
- GOVERNMENT SOLUTIONS
+ THE PLATFORM
  ======================================== -->
- <section class="gov-solutions" id="government">
+ <section class="platform-section" id="platform">
  <div class="container">
- <div class="gov-grid">
- <div class="gov-content reveal">
- <span class="section-label section-label--light">Public Sector</span>
- <h2 class="section-title">Built for how government<br>actually operates</h2>
- <p>Government agencies face a specific set of challenges: compliance requirements, procurement constraints, legacy systems, limited IT resources, and high public accountability. We understand these realities because we build specifically for them.</p>
- <p>Our approach is practical. We assess your current processes, identify where manual work and fragmented systems create bottlenecks, and build focused solutions that improve operations without requiring a massive organizational overhaul.</p>
- <a href="#contact" class="btn btn-primary btn-arrow" style="margin-top: 12px;">Discuss Your Requirements</a>
- <div class="gov-illustration">
- <img src="images/gov-solutions.png" alt="Digital government workflow systems and connected infrastructure" loading="lazy">
+ <div class="platform-grid">
+ <div class="platform-content reveal">
+ <span class="section-label section-label--light">The Platform</span>
+ <h2 class="section-title">Built for how a dealership<br>actually operates</h2>
+ <p>Dealerships run on a stack that was never designed to talk to itself: a DMS, a CRM, a desking tool, an inventory feed, a reinsurance statement, and a folder of month-end spreadsheets. The numbers exist. They arrive late, they disagree across rooftops, and someone rebuilds them by hand every period.</p>
+ <p>We build the layer that closes that gap — and we build it around your operation rather than configuring you into a product. The modules below are what we have built and what we build from. Which of them you get, and how they are wired to your data, is settled during assessment.</p>
+ <a href="/services/dealership-dashboard-platform" class="btn btn-primary btn-arrow" style="margin-top: 12px;">Explore the Platform</a>
+ <div class="platform-illustration">
+ <img src="images/dashboard.png" alt="Operational dashboard showing dealership performance metrics" loading="lazy">
  </div>
  </div>
- <div class="gov-capabilities reveal reveal-delay-2">
- <div class="gov-cap-item">
- <h4>Administrative Workflows</h4>
- <p>Automate approval chains, document routing, and internal request processing</p>
+ <div class="platform-caps reveal reveal-delay-2">
+ <div class="platform-cap">
+ <h4>Consolidated Dashboard</h4>
+ <p>Revenue and gross by department, store-by-store comparison, and what is off benchmark</p>
  </div>
- <div class="gov-cap-item">
- <h4>Manual Process Reduction</h4>
- <p>Eliminate redundant data entry, paper forms, and spreadsheet-based tracking</p>
+ <div class="platform-cap">
+ <h4>New, Used &amp; F&amp;I</h4>
+ <p>Volume, gross per unit, aging and turn, penetration and per-copy gross by manager</p>
  </div>
- <div class="gov-cap-item">
- <h4>Reporting &amp; Visibility</h4>
- <p>Dashboards and automated reports for departmental and executive oversight</p>
+ <div class="platform-cap">
+ <h4>Fixed Operations &amp; Parts</h4>
+ <p>Absorption, effective labor rate, technician proficiency, and parts obsolescence</p>
  </div>
- <div class="gov-cap-item">
- <h4>Internal Department Tools</h4>
- <p>Custom applications for permitting, licensing, procurement, and case management</p>
+ <div class="platform-cap">
+ <h4>Balance Sheet &amp; Working Capital</h4>
+ <p>Floorplan, contracts in transit, the cash conversion cycle, and covenant tests</p>
  </div>
- <div class="gov-cap-item">
- <h4>Citizen Service Systems</h4>
- <p>Public-facing portals, request tracking, and service delivery platforms</p>
+ <div class="platform-cap">
+ <h4>Scenarios &amp; What-If</h4>
+ <p>Move a lever and the model re-runs — range checked, never silently clamped</p>
  </div>
- <div class="gov-cap-item">
- <h4>Document &amp; Procurement</h4>
- <p>Digitize and streamline document workflows, RFP processes, and contract management</p>
+ <div class="platform-cap">
+ <h4>Quality of Earnings</h4>
+ <p>An earnings bridge that separates performance from what an add-back claims</p>
  </div>
- <div class="gov-cap-item">
- <h4>Legacy Enhancement</h4>
- <p>Extend or replace aging systems without disrupting ongoing operations</p>
+ <div class="platform-cap">
+ <h4>Documents &amp; E-Signature</h4>
+ <p>Templates from live data, ESIGN disclosure, and durable executed copies</p>
  </div>
- <div class="gov-cap-item">
- <h4>Cross-System Interoperability</h4>
- <p>Connect siloed systems so departments can share data securely and efficiently</p>
+ <div class="platform-cap">
+ <h4>Glossary &amp; Walkthroughs</h4>
+ <p>Every line carries its definition and benchmark; the build fails without them</p>
  </div>
  </div>
  </div>
@@ -1525,71 +1527,71 @@
  </section>
 
  <!-- ========================================
- INDUSTRIES
+ DEPARTMENTS
  ======================================== -->
- <section class="industries" id="industries">
+ <section class="industries" id="departments">
  <div class="container">
  <div class="section-header section-header--center reveal">
- <span class="section-label">Industries</span>
- <h2 class="section-title">Sectors we serve</h2>
- <p class="section-subtitle">We work with organizations where operations are complex, compliance matters, and systems need to perform reliably under real-world conditions.</p>
+ <span class="section-label">Coverage</span>
+ <h2 class="section-title">Every department, one set of definitions</h2>
+ <p class="section-subtitle">Store-to-store comparison only means something when both stores mean the same thing by the same word. Each line below carries a written definition and the benchmark it is measured against.</p>
  </div>
  <div class="industries-grid">
  <div class="industry-card reveal reveal-delay-1">
  <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3v-5l2-5h11l3 5h2v5h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
  </div>
- <h3>Local Government</h3>
- <p>Cities, counties, and municipal agencies</p>
- </div>
- <div class="industry-card reveal reveal-delay-2">
- <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
- </div>
- <h3>Transportation</h3>
- <p>Transit authorities and fleet operations</p>
- </div>
- <div class="industry-card reveal reveal-delay-3">
- <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="22" height="12" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
- </div>
- <h3>Infrastructure</h3>
- <p>Capital projects and public works</p>
- </div>
- <div class="industry-card reveal reveal-delay-4">
- <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
- </div>
- <h3>Permitting &amp; Licensing</h3>
- <p>Application processing and compliance tracking</p>
- </div>
- <div class="industry-card reveal reveal-delay-1">
- <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
- </div>
- <h3>Procurement</h3>
- <p>Purchasing workflows and vendor management</p>
+ <h3>New Vehicle</h3>
+ <p>Volume, gross per unit, mix, incentives, and floorplan</p>
  </div>
  <div class="industry-card reveal reveal-delay-2">
  <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
  </div>
- <h3>Utilities</h3>
- <p>Service delivery and operational systems</p>
+ <h3>Used Vehicle</h3>
+ <p>Aging, turn, landed cost, recon cycle, and wholesale</p>
  </div>
  <div class="industry-card reveal reveal-delay-3">
  <div class="industry-icon">
  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
  </div>
- <h3>Economic Development</h3>
- <p>Grant management and program tracking</p>
+ <h3>F&amp;I</h3>
+ <p>Penetration, per-copy gross, lender spread, and reinsurance</p>
  </div>
  <div class="industry-card reveal reveal-delay-4">
  <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
  </div>
- <h3>Regulated Industry</h3>
- <p>Compliance-aware systems for complex operations</p>
+ <h3>Service</h3>
+ <p>Absorption, effective labor rate, and technician productivity</p>
+ </div>
+ <div class="industry-card reveal reveal-delay-1">
+ <div class="industry-icon">
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+ </div>
+ <h3>Parts</h3>
+ <p>Fill rate, days supply, obsolescence, and gross by source</p>
+ </div>
+ <div class="industry-card reveal reveal-delay-2">
+ <div class="industry-icon">
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+ </div>
+ <h3>Body Shop</h3>
+ <p>Cycle time, DRP performance, and gross by job type</p>
+ </div>
+ <div class="industry-card reveal reveal-delay-3">
+ <div class="industry-icon">
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><polyline points="7 14 11 10 15 14 21 8"/></svg>
+ </div>
+ <h3>Accounting</h3>
+ <p>Statement reconciliation, expense-to-gross, and month-end</p>
+ </div>
+ <div class="industry-card reveal reveal-delay-4">
+ <div class="industry-icon">
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+ </div>
+ <h3>BDC &amp; Marketing</h3>
+ <p>Lead source cost, appointment and show rate, and cost per sale</p>
  </div>
  </div>
  </div>
@@ -1603,7 +1605,7 @@
  <div class="why-grid">
  <div class="reveal">
  <span class="section-label">Why Us</span>
- <h2 class="section-title">The right size firm for<br>the right kind of work</h2>
+ <h2 class="section-title">A development firm that<br>speaks dealership</h2>
  <div class="why-list">
  <div class="why-item">
  <div class="why-item-marker">
@@ -1611,7 +1613,7 @@
  </div>
  <div>
  <h4>Operations-first mindset</h4>
- <p>We start with how your organization actually works, not with a technology stack looking for a problem. Every solution is grounded in operational reality.</p>
+ <p>We start with how your store actually runs — your accounts, your pay plans, your DMS — not with a technology stack looking for a problem.</p>
  </div>
  </div>
  <div class="why-item">
@@ -1620,7 +1622,7 @@
  </div>
  <div>
  <h4>Faster than the big firms</h4>
- <p>No six-month discovery phases. No 40-page decks before anyone writes a line of code. We scope quickly, build iteratively, and deliver working systems.</p>
+ <p>No six-month discovery phases. The first release that people actually use is typically live in weeks, not at the end of the project.</p>
  </div>
  </div>
  <div class="why-item">
@@ -1637,8 +1639,8 @@
  <svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>
  </div>
  <div>
- <h4>Procurement-ready</h4>
- <p>We understand government procurement processes, documentation requirements, and compliance expectations. We work within your structure, not around it.</p>
+ <h4>We reconcile before we publish</h4>
+ <p>Every figure ties to the financial statement first. A dashboard that does not reconcile is a demo, and a general manager will be back in the spreadsheet within a month.</p>
  </div>
  </div>
  </div>
@@ -1646,8 +1648,8 @@
  <div class="why-visual reveal reveal-delay-2">
  <img src="images/dashboard.png" alt="Modern operational dashboard visualization" class="why-visual-img" loading="lazy">
  <div class="why-visual-text">
- <blockquote>"We are a consulting and development firm, not a platform company. The same people who assess your operations are the ones who design and build your systems."</blockquote>
- <p>K Auto Tech LLC exists because too many modernization projects fail. They fail because the people building the system do not understand the operation it supports. We take the opposite approach: understand the work first, then build the right tool for it.</p>
+ <blockquote>"We are a consulting and development firm, not a dealer software vendor. We do not have a product to make you fit."</blockquote>
+ <p>Dealer software is a crowded market, and much of it is good at the thing it was built for. What it does not handle is the twenty percent specific to your group: your pay plans, your account structure, your reinsurance arrangement, and the report your lender wants in the format your lender wants it.</p>
  </div>
  </div>
  </div>
@@ -1662,31 +1664,31 @@
  <div class="container">
  <div class="section-header section-header--center reveal">
  <span class="section-label">How We Work</span>
- <h2 class="section-title">A clear path from assessment<br>to operational improvement</h2>
+ <h2 class="section-title">A clear path from the statement<br>to a system people use</h2>
  </div>
  <div class="process-grid">
  <div class="process-step reveal reveal-delay-1">
  <div class="process-number">01</div>
  <h3>Assess</h3>
- <p>We map your current workflows, systems, and pain points. No assumptions. We learn how your operation actually runs before proposing anything.</p>
+ <p>We sit with the statement, the DMS, and the people who produce today's reports. Which numbers are trusted, which are rebuilt by hand, and which nobody can reproduce.</p>
  <div class="process-connector"></div>
  </div>
  <div class="process-step reveal reveal-delay-2">
  <div class="process-number">02</div>
- <h3>Design</h3>
- <p>We define the solution architecture, user experience, integration points, and implementation plan. You see the blueprint before any development starts.</p>
+ <h3>Define</h3>
+ <p>Every metric gets one written definition and one benchmark. This is the step most projects skip, and it is why most dealer dashboards end up disputed rather than used.</p>
  <div class="process-connector"></div>
  </div>
  <div class="process-step reveal reveal-delay-3">
  <div class="process-number">03</div>
  <h3>Build</h3>
- <p>We develop, test, and deploy in iterative cycles. You see working software early and often, with the ability to provide feedback at every stage.</p>
+ <p>Extracts, reconciliation, then dashboards — shipped in iterative releases. The first release has one job: match the numbers you already trust.</p>
  <div class="process-connector"></div>
  </div>
  <div class="process-step reveal reveal-delay-4">
  <div class="process-number">04</div>
  <h3>Improve</h3>
- <p>After launch, we monitor, optimize, and refine. Systems improve over time based on real usage data and evolving operational needs.</p>
+ <p>Nightly loads, monitoring, and the review cadence the reporting feeds. A scorecard with no meeting attached stops being read within a month.</p>
  </div>
  </div>
  </div>
@@ -1700,39 +1702,39 @@
  <div class="container" style="position:relative; z-index:1;">
  <div class="section-header section-header--center reveal">
  <span class="section-label section-label--light">Outcomes</span>
- <h2 class="section-title" style="color: white;">Systems that deliver<br>measurable operational improvement</h2>
- <p class="section-subtitle section-subtitle--light">Every project is designed to produce specific, measurable improvements in how your organization operates.</p>
+ <h2 class="section-title" style="color: white;">Reporting that changes<br>what happens on Monday</h2>
+ <p class="section-subtitle section-subtitle--light">A dashboard is worth what its worst number is worth. These are the outcomes we design for, and the limits we state plainly.</p>
  </div>
  <div class="results-grid">
  <div class="result-card reveal reveal-delay-1">
- <div class="result-metric">Efficiency</div>
- <h3>Reduce manual process steps</h3>
- <p>Eliminate redundant data entry, manual routing, and paper-based handoffs that consume staff time and introduce errors.</p>
+ <div class="result-metric">Time</div>
+ <h3>End the month-end assembly</h3>
+ <p>The reporting package, the DOC report, and the recurring lender and OEM submissions generated from reconciled data instead of rebuilt by hand.</p>
  </div>
  <div class="result-card reveal reveal-delay-2">
- <div class="result-metric">Visibility</div>
- <h3>Improve reporting and oversight</h3>
- <p>Give leadership real-time access to operational data, performance metrics, and status tracking without waiting for someone to compile a spreadsheet.</p>
+ <div class="result-metric">Cadence</div>
+ <h3>See the store daily, not monthly</h3>
+ <p>Gross, inventory age, and absorption available the morning after, so a bad week is visible in the week it happens rather than three weeks later.</p>
  </div>
  <div class="result-card reveal reveal-delay-3">
- <div class="result-metric">Integration</div>
- <h3>Replace fragmented workflows</h3>
- <p>Connect disconnected systems and processes into unified workflows where data flows automatically and nothing falls through the cracks.</p>
+ <div class="result-metric">Consistency</div>
+ <h3>Compare rooftops honestly</h3>
+ <p>One chart of accounts and one set of definitions across every store, so an outlier is a question about the store rather than about the mapping.</p>
  </div>
  <div class="result-card reveal reveal-delay-1">
- <div class="result-metric">Control</div>
- <h3>Create better operational control</h3>
- <p>Build audit trails, enforce process consistency, and give managers the tools to track work from request through completion.</p>
+ <div class="result-metric">Diagnosis</div>
+ <h3>Name the constraint</h3>
+ <p>Break an average down far enough that it points at something a manager can change. The expensive answer is frequently the wrong one.</p>
  </div>
  <div class="result-card reveal reveal-delay-2">
  <div class="result-metric">Speed</div>
- <h3>Accelerate response times</h3>
- <p>Reduce the time it takes to process requests, generate reports, approve workflows, and respond to internal and external stakeholders.</p>
+ <h3>Answer partners in the meeting</h3>
+ <p>A what-if is a lever move and a model re-run rather than two days of spreadsheet work after the fact.</p>
  </div>
  <div class="result-card reveal reveal-delay-3">
- <div class="result-metric">Adoption</div>
- <h3>Build systems people actually use</h3>
- <p>Design interfaces and workflows that match how people actually work, so adoption happens naturally instead of requiring constant enforcement.</p>
+ <div class="result-metric">Honesty</div>
+ <h3>Say what cannot be computed</h3>
+ <p>Where a figure cannot be produced reliably, the system reports the limit instead of estimating. One quiet guess costs more credibility than a dozen honest blanks.</p>
  </div>
  </div>
  </div>
@@ -1743,8 +1745,8 @@
  ======================================== -->
  <section class="cta-section">
  <div class="container reveal">
- <h2>Ready to replace manual processes with custom-built systems?</h2>
- <p>Tell us about your operational challenges. We will scope a solution.</p>
+ <h2>Ready to stop rebuilding the same spreadsheet?</h2>
+ <p>Send us a recent financial statement and a description of how your reporting works today. We will tell you what can be automated and what it takes.</p>
  <div class="cta-buttons">
  <a href="#contact" class="btn btn-white btn-arrow">Request a Consultation</a>
  <a href="#services" class="btn btn-secondary btn-arrow">View Example Engagements</a>
@@ -1761,23 +1763,23 @@
  <div class="about-grid">
  <div class="reveal">
  <span class="section-label">About</span>
- <h2 class="section-title">A consulting firm built<br>around execution</h2>
+ <h2 class="section-title">A development firm built<br>around automotive retail</h2>
  <div class="about-content">
- <p>K Auto Tech LLC is a technical consulting and software development firm. We work directly with clients to design and build internal tools, automation workflows, and data systems that help organizations operate more efficiently and make better decisions.</p>
- <p>Our team combines software engineering, systems architecture, and operational consulting into a single delivery model. We do not separate "strategy" from "implementation." The same people who assess your workflows and design the solution are the ones who build and deploy it.</p>
- <p>We are not trying to be all things to all people. We focus on a specific type of work: custom software, workflow automation, systems integration, and digital modernization for organizations where reliability, compliance, and operational fit matter more than flashy demos.</p>
+ <p>K Auto Tech LLC is a technical consulting and software development firm working with dealerships and dealer groups. We design and build the dashboards, data integration, and internal tools that turn what a store already records into something its managers can act on.</p>
+ <p>We combine software engineering, systems architecture, and operational consulting into a single delivery model. We do not separate "strategy" from "implementation" — the same people who sit with your statement and your DMS are the ones who build and deploy the system.</p>
+ <p>We are not trying to be all things to all people. We work in automotive retail, on a specific kind of problem: the gap between the data a dealership already produces and the decisions its people are trying to make with it.</p>
  </div>
  </div>
  <div class="reveal reveal-delay-2">
- <img src="images/about-team.png" alt="Auto Tech consulting team collaborating on digital solutions" style="width:100%; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 8px 40px rgba(0,0,0,0.15);" loading="lazy">
+ <img src="images/about-team.png" alt="K Auto Tech team working on dealership reporting systems" style="width:100%; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 8px 40px rgba(0,0,0,0.15);" loading="lazy">
  <div class="about-highlights">
  <div class="about-highlight">
  <h4>100%</h4>
  <p>In-house development. No outsourced builds.</p>
  </div>
  <div class="about-highlight">
- <h4>Gov</h4>
- <p>Public-sector procurement ready</p>
+ <h4>DMS</h4>
+ <p>Integrated with the platforms dealers actually run</p>
  </div>
  <div class="about-highlight">
  <h4>E2E</h4>
@@ -1785,7 +1787,7 @@
  </div>
  <div class="about-highlight">
  <h4>Ops</h4>
- <p>Operations-first approach to every engagement</p>
+ <p>Reconciled to the statement before anything ships</p>
  </div>
  </div>
  </div>
@@ -1802,22 +1804,22 @@
  <div class="reveal">
  <span class="section-label">Contact</span>
  <h2 class="section-title">Discuss a project</h2>
- <p class="section-subtitle">Whether you have a defined scope or an operational challenge you need help solving, we are ready to talk.</p>
+ <p class="section-subtitle">Whether you have a defined scope or a reporting problem you have been working around for years, we are ready to talk.</p>
 
  <h3>Email</h3>
  <p><a href="mailto:info@kautotech.com">info@kautotech.com</a></p>
 
  <h3>Response Time</h3>
- <p>We typically respond within one business day. For active RFP or procurement inquiries, we can accommodate faster timelines.</p>
+ <p>We typically respond within one business day.</p>
 
  <h3>Engagement Types</h3>
- <p>We support project-based engagements, retainer arrangements, and staff augmentation models depending on your needs and procurement requirements.</p>
+ <p>Project-based engagements, ongoing support arrangements, and phased builds. Most clients start with one dashboard or one data source and expand from there.</p>
  </div>
  <div class="reveal reveal-delay-2">
  <div class="contact-options">
  <a href="K-Auto-Tech-Capability-Statement.pdf" class="contact-option" target="_blank">
  <strong>Download Capability Statement</strong>
- <span>One-page overview with NAICS codes and core competencies</span>
+ <span>One-page overview of automotive capabilities and engagement models</span>
  </a>
  </div>
  <form class="contact-form" onsubmit="handleSubmit(event)">
@@ -1828,13 +1830,13 @@
  </div>
  <div class="form-group">
  <label for="org">Organization *</label>
- <input type="text" id="org" name="organization" required placeholder="Agency or company name">
+ <input type="text" id="org" name="organization" required placeholder="Dealership or group name">
  </div>
  </div>
  <div class="form-row">
  <div class="form-group">
  <label for="email">Email *</label>
- <input type="email" id="email" name="email" required placeholder="you@organization.gov">
+ <input type="email" id="email" name="email" required placeholder="you@dealership.com">
  </div>
  <div class="form-group">
  <label for="phone">Phone</label>
@@ -1845,19 +1847,20 @@
  <label for="project-type">Project Type</label>
  <select id="project-type" name="project_type">
  <option value="" disabled selected>Select a project type</option>
- <option value="workflow-automation">Workflow Automation</option>
+ <option value="dealership-dashboard">Dealership Dashboard Platform</option>
+ <option value="fi-fixed-ops">F&amp;I &amp; Fixed Operations Analytics</option>
+ <option value="dms-crm-integration">DMS &amp; CRM Integration</option>
+ <option value="used-vehicle">Used Vehicle &amp; Recon Analytics</option>
+ <option value="workflow-automation">Workflow &amp; Document Automation</option>
+ <option value="acquisition">Acquisition &amp; Diligence Systems</option>
  <option value="custom-software">Custom Software Development</option>
- <option value="dashboards">Data Dashboards &amp; Reporting</option>
- <option value="systems-integration">Systems Integration</option>
- <option value="modernization">Digital Modernization</option>
- <option value="ai-process">AI-Enabled Process Improvement</option>
  <option value="consulting">General Consulting</option>
  <option value="other">Other</option>
  </select>
  </div>
  <div class="form-group">
  <label for="message">Message *</label>
- <textarea id="message" name="message" required placeholder="Describe your project, challenge, or requirements..."></textarea>
+ <textarea id="message" name="message" required placeholder="Which DMS do you run, how many rooftops, and what does your reporting look like today?"></textarea>
  </div>
  <button type="submit" class="btn btn-primary btn-arrow" style="width:100%; justify-content: center;">Request a Consultation</button>
  </form>
@@ -1877,44 +1880,41 @@
  <img src="/k icon.png" alt="K Auto Tech" class="logo-icon">
  <div class="logo-text">
  <span class="logo-name">K Auto Tech</span>
- <span class="logo-descriptor">Automation & Modernization Consulting</span>
+ <span class="logo-descriptor">Dealership Systems &amp; Analytics</span>
  </div>
  </div>
- <p>Custom software development, workflow automation, and operational systems consulting.</p>
+ <p>Dashboards, data integration, and custom software for automotive retail. We build the systems dealerships and dealer groups run on.</p>
  </div>
  <div class="footer-links">
  <div>
  <h4>Services</h4>
- <a href="/services/custom-software-development">Custom Software</a>
- <a href="/services/web-applications">Web Applications</a>
- <a href="/services/mobile-development">Mobile Development</a>
- <a href="/services/system-integration">System Integration</a>
- <a href="/services/legacy-modernization">Legacy Modernization</a>
- <a href="/services/cloud-migration">Cloud Migration</a>
+ <a href="/services/dealership-dashboard-platform">Dealership Dashboard Platform</a>
+ <a href="/services/fi-fixed-ops-analytics">F&amp;I &amp; Fixed Ops Analytics</a>
+ <a href="/services/dms-crm-integration">DMS &amp; CRM Integration</a>
+ <a href="/services/used-vehicle-recon-analytics">Used Vehicle &amp; Recon</a>
+ <a href="/services/dealership-workflow-automation">Workflow Automation</a>
+ <a href="/services/dealer-acquisition-diligence">Acquisition &amp; Diligence</a>
  </div>
  <div>
- <h4>Markets</h4>
- <a href="/markets/us-government">US Government</a>
- <a href="/markets/us-private-sector">US Private Sector</a>
- <a href="/markets/canada-government">Canada Government</a>
- <a href="/markets/canada-private-sector">Canada Private Sector</a>
+ <h4>Solutions</h4>
+ <a href="/solutions/dealer-group-performance-dashboard">Dealer Group Dashboard</a>
+ <a href="/solutions/fixed-ops-performance-dashboard">Fixed Ops Dashboard</a>
+ <a href="/solutions/used-vehicle-inventory-dashboard">Used Vehicle Dashboard</a>
+ <a href="/solutions">All Solutions</a>
  </div>
  <div>
- <h4>Industries</h4>
- <a href="/industries/local-government">Local Government</a>
- <a href="/industries/transportation">Transportation</a>
- <a href="/industries/infrastructure">Infrastructure</a>
- <a href="/industries/permitting-licensing">Permitting &amp; Licensing</a>
- <a href="/industries/procurement-administration">Procurement</a>
- <a href="/industries/utilities">Utilities</a>
- <a href="/industries/economic-development">Economic Development</a>
- <a href="/industries/regulated-private-industry">Regulated Industries</a>
+ <h4>Who We Serve</h4>
+ <a href="/industries/automotive-retail">Automotive Retail Overview</a>
+ <a href="/industries/automotive-retail#single-rooftop">Single Rooftop Dealers</a>
+ <a href="/industries/automotive-retail#dealer-groups">Dealer Groups</a>
+ <a href="/industries/automotive-retail#acquisition">Acquisition Platforms</a>
  </div>
  <div>
  <h4>Company</h4>
  <a href="#about">About</a>
  <a href="#contact">Contact</a>
- <a href="/privacy-policy.html">Privacy Policy</a>
+ <a href="mailto:info@kautotech.com">info@kautotech.com</a>
+ <a href="/privacy-policy">Privacy Policy</a>
  </div>
  </div>
  </div>

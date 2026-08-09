@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMS & CRM Integration for Dealerships | K Auto Tech LLC</title>
+    <meta name="description" content="Dealership data integration: extracts from CDK, Reynolds, Dealertrack, Tekion, VinSolutions and more, normalized across rooftops and reconciled to the financial statement in a warehouse you own.">
+    <meta property="og:title" content="DMS & CRM Integration for Dealerships | K Auto Tech LLC">
+    <meta property="og:description" content="Dealership data integration: extracts from CDK, Reynolds, Dealertrack, Tekion, VinSolutions and more, normalized across rooftops and reconciled to the financial statement in a warehouse you own.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kautotech.com/services/dms-crm-integration">
+    <link rel="canonical" href="https://kautotech.com/services/dms-crm-integration">
+    <link rel="icon" type="image/png" href="../k icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        :root {
+            --navy: #0a1628;
+            --navy-mid: #1a2a4a;
+            --coral: #E8604C;
+            --coral-dark: #D4503E;
+            --coral-pale: #FFF1EE;
+            --slate: #475569;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --white: #ffffff;
+            --accent: #E8604C;
+            --container: 1200px;
+            --radius-lg: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .btn-primary {
+            background: var(--coral);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--coral-dark);
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.35);
+        }
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            background: var(--navy);
+        }
+        .header.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 0;
+            display: block;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .nav a {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+        .nav a:hover {
+            color: var(--white);
+        }
+        .nav a.btn-primary { color: var(--white); }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+        }
+        .mobile-nav {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .mobile-toggle { display: flex; }
+            .mobile-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--navy);
+                z-index: 999;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 80px 24px 24px;
+            }
+            .mobile-nav.hidden { display: none; }
+            .mobile-nav a {
+                color: #cbd5e1;
+                padding: 12px 0;
+            }
+            .mobile-nav-close {
+                position: absolute;
+                top: 16px;
+                right: 24px;
+                background: none;
+                border: none;
+                color: var(--white);
+                font-size: 32px;
+                cursor: pointer;
+            }
+        }
+        .footer {
+            background: var(--navy);
+            color: #94a3b8;
+            padding: 64px 0 32px;
+            margin-top: 120px;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 64px;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-brand p {
+            margin-top: 16px;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+        }
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .footer-links a {
+            display: block;
+            padding: 8px 0;
+            transition: color var(--transition);
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .breadcrumb {
+            padding: 120px 0 40px;
+            background: var(--navy);
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        .breadcrumb a {
+            color: var(--accent);
+        }
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            color: var(--white);
+        }
+        .hero .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--coral);
+            display: block;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 800px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .stat-strip {
+            background: var(--gray-100);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 40px 0;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+        }
+        .stat-item h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
+        }
+        .stat-item p {
+            font-size: 0.92rem;
+            color: var(--slate);
+            line-height: 1.6;
+        }
+        .content-section {
+            padding: 100px 0;
+        }
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            margin-top: 40px;
+        }
+        .content-section h2:first-child {
+            margin-top: 0;
+        }
+        .content-section p {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .content-section ul {
+            list-style: disc;
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+        .content-section li {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .lead {
+            font-size: 1.15rem !important;
+            color: #334155 !important;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+        }
+        .feature-card {
+            padding: 32px;
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+        .feature-card p {
+            color: var(--slate);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+        .feature-card h3 a { color: var(--coral); }
+        .feature-card h3 a:hover { text-decoration: underline; }
+        .feature-card .tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--coral);
+            background: var(--coral-pale);
+            border-radius: 4px;
+            padding: 4px 8px;
+            margin-bottom: 12px;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            font-size: 0.98rem;
+        }
+        .spec-table th,
+        .spec-table td {
+            text-align: left;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-200);
+            vertical-align: top;
+        }
+        .spec-table th {
+            background: var(--navy);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .spec-table td {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .spec-table td:first-child {
+            color: var(--navy);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .spec-table tbody tr:hover {
+            background: var(--gray-100);
+        }
+        .table-scroll {
+            overflow-x: auto;
+        }
+        .callout {
+            border-left: 3px solid var(--coral);
+            background: var(--coral-pale);
+            padding: 24px 28px;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 32px 0;
+        }
+        .callout p {
+            margin-bottom: 0;
+            color: #3f2a26;
+        }
+        .callout p + p {
+            margin-top: 14px;
+        }
+        .faq-section {
+            padding: 100px 0;
+            background: var(--gray-100);
+        }
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            margin-bottom: 20px;
+        }
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--navy);
+            gap: 20px;
+        }
+        .faq-question:hover {
+            background: var(--coral-pale);
+        }
+        .faq-toggle {
+            transition: transform var(--transition);
+        }
+        .faq-item.open .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .faq-item.open .faq-answer {
+            padding: 0 24px 24px 24px;
+            max-height: 600px;
+        }
+        .faq-answer p {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .cta-section {
+            padding: 100px 0;
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+        .cta-section h2 {
+            color: var(--white);
+            margin-bottom: 24px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .cta-section p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+        .related-services {
+            padding: 60px 0;
+            background: var(--coral-pale);
+        }
+        .related-services h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .related-link {
+            padding: 20px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            color: var(--coral);
+            font-weight: 600;
+            transition: all var(--transition);
+        }
+        .related-link:hover {
+            border-color: var(--coral);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .content-section {
+                padding: 64px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
+                K Auto Tech
+            </a>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/#services">Services</a>
+                <a href="/solutions">Solutions</a>
+                <a href="/industries/automotive-retail">Who We Serve</a>
+                <a href="/#about">About</a>
+                <a href="#contact" class="btn btn-primary">Request Consultation</a>
+            </nav>
+            <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-nav hidden" id="mobileNav">
+        <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Close menu">&times;</button>
+        <a href="/">Home</a>
+        <a href="/#services">Services</a>
+        <a href="/solutions">Solutions</a>
+        <a href="/industries/automotive-retail">Who We Serve</a>
+        <a href="/#about">About</a>
+        <a href="#contact" onclick="toggleMobileNav()">Request Consultation</a>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="/">Home</a> / <a href="/industries/automotive-retail">Automotive</a> / <span>DMS &amp; CRM Integration</span>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <span class="eyebrow">Automotive Service</span>
+            <h1>DMS and CRM Integration</h1>
+            <p>Getting data out of a dealer management system is the unglamorous half of every dealership analytics project, and the half that decides whether the other half is trusted. We build the extracts, normalize the account structures across rooftops, reconcile to the financial statement, and keep it running.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Request a Consultation</a>
+                <a href="/services/dealership-dashboard-platform" class="btn btn-outline">See the Full Platform</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stat-strip">
+        <div class="container">
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <h3>Reconciled</h3>
+                    <p>Every load ties to the statement before it is published</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Normalized</h3>
+                    <p>One chart of accounts across rooftops and brands</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Incremental</h3>
+                    <p>Nightly loads that pick up restated prior periods, not just new rows</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Monitored</h3>
+                    <p>A feed that fails raises an alert instead of showing yesterday as today</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2>The integration is the project</h2>
+            <p class="lead">Dealership analytics projects rarely fail at the visualization layer. They fail because the used-vehicle gross on the dashboard does not match the used-vehicle gross on the statement, nobody can say why, and within a month the general manager is back in the spreadsheet.</p>
+            <p>So we treat extraction, normalization, and reconciliation as the substance of the engagement rather than as plumbing to get past. A dashboard that reconciles is used. One that does not is a demo.</p>
+
+            <h2>Systems we extract from</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Dealer Management Systems</h3>
+                    <p>CDK Global, Reynolds and Reynolds, Dealertrack, Tekion, Auto/Mate and others. Deal detail, repair orders, parts transactions, technician time, general ledger, and the financial statement itself.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>CRM Platforms</h3>
+                    <p>VinSolutions, DealerSocket, Elead and comparable systems. Lead source and cost, appointment and show rates, sold and unsold traffic, and the salesperson activity that sits underneath a closing ratio.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Inventory &amp; Merchandising</h3>
+                    <p>vAuto, HomeNet, Dealer Specialties and the listing syndication feeds. Stocking, pricing history, cost-to-market, photo and description completeness, and days on lot from the date that actually matters.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Guides &amp; Market Data</h3>
+                    <p>Valuation and market pricing sources for cost-to-market and price-to-market, plus the auction and wholesale data behind an acquisition decision.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Lender &amp; F&amp;I Systems</h3>
+                    <p>Credit application decisions, funding status, contracts in transit, menu presentation records, product administration, and reinsurance reporting.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>OEM &amp; Manufacturer Portals</h3>
+                    <p>Warranty claims and status, incentive and stair-step programs, allocation, and the manufacturer reporting that has to be produced whether or not it is convenient.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Service Scheduling &amp; Inspection</h3>
+                    <p>Appointment volume and capacity, multi-point inspection results, and declined recommendations &mdash; the data behind the fixed-ops upside nobody can quantify without it.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Payroll, Accounting &amp; Fleet</h3>
+                    <p>Pay plans and commission detail, accounting exports for groups running a separate general ledger, and telematics or fleet maintenance data where a commercial book is involved.</p>
+                </div>
+            </div>
+
+            <h2>How we get the data out</h2>
+            <p>DMS vendors differ enormously in how open they are, and the right method depends on the platform, the contract you have with it, and what the data is for. We settle this during assessment rather than assuming it:</p>
+            <ul>
+                <li><strong>Vendor APIs and certified programs</strong> where the platform offers them and your agreement covers the endpoints in question. Cleanest option when it exists.</li>
+                <li><strong>Scheduled exports</strong> pushed to secure storage on a nightly job &mdash; the most common arrangement in practice, and entirely sufficient for daily reporting.</li>
+                <li><strong>Reporting replicas</strong> where the platform supports a read copy, which avoids putting query load on the production system.</li>
+                <li><strong>Structured file ingestion</strong> for the sources that will only ever be a statement, a spreadsheet, or a PDF from an administrator. We parse them on a schedule rather than pretending they do not exist.</li>
+            </ul>
+            <div class="callout">
+                <p><strong>Access stays yours.</strong> Integrations run under credentials your organization owns and can revoke, scoped to the data the reporting needs. We do not ask for broader access than the work requires, and every extract is documented so you can see exactly what leaves each system.</p>
+            </div>
+
+            <h2>Normalization: the part that makes groups work</h2>
+            <p>A two-rooftop group with two brands has two charts of accounts, and they will not agree. One store books internal labor somewhere the other does not. One reports a lot-porter cost in variable expense, the other in fixed. Neither is wrong; they simply were not set up together.</p>
+            <p>Comparing those stores without reconciling that first produces a number that is technically correct and operationally worthless. So the mapping layer is explicit: each store's accounts map to one common set of line-item definitions, each definition is written down, and the mapping is data you can inspect and change rather than logic buried in a query.</p>
+            <div class="table-scroll">
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Stage</th>
+                        <th>What happens</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Extract</td>
+                        <td>Scheduled pull from each source into a landing area, with the raw payload retained so any published figure can be traced back to what the source actually said.</td>
+                    </tr>
+                    <tr>
+                        <td>Map</td>
+                        <td>Store accounts mapped to common line definitions. Unmapped accounts are flagged rather than silently dropped &mdash; a new account appearing in a store is a notification, not a slow leak.</td>
+                    </tr>
+                    <tr>
+                        <td>Reconcile</td>
+                        <td>Each store's mapped totals are compared to its financial statement. A variance outside tolerance stops publication and raises an alert.</td>
+                    </tr>
+                    <tr>
+                        <td>Consolidate</td>
+                        <td>Stores roll up to group with intercompany handled explicitly, so a group total is not a sum of things that were counted twice.</td>
+                    </tr>
+                    <tr>
+                        <td>Publish</td>
+                        <td>Reconciled data is made available to dashboards, reports, and exports. One dataset, so the dashboard and the board package cannot disagree.</td>
+                    </tr>
+                    <tr>
+                        <td>Monitor</td>
+                        <td>Freshness, row counts, and reconciliation variance are checked every run. A stale feed shows as stale rather than as a quietly flat trend.</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h2>Handling restatements</h2>
+            <p>Dealership data is not append-only. Deals get unwound, repair orders reopen, month-end adjustments restate a period that already closed, and a warranty claim resubmits under a different amount. An integration that only loads new rows will drift away from the statement and nobody will notice until quarter end.</p>
+            <p>So loads are incremental but re-checking: prior periods within a defined window are re-read every night and compared, changes are applied, and a restatement large enough to matter is reported rather than absorbed. It costs more to build and it is the difference between a warehouse that stays true and one that has to be rebuilt every year.</p>
+
+            <h2>What you end up with</h2>
+            <ul>
+                <li><strong>A warehouse you own,</strong> in your cloud account if you prefer, holding reconciled dealership data at transaction grain.</li>
+                <li><strong>Documented feeds,</strong> each with its source, schedule, method, and the credentials it runs under.</li>
+                <li><strong>A written mapping layer,</strong> so any consolidated number can be traced back to the store accounts behind it.</li>
+                <li><strong>Reconciliation reporting,</strong> which is what you show a lender or an auditor when they ask why the dashboard should be believed.</li>
+                <li><strong>An open access layer,</strong> so the data is available to our dashboards, to your existing BI tool, and to your accountant &mdash; not locked behind one interface.</li>
+            </ul>
+            <p>Integration engagements typically run six to twelve weeks for a single rooftop and longer for multi-brand groups, where the mapping work rather than the extraction work sets the pace.</p>
+        </div>
+    </section>
+
+    <section class="related-services">
+        <div class="container">
+            <h3>Related capabilities</h3>
+            <div class="related-links">
+                <a href="/services/dealership-dashboard-platform" class="related-link">Dealership Dashboard Platform</a>
+                <a href="/services/fi-fixed-ops-analytics" class="related-link">F&amp;I &amp; Fixed Ops Analytics</a>
+                <a href="/services/systems-integration" class="related-link">Systems Integration</a>
+                <a href="/industries/automotive-retail" class="related-link">Automotive Retail Overview</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 48px; font-size: 2rem; font-weight: 700;">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Our DMS vendor charges for data access. How do you handle that?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>It is a real cost and we surface it during assessment rather than after. Where a vendor's integration program is expensive, scheduled exports or a reporting replica often satisfy the same requirement for considerably less, and we will tell you when that is the case. What we will not do is route around a restriction your agreement prohibits.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Will the extracts slow down our DMS?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>They should not. Loads run overnight during the platform's quiet window, read incrementally, and use a reporting replica where one is available. If a source can only be queried in a way that would affect production performance, we say so before building rather than after someone complains about a slow lookup on a Saturday.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can you integrate with a BI tool we already use?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. The warehouse is the deliverable and it is open &mdash; Power BI, Tableau, Looker, or a spreadsheet connection all work against it. Several clients run our dashboards for daily operations and keep an existing BI tool for finance's own analysis, off the same reconciled data.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What happens when the DMS changes an export format?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>The monitoring catches it, usually on the first run: a column disappears, row counts move, or reconciliation goes out of tolerance, and the feed alerts instead of publishing. Adapting the extract is routine maintenance under a support arrangement. This is the main reason we recommend one.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>We are on different DMS platforms across rooftops. Is that a problem?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>It is common and it is handled. Each platform gets its own extraction approach, and everything meets at the mapping layer where accounts are translated to common definitions. Mixed-platform groups take longer to map, but the consolidated result is no less reliable.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Who owns the data and the pipeline code?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>You do. The warehouse can live in your cloud account, credentials are yours, and the pipeline code is delivered to you. If you decide to take the work in house or move to another firm, nothing about that is obstructed.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Start with the data layer</h2>
+            <p>Tell us which systems you run and how your reporting is produced today. We will come back with an integration approach and what it takes to reconcile.</p>
+            <a href="mailto:info@kautotech.com" class="btn btn-primary">Schedule a Consultation</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
+                        K Auto Tech
+                    </div>
+                    <p>Dashboards, data integration, and custom software for automotive retail. We build the systems dealerships and dealer groups run on.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Services</h4>
+                        <a href="/services/dealership-dashboard-platform">Dealership Dashboard Platform</a>
+                        <a href="/services/fi-fixed-ops-analytics">F&amp;I &amp; Fixed Ops Analytics</a>
+                        <a href="/services/dms-crm-integration">DMS &amp; CRM Integration</a>
+                        <a href="/services/used-vehicle-recon-analytics">Used Vehicle &amp; Recon</a>
+                        <a href="/services/dealership-workflow-automation">Workflow Automation</a>
+                        <a href="/services/dealer-acquisition-diligence">Acquisition &amp; Diligence</a>
+                    </div>
+                    <div>
+                        <h4>Solutions</h4>
+                        <a href="/solutions/dealer-group-performance-dashboard">Dealer Group Dashboard</a>
+                        <a href="/solutions/fixed-ops-performance-dashboard">Fixed Ops Dashboard</a>
+                        <a href="/solutions/used-vehicle-inventory-dashboard">Used Vehicle Dashboard</a>
+                        <a href="/solutions">All Solutions</a>
+                    </div>
+                    <div>
+                        <h4>Who We Serve</h4>
+                        <a href="/industries/automotive-retail">Automotive Retail Overview</a>
+                        <a href="/industries/automotive-retail#dealer-groups">Dealer Groups</a>
+                        <a href="/industries/automotive-retail#single-rooftop">Single Rooftop Dealers</a>
+                        <a href="/industries/automotive-retail#acquisition">Acquisition Platforms</a>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <a href="/#about">About</a>
+                        <a href="/#contact">Contact</a>
+                        <a href="mailto:info@kautotech.com">info@kautotech.com</a>
+                        <a href="/privacy-policy">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 K Auto Tech LLC. All rights reserved.</span>
+                <span>Houston, Texas</span>
+            </div>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Dealership DMS and CRM Integration",
+        "description": "Extraction, normalization, and reconciliation of dealership data from DMS, CRM, inventory, lender, and OEM systems into a warehouse that ties to the financial statement.",
+        "provider": {
+            "@type": "Organization",
+            "name": "K Auto Tech LLC",
+            "url": "https://kautotech.com"
+        },
+        "areaServed": ["United States", "Canada", "Caribbean Islands"],
+        "serviceType": "Automotive Data Integration",
+        "audience": {
+            "@type": "Audience",
+            "audienceType": "Automobile dealerships and dealer groups"
+        }
+    }
+    </script>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        function toggleMobileNav() {
+            document.getElementById('mobileNav').classList.toggle('hidden');
+        }
+        function toggleFAQ(element) {
+            element.parentElement.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>

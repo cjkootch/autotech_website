@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealership Workflow & Document Automation | K Auto Tech LLC</title>
+    <meta name="description" content="Automate dealership paperwork: document generation from live data, ESIGN-compliant electronic signature, PDF form fill, approval routing, deal jacket completeness, and month-end reporting packages.">
+    <meta property="og:title" content="Dealership Workflow & Document Automation | K Auto Tech LLC">
+    <meta property="og:description" content="Automate dealership paperwork: document generation from live data, ESIGN-compliant electronic signature, PDF form fill, approval routing, deal jacket completeness, and month-end reporting packages.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kautotech.com/services/dealership-workflow-automation">
+    <link rel="canonical" href="https://kautotech.com/services/dealership-workflow-automation">
+    <link rel="icon" type="image/png" href="../k icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        :root {
+            --navy: #0a1628;
+            --navy-mid: #1a2a4a;
+            --coral: #E8604C;
+            --coral-dark: #D4503E;
+            --coral-pale: #FFF1EE;
+            --slate: #475569;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --white: #ffffff;
+            --accent: #E8604C;
+            --container: 1200px;
+            --radius-lg: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .btn-primary {
+            background: var(--coral);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--coral-dark);
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.35);
+        }
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            background: var(--navy);
+        }
+        .header.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 0;
+            display: block;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .nav a {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+        .nav a:hover {
+            color: var(--white);
+        }
+        .nav a.btn-primary { color: var(--white); }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+        }
+        .mobile-nav {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .mobile-toggle { display: flex; }
+            .mobile-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--navy);
+                z-index: 999;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 80px 24px 24px;
+            }
+            .mobile-nav.hidden { display: none; }
+            .mobile-nav a {
+                color: #cbd5e1;
+                padding: 12px 0;
+            }
+            .mobile-nav-close {
+                position: absolute;
+                top: 16px;
+                right: 24px;
+                background: none;
+                border: none;
+                color: var(--white);
+                font-size: 32px;
+                cursor: pointer;
+            }
+        }
+        .footer {
+            background: var(--navy);
+            color: #94a3b8;
+            padding: 64px 0 32px;
+            margin-top: 120px;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 64px;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-brand p {
+            margin-top: 16px;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+        }
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .footer-links a {
+            display: block;
+            padding: 8px 0;
+            transition: color var(--transition);
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .breadcrumb {
+            padding: 120px 0 40px;
+            background: var(--navy);
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        .breadcrumb a {
+            color: var(--accent);
+        }
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            color: var(--white);
+        }
+        .hero .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--coral);
+            display: block;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 800px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .stat-strip {
+            background: var(--gray-100);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 40px 0;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+        }
+        .stat-item h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
+        }
+        .stat-item p {
+            font-size: 0.92rem;
+            color: var(--slate);
+            line-height: 1.6;
+        }
+        .content-section {
+            padding: 100px 0;
+        }
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            margin-top: 40px;
+        }
+        .content-section h2:first-child {
+            margin-top: 0;
+        }
+        .content-section p {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .content-section ul {
+            list-style: disc;
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+        .content-section li {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .lead {
+            font-size: 1.15rem !important;
+            color: #334155 !important;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+        }
+        .feature-card {
+            padding: 32px;
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+        .feature-card p {
+            color: var(--slate);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+        .feature-card h3 a { color: var(--coral); }
+        .feature-card h3 a:hover { text-decoration: underline; }
+        .feature-card .tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--coral);
+            background: var(--coral-pale);
+            border-radius: 4px;
+            padding: 4px 8px;
+            margin-bottom: 12px;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            font-size: 0.98rem;
+        }
+        .spec-table th,
+        .spec-table td {
+            text-align: left;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-200);
+            vertical-align: top;
+        }
+        .spec-table th {
+            background: var(--navy);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .spec-table td {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .spec-table td:first-child {
+            color: var(--navy);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .spec-table tbody tr:hover {
+            background: var(--gray-100);
+        }
+        .table-scroll {
+            overflow-x: auto;
+        }
+        .callout {
+            border-left: 3px solid var(--coral);
+            background: var(--coral-pale);
+            padding: 24px 28px;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 32px 0;
+        }
+        .callout p {
+            margin-bottom: 0;
+            color: #3f2a26;
+        }
+        .callout p + p {
+            margin-top: 14px;
+        }
+        .faq-section {
+            padding: 100px 0;
+            background: var(--gray-100);
+        }
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            margin-bottom: 20px;
+        }
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--navy);
+            gap: 20px;
+        }
+        .faq-question:hover {
+            background: var(--coral-pale);
+        }
+        .faq-toggle {
+            transition: transform var(--transition);
+        }
+        .faq-item.open .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .faq-item.open .faq-answer {
+            padding: 0 24px 24px 24px;
+            max-height: 600px;
+        }
+        .faq-answer p {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .cta-section {
+            padding: 100px 0;
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+        .cta-section h2 {
+            color: var(--white);
+            margin-bottom: 24px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .cta-section p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+        .related-services {
+            padding: 60px 0;
+            background: var(--coral-pale);
+        }
+        .related-services h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .related-link {
+            padding: 20px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            color: var(--coral);
+            font-weight: 600;
+            transition: all var(--transition);
+        }
+        .related-link:hover {
+            border-color: var(--coral);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .content-section {
+                padding: 64px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
+                K Auto Tech
+            </a>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/#services">Services</a>
+                <a href="/solutions">Solutions</a>
+                <a href="/industries/automotive-retail">Who We Serve</a>
+                <a href="/#about">About</a>
+                <a href="#contact" class="btn btn-primary">Request Consultation</a>
+            </nav>
+            <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-nav hidden" id="mobileNav">
+        <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Close menu">&times;</button>
+        <a href="/">Home</a>
+        <a href="/#services">Services</a>
+        <a href="/solutions">Solutions</a>
+        <a href="/industries/automotive-retail">Who We Serve</a>
+        <a href="/#about">About</a>
+        <a href="#contact" onclick="toggleMobileNav()">Request Consultation</a>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="/">Home</a> / <a href="/#services">Services</a> / <span>Workflow &amp; Document Automation</span>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <span class="eyebrow">Automotive Service</span>
+            <h1>Dealership Workflow &amp; Document Automation</h1>
+            <p>Every store has a set of tasks that exist only because a system does not talk to another system: the retyped form, the rebuilt spreadsheet, the deal jacket chased across three desks, the report assembled by hand every month. We remove them one at a time, starting with the ones that cost the most hours.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Request a Consultation</a>
+                <a href="/services/dealership-dashboard-platform" class="btn btn-outline">See the Full Platform</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stat-strip">
+        <div class="container">
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <h3>Live Data</h3>
+                    <p>Documents rendered from the system of record, not retyped from it</p>
+                </div>
+                <div class="stat-item">
+                    <h3>ESIGN-Compliant</h3>
+                    <p>Signature capture with a real disclosure and consent trail</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Durable</h3>
+                    <p>An executed copy that comes back out intact years later</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Audited</h3>
+                    <p>Who did what, when, and against which version of the document</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2>The work nobody has a line item for</h2>
+            <p class="lead">Ask a dealership controller how many hours a month go into assembling the reporting package, and the answer is usually a shrug and a number that turns out to be low. Ask a title clerk how many forms carry data that already exists somewhere in the DMS, and the answer is most of them.</p>
+            <p>None of this shows up as a problem, because nobody is failing at it. It gets done. It just gets done by people, repeatedly, at a cost the store has stopped noticing &mdash; and it introduces the one category of error that is hardest to catch, which is a correct process applied to a mistyped number.</p>
+
+            <h2>What we automate</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Document Generation</h3>
+                    <p>Agreements, addenda, disclosures, and internal forms rendered from live data. Change the underlying record and the next rendering is right, rather than the document and the record disagreeing quietly.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Electronic Signature</h3>
+                    <p>Signature request, capture, and countersignature with an ESIGN-compliant consent disclosure. A material change to a document re-triggers consent; an editorial correction does not, because treating every typo as a new agreement trains people to click through.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Executed Copy Retention</h3>
+                    <p>The executed artifact is stored so it can be produced again intact &mdash; the document as signed, the signature, the consent record, and the timestamps. A signature you cannot retrieve is not evidence of anything.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Form Fill</h3>
+                    <p>Scan a recurring PDF once, map its fields to data the system already holds, and fill it on demand. Lender packets, state forms, OEM submissions, and the internal paperwork that has always been typed.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Approval Routing</h3>
+                    <p>Deal approvals, expense authorizations, discount exceptions, and policy sign-offs routed by rule rather than by walking a folder across the showroom, with the current holder always visible.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Month-End Packages</h3>
+                    <p>The reporting package, the DOC report, and the recurring lender and OEM submissions generated on a schedule from reconciled data. The assembly step disappears; the review step stays, because it should.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Deal Jacket Completeness</h3>
+                    <p>Required-document checklists per deal type, with what is missing surfaced while the customer is still reachable rather than during an audit six months later.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Notifications and Escalation</h3>
+                    <p>Alerts that go to a person with an action, not to a distribution list. Anything unactioned escalates on a defined clock instead of quietly sitting.</p>
+                </div>
+            </div>
+
+            <h2>How we choose what to automate first</h2>
+            <p>Not every manual task is worth removing, and automating a bad process makes it faster rather than better. During assessment we time the recurring work and rank it on three things: hours consumed, error consequence, and how stable the process is. High-hour, high-consequence, stable processes go first. Anything still changing every month waits, because building automation around a moving target produces something that has to be rebuilt.</p>
+            <div class="callout">
+                <p><strong>Some things should stay manual.</strong> A review step exists to have a person look at the number. We automate assembly and leave judgment alone &mdash; a month-end package that publishes with nobody reading it has removed the wrong step.</p>
+            </div>
+
+            <h2>Compliance posture</h2>
+            <ul>
+                <li><strong>Consent is real.</strong> The ESIGN disclosure is presented and recorded, not assumed by a checkbox buried in a flow.</li>
+                <li><strong>Versions are pinned.</strong> A signature attaches to the exact document version signed, so a later template edit cannot retroactively change what someone agreed to.</li>
+                <li><strong>The audit trail is complete.</strong> Every generation, send, view, signature, and countersignature is recorded with actor and timestamp.</li>
+                <li><strong>Retention is deliberate.</strong> Retention periods are configured per document type to your policy and your state's requirements rather than defaulting to keep-everything-forever.</li>
+                <li><strong>Access is scoped.</strong> Who can generate, send, and countersign each document type is a role, and it is enforced on the server rather than by hiding a button.</li>
+            </ul>
+            <p>We build the mechanism and the audit trail. We are not your compliance counsel &mdash; the policy those mechanisms enforce is yours and should be reviewed by someone qualified to review it.</p>
+
+            <h2>Delivery</h2>
+            <p>Workflow engagements are deliberately incremental. We take the two or three highest-cost processes, ship them, measure the hours actually recovered, and then decide what is next with real numbers rather than with the estimate we started from. First releases are typically live in four to eight weeks.</p>
+        </div>
+    </section>
+
+    <section class="related-services">
+        <div class="container">
+            <h3>Related capabilities</h3>
+            <div class="related-links">
+                <a href="/services/dealership-dashboard-platform" class="related-link">Dealership Dashboard Platform</a>
+                <a href="/services/dms-crm-integration" class="related-link">DMS &amp; CRM Integration</a>
+                <a href="/services/dealer-acquisition-diligence" class="related-link">Acquisition &amp; Diligence</a>
+                <a href="/industries/automotive-retail" class="related-link">Automotive Retail Overview</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 48px; font-size: 2rem; font-weight: 700;">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Do we still need DocuSign or a similar service?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>For general business signatures many clients keep what they have. What we build is signature attached to your data and your records &mdash; a document rendered from the live system, signed, and retained with its audit trail in the same place the deal lives. Where that integration is the point, a separate signature service adds a hop without adding anything.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can you automate our state title and registration paperwork?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>The form-fill mechanism handles any recurring PDF: scan it once, map the fields, and fill it from data the system already holds. Where a state offers electronic submission we can look at integrating it, but that is state by state and we scope it specifically rather than promising it in general.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What if our process changes after you build the automation?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Templates, routing rules, and field mappings are configuration rather than code, so ordinary changes are made by your team without a development cycle. A structural change &mdash; a new document type, a new approval path &mdash; is scoped work. This is also why we deliberately do not automate processes that are still in flux.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do you handle documents that need a wet signature?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>They stay on paper, and the system tracks them rather than pretending otherwise. The document is generated with live data, marked as requiring physical signature, and the executed copy is scanned back in against the record so the deal jacket is complete in one place even when part of it started as paper.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Will this integrate with our existing document storage?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Usually. If you have a document management system you intend to keep, we write to it and reference from it rather than creating a second archive. Two places where a signed document might live is worse than one place with a slightly awkward interface.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Which task would you stop doing tomorrow?</h2>
+            <p>Most stores can name it immediately. Tell us yours and we will tell you what removing it takes.</p>
+            <a href="mailto:info@kautotech.com" class="btn btn-primary">Schedule a Consultation</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
+                        K Auto Tech
+                    </div>
+                    <p>Dashboards, data integration, and custom software for automotive retail. We build the systems dealerships and dealer groups run on.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Services</h4>
+                        <a href="/services/dealership-dashboard-platform">Dealership Dashboard Platform</a>
+                        <a href="/services/fi-fixed-ops-analytics">F&amp;I &amp; Fixed Ops Analytics</a>
+                        <a href="/services/dms-crm-integration">DMS &amp; CRM Integration</a>
+                        <a href="/services/used-vehicle-recon-analytics">Used Vehicle &amp; Recon</a>
+                        <a href="/services/dealership-workflow-automation">Workflow Automation</a>
+                        <a href="/services/dealer-acquisition-diligence">Acquisition &amp; Diligence</a>
+                    </div>
+                    <div>
+                        <h4>Solutions</h4>
+                        <a href="/solutions/dealer-group-performance-dashboard">Dealer Group Dashboard</a>
+                        <a href="/solutions/fixed-ops-performance-dashboard">Fixed Ops Dashboard</a>
+                        <a href="/solutions/used-vehicle-inventory-dashboard">Used Vehicle Dashboard</a>
+                        <a href="/solutions">All Solutions</a>
+                    </div>
+                    <div>
+                        <h4>Who We Serve</h4>
+                        <a href="/industries/automotive-retail">Automotive Retail Overview</a>
+                        <a href="/industries/automotive-retail#dealer-groups">Dealer Groups</a>
+                        <a href="/industries/automotive-retail#single-rooftop">Single Rooftop Dealers</a>
+                        <a href="/industries/automotive-retail#acquisition">Acquisition Platforms</a>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <a href="/#about">About</a>
+                        <a href="/#contact">Contact</a>
+                        <a href="mailto:info@kautotech.com">info@kautotech.com</a>
+                        <a href="/privacy-policy">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 K Auto Tech LLC. All rights reserved.</span>
+                <span>Houston, Texas</span>
+            </div>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Dealership Workflow and Document Automation",
+        "description": "Automation of dealership document generation, electronic signature, form fill, approval routing, and recurring reporting packages, with a complete audit trail.",
+        "provider": {
+            "@type": "Organization",
+            "name": "K Auto Tech LLC",
+            "url": "https://kautotech.com"
+        },
+        "areaServed": ["United States", "Canada", "Caribbean Islands"],
+        "serviceType": "Automotive Workflow Automation",
+        "audience": {
+            "@type": "Audience",
+            "audienceType": "Automobile dealerships and dealer groups"
+        }
+    }
+    </script>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        function toggleMobileNav() {
+            document.getElementById('mobileNav').classList.toggle('hidden');
+        }
+        function toggleFAQ(element) {
+            element.parentElement.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>

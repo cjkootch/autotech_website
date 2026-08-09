@@ -4,7 +4,7 @@ Disallow: /private/
 Disallow: /admin/
 Disallow: /temp/
 
-Sitemap: https://katechconsulting.com/sitemap.xml
+Sitemap: https://kautotech.com/sitemap.xml
 
 # Crawl delay for aggressive crawlers
 User-agent: AhrefsBot
