@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Generate K Auto Tech LLC Capability Statement PDF"""
+"""Generate K Auto Tech LLC Capability Statement PDF (automotive retail)."""
+
+import os
 
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
@@ -36,7 +38,7 @@ def draw_page(c):
     # Descriptor
     c.setFont("Helvetica", 9)
     c.setFillColor(HexColor('#94a3b8'))
-    c.drawString(0.75*inch, HEIGHT - 0.9*inch, "Automation, Software & Modernization Consulting")
+    c.drawString(0.75*inch, HEIGHT - 0.9*inch, "Dealership Dashboards, Analytics & Software")
 
     # "CAPABILITY STATEMENT" right-aligned
     c.setFillColor(CORAL)
@@ -63,11 +65,11 @@ def draw_page(c):
 
     overview_text = (
         "K Auto Tech LLC is a technical consulting and software development firm "
-        "specializing in workflow automation, custom software, and digital modernization "
-        "for government agencies, public authorities, and operationally complex organizations. "
-        "We operate as a focused, execution-oriented firm that understands operations and "
-        "delivers practical systems that reduce administrative burden, improve visibility, "
-        "and produce measurable results."
+        "working with dealerships and dealer groups. We build performance dashboards, "
+        "DMS and CRM data integration, and custom software that turn what a store already "
+        "records into numbers its managers can act on. Every figure is reconciled to the "
+        "financial statement, and every line carries a written definition and the benchmark "
+        "it is measured against."
     )
 
     style = ParagraphStyle('overview', fontName='Helvetica', fontSize=8.5,
@@ -86,14 +88,14 @@ def draw_page(c):
     y -= 18
 
     competencies = [
-        "Workflow Automation & Process Digitization",
-        "Custom Software Development (Web, Internal Tools, Portals)",
-        "Data Dashboards & Operational Reporting",
-        "Systems Integration & Interoperability",
-        "Digital Modernization Strategy & Implementation",
-        "AI-Enabled Process Improvement",
-        "Legacy System Enhancement & Replacement",
-        "Compliance-Aware Technical Consulting",
+        "Dealership & Dealer Group Performance Dashboards",
+        "DMS / CRM Integration & Data Warehousing",
+        "F&I Analytics (Penetration, Per-Copy Gross, Reinsurance)",
+        "Fixed Operations & Parts Analytics (Absorption, ELR)",
+        "Used Vehicle, Landed Cost & Reconditioning Reporting",
+        "Workflow & Document Automation with E-Signature",
+        "Acquisition Diligence & Quality of Earnings Tooling",
+        "Custom Software Development for Automotive Retail",
     ]
 
     c.setFont("Helvetica", 8.5)
@@ -117,10 +119,10 @@ def draw_page(c):
     y -= 18
 
     diffs = [
-        ("Operations-First Approach", "We assess how your organization actually works before proposing any technology solution."),
+        ("Reconciled Before Published", "Every figure ties to the financial statement first. A dashboard that does not reconcile is a demo."),
+        ("Definitions First", "One written definition and one benchmark per metric, agreed before anything is built."),
         ("End-to-End Delivery", "Same team from assessment through deployment. No handoffs to third-party implementers."),
-        ("Faster Than Enterprise Firms", "No six-month discovery phases. We scope quickly, build iteratively, deliver working systems."),
-        ("Procurement-Ready", "We understand government procurement processes, documentation requirements, and compliance expectations."),
+        ("Built, Not Resold", "A development firm rather than a dealer software vendor. No product to make your operation fit."),
     ]
 
     for title, desc in diffs:
@@ -152,7 +154,7 @@ def draw_page(c):
         ("541512", "Computer Systems Design Services"),
         ("541519", "Other Computer Related Services"),
         ("541611", "Admin & General Management Consulting"),
-        ("541690", "Other Scientific & Technical Consulting"),
+        ("518210", "Data Processing, Hosting & Related Services"),
     ]
 
     for code, desc in naics:
@@ -169,21 +171,21 @@ def draw_page(c):
     # === TARGET AGENCIES & DEPARTMENTS ===
     c.setFillColor(CORAL)
     c.setFont("Helvetica-Bold", 10)
-    c.drawString(right_col_x, ry, "TARGET AGENCIES & SECTORS")
+    c.drawString(right_col_x, ry, "WHO WE SERVE")
     c.setStrokeColor(CORAL)
     c.line(right_col_x, ry - 4, right_col_x + 2.2*inch, ry - 4)
     ry -= 18
 
     targets = [
-        "Municipal & County Government",
-        "State & Provincial Agencies",
-        "Public Authorities & Utilities",
-        "Transportation & Transit Agencies",
-        "Permitting & Licensing Departments",
-        "Procurement & Administration",
-        "Infrastructure & Public Works",
-        "Economic Development Agencies",
-        "Regulated Private Sector",
+        "Franchise & Independent Dealerships",
+        "Multi-Rooftop Dealer Groups",
+        "Dealership Acquisition Platforms",
+        "Dealer Principals & CFOs",
+        "F&I Directors",
+        "Fixed Operations Directors",
+        "Used Vehicle Managers",
+        "Controllers & Office Managers",
+        "Dealer Group Capital Partners",
     ]
 
     c.setFont("Helvetica", 8.5)
@@ -205,11 +207,9 @@ def draw_page(c):
     ry -= 18
 
     markets = [
-        "United States (Federal, State, Local)",
-        "Canada (Federal, Provincial, Municipal)",
-        "Caribbean (Jamaica, Trinidad & Tobago,",
-        "   Bahamas, Barbados, Guyana, Dominican",
-        "   Republic, St. Lucia, and region-wide)",
+        "United States (nationwide)",
+        "Canada",
+        "Caribbean",
     ]
 
     c.setFont("Helvetica", 8.5)
@@ -235,10 +235,10 @@ def draw_page(c):
     ry -= 18
 
     contracting = [
-        "Project-based fixed-scope engagements",
+        "Phased fixed-scope builds",
         "Time & materials consulting",
-        "Retainer arrangements",
-        "Subcontracting / teaming support",
+        "Ongoing support & maintenance retainers",
+        "Data layer only (warehouse you own)",
         "Staff augmentation",
     ]
 
@@ -275,15 +275,17 @@ def draw_page(c):
     c.drawRightString(WIDTH - 0.75*inch, contact_y, "Request a consultation at kautotech.com")
     c.setFont("Helvetica", 8)
     c.setFillColor(HexColor('#94a3b8'))
-    c.drawRightString(WIDTH - 0.75*inch, contact_y - 14, "Automation, Software & Modernization Consulting")
+    c.drawRightString(WIDTH - 0.75*inch, contact_y - 14, "Dealership Dashboards, Analytics & Software")
 
 
 # Generate PDF
-output_path = "/sessions/ecstatic-modest-johnson/mnt/outputs/autotech-consulting/K-Auto-Tech-Capability-Statement.pdf"
+output_path = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "K-Auto-Tech-Capability-Statement.pdf"
+)
 c = canvas.Canvas(output_path, pagesize=letter)
 c.setTitle("K Auto Tech LLC - Capability Statement")
 c.setAuthor("K Auto Tech LLC")
-c.setSubject("Capability Statement - Automation, Software & Modernization Consulting")
+c.setSubject("Capability Statement - Dealership Dashboards, Analytics & Software")
 draw_page(c)
 c.save()
 print(f"PDF created: {output_path}")

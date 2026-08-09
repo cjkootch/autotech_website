@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Operations Performance Dashboard | Solution | K Auto Tech LLC</title>
+    <meta name="description" content="How we instrumented a dealership service and parts operation: absorption, effective labor rate by pay type, technician and advisor productivity, throughput and capacity, parts fill rate, warranty and retention.">
+    <meta property="og:title" content="Fixed Operations Performance Dashboard | Solution | K Auto Tech LLC">
+    <meta property="og:description" content="How we instrumented a dealership service and parts operation: absorption, effective labor rate by pay type, technician and advisor productivity, throughput and capacity, parts fill rate, warranty and retention.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kautotech.com/solutions/fixed-ops-performance-dashboard">
+    <link rel="canonical" href="https://kautotech.com/solutions/fixed-ops-performance-dashboard">
+    <link rel="icon" type="image/png" href="../k icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        :root {
+            --navy: #0a1628;
+            --navy-mid: #1a2a4a;
+            --coral: #E8604C;
+            --coral-dark: #D4503E;
+            --coral-pale: #FFF1EE;
+            --slate: #475569;
+            --gray-100: #f8fafc;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --white: #ffffff;
+            --accent: #E8604C;
+            --container: 1200px;
+            --radius-lg: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .btn-primary {
+            background: var(--coral);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--coral-dark);
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.35);
+        }
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.08);
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            background: var(--navy);
+        }
+        .header.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 12px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 0;
+            display: block;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .nav a {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+        .nav a:hover {
+            color: var(--white);
+        }
+        .nav a.btn-primary { color: var(--white); }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+        }
+        .mobile-nav {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .mobile-toggle { display: flex; }
+            .mobile-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--navy);
+                z-index: 999;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 80px 24px 24px;
+            }
+            .mobile-nav.hidden { display: none; }
+            .mobile-nav a {
+                color: #cbd5e1;
+                padding: 12px 0;
+            }
+            .mobile-nav-close {
+                position: absolute;
+                top: 16px;
+                right: 24px;
+                background: none;
+                border: none;
+                color: var(--white);
+                font-size: 32px;
+                cursor: pointer;
+            }
+        }
+        .footer {
+            background: var(--navy);
+            color: #94a3b8;
+            padding: 64px 0 32px;
+            margin-top: 120px;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 64px;
+            margin-bottom: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-brand p {
+            margin-top: 16px;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+        }
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .footer-links a {
+            display: block;
+            padding: 8px 0;
+            transition: color var(--transition);
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .breadcrumb {
+            padding: 120px 0 40px;
+            background: var(--navy);
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        .breadcrumb a {
+            color: var(--accent);
+        }
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            color: var(--white);
+        }
+        .hero .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--coral);
+            display: block;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 800px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .stat-strip {
+            background: var(--gray-100);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 40px 0;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+        }
+        .stat-item h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
+        }
+        .stat-item p {
+            font-size: 0.92rem;
+            color: var(--slate);
+            line-height: 1.6;
+        }
+        .content-section {
+            padding: 100px 0;
+        }
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            margin-top: 40px;
+        }
+        .content-section h2:first-child {
+            margin-top: 0;
+        }
+        .content-section p {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .content-section ul {
+            list-style: disc;
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+        .content-section li {
+            font-size: 1.05rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .lead {
+            font-size: 1.15rem !important;
+            color: #334155 !important;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+        }
+        .feature-card {
+            padding: 32px;
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+        .feature-card p {
+            color: var(--slate);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+        .feature-card h3 a { color: var(--coral); }
+        .feature-card h3 a:hover { text-decoration: underline; }
+        .feature-card .tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--coral);
+            background: var(--coral-pale);
+            border-radius: 4px;
+            padding: 4px 8px;
+            margin-bottom: 12px;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            font-size: 0.98rem;
+        }
+        .spec-table th,
+        .spec-table td {
+            text-align: left;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-200);
+            vertical-align: top;
+        }
+        .spec-table th {
+            background: var(--navy);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .spec-table td {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .spec-table td:first-child {
+            color: var(--navy);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .spec-table tbody tr:hover {
+            background: var(--gray-100);
+        }
+        .table-scroll {
+            overflow-x: auto;
+        }
+        .callout {
+            border-left: 3px solid var(--coral);
+            background: var(--coral-pale);
+            padding: 24px 28px;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+            margin: 32px 0;
+        }
+        .callout p {
+            margin-bottom: 0;
+            color: #3f2a26;
+        }
+        .callout p + p {
+            margin-top: 14px;
+        }
+        .faq-section {
+            padding: 100px 0;
+            background: var(--gray-100);
+        }
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            margin-bottom: 20px;
+        }
+        .faq-question {
+            padding: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--navy);
+            gap: 20px;
+        }
+        .faq-question:hover {
+            background: var(--coral-pale);
+        }
+        .faq-toggle {
+            transition: transform var(--transition);
+        }
+        .faq-item.open .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 24px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .faq-item.open .faq-answer {
+            padding: 0 24px 24px 24px;
+            max-height: 600px;
+        }
+        .faq-answer p {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+        .cta-section {
+            padding: 100px 0;
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+        .cta-section h2 {
+            color: var(--white);
+            margin-bottom: 24px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .cta-section p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+        .related-services {
+            padding: 60px 0;
+            background: var(--coral-pale);
+        }
+        .related-services h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+        .related-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .related-link {
+            padding: 20px;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            color: var(--coral);
+            font-weight: 600;
+            transition: all var(--transition);
+        }
+        .related-link:hover {
+            border-color: var(--coral);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .content-section {
+                padding: 64px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
+                K Auto Tech
+            </a>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/#services">Services</a>
+                <a href="/solutions">Solutions</a>
+                <a href="/industries/automotive-retail">Who We Serve</a>
+                <a href="/#about">About</a>
+                <a href="#contact" class="btn btn-primary">Request Consultation</a>
+            </nav>
+            <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-nav hidden" id="mobileNav">
+        <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Close menu">&times;</button>
+        <a href="/">Home</a>
+        <a href="/#services">Services</a>
+        <a href="/solutions">Solutions</a>
+        <a href="/industries/automotive-retail">Who We Serve</a>
+        <a href="/#about">About</a>
+        <a href="#contact" onclick="toggleMobileNav()">Request Consultation</a>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="/">Home</a> / <a href="/solutions">Solutions</a> / <span>Fixed Operations Performance Dashboard</span>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <span class="eyebrow">Solution &mdash; Automotive Retail</span>
+            <h1>Fixed Operations Performance Dashboard</h1>
+            <p>A representative build: a single-rooftop service and parts operation moved from a monthly departmental summary to a daily view of absorption, effective labor rate, and technician and advisor productivity &mdash; with the constraint on throughput identified rather than assumed.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Discuss a Similar Build</a>
+                <a href="/services/fi-fixed-ops-analytics" class="btn btn-outline">Service Detail</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stat-strip">
+        <div class="container">
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <h3>Daily</h3>
+                    <p>Loaded nightly, so a bad week is visible in the week it happens</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Per Advisor</h3>
+                    <p>Hours per RO and ELR down to the individual, against a written definition</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Bay to Benchmark</h3>
+                    <p>Capacity utilization by hour and day, against the brand-tier range</p>
+                </div>
+                <div class="stat-item">
+                    <h3>~10 Weeks</h3>
+                    <p>Assessment to full deployment on a single rooftop</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2>The situation</h2>
+            <p class="lead">A store with a healthy-looking service department on paper: absorption in an acceptable range, gross trending up modestly, no obvious problem. The service director's actual complaint was that the shop felt busy all the time and the numbers never moved much, and nobody could say where the ceiling was.</p>
+            <p>The reporting available was a monthly departmental summary out of the DMS. It could say what happened. It could not say whether the constraint was bays, technicians, parts availability, or dispatch &mdash; and every proposed fix, including hiring two more technicians, rested on a guess about which.</p>
+
+            <h2>What we built</h2>
+            <p>A dashboard over the DMS, the scheduling tool, and the parts system, loaded nightly and reconciled to the financial statement. The design goal was narrow: make the constraint visible, and make the person-level numbers defensible enough to act on.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="tag">Department</span>
+                    <h3>Absorption and gross</h3>
+                    <p>Fixed gross against the fixed expense it is meant to absorb, monthly and rolling, with the labor and parts contributions separated. Tied to the statement so the number survives contact with the controller.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">Rate</span>
+                    <h3>Effective labor rate by pay type</h3>
+                    <p>Customer pay, warranty, and internal shown separately against door rate. The internal transfer price turned out to be doing more damage to the blended rate than the discounting everyone was worried about.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">People</span>
+                    <h3>Technician productivity and proficiency</h3>
+                    <p>Hours sold against available and worked, by technician and job type, with the recurring jobs where flagged and actual time had separated flagged for a look at the labor guide.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">People</span>
+                    <h3>Advisor scorecards</h3>
+                    <p>Hours per repair order, ELR, and declined-service capture per advisor &mdash; published to each advisor first, and to the group only after the definitions had been agreed.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">Capacity</span>
+                    <h3>Throughput and the constraint</h3>
+                    <p>Utilization by hour and day against appointment volume and parts availability. This is the report that answered the original question.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">Parts</span>
+                    <h3>Parts fill rate and obsolescence</h3>
+                    <p>Fill rate by source, days supply, obsolescence aging, and the emergency-purchase pattern &mdash; which is where the throughput constraint turned out to be hiding.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">Warranty</span>
+                    <h3>Claim lag and receivable aging</h3>
+                    <p>Submission lag, rejection reasons, and resubmission outcomes, with warranty receivable aging treated as the working-capital line it is.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="tag">Retention</span>
+                    <h3>Service retention by cohort</h3>
+                    <p>Defection timing by selling store and maintenance interval, because next year's fixed-ops volume is decided by this year's retention and nothing in the monthly summary showed it.</p>
+                </div>
+            </div>
+
+            <h2>What the constraint turned out to be</h2>
+            <p>Not bays, and not technicians. Utilization by hour showed capacity sitting idle mid-morning and again mid-afternoon, in a pattern that lined up with parts fill rate rather than with appointment volume. Technicians were waiting on parts, absorbing the wait as unproductive time, and the monthly average had been smoothing it into invisibility.</p>
+            <p>The fix was a stocking and pre-pull change, not a hire. We are describing this because it is the ordinary outcome of measuring properly rather than an unusual one: the expensive answer is frequently the wrong one, and the only way to know is to instrument the question.</p>
+            <div class="callout">
+                <p><strong>The reporting did not fix anything.</strong> A service director changed a stocking policy and a dispatch practice. What the dashboard did was make the argument for that change specific enough to win, and then show whether it worked. Reporting that is not attached to a decision and a review is decoration.</p>
+            </div>
+
+            <h2>Build sequence</h2>
+            <div class="table-scroll">
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Work</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Weeks 1&ndash;2</td>
+                        <td>Assessment and a definitions workshop with the service director, parts manager, and controller. Every metric written down before anything was built.</td>
+                    </tr>
+                    <tr>
+                        <td>Weeks 2&ndash;5</td>
+                        <td>Extracts from DMS, scheduling, and parts. Nightly loads, reconciliation to the statement, and the departmental view live.</td>
+                    </tr>
+                    <tr>
+                        <td>Weeks 5&ndash;8</td>
+                        <td>Technician and advisor level reporting, throughput and capacity analysis, parts performance.</td>
+                    </tr>
+                    <tr>
+                        <td>Weeks 8&ndash;10</td>
+                        <td>Warranty and retention modules, alerting, and the weekly review cadence the reporting feeds.</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h2>Outcomes</h2>
+            <ul>
+                <li><strong>The constraint was named,</strong> and the proposed fix changed from two hires to a stocking policy change.</li>
+                <li><strong>Person-level numbers became usable</strong> because the definitions were settled first and each producer saw their own figures before anyone else did.</li>
+                <li><strong>Warranty receivable aging became visible</strong> as a cash issue rather than an administrative one.</li>
+                <li><strong>The monthly meeting changed shape,</strong> from reviewing what happened to acting on a weekly exception list.</li>
+            </ul>
+
+            <div class="callout">
+                <p><strong>About this page.</strong> This describes a real build and the decisions behind it. Your data sources, your constraint, and your timeline will differ &mdash; we are describing an approach, not quoting a project.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-services">
+        <div class="container">
+            <h3>Related capabilities</h3>
+            <div class="related-links">
+                <a href="/services/fi-fixed-ops-analytics" class="related-link">F&amp;I &amp; Fixed Ops Analytics</a>
+                <a href="/services/dealership-dashboard-platform" class="related-link">Dealership Dashboard Platform</a>
+                <a href="/services/dms-crm-integration" class="related-link">DMS &amp; CRM Integration</a>
+                <a href="/solutions/dealer-group-performance-dashboard" class="related-link">Dealer Group Dashboard</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 48px; font-size: 2rem; font-weight: 700;">Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Will this work for a store with multiple service locations?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. Each location loads and reconciles separately, then rolls up, which is the same pattern we use for multi-rooftop groups. The mapping work is the part that grows, not the reporting.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Our technicians are not going to like being measured individually.</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>That is a fair concern and the sequence matters more than the software. Definitions get published first, each technician sees their own numbers before anyone else does, and the scorecard is paired with the pay plan it relates to. Where a store is not ready for that, we ship the departmental layer and leave person-level reporting for later &mdash; it is a real choice, not a delay.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How long before the data is trustworthy enough to act on?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>Reconciliation to the statement happens before the first release, so the departmental numbers are defensible from day one. Person-level numbers typically take another few weeks of running in parallel with existing reports, because that is how long it takes for people to stop finding discrepancies &mdash; and the discrepancies they find in that period are usually worth finding.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Do you replace our scheduling tool?</span>
+                    <div class="faq-toggle">&#9660;</div>
+                </div>
+                <div class="faq-answer">
+                    <p>No. We read from it. Scheduling tools are generally fine at scheduling; what they do not do is join appointment and capacity data to DMS labor and parts data, which is where the throughput picture comes from.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Where is your shop's ceiling?</h2>
+            <p>If the honest answer is that nobody knows, that is the report worth building first. Let's talk.</p>
+            <a href="mailto:info@kautotech.com" class="btn btn-primary">Schedule a Consultation</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="../k icon.png" alt="K Auto Tech" class="logo-icon">
+                        K Auto Tech
+                    </div>
+                    <p>Dashboards, data integration, and custom software for automotive retail. We build the systems dealerships and dealer groups run on.</p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h4>Services</h4>
+                        <a href="/services/dealership-dashboard-platform">Dealership Dashboard Platform</a>
+                        <a href="/services/fi-fixed-ops-analytics">F&amp;I &amp; Fixed Ops Analytics</a>
+                        <a href="/services/dms-crm-integration">DMS &amp; CRM Integration</a>
+                        <a href="/services/used-vehicle-recon-analytics">Used Vehicle &amp; Recon</a>
+                        <a href="/services/dealership-workflow-automation">Workflow Automation</a>
+                        <a href="/services/dealer-acquisition-diligence">Acquisition &amp; Diligence</a>
+                    </div>
+                    <div>
+                        <h4>Solutions</h4>
+                        <a href="/solutions/dealer-group-performance-dashboard">Dealer Group Dashboard</a>
+                        <a href="/solutions/fixed-ops-performance-dashboard">Fixed Ops Dashboard</a>
+                        <a href="/solutions/used-vehicle-inventory-dashboard">Used Vehicle Dashboard</a>
+                        <a href="/solutions">All Solutions</a>
+                    </div>
+                    <div>
+                        <h4>Who We Serve</h4>
+                        <a href="/industries/automotive-retail">Automotive Retail Overview</a>
+                        <a href="/industries/automotive-retail#dealer-groups">Dealer Groups</a>
+                        <a href="/industries/automotive-retail#single-rooftop">Single Rooftop Dealers</a>
+                        <a href="/industries/automotive-retail#acquisition">Acquisition Platforms</a>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <a href="/#about">About</a>
+                        <a href="/#contact">Contact</a>
+                        <a href="mailto:info@kautotech.com">info@kautotech.com</a>
+                        <a href="/privacy-policy">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 K Auto Tech LLC. All rights reserved.</span>
+                <span>Houston, Texas</span>
+            </div>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Fixed Operations Performance Dashboard",
+        "description": "A representative build: a dealership service and parts operation instrumented for absorption, effective labor rate, technician and advisor productivity, throughput, parts performance, warranty and retention.",
+        "author": {
+            "@type": "Organization",
+            "name": "K Auto Tech LLC",
+            "url": "https://kautotech.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "K Auto Tech LLC",
+            "url": "https://kautotech.com"
+        },
+        "about": "Dealership fixed operations analytics"
+    }
+    </script>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        function toggleMobileNav() {
+            document.getElementById('mobileNav').classList.toggle('hidden');
+        }
+        function toggleFAQ(element) {
+            element.parentElement.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>
