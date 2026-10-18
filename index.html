@@ -1,1984 +1,384 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>K Auto Tech LLC | Dealership Dashboards, Analytics & Software</title>
- <meta name="description" content="K Auto Tech LLC builds dashboards, data integration, and custom software for automotive retail — dealership and dealer group performance reporting, DMS and CRM integration, F&amp;I and fixed operations analytics, and used vehicle visibility.">
- <meta property="og:title" content="K Auto Tech LLC | Dealership Dashboards, Analytics &amp; Software">
- <meta property="og:description" content="Dashboards, DMS and CRM integration, and custom software for dealerships and dealer groups. Built for your account structure, not configured from a product.">
- <meta property="og:type" content="website">
- <meta property="og:url" content="https://kautotech.com/">
- <link rel="canonical" href="https://kautotech.com/">
- <link rel="icon" type="image/png" href="/k icon.png">
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
- <style>
- /* ========================================
- CSS RESET & BASE
- ======================================== */
- *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- html { scroll-behavior: smooth; font-size: 16px; }
- body {
- font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
- color: #1a1a2e;
- background: #ffffff;
- line-height: 1.6;
- -webkit-font-smoothing: antialiased;
- overflow-x: hidden;
- }
- img { max-width: 100%; display: block; }
- a { text-decoration: none; color: inherit; }
- ul { list-style: none; }
-
- /* ========================================
- CSS VARIABLES
- ======================================== */
- :root {
- --navy: #0a1628;
- --navy-light: #121e36;
- --navy-mid: #1a2a4a;
- --coral: #E8604C;
- --coral-dark: #D4503E;
- --coral-light: #F07A68;
- --coral-pale: #FFF1EE;
- --slate: #475569;
- --slate-light: #64748b;
- --gray-100: #f8fafc;
- --gray-200: #e2e8f0;
- --gray-300: #cbd5e1;
- --white: #ffffff;
- --accent: #E8604C;
- --accent-green: #10b981;
- --section-pad: 100px 0;
- --container: 1200px;
- --radius: 8px;
- --radius-lg: 12px;
- --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
- --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
- --shadow-lg: 0 8px 40px rgba(0,0,0,0.1);
- --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
- }
-
- /* ========================================
- UTILITY CLASSES
- ======================================== */
- .container {
- max-width: var(--container);
- margin: 0 auto;
- padding: 0 24px;
- }
- .section-label {
- font-family: 'JetBrains Mono', monospace;
- font-size: 0.75rem;
- font-weight: 500;
- letter-spacing: 0.12em;
- text-transform: uppercase;
- color: var(--coral);
- margin-bottom: 12px;
- display: inline-block;
- }
- .section-label--light { color: var(--accent); }
- .section-title {
- font-size: clamp(1.75rem, 4vw, 2.5rem);
- font-weight: 800;
- line-height: 1.2;
- margin-bottom: 16px;
- letter-spacing: -0.02em;
- }
- .section-subtitle {
- font-size: 1.1rem;
- color: var(--slate);
- max-width: 640px;
- line-height: 1.7;
- }
- .section-subtitle--light { color: #94a3b8; }
- .section-header {
- margin-bottom: 56px;
- }
- .section-header--center {
- text-align: center;
- }
- .section-header--center .section-subtitle {
- margin: 0 auto;
- }
-
- /* ========================================
- BUTTONS
- ======================================== */
- .btn {
- display: inline-flex;
- align-items: center;
- gap: 8px;
- font-family: 'Inter', sans-serif;
- font-weight: 600;
- font-size: 0.9rem;
- padding: 14px 28px;
- border-radius: var(--radius);
- border: none;
- cursor: pointer;
- transition: all var(--transition);
- white-space: nowrap;
- }
- .btn-primary {
- background: var(--coral);
- color: var(--white);
- box-shadow: 0 2px 8px rgba(232, 96, 76, 0.3);
- }
- .btn-primary:hover {
- background: var(--coral-dark);
- box-shadow: 0 4px 16px rgba(232, 96, 76, 0.4);
- transform: translateY(-1px);
- }
- .btn-secondary {
- background: transparent;
- color: var(--white);
- border: 1.5px solid rgba(255,255,255,0.3);
- }
- .btn-secondary:hover {
- border-color: rgba(255,255,255,0.6);
- background: rgba(255,255,255,0.05);
- }
- .btn-outline {
- background: transparent;
- color: var(--coral);
- border: 1.5px solid var(--coral);
- }
- .btn-outline:hover {
- background: var(--coral);
- color: var(--white);
- }
- .btn-dark {
- background: var(--navy);
- color: var(--white);
- }
- .btn-dark:hover {
- background: var(--navy-light);
- transform: translateY(-1px);
- }
- .btn-arrow::after {
- content: '\2192';
- transition: transform var(--transition);
- }
- .btn-arrow:hover::after {
- transform: translateX(4px);
- }
-
- /* ========================================
- SCROLL REVEAL ANIMATION
- ======================================== */
- .reveal {
- opacity: 0;
- transform: translateY(30px);
- transition: opacity 0.7s ease, transform 0.7s ease;
- }
- .reveal.visible {
- opacity: 1;
- transform: translateY(0);
- }
- .reveal-delay-1 { transition-delay: 0.1s; }
- .reveal-delay-2 { transition-delay: 0.2s; }
- .reveal-delay-3 { transition-delay: 0.3s; }
- .reveal-delay-4 { transition-delay: 0.4s; }
- .reveal-delay-5 { transition-delay: 0.5s; }
- .reveal-delay-6 { transition-delay: 0.6s; }
-
- /* ========================================
- HEADER / NAV
- ======================================== */
- .header {
- position: fixed;
- top: 0;
- left: 0;
- right: 0;
- z-index: 1000;
- padding: 16px 0;
- transition: all var(--transition);
- }
- .header.scrolled {
- background: rgba(10, 22, 40, 0.95);
- backdrop-filter: blur(12px);
- padding: 12px 0;
- box-shadow: 0 2px 20px rgba(0,0,0,0.2);
- }
- .header .container {
- display: flex;
- justify-content: space-between;
- align-items: center;
- }
- .logo {
- font-size: 1.1rem;
- font-weight: 700;
- color: var(--white);
- letter-spacing: -0.01em;
- display: flex;
- align-items: center;
- gap: 10px;
- }
- .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
- .logo-name { font-size: 1.1rem; font-weight: 700; }
- .logo-descriptor { font-size: 0.6rem; font-weight: 400; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
- .logo-icon {
- width: 40px;
- height: 40px;
- border-radius: 0;
- display: block;
- filter: brightness(0) invert(1);
- }
- .nav { display: flex; align-items: center; gap: 32px; }
- .nav a {
- font-size: 0.875rem;
- font-weight: 500;
- color: rgba(255,255,255,0.7);
- transition: color var(--transition);
- }
- .nav a:hover { color: var(--white); }
- .nav .btn { padding: 10px 20px; font-size: 0.85rem; }
- .mobile-toggle {
- display: none;
- background: none;
- border: none;
- cursor: pointer;
- padding: 4px;
- }
- .mobile-toggle span {
- display: block;
- width: 24px;
- height: 2px;
- background: white;
- margin: 6px 0;
- transition: all var(--transition);
- }
- .mobile-nav {
- display: none;
- position: fixed;
- top: 0; left: 0; right: 0; bottom: 0;
- background: var(--navy);
- z-index: 999;
- flex-direction: column;
- justify-content: center;
- align-items: center;
- gap: 24px;
- }
- .mobile-nav.active { display: flex; }
- .mobile-nav a {
- font-size: 1.25rem;
- font-weight: 600;
- color: white;
- }
- .mobile-nav-close {
- position: absolute;
- top: 20px;
- right: 24px;
- background: none;
- border: none;
- color: white;
- font-size: 2rem;
- cursor: pointer;
- }
-
- /* ========================================
- HERO SECTION
- ======================================== */
- .hero {
- background: var(--navy);
- min-height: 100vh;
- display: flex;
- align-items: center;
- position: relative;
- overflow: hidden;
- padding: 120px 0 80px;
- }
- /* Animated gradient orbs — pure CSS, no images */
- .hero::before {
- content: '';
- position: absolute;
- top: -20%;
- right: -10%;
- width: 800px;
- height: 800px;
- border-radius: 50%;
- background: radial-gradient(circle, rgba(232, 96, 76, 0.18) 0%, rgba(232, 96, 76, 0.06) 35%, transparent 65%);
- animation: heroOrb1 8s ease-in-out infinite alternate;
- filter: blur(40px);
- }
- .hero::after {
- content: '';
- position: absolute;
- bottom: -25%;
- left: -10%;
- width: 700px;
- height: 700px;
- border-radius: 50%;
- background: radial-gradient(circle, rgba(232, 96, 76, 0.12) 0%, rgba(14, 165, 233, 0.06) 35%, transparent 65%);
- animation: heroOrb2 10s ease-in-out infinite alternate;
- filter: blur(50px);
- }
- .hero-grid-overlay {
- position: absolute;
- top: 0; left: 0; right: 0; bottom: 0;
- background-image:
- linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
- linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
- background-size: 64px 64px;
- z-index: 1;
- }
- /* Diagonal coral accent bar */
- .hero-accent {
- position: absolute;
- top: 0;
- right: 0;
- width: 50%;
- height: 100%;
- background: linear-gradient(135deg, transparent 0%, rgba(232, 96, 76, 0.04) 40%, rgba(232, 96, 76, 0.1) 100%);
- clip-path: polygon(35% 0, 100% 0, 100% 100%, 0% 100%);
- z-index: 1;
- }
- /* Third orb — top center */
- .hero-orb-3 {
- position: absolute;
- top: 10%;
- left: 40%;
- width: 500px;
- height: 500px;
- border-radius: 50%;
- background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 60%);
- animation: heroOrb3 12s ease-in-out infinite alternate;
- filter: blur(60px);
- z-index: 0;
- }
- @keyframes heroOrb3 {
- 0% { transform: translate(0, 0) scale(1); }
- 100% { transform: translate(20px, 40px) scale(1.15); }
- }
- /* Floating geometric shapes */
- .hero-shapes {
- position: absolute;
- top: 0; left: 0; right: 0; bottom: 0;
- z-index: 1;
- pointer-events: none;
- }
- .hero-shape {
- position: absolute;
- border: 1.5px solid rgba(232, 96, 76, 0.12);
- border-radius: 4px;
- }
- .hero-shape-1 {
- width: 90px; height: 90px;
- top: 15%; right: 18%;
- transform: rotate(15deg);
- animation: float 6s ease-in-out infinite;
- }
- .hero-shape-2 {
- width: 140px; height: 140px;
- top: 55%; right: 8%;
- transform: rotate(-10deg);
- border-color: rgba(232, 96, 76, 0.08);
- animation: float 8s ease-in-out infinite reverse;
- }
- .hero-shape-3 {
- width: 55px; height: 55px;
- top: 35%; right: 35%;
- transform: rotate(45deg);
- border-color: rgba(255,255,255,0.06);
- animation: float 7s ease-in-out infinite;
- }
- .hero-shape-4 {
- width: 200px; height: 200px;
- bottom: 10%; right: 25%;
- border-radius: 50%;
- border-color: rgba(232, 96, 76, 0.08);
- animation: float 9s ease-in-out infinite reverse;
- }
- @keyframes heroOrb1 {
- 0% { transform: translate(0, 0) scale(1); }
- 100% { transform: translate(-40px, 30px) scale(1.1); }
- }
- @keyframes heroOrb2 {
- 0% { transform: translate(0, 0) scale(1); }
- 100% { transform: translate(30px, -20px) scale(1.05); }
- }
- @keyframes float {
- 0%, 100% { transform: translateY(0) rotate(var(--rotate, 15deg)); }
- 50% { transform: translateY(-15px) rotate(var(--rotate, 15deg)); }
- }
- .hero .container { position: relative; z-index: 2; }
- .hero-content {
- max-width: 720px;
- }
- .hero-label {
- font-family: 'JetBrains Mono', monospace;
- font-size: 0.8rem;
- font-weight: 500;
- color: var(--accent);
- letter-spacing: 0.1em;
- text-transform: uppercase;
- margin-bottom: 20px;
- display: flex;
- align-items: center;
- gap: 10px;
- }
- .hero-label::before {
- content: '';
- width: 24px;
- height: 1px;
- background: var(--accent);
- }
- .hero h1 {
- font-size: clamp(2.25rem, 5.5vw, 3.5rem);
- font-weight: 800;
- color: var(--white);
- line-height: 1.12;
- letter-spacing: -0.03em;
- margin-bottom: 24px;
- }
- .hero h1 .highlight {
- color: var(--coral);
- }
- .hero p {
- font-size: 1.15rem;
- color: #94a3b8;
- line-height: 1.75;
- margin-bottom: 36px;
- max-width: 580px;
- }
- .hero-ctas {
- display: flex;
- gap: 16px;
- flex-wrap: wrap;
- }
- .hero-stats {
- display: flex;
- gap: 48px;
- margin-top: 64px;
- padding-top: 40px;
- border-top: 1px solid rgba(255,255,255,0.08);
- }
- .hero-stat h3 {
- font-family: 'JetBrains Mono', monospace;
- font-size: 1.5rem;
- font-weight: 700;
- color: var(--white);
- }
- .hero-stat p {
- font-size: 0.85rem;
- color: #64748b;
- margin-bottom: 0;
- }
-
- /* ========================================
- CREDIBILITY STRIP
- ======================================== */
- .credibility {
- background: var(--gray-100);
- border-bottom: 1px solid var(--gray-200);
- padding: 32px 0;
- }
- .credibility-grid {
- display: flex;
- justify-content: center;
- align-items: center;
- gap: 40px;
- flex-wrap: wrap;
- }
- .credibility-item {
- display: flex;
- align-items: center;
- gap: 10px;
- font-size: 0.875rem;
- font-weight: 600;
- color: var(--slate);
- }
- .credibility-dot {
- width: 8px;
- height: 8px;
- border-radius: 50%;
- background: var(--coral);
- flex-shrink: 0;
- }
-
- /* ========================================
- SERVICES SECTION
- ======================================== */
- .services { padding: var(--section-pad); }
- .services-grid {
- display: grid;
- grid-template-columns: repeat(3, 1fr);
- gap: 24px;
- }
- .service-card {
- padding: 36px 32px;
- border: 1px solid var(--gray-200);
- border-radius: var(--radius-lg);
- transition: all var(--transition);
- position: relative;
- overflow: hidden;
- }
- .service-card::before {
- content: '';
- position: absolute;
- top: 0; left: 0; right: 0;
- height: 3px;
- background: linear-gradient(90deg, var(--coral), var(--accent));
- opacity: 0;
- transition: opacity var(--transition);
- }
- .service-card:hover {
- border-color: transparent;
- box-shadow: var(--shadow-lg);
- transform: translateY(-4px);
- }
- .service-card:hover::before { opacity: 1; }
- .service-icon {
- width: 48px;
- height: 48px;
- border-radius: 10px;
- background: var(--coral-pale);
- display: flex;
- align-items: center;
- justify-content: center;
- margin-bottom: 20px;
- font-size: 1.25rem;
- }
- .service-card h3 {
- font-size: 1.1rem;
- font-weight: 700;
- margin-bottom: 12px;
- letter-spacing: -0.01em;
- }
- .service-card p {
- font-size: 0.9rem;
- color: var(--slate);
- line-height: 1.7;
- }
-
- /* ========================================
- PLATFORM SECTION
- ======================================== */
- .platform-section {
- padding: var(--section-pad);
- background: var(--navy);
- color: var(--white);
- position: relative;
- overflow: hidden;
- }
- .platform-section::before {
- content: '';
- position: absolute;
- top: 0; left: 0; right: 0; bottom: 0;
- background-image:
- linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
- linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
- background-size: 48px 48px;
- }
- .platform-illustration {
- margin-top: 40px;
- }
- .platform-illustration img {
- width: 100%;
- max-height: 380px;
- object-fit: cover;
- border-radius: var(--radius-lg);
- opacity: 0.9;
- }
- .platform-section .container { position: relative; z-index: 1; }
- .platform-grid {
- display: grid;
- grid-template-columns: 1fr 1fr;
- gap: 64px;
- align-items: start;
- }
- .platform-content .section-title { color: var(--white); }
- .platform-content p {
- color: #94a3b8;
- font-size: 1rem;
- line-height: 1.75;
- margin-bottom: 24px;
- }
- .platform-caps {
- display: grid;
- grid-template-columns: 1fr 1fr;
- gap: 16px;
- }
- .platform-cap {
- padding: 20px;
- background: rgba(255,255,255,0.04);
- border: 1px solid rgba(255,255,255,0.08);
- border-radius: var(--radius);
- transition: all var(--transition);
- }
- .platform-cap:hover {
- background: rgba(255,255,255,0.07);
- border-color: rgba(232, 96, 76, 0.3);
- }
- .platform-cap h4 {
- font-size: 0.9rem;
- font-weight: 600;
- margin-bottom: 6px;
- }
- .platform-cap p {
- font-size: 0.8rem;
- color: #64748b;
- line-height: 1.6;
- margin-bottom: 0;
- }
-
- /* ========================================
- INDUSTRIES SECTION
- ======================================== */
- .industries { padding: var(--section-pad); }
- .industries-grid {
- display: grid;
- grid-template-columns: repeat(4, 1fr);
- gap: 20px;
- }
- .industry-card {
- padding: 28px 24px;
- background: var(--gray-100);
- border-radius: var(--radius-lg);
- text-align: center;
- transition: all var(--transition);
- border: 1px solid transparent;
- }
- .industry-card:hover {
- background: var(--white);
- border-color: var(--gray-200);
- box-shadow: var(--shadow-md);
- transform: translateY(-2px);
- }
- .industry-icon {
- width: 44px;
- height: 44px;
- border-radius: 10px;
- background: var(--coral-pale);
- display: flex;
- align-items: center;
- justify-content: center;
- margin: 0 auto 14px;
- font-size: 1.1rem;
- }
- .industry-card h3 {
- font-size: 0.95rem;
- font-weight: 700;
- margin-bottom: 6px;
- }
- .industry-card p {
- font-size: 0.8rem;
- color: var(--slate-light);
- line-height: 1.5;
- }
-
- /* ========================================
- WHY US SECTION
- ======================================== */
- .why-us {
- padding: var(--section-pad);
- background: var(--gray-100);
- }
- .why-grid {
- display: grid;
- grid-template-columns: 1fr 1fr;
- gap: 64px;
- align-items: center;
- }
- .why-list { display: flex; flex-direction: column; gap: 24px; }
- .why-item {
- display: flex;
- gap: 16px;
- align-items: start;
- }
- .why-item-marker {
- width: 32px;
- height: 32px;
- border-radius: 8px;
- background: var(--coral);
- display: flex;
- align-items: center;
- justify-content: center;
- flex-shrink: 0;
- margin-top: 2px;
- }
- .why-item-marker svg {
- width: 16px;
- height: 16px;
- fill: white;
- }
- .why-item h4 {
- font-size: 1rem;
- font-weight: 700;
- margin-bottom: 4px;
- }
- .why-item p {
- font-size: 0.9rem;
- color: var(--slate);
- line-height: 1.65;
- }
- .why-visual {
- background: var(--navy);
- border-radius: var(--radius-lg);
- padding: 0;
- color: white;
- position: relative;
- overflow: hidden;
- }
- .why-visual-img {
- width: 100%;
- height: 240px;
- object-fit: cover;
- }
- .why-visual-text {
- padding: 36px 40px;
- position: relative;
- }
- .why-visual::before {
- display: none;
- }
- .why-visual-content { position: relative; z-index: 1; }
- .why-visual blockquote {
- font-size: 1.35rem;
- font-weight: 600;
- line-height: 1.4;
- letter-spacing: -0.01em;
- margin-bottom: 24px;
- }
- .why-visual p {
- font-size: 0.9rem;
- color: #94a3b8;
- line-height: 1.7;
- }
-
- /* ========================================
- PROCESS SECTION
- ======================================== */
- .process { padding: var(--section-pad); }
- .process-grid {
- display: grid;
- grid-template-columns: repeat(4, 1fr);
- gap: 24px;
- }
- .process-step {
- text-align: center;
- padding: 36px 24px;
- position: relative;
- }
- .process-number {
- font-family: 'JetBrains Mono', monospace;
- font-size: 2.5rem;
- font-weight: 800;
- color: var(--gray-200);
- margin-bottom: 16px;
- line-height: 1;
- }
- .process-step h3 {
- font-size: 1.1rem;
- font-weight: 700;
- margin-bottom: 10px;
- }
- .process-step p {
- font-size: 0.875rem;
- color: var(--slate);
- line-height: 1.7;
- }
- .process-connector {
- position: absolute;
- top: 50px;
- right: -12px;
- width: 24px;
- height: 2px;
- background: var(--gray-200);
- }
- .process-step:last-child .process-connector { display: none; }
-
- /* ========================================
- RESULTS SECTION
- ======================================== */
- .results {
- padding: var(--section-pad);
- background: var(--navy);
- color: var(--white);
- position: relative;
- overflow: hidden;
- }
- .results-bg-image {
- position: absolute;
- top: 50%;
- right: -10%;
- transform: translateY(-50%);
- width: 45%;
- opacity: 0.12;
- pointer-events: none;
- }
- .results-grid {
- display: grid;
- grid-template-columns: repeat(3, 1fr);
- gap: 24px;
- }
- .result-card {
- padding: 32px 28px;
- background: rgba(255,255,255,0.04);
- border: 1px solid rgba(255,255,255,0.08);
- border-radius: var(--radius-lg);
- transition: all var(--transition);
- }
- .result-card:hover {
- background: rgba(255,255,255,0.07);
- border-color: rgba(232, 96, 76, 0.3);
- }
- .result-metric {
- font-family: 'JetBrains Mono', monospace;
- font-size: 0.8rem;
- font-weight: 500;
- color: var(--accent);
- text-transform: uppercase;
- letter-spacing: 0.08em;
- margin-bottom: 12px;
- }
- .result-card h3 {
- font-size: 1.05rem;
- font-weight: 700;
- margin-bottom: 8px;
- }
- .result-card p {
- font-size: 0.875rem;
- color: #94a3b8;
- line-height: 1.7;
- }
-
- /* ========================================
- CTA SECTION
- ======================================== */
- .cta-section {
- padding: 80px 0;
- background: var(--navy);
- background-image: url('images/cta-bg.png');
- background-size: cover;
- background-position: center;
- color: var(--white);
- text-align: center;
- position: relative;
- overflow: hidden;
- }
- .cta-section::before {
- content: '';
- position: absolute;
- top: 0; left: 0; right: 0; bottom: 0;
- background: rgba(10, 22, 40, 0.7);
- }
- .cta-section .container { position: relative; z-index: 1; }
- .cta-section h2 {
- font-size: clamp(1.5rem, 3.5vw, 2.25rem);
- font-weight: 800;
- margin-bottom: 16px;
- letter-spacing: -0.02em;
- }
- .cta-section p {
- font-size: 1.05rem;
- opacity: 0.9;
- margin-bottom: 32px;
- max-width: 560px;
- margin-left: auto;
- margin-right: auto;
- }
- .cta-buttons {
- display: flex;
- justify-content: center;
- gap: 16px;
- flex-wrap: wrap;
- }
- .cta-section .btn-secondary { border-color: rgba(255,255,255,0.4); }
- .cta-section .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); }
- .btn-white {
- background: white;
- color: var(--coral-dark);
- font-weight: 700;
- }
- .btn-white:hover {
- background: var(--gray-100);
- transform: translateY(-1px);
- }
-
- /* ========================================
- ABOUT SECTION
- ======================================== */
- .about { padding: var(--section-pad); }
- .about-grid {
- display: grid;
- grid-template-columns: 1fr 1fr;
- gap: 64px;
- align-items: center;
- }
- .about-content p {
- font-size: 1rem;
- color: var(--slate);
- line-height: 1.8;
- margin-bottom: 20px;
- }
- .about-highlights {
- display: grid;
- grid-template-columns: 1fr 1fr;
- gap: 16px;
- margin-top: 32px;
- }
- .about-highlight {
- padding: 20px;
- background: var(--gray-100);
- border-radius: var(--radius);
- }
- .about-highlight h4 {
- font-family: 'JetBrains Mono', monospace;
- font-size: 1.5rem;
- font-weight: 800;
- color: var(--coral);
- margin-bottom: 4px;
- }
- .about-highlight p {
- font-size: 0.8rem;
- color: var(--slate);
- margin-bottom: 0;
- }
-
- /* ========================================
- CONTACT SECTION
- ======================================== */
- .contact {
- padding: var(--section-pad);
- background: var(--gray-100);
- }
- .contact-grid {
- display: grid;
- grid-template-columns: 1fr 1.2fr;
- gap: 64px;
- }
- .contact-info h3 {
- font-size: 1rem;
- font-weight: 700;
- margin-bottom: 8px;
- margin-top: 28px;
- }
- .contact-info h3:first-of-type { margin-top: 0; }
- .contact-info p {
- font-size: 0.9rem;
- color: var(--slate);
- line-height: 1.7;
- }
- .contact-info a {
- color: var(--coral);
- font-weight: 500;
- }
- .contact-info a:hover { text-decoration: underline; }
- .contact-form {
- background: var(--white);
- padding: 40px;
- border-radius: var(--radius-lg);
- box-shadow: var(--shadow-md);
- }
- .form-row {
- display: grid;
- grid-template-columns: 1fr 1fr;
- gap: 16px;
- }
- .form-group {
- margin-bottom: 16px;
- }
- .form-group label {
- display: block;
- font-size: 0.85rem;
- font-weight: 600;
- color: var(--navy);
- margin-bottom: 6px;
- }
- .form-group input,
- .form-group select,
- .form-group textarea {
- width: 100%;
- padding: 12px 16px;
- font-family: 'Inter', sans-serif;
- font-size: 0.9rem;
- border: 1px solid var(--gray-300);
- border-radius: var(--radius);
- background: var(--white);
- color: var(--navy);
- transition: all var(--transition);
- }
- .form-group input:focus,
- .form-group select:focus,
- .form-group textarea:focus {
- outline: none;
- border-color: var(--coral);
- box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
- }
- .form-group textarea { min-height: 120px; resize: vertical; }
- .form-group select { cursor: pointer; }
-
- /* ========================================
- FOOTER
- ======================================== */
- .footer {
- background: var(--navy);
- color: #94a3b8;
- padding: 48px 0 32px;
- }
- .footer-top {
- display: flex;
- justify-content: space-between;
- align-items: start;
- padding-bottom: 32px;
- border-bottom: 1px solid rgba(255,255,255,0.08);
- margin-bottom: 24px;
- }
- .footer-brand .logo { margin-bottom: 12px; }
- .footer-brand p {
- font-size: 0.85rem;
- max-width: 320px;
- line-height: 1.6;
- }
- .footer-links {
- display: flex;
- gap: 48px;
- }
- .footer-links h4 {
- font-size: 0.8rem;
- font-weight: 700;
- color: white;
- text-transform: uppercase;
- letter-spacing: 0.08em;
- margin-bottom: 12px;
- }
- .footer-links a {
- display: block;
- font-size: 0.85rem;
- color: #64748b;
- margin-bottom: 8px;
- transition: color var(--transition);
- }
- .footer-links a:hover { color: white; }
- .footer-bottom {
- display: flex;
- justify-content: space-between;
- align-items: center;
- font-size: 0.8rem;
- color: #475569;
- }
-
- /* ========================================
- RESPONSIVE
- ======================================== */
- @media (max-width: 1024px) {
- .services-grid { grid-template-columns: repeat(2, 1fr); }
- .platform-grid { grid-template-columns: 1fr; gap: 40px; }
- .industries-grid { grid-template-columns: repeat(2, 1fr); }
- .why-grid { grid-template-columns: 1fr; gap: 40px; }
- .about-grid { grid-template-columns: 1fr; gap: 40px; }
- .contact-grid { grid-template-columns: 1fr; }
- .hero-stats { gap: 32px; }
- .buyer-paths-grid { grid-template-columns: repeat(2, 1fr); }
- .project-scopes-grid { grid-template-columns: 1fr; }
- }
- /* ========================================
- BUYER PATHS
- ======================================== */
- .buyer-paths { padding: 80px 0; }
- .buyer-paths-grid {
- display: grid;
- grid-template-columns: repeat(3, 1fr);
- gap: 20px;
- }
- .buyer-path-card {
- display: flex;
- flex-direction: column;
- padding: 28px 24px;
- border: 1px solid var(--gray-200);
- border-radius: var(--radius-lg);
- transition: all var(--transition);
- position: relative;
- text-decoration: none;
- color: inherit;
- }
- .buyer-path-card:hover {
- border-color: var(--coral);
- box-shadow: var(--shadow-md);
- transform: translateY(-3px);
- }
- .buyer-path-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
- .buyer-path-card p { font-size: 0.85rem; color: var(--slate); line-height: 1.6; flex: 1; }
- .buyer-path-icon { margin-bottom: 14px; }
- .buyer-path-arrow {
- color: var(--coral);
- font-size: 1.2rem;
- margin-top: 12px;
- transition: transform var(--transition);
- }
- .buyer-path-card:hover .buyer-path-arrow { transform: translateX(4px); }
-
- /* ========================================
- PROJECT SCOPES
- ======================================== */
- .project-scopes { padding: 80px 0; background: var(--gray-100); }
- .project-scopes-grid {
- display: grid;
- grid-template-columns: repeat(2, 1fr);
- gap: 24px;
- }
- .project-scope-card {
- background: var(--white);
- padding: 32px;
- border-radius: var(--radius-lg);
- border: 1px solid var(--gray-200);
- transition: all var(--transition);
- }
- .project-scope-card:hover {
- box-shadow: var(--shadow-md);
- border-color: var(--coral);
- }
- .project-scope-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
- .project-scope-card p { font-size: 0.95rem; color: var(--slate); line-height: 1.7; margin-bottom: 16px; }
- .scope-timeline {
- display: inline-block;
- font-size: 0.8rem;
- font-weight: 600;
- padding: 6px 12px;
- background: var(--coral-pale);
- color: var(--coral);
- border-radius: var(--radius);
- margin-bottom: 16px;
- }
- .scope-cta {
- display: inline-flex;
- align-items: center;
- gap: 6px;
- color: var(--coral);
- font-size: 0.9rem;
- font-weight: 600;
- text-decoration: none;
- transition: all var(--transition);
- }
- .scope-cta:hover {
- gap: 10px;
- }
-
- /* ========================================
- CTA BUTTONS
- ======================================== */
- .cta-buttons {
- display: flex;
- gap: 16px;
- flex-wrap: wrap;
- align-items: center;
- }
-
- /* ========================================
- CONTACT OPTIONS
- ======================================== */
- .contact-options {
- margin-bottom: 32px;
- }
- .contact-option {
- display: block;
- padding: 20px 24px;
- border: 1px solid var(--gray-200);
- border-radius: var(--radius-lg);
- text-decoration: none;
- color: inherit;
- transition: all var(--transition);
- }
- .contact-option:hover {
- border-color: var(--coral);
- box-shadow: var(--shadow-md);
- }
- .contact-option strong { display: block; font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
- .contact-option span { display: block; font-size: 0.85rem; color: var(--slate); }
-
- @media (max-width: 768px) {
- :root { --section-pad: 64px 0; }
- .nav { display: none; }
- .mobile-toggle { display: block; }
- .services-grid { grid-template-columns: 1fr; }
- .platform-caps { grid-template-columns: 1fr; }
- .industries-grid { grid-template-columns: 1fr; }
- .process-grid { grid-template-columns: 1fr 1fr; }
- .process-connector { display: none; }
- .results-grid { grid-template-columns: 1fr; }
- .form-row { grid-template-columns: 1fr; }
- .hero-stats { flex-direction: column; gap: 24px; }
- .hero h1 { font-size: 2rem; }
- .hero-ctas { flex-direction: column; }
- .hero-ctas .btn { text-align: center; justify-content: center; }
- .credibility-grid { flex-direction: column; gap: 16px; }
- .buyer-paths-grid { grid-template-columns: 1fr; }
- .project-scopes-grid { grid-template-columns: 1fr; }
- .cta-buttons { flex-direction: column; }
- .cta-buttons .btn { width: 100%; justify-content: center; }
- .footer-top { flex-direction: column; gap: 32px; }
- .footer-links { flex-direction: column; gap: 24px; }
- .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
- .contact-form { padding: 24px; }
- .about-highlights { grid-template-columns: 1fr; }
- }
- @media (max-width: 480px) {
- .process-grid { grid-template-columns: 1fr; }
- }
- </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automation Technology Consulting | Websites &amp; Automation for Tomball Service Businesses</title>
+<meta name="description" content="Mobile websites, missed-call text-back, AI phone receptionists and review automation for local service businesses in Tomball and north Houston, TX. Free mockup before you pay.">
+<link rel="canonical" href="https://autotech-website.vercel.app/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#16233b">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Automation Technology Consulting">
+<meta property="og:title" content="Websites &amp; automation for local service businesses">
+<meta property="og:description" content="More booked jobs. Fewer missed calls. More reviews. Done-for-you tools for service businesses in Tomball and north Houston, TX.">
+<meta property="og:url" content="https://autotech-website.vercel.app/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Automation Technology Consulting",
+  "url": "https://autotech-website.vercel.app/",
+  "logo": "https://autotech-website.vercel.app/assets/logo-full.svg",
+  "telephone": "+1-832-492-7169",
+  "email": "colekut4@gmail.com",
+  "founder": {"@type": "Person", "name": "Cole Kutschinski"},
+  "address": {"@type": "PostalAddress", "addressLocality": "Tomball", "addressRegion": "TX", "postalCode": "77375", "addressCountry": "US"},
+  "areaServed": [{"@type": "City", "name": "Tomball"}, {"@type": "AdministrativeArea", "name": "North Houston, TX"}],
+  "description": "Websites, missed-call text-back, AI phone receptionists, review requests and custom automation for local service businesses."
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#16233b;--navy2:#1e3050;--teal:#0f766e;--teal-d:#0b5d57;--lt:#5ec4b6;--ink:#1f2937;--muted:#5b6475;--line:#e3e7ee;--soft:#f4f6f9;--tsoft:#e6f3f1;--r:14px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);line-height:1.55;background:#fff;font-size:17px}
+a{color:var(--teal)}
+img{max-width:100%;display:block}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:#fff;padding:8px 12px;z-index:99}
+/* header */
+header.top{position:sticky;top:0;z-index:50;background:rgba(22,35,59,.97);backdrop-filter:saturate(1.4) blur(8px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand img{height:38px;width:auto}
+.links{display:flex;gap:26px;align-items:center}
+.links a{color:#d5deeb;text-decoration:none;font-size:15px;font-weight:500}
+.links a:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:650;text-decoration:none;font-size:16px;border:2px solid transparent;cursor:pointer;transition:background .15s,transform .15s;font-family:inherit}
+.btn:active{transform:translateY(1px)}
+.btn-teal{background:var(--teal);color:#fff}.btn-teal:hover{background:var(--teal-d)}
+.btn-ghost{border-color:rgba(255,255,255,.45);color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-line{border-color:var(--teal);color:var(--teal);background:#fff}.btn-line:hover{background:var(--tsoft)}
+.nav .btn{padding:9px 16px;font-size:15px}
+.menu-t{display:none;background:none;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:6px}
+/* hero */
+.hero{background:radial-gradient(1000px 500px at 85% -10%,rgba(94,196,182,.22),transparent 60%),linear-gradient(160deg,#16233b 0%,#1b2d4b 60%,#16233b 100%);color:#fff;padding:84px 0 92px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.eyebrow{display:inline-block;font-size:13px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:var(--lt)}
+.hero h1{font-size:clamp(34px,5vw,56px);line-height:1.07;letter-spacing:-.02em;margin:14px 0 18px;font-weight:800}
+.hero h1 span{color:var(--lt)}
+.hero p.lead{font-size:19px;color:#cfd9e8;max-width:560px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.ticks{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:26px;list-style:none;color:#b9c6da;font-size:15px}
+.ticks li::before{content:"✓";color:var(--lt);font-weight:800;margin-right:7px}
+.flow{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:24px}
+.flow h2{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#b9c6da;font-weight:650;margin-bottom:14px}
+.fl{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-top:1px solid rgba(255,255,255,.1)}
+.fl:first-of-type{border-top:0}
+.fl .ic{flex:none;width:38px;height:38px;border-radius:11px;background:rgba(94,196,182,.16);color:var(--lt);display:grid;place-items:center}
+.fl b{display:block;font-size:16px}.fl span{font-size:14px;color:#b9c6da}
+/* sections */
+section.s{padding:84px 0}
+section.alt{background:var(--soft)}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+h2.t{font-size:clamp(28px,3.6vw,40px);line-height:1.15;letter-spacing:-.015em;color:var(--navy);margin:8px 0 12px;font-weight:800}
+p.sub{color:var(--muted);max-width:680px;font-size:18px}
+.center{text-align:center}.center p.sub{margin:0 auto}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.card .ic{width:44px;height:44px;border-radius:12px;background:var(--tsoft);color:var(--teal);display:grid;place-items:center;margin-bottom:14px}
+.card h3{font-size:19px;color:var(--navy);margin-bottom:6px}
+.card p{color:var(--muted);font-size:15.5px}
+.trades{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:28px;list-style:none}
+.trades li{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:14.5px;color:var(--navy);font-weight:550}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;counter-reset:st}
+.step{position:relative;padding:26px;border-radius:var(--r);background:#fff;border:1px solid var(--line)}
+.step::before{counter-increment:st;content:counter(st);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;margin-bottom:14px}
+.step h3{color:var(--navy);font-size:19px;margin-bottom:6px}.step p{color:var(--muted);font-size:15.5px}
+/* pricing */
+.pk{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px}
+.pkg{position:relative;border:1px solid var(--line);border-radius:18px;padding:30px;background:#fff}
+.pkg.feat{border:2px solid var(--teal);background:linear-gradient(180deg,var(--tsoft),#fff 70%)}
+.tag{position:absolute;top:-13px;right:22px;background:var(--teal);color:#fff;font-size:12px;font-weight:750;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:999px}
+.pkg h3{font-size:24px;color:var(--navy)}
+.pkg .for{color:var(--muted);margin-top:2px}
+.price{margin:16px 0 4px;color:var(--muted);font-size:16px}
+.price b{font-size:34px;color:var(--navy);font-weight:800;letter-spacing:-.02em}
+.pkg ul{list-style:none;margin:16px 0}
+.pkg li{padding-left:26px;position:relative;margin:8px 0}
+.pkg li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:800}
+.save{color:var(--teal);font-weight:650;font-size:14.5px;margin-bottom:18px}
+.items{margin-top:44px;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.items h3.hd{padding:20px 26px;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--navy)}
+.it{display:grid;grid-template-columns:1fr 260px;gap:20px;padding:18px 26px;border-top:1px solid var(--line);align-items:start}
+.it:first-of-type{border-top:0}
+.it h4{color:var(--navy);font-size:17px}.it p{color:var(--muted);font-size:15px;margin-top:2px}
+.it .p{text-align:right}.it .p b{display:block;color:var(--navy);font-size:18px}.it .p span{font-size:13.5px;color:var(--muted)}
+.fine{color:var(--muted);font-size:14px;margin-top:18px}
+/* samples */
+.samples{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.smp{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.smp .frame{aspect-ratio:16/10;background:#e9edf3;border-bottom:1px solid var(--line)}
+.smp img{width:100%;height:100%;object-fit:cover;object-position:top}
+.smp figcaption{padding:14px 18px;font-size:15px;color:var(--muted)}
+.smp figcaption b{color:var(--navy);display:block;font-size:16px}
+.note{margin-top:20px;background:var(--tsoft);border-radius:12px;padding:14px 18px;color:#245;font-size:15px}
+/* faq */
+.faq{max-width:820px;margin:36px auto 0}
+details{border-bottom:1px solid var(--line);padding:18px 4px}
+summary{cursor:pointer;font-weight:650;color:var(--navy);font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--teal);font-size:24px;line-height:1;flex:none}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin-top:10px;font-size:16px}
+/* contact */
+.contact{background:var(--navy);color:#fff}
+.contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+.contact h2.t{color:#fff}.contact p.sub{color:#cfd9e8}
+.cways{margin-top:26px;display:grid;gap:12px}
+.cway{display:flex;gap:14px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px 18px;color:#fff;text-decoration:none}
+.cway:hover{background:rgba(255,255,255,.1)}
+.cway .ic{width:42px;height:42px;border-radius:12px;background:var(--teal);display:grid;place-items:center;flex:none}
+.cway small{display:block;color:#b9c6da;font-size:13.5px}.cway b{font-size:18px}
+form.cf{background:#fff;color:var(--ink);border-radius:18px;padding:28px}
+form.cf h3{color:var(--navy);font-size:20px;margin-bottom:4px}
+form.cf .hint{color:var(--muted);font-size:14px;margin-bottom:16px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-size:14px;font-weight:600;color:var(--navy);margin:10px 0 5px}
+input,select,textarea{width:100%;font:inherit;font-size:16px;padding:11px 13px;border:1px solid #cfd6e1;border-radius:10px;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--lt);border-color:var(--teal)}
+textarea{min-height:96px;resize:vertical}
+form.cf .btn{width:100%;margin-top:16px}
+footer.ft{background:#0f1a2e;color:#93a3bd;font-size:14px;padding:28px 0}
+footer.ft .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer.ft a{color:#cfd9e8;text-decoration:none}
+.mbar{display:none}
+/* responsive */
+@media (max-width:960px){
+ .hero .wrap,.contact .wrap{grid-template-columns:1fr;gap:36px}
+ .grid3,.steps{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+ body{font-size:16px}
+ .links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--navy);flex-direction:column;align-items:stretch;gap:0;padding:8px 22px 18px;border-top:1px solid rgba(255,255,255,.1)}
+ .links.open{display:flex}
+ .links a{padding:12px 0;font-size:17px;border-bottom:1px solid rgba(255,255,255,.08)}
+ .links .btn{margin-top:12px;border:0}
+ .menu-t{display:block}
+ .brand img{height:32px}
+ .hero{padding:52px 0 60px}
+ .hero p.lead{font-size:17px}
+ .cta-row .btn{flex:1 1 100%}
+ section.s{padding:60px 0}
+ .grid3,.steps,.pk,.samples,.row{grid-template-columns:1fr}
+ .it{grid-template-columns:1fr;gap:6px;padding:16px 20px}
+ .it .p{text-align:left}.it .p b,.it .p span{display:inline}.it .p span{margin-left:6px}
+ .pkg{padding:24px}
+ .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(22,35,59,.97)}
+ .mbar .btn{flex:1;padding:12px 10px}
+ footer.ft{padding-bottom:90px}
+}
+</style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+ <div class="wrap nav">
+  <a class="brand" href="/" aria-label="Automation Technology Consulting home"><img src="/assets/logo-full-white.svg" alt="Automation Technology Consulting" width="200" height="38"></a>
+  <button class="menu-t" aria-label="Open menu" aria-expanded="false" aria-controls="links">☰</button>
+  <nav class="links" id="links">
+   <a href="#services">Services</a>
+   <a href="#how">How it works</a>
+   <a href="#pricing">Pricing</a>
+   <a href="#samples">Sample work</a>
+   <a href="#faq">FAQ</a>
+   <a class="btn btn-teal" href="#contact">Get a free mockup</a>
+  </nav>
+ </div>
+</header>
 
- <!-- ========================================
- HEADER
- ======================================== -->
- <header class="header" id="header">
- <div class="container">
- <a href="#" class="logo">
- <img src="/k icon.png" alt="K Auto Tech" class="logo-icon">
- <div class="logo-text">
- <span class="logo-name">K Auto Tech</span>
- <span class="logo-descriptor">Dealership Systems &amp; Analytics</span>
+<main id="main">
+<section class="hero">
+ <div class="wrap">
+  <div>
+   <span class="eyebrow">Tomball &amp; north Houston, TX</span>
+   <h1>More booked jobs. Fewer missed calls. <span>More reviews.</span></h1>
+   <p class="lead">Simple, done-for-you websites and automation for local service businesses: lawn care, tree service, cleaning, handyman, auto repair, pressure washing and more. I set it up, you keep working.</p>
+   <div class="cta-row">
+    <a class="btn btn-teal" href="#contact">Get a free mockup</a>
+    <a class="btn btn-ghost" href="tel:+18324927169">Call (832) 492-7169</a>
+   </div>
+   <ul class="ticks">
+    <li>See it before you pay</li>
+    <li>Setup in about a week</li>
+    <li>Month-to-month</li>
+   </ul>
+  </div>
+  <div class="flow" aria-label="What happens when a customer calls">
+   <h2>When a customer calls you</h2>
+   <div class="fl"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></div><div><b>Answered 24/7</b><span>An AI receptionist picks up, answers common questions and books the estimate.</span></div></div>
+   <div class="fl"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><b>Missed? Instant text-back</b><span>The caller gets a text from you right away instead of calling the next company.</span></div></div>
+   <div class="fl"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.1 8.3 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 8.9 8.3 12 2"/></svg></div><div><b>Job done? Review request</b><span>Happy customers get a friendly ask for a Google review, automatically.</span></div></div>
+  </div>
  </div>
- </a>
- <nav class="nav">
- <a href="#services">Services</a>
- <a href="#platform">Platform</a>
- <a href="/solutions/">Solutions</a>
- <a href="/industries/automotive-retail">Who We Serve</a>
- <a href="#about">About</a>
- <a href="#contact" class="btn btn-primary">Schedule Discovery Call</a>
- </nav>
- <button class="mobile-toggle" onclick="toggleMobileNav()" aria-label="Open menu">
- <span></span><span></span><span></span>
- </button>
- </div>
- </header>
+</section>
 
- <!-- Mobile Navigation -->
- <div class="mobile-nav" id="mobileNav">
- <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Close menu">&times;</button>
- <a href="#services" onclick="toggleMobileNav()">Services</a>
- <a href="#platform" onclick="toggleMobileNav()">Platform</a>
- <a href="/solutions/" onclick="toggleMobileNav()">Solutions</a>
- <a href="/industries/automotive-retail" onclick="toggleMobileNav()">Who We Serve</a>
- <a href="#about" onclick="toggleMobileNav()">About</a>
- <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+<section class="s" id="services">
+ <div class="wrap center">
+  <span class="kicker">Services</span>
+  <h2 class="t">Everything a local service business needs online</h2>
+  <p class="sub">Pick one piece or bundle them. Each one is set up for your business, tested, and kept running for you.</p>
  </div>
+ <div class="wrap">
+  <div class="grid3">
+   <div class="card"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div><h3>Mobile website</h3><p>One clean page with tap-to-call and a quote form, so visitors turn into calls.</p></div>
+   <div class="card"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h3>Google Business Profile tune-up</h3><p>Set up or clean up your listing so you show up right on Google Maps and Search.</p></div>
+   <div class="card"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>Missed-call text-back</h3><p>Can't pick up? Callers get an instant text from you instead of moving on.</p></div>
+   <div class="card"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></svg></div><h3>AI phone receptionist</h3><p>Answers 24/7, handles common questions, books estimates, and texts you a summary.</p></div>
+   <div class="card"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.1 8.3 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 8.9 8.3 12 2"/></svg></div><h3>Reviews &amp; follow-up</h3><p>Automatic review requests after each job, plus quote follow-ups and seasonal texts to past customers.</p></div>
+   <div class="card"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg></div><h3>Custom automation</h3><p>Lead routing, payment reminders, scheduling, or linking the tools you already use.</p></div>
+  </div>
+  <ul class="trades" aria-label="Businesses I work with">
+   <li>Lawn care &amp; landscaping</li><li>Tree service</li><li>House cleaning</li><li>Handyman</li><li>Auto repair</li><li>Mobile mechanics</li><li>Pressure washing</li><li>Plumbing</li><li>HVAC</li><li>Roofing</li>
+  </ul>
+ </div>
+</section>
 
- <!-- ========================================
- HERO
- ======================================== -->
- <section class="hero" id="hero">
- <div class="hero-orb-3"></div>
- <div class="hero-grid-overlay"></div>
- <div class="hero-accent"></div>
- <div class="hero-shapes">
- <div class="hero-shape hero-shape-1"></div>
- <div class="hero-shape hero-shape-2"></div>
- <div class="hero-shape hero-shape-3"></div>
- <div class="hero-shape hero-shape-4"></div>
+<section class="s alt" id="how">
+ <div class="wrap center">
+  <span class="kicker">How it works</span>
+  <h2 class="t">Three steps, very little of your time</h2>
  </div>
- <div class="container" style="position:relative; z-index:2;">
- <div class="hero-content">
- <div class="hero-label">Dealership &amp; Dealer Group Systems Consulting</div>
- <h1>The Numbers Your Store Already Has, <span class="highlight">On The Day You Need Them.</span></h1>
- <p>We build dashboards, data integration, and custom software for automotive retail. One set of definitions across every rooftop, reconciled to the financial statement, in front of the people making the decision.</p>
- <div class="hero-ctas">
- <a href="#contact" class="btn btn-primary btn-arrow">Request a Consultation</a>
- <a href="#services" class="btn btn-secondary btn-arrow">View Services</a>
+ <div class="wrap">
+  <div class="steps">
+   <div class="step"><h3>Free mockup or demo</h3><p>See your website mockup or hear your phone receptionist before you pay anything.</p></div>
+   <div class="step"><h3>Setup in about a week</h3><p>I handle the setup and testing. You answer a few questions about your business.</p></div>
+   <div class="step"><h3>Month-to-month</h3><p>No long contracts. Cancel any time with 30 days' notice.</p></div>
+  </div>
  </div>
- <div class="hero-stats">
- <div class="hero-stat">
- <h3>Rooftop to Group</h3>
- <p>Single stores through multi-brand acquisition platforms</p>
- </div>
- <div class="hero-stat">
- <h3>Reconciled</h3>
- <p>Every figure ties to the statement before anyone sees it</p>
- </div>
- <div class="hero-stat">
- <h3>Built, Not Resold</h3>
- <p>Developed in house for your accounts and your pay plans</p>
- </div>
- </div>
- </div>
- </div>
- </section>
+</section>
 
- <!-- ========================================
- CREDIBILITY STRIP
- ======================================== -->
- <section class="credibility">
- <div class="container">
- <div class="credibility-grid">
- <div class="credibility-item"><span class="credibility-dot"></span>Dealership Dashboards</div>
- <div class="credibility-item"><span class="credibility-dot"></span>DMS &amp; CRM Integration</div>
- <div class="credibility-item"><span class="credibility-dot"></span>F&amp;I Analytics</div>
- <div class="credibility-item"><span class="credibility-dot"></span>Fixed Operations</div>
- <div class="credibility-item"><span class="credibility-dot"></span>Used Vehicle &amp; Recon</div>
- <div class="credibility-item"><span class="credibility-dot"></span>Acquisition Diligence</div>
+<section class="s" id="pricing">
+ <div class="wrap center">
+  <span class="kicker">Pricing</span>
+  <h2 class="t">Simple, upfront prices</h2>
+  <p class="sub">Bundles save money. Every piece is also available on its own.</p>
  </div>
- </div>
- </section>
+ <div class="wrap">
+  <div class="pk">
+   <div class="pkg">
+    <h3>Starter</h3>
+    <p class="for">Get found and stop losing callers</p>
+    <p class="price"><b>$650</b> setup &nbsp;+&nbsp; <b>$89</b>/mo</p>
+    <ul><li>One-page mobile website</li><li>Google Business Profile tune-up</li><li>Missed-call text-back</li></ul>
+    <p class="save">Saves $100 on setup and $19/mo vs. separate</p>
+    <a class="btn btn-line" href="#contact" data-plan="Starter">Ask about Starter</a>
+   </div>
+   <div class="pkg feat">
+    <span class="tag">Most popular</span>
+    <h3>Growth Bundle</h3>
+    <p class="for">Every call answered, every job followed up</p>
+    <p class="price"><b>$995</b> setup &nbsp;+&nbsp; <b>$349</b>/mo</p>
+    <ul><li>Everything in Starter</li><li>24/7 AI phone receptionist</li><li>Reviews &amp; follow-up automation</li></ul>
+    <p class="save">Saves $355 on setup and $58/mo vs. separate</p>
+    <a class="btn btn-teal" href="#contact" data-plan="Growth Bundle">Ask about Growth</a>
+   </div>
+  </div>
 
- <!-- ========================================
- WHO WE SERVE (BUYER PATHS)
- ======================================== -->
- <section class="buyer-paths">
- <div class="container">
- <div class="section-header section-header--center reveal">
- <span class="section-label">Who We Serve</span>
- <h2 class="section-title">Find what fits your operation</h2>
+  <div class="items">
+   <h3 class="hd">Individual services</h3>
+   <div class="it"><div><h4>Mobile Website</h4><p>One clean page with tap-to-call and a quote form, so visitors turn into calls.</p></div><div class="p"><b>$600 + $59/mo</b><span>or $0 down + $99/mo, 12-month min.</span></div></div>
+   <div class="it"><div><h4>Google Business Profile Tune-Up</h4><p>Set up or clean up your listing so you show up right on Google Maps and Search.</p></div><div class="p"><b>$150</b><span>one time</span></div></div>
+   <div class="it"><div><h4>Missed-Call Text-Back</h4><p>Can't pick up? Callers get an instant text from you instead of moving on.</p></div><div class="p"><b>$49/mo</b><span>no setup fee</span></div></div>
+   <div class="it"><div><h4>AI Phone Receptionist</h4><p>Answers 24/7, handles common questions, books estimates, texts you a summary.</p></div><div class="p"><b>$350 + $199/mo</b><span>includes missed-call text-back</span></div></div>
+   <div class="it"><div><h4>Review Requests</h4><p>Automatically asks happy customers for a Google review after each job.</p></div><div class="p"><b>$99 + $79/mo</b><span>setup + monthly</span></div></div>
+   <div class="it"><div><h4>Reviews &amp; Follow-Up Automation</h4><p>Review requests, plus quote follow-ups and seasonal texts to past customers.</p></div><div class="p"><b>$250 + $149/mo</b><span>setup + monthly</span></div></div>
+   <div class="it"><div><h4>Custom Automation</h4><p>Lead routing, payment reminders, scheduling, or linking the tools you already use.</p></div><div class="p"><b>From $400</b><span>per project, fixed quote up front</span></div></div>
+  </div>
+  <p class="fine">Monthly prices cover hosting, upkeep, and normal call and text volume (very high volume is quoted up front). Everything is month-to-month with 30 days' notice to cancel, except the $0-down website option, which has a 12-month minimum.</p>
  </div>
- <div class="buyer-paths-grid">
- <a href="/industries/automotive-retail#single-rooftop" class="buyer-path-card reveal reveal-delay-1">
- <div class="buyer-path-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3v-5l2-5h11l3 5h2v5h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
- </div>
- <h3>Single-Rooftop Dealers</h3>
- <p>One dashboard that replaces the month-end spreadsheet pack</p>
- <span class="buyer-path-arrow">&rarr;</span>
- </a>
- <a href="/industries/automotive-retail#dealer-groups" class="buyer-path-card reveal reveal-delay-2">
- <div class="buyer-path-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
- </div>
- <h3>Multi-Rooftop Groups</h3>
- <p>Consolidation across stores on one chart of accounts</p>
- <span class="buyer-path-arrow">&rarr;</span>
- </a>
- <a href="/industries/automotive-retail#acquisition" class="buyer-path-card reveal reveal-delay-3">
- <div class="buyer-path-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
- </div>
- <h3>Acquisition Platforms</h3>
- <p>Deal pipeline, earnings bridge, and group roll-up modeling</p>
- <span class="buyer-path-arrow">&rarr;</span>
- </a>
- <a href="/services/fi-fixed-ops-analytics" class="buyer-path-card reveal reveal-delay-4">
- <div class="buyer-path-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
- </div>
- <h3>F&amp;I Directors</h3>
- <p>Penetration, per-copy gross, lender spread, and reinsurance</p>
- <span class="buyer-path-arrow">&rarr;</span>
- </a>
- <a href="/services/fi-fixed-ops-analytics" class="buyer-path-card reveal reveal-delay-5">
- <div class="buyer-path-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
- </div>
- <h3>Fixed Operations Directors</h3>
- <p>Absorption, effective labor rate, and technician productivity</p>
- <span class="buyer-path-arrow">&rarr;</span>
- </a>
- <a href="/services/used-vehicle-recon-analytics" class="buyer-path-card reveal reveal-delay-6">
- <div class="buyer-path-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
- </div>
- <h3>Used Vehicle Managers</h3>
- <p>Aging by source, landed cost, and where recon days are lost</p>
- <span class="buyer-path-arrow">&rarr;</span>
- </a>
- </div>
- </div>
- </section>
+</section>
 
- <!-- ========================================
- SERVICES
- ======================================== -->
- <section class="services" id="services">
- <div class="container">
- <div class="section-header section-header--center reveal">
- <span class="section-label">What We Build</span>
- <h2 class="section-title">What we build for dealerships</h2>
- <p class="section-subtitle">Every engagement starts with how your store actually runs — your accounts, your pay plans, your DMS. We design and build systems that answer the questions your current reporting cannot.</p>
+<section class="s alt" id="samples">
+ <div class="wrap center">
+  <span class="kicker">Sample work</span>
+  <h2 class="t">Sample website concepts</h2>
+  <p class="sub">These are design concepts I made to show the style of site you'd get. They use placeholder names and numbers and are not client websites.</p>
  </div>
- <div class="services-grid">
- <div class="service-card reveal reveal-delay-1">
- <div class="service-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+ <div class="wrap">
+  <div class="samples">
+   <figure class="smp"><div class="frame"><img src="/samples/tree.svg" alt="Sample concept: tree service website homepage" loading="lazy" width="1200" height="750"></div><figcaption><b>Tree service</b>Sample concept, not a client site</figcaption></figure>
+   <figure class="smp"><div class="frame"><img src="/samples/cleaning.svg" alt="Sample concept: house cleaning website homepage" loading="lazy" width="1200" height="750"></div><figcaption><b>House cleaning</b>Sample concept, not a client site</figcaption></figure>
+   <figure class="smp"><div class="frame"><img src="/samples/auto.svg" alt="Sample concept: auto repair shop website homepage" loading="lazy" width="1200" height="750"></div><figcaption><b>Auto repair</b>Sample concept, not a client site</figcaption></figure>
+   <figure class="smp"><div class="frame"><img src="/samples/lawn.svg" alt="Sample concept: lawn care and landscaping website homepage" loading="lazy" width="1200" height="750"></div><figcaption><b>Lawn care &amp; landscaping</b>Sample concept, not a client site</figcaption></figure>
+  </div>
+  <p class="note">Want to see one for your business? I'll build a free mockup using your real services and service area. You only pay if you want to go live.</p>
  </div>
- <h3><a href="/services/dealership-dashboard-platform">Dealership Dashboard Platform</a></h3>
- <p>A role-gated web dashboard covering the whole store or group: consolidated P&amp;L, variable and fixed operations, scenario modeling, and generated reporting. Owners see everything; lenders and capital partners see a curated subset. <a href="/services/dealership-dashboard-platform" style="color:var(--coral); font-weight:600; white-space:nowrap;">Learn more &rarr;</a></p>
- </div>
- <div class="service-card reveal reveal-delay-2">
- <div class="service-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
- </div>
- <h3><a href="/services/fi-fixed-ops-analytics">F&amp;I &amp; Fixed Operations Analytics</a></h3>
- <p>Product penetration, per-copy gross, lender spread and reinsurance on the variable side. Absorption, effective labor rate, technician and advisor productivity, parts and warranty on the fixed side — per store, per person. <a href="/services/fi-fixed-ops-analytics" style="color:var(--coral); font-weight:600; white-space:nowrap;">Learn more &rarr;</a></p>
- </div>
- <div class="service-card reveal reveal-delay-3">
- <div class="service-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M16.36 16.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M16.36 7.64l1.42-1.42"/></svg>
- </div>
- <h3><a href="/services/dms-crm-integration">DMS &amp; CRM Integration</a></h3>
- <p>Extracts from CDK, Reynolds, Dealertrack, Tekion, VinSolutions and the rest; account structures normalized across rooftops; everything reconciled to the financial statement in a warehouse you own. <a href="/services/dms-crm-integration" style="color:var(--coral); font-weight:600; white-space:nowrap;">Learn more &rarr;</a></p>
- </div>
- <div class="service-card reveal reveal-delay-4">
- <div class="service-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
- </div>
- <h3><a href="/services/used-vehicle-recon-analytics">Used Vehicle &amp; Recon Analytics</a></h3>
- <p>True days in inventory, landed cost with reconditioning charged back to the buyer who sourced the unit, staged recon cycle time, merchandising readiness, and a wholesale post-mortem that informs buying. <a href="/services/used-vehicle-recon-analytics" style="color:var(--coral); font-weight:600; white-space:nowrap;">Learn more &rarr;</a></p>
- </div>
- <div class="service-card reveal reveal-delay-5">
- <div class="service-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
- </div>
- <h3><a href="/services/dealership-workflow-automation">Workflow &amp; Document Automation</a></h3>
- <p>Documents rendered from live data, ESIGN-compliant signature and countersignature, PDF form fill, approval routing, deal jacket completeness, and month-end packages generated on a schedule. <a href="/services/dealership-workflow-automation" style="color:var(--coral); font-weight:600; white-space:nowrap;">Learn more &rarr;</a></p>
- </div>
- <div class="service-card reveal reveal-delay-6">
- <div class="service-icon">
- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
- </div>
- <h3><a href="/services/dealer-acquisition-diligence">Acquisition &amp; Diligence Systems</a></h3>
- <p>For groups that buy stores: deal pipeline, target evaluation against your own definitions, a quality-of-earnings bridge that itemizes every add-back, working capital at close, and group roll-up modeling. <a href="/services/dealer-acquisition-diligence" style="color:var(--coral); font-weight:600; white-space:nowrap;">Learn more &rarr;</a></p>
- </div>
- </div>
- </div>
- </section>
+</section>
 
- <!-- ========================================
- PROJECT SCOPES
- ======================================== -->
- <section class="project-scopes">
- <div class="container">
- <div class="section-header section-header--center reveal">
- <span class="section-label">Example Engagements</span>
- <h2 class="section-title">Example engagements</h2>
- <p class="section-subtitle">These represent typical project scopes. Each engagement is scoped to the store or group's specific operation and data sources.</p>
+<section class="s" id="faq">
+ <div class="wrap center">
+  <span class="kicker">FAQ</span>
+  <h2 class="t">Common questions</h2>
  </div>
- <div class="project-scopes-grid">
- <div class="project-scope-card reveal reveal-delay-1">
- <h3>Dealer Group Performance Dashboard</h3>
- <p>Multi-rooftop consolidation on one chart of accounts: store and department performance, capital and covenants, scenario modeling, acquisition pipeline, and role-gated access for lenders and capital partners.</p>
- <span class="scope-timeline">Typical Timeline: 16-20 weeks</span>
- <a href="/solutions/dealer-group-performance-dashboard" class="scope-cta">View This Solution &rarr;</a>
+ <div class="wrap faq">
+  <details><summary>Do I have to pay anything to see a mockup?</summary><p>No. I'll put together a website mockup or a phone receptionist demo for your business first. You decide after you've seen it.</p></details>
+  <details><summary>How long does setup take?</summary><p>About a week. I handle the setup and testing; you answer a few questions about your services, hours and service area.</p></details>
+  <details><summary>Is there a contract?</summary><p>Everything is month-to-month. Cancel any time with 30 days' notice. The only exception is the $0-down website option ($99/mo), which has a 12-month minimum.</p></details>
+  <details><summary>What's included in the monthly price?</summary><p>Hosting, upkeep, and normal call and text volume. Very high call or text volume is quoted up front so there are no surprises.</p></details>
+  <details><summary>Will the AI receptionist sound like a robot to my customers?</summary><p>It answers in a natural voice, handles common questions, books estimates, and texts you a summary of every call. You can hear a demo set up for your business before you pay anything.</p></details>
+  <details><summary>I already have a website. Can you still help?</summary><p>Yes. You can add missed-call text-back, the AI receptionist, review requests or a Google Business Profile tune-up on their own, without a new website.</p></details>
+  <details><summary>What areas do you serve?</summary><p>I'm based in Tomball, TX and work with service businesses across Tomball and north Houston. The setup itself is done remotely, so I can help businesses outside the area too.</p></details>
  </div>
- <div class="project-scope-card reveal reveal-delay-2">
- <h3>Fixed Operations Performance Dashboard</h3>
- <p>Service and parts instrumented daily: absorption, effective labor rate by pay type, technician and advisor productivity, throughput and capacity, parts fill rate, warranty aging, and service retention by cohort.</p>
- <span class="scope-timeline">Typical Timeline: 8-10 weeks</span>
- <a href="/solutions/fixed-ops-performance-dashboard" class="scope-cta">View This Solution &rarr;</a>
- </div>
- <div class="project-scope-card reveal reveal-delay-3">
- <h3>Used Vehicle Inventory Dashboard</h3>
- <p>Unit-level inventory reporting: true days in inventory, landed cost by acquisition source, staged reconditioning cycle time, merchandising readiness, and a daily action list with a named owner.</p>
- <span class="scope-timeline">Typical Timeline: 6-8 weeks</span>
- <a href="/solutions/used-vehicle-inventory-dashboard" class="scope-cta">View This Solution &rarr;</a>
- </div>
- <div class="project-scope-card reveal reveal-delay-4">
- <h3>DMS Data Layer &amp; Reconciliation</h3>
- <p>Nightly extracts from DMS, CRM, inventory and lender systems, account structures mapped to common definitions across rooftops, and reconciliation to the statement before anything is published.</p>
- <span class="scope-timeline">Typical Timeline: 6-12 weeks</span>
- <a href="/services/dms-crm-integration" class="scope-cta">See the Service &rarr;</a>
- </div>
- </div>
- </div>
- </section>
+</section>
 
- <!-- ========================================
- THE PLATFORM
- ======================================== -->
- <section class="platform-section" id="platform">
- <div class="container">
- <div class="platform-grid">
- <div class="platform-content reveal">
- <span class="section-label section-label--light">The Platform</span>
- <h2 class="section-title">Built for how a dealership<br>actually operates</h2>
- <p>Dealerships run on a stack that was never designed to talk to itself: a DMS, a CRM, a desking tool, an inventory feed, a reinsurance statement, and a folder of month-end spreadsheets. The numbers exist. They arrive late, they disagree across rooftops, and someone rebuilds them by hand every period.</p>
- <p>We build the layer that closes that gap — and we build it around your operation rather than configuring you into a product. The modules below are what we have built and what we build from. Which of them you get, and how they are wired to your data, is settled during assessment.</p>
- <a href="/services/dealership-dashboard-platform" class="btn btn-primary btn-arrow" style="margin-top: 12px;">Explore the Platform</a>
- <div class="platform-illustration">
- <img src="images/dashboard.png" alt="Operational dashboard showing dealership performance metrics" loading="lazy">
+<section class="s contact" id="contact">
+ <div class="wrap">
+  <div>
+   <span class="kicker" style="color:var(--lt)">Contact</span>
+   <h2 class="t">Get your free mockup</h2>
+   <p class="sub">Call or text Cole, or send a quick note. Tell me your business name and what you do, and I'll take it from there.</p>
+   <div class="cways">
+    <a class="cway" href="tel:+18324927169"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><span><small>Call or text</small><b>(832) 492-7169</b></span></a>
+    <a class="cway" href="mailto:colekut4@gmail.com?subject=Free%20mockup%20request"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 6 12 13 2 6"/></svg></span><span><small>Email</small><b>colekut4@gmail.com</b></span></a>
+   </div>
+   <p class="sub" style="margin-top:22px;font-size:15px">Cole Kutschinski &middot; Automation Technology Consulting &middot; Tomball, TX 77375</p>
+  </div>
+  <form class="cf" id="cf" action="mailto:colekut4@gmail.com" method="post" enctype="text/plain">
+   <h3>Send a quick note</h3>
+   <p class="hint">This opens your email app with your note filled in, ready to send.</p>
+   <div class="row">
+    <div><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
+    <div><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+   </div>
+   <div class="row">
+    <div><label for="f-biz">Business name</label><input id="f-biz" name="business" autocomplete="organization"></div>
+    <div><label for="f-int">Interested in</label>
+     <select id="f-int" name="interest"><option>Free website mockup</option><option>Starter</option><option>Growth Bundle</option><option>AI phone receptionist</option><option>Missed-call text-back</option><option>Reviews &amp; follow-up</option><option>Custom automation</option><option>Not sure yet</option></select></div>
+   </div>
+   <label for="f-msg">What does your business do?</label>
+   <textarea id="f-msg" name="message" placeholder="e.g. Lawn care in Tomball, mostly residential. I miss a lot of calls while I'm on a mower."></textarea>
+   <button class="btn btn-teal" type="submit">Open email to send</button>
+  </form>
  </div>
- </div>
- <div class="platform-caps reveal reveal-delay-2">
- <div class="platform-cap">
- <h4>Consolidated Dashboard</h4>
- <p>Revenue and gross by department, store-by-store comparison, and what is off benchmark</p>
- </div>
- <div class="platform-cap">
- <h4>New, Used &amp; F&amp;I</h4>
- <p>Volume, gross per unit, aging and turn, penetration and per-copy gross by manager</p>
- </div>
- <div class="platform-cap">
- <h4>Fixed Operations &amp; Parts</h4>
- <p>Absorption, effective labor rate, technician proficiency, and parts obsolescence</p>
- </div>
- <div class="platform-cap">
- <h4>Balance Sheet &amp; Working Capital</h4>
- <p>Floorplan, contracts in transit, the cash conversion cycle, and covenant tests</p>
- </div>
- <div class="platform-cap">
- <h4>Scenarios &amp; What-If</h4>
- <p>Move a lever and the model re-runs — range checked, never silently clamped</p>
- </div>
- <div class="platform-cap">
- <h4>Quality of Earnings</h4>
- <p>An earnings bridge that separates performance from what an add-back claims</p>
- </div>
- <div class="platform-cap">
- <h4>Documents &amp; E-Signature</h4>
- <p>Templates from live data, ESIGN disclosure, and durable executed copies</p>
- </div>
- <div class="platform-cap">
- <h4>Glossary &amp; Walkthroughs</h4>
- <p>Every line carries its definition and benchmark; the build fails without them</p>
- </div>
- </div>
- </div>
- </div>
- </section>
+</section>
+</main>
 
- <!-- ========================================
- DEPARTMENTS
- ======================================== -->
- <section class="industries" id="departments">
- <div class="container">
- <div class="section-header section-header--center reveal">
- <span class="section-label">Coverage</span>
- <h2 class="section-title">Every department, one set of definitions</h2>
- <p class="section-subtitle">Store-to-store comparison only means something when both stores mean the same thing by the same word. Each line below carries a written definition and the benchmark it is measured against.</p>
+<footer class="ft">
+ <div class="wrap">
+  <span>&copy; <span id="yr">2026</span> Automation Technology Consulting &middot; Tomball, TX</span>
+  <span><a href="tel:+18324927169">(832) 492-7169</a> &middot; <a href="mailto:colekut4@gmail.com">colekut4@gmail.com</a></span>
  </div>
- <div class="industries-grid">
- <div class="industry-card reveal reveal-delay-1">
- <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3v-5l2-5h11l3 5h2v5h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
- </div>
- <h3>New Vehicle</h3>
- <p>Volume, gross per unit, mix, incentives, and floorplan</p>
- </div>
- <div class="industry-card reveal reveal-delay-2">
- <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
- </div>
- <h3>Used Vehicle</h3>
- <p>Aging, turn, landed cost, recon cycle, and wholesale</p>
- </div>
- <div class="industry-card reveal reveal-delay-3">
- <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
- </div>
- <h3>F&amp;I</h3>
- <p>Penetration, per-copy gross, lender spread, and reinsurance</p>
- </div>
- <div class="industry-card reveal reveal-delay-4">
- <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
- </div>
- <h3>Service</h3>
- <p>Absorption, effective labor rate, and technician productivity</p>
- </div>
- <div class="industry-card reveal reveal-delay-1">
- <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
- </div>
- <h3>Parts</h3>
- <p>Fill rate, days supply, obsolescence, and gross by source</p>
- </div>
- <div class="industry-card reveal reveal-delay-2">
- <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
- </div>
- <h3>Body Shop</h3>
- <p>Cycle time, DRP performance, and gross by job type</p>
- </div>
- <div class="industry-card reveal reveal-delay-3">
- <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><polyline points="7 14 11 10 15 14 21 8"/></svg>
- </div>
- <h3>Accounting</h3>
- <p>Statement reconciliation, expense-to-gross, and month-end</p>
- </div>
- <div class="industry-card reveal reveal-delay-4">
- <div class="industry-icon">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
- </div>
- <h3>BDC &amp; Marketing</h3>
- <p>Lead source cost, appointment and show rate, and cost per sale</p>
- </div>
- </div>
- </div>
- </section>
+</footer>
 
- <!-- ========================================
- WHY US
- ======================================== -->
- <section class="why-us" id="why">
- <div class="container">
- <div class="why-grid">
- <div class="reveal">
- <span class="section-label">Why Us</span>
- <h2 class="section-title">A development firm that<br>speaks dealership</h2>
- <div class="why-list">
- <div class="why-item">
- <div class="why-item-marker">
- <svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>
- </div>
- <div>
- <h4>Operations-first mindset</h4>
- <p>We start with how your store actually runs — your accounts, your pay plans, your DMS — not with a technology stack looking for a problem.</p>
- </div>
- </div>
- <div class="why-item">
- <div class="why-item-marker">
- <svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>
- </div>
- <div>
- <h4>Faster than the big firms</h4>
- <p>No six-month discovery phases. The first release that people actually use is typically live in weeks, not at the end of the project.</p>
- </div>
- </div>
- <div class="why-item">
- <div class="why-item-marker">
- <svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>
- </div>
- <div>
- <h4>More technical than typical consultants</h4>
- <p>We do not hand off implementation to a third party. We design and build the systems ourselves, which means fewer gaps between what was promised and what gets delivered.</p>
- </div>
- </div>
- <div class="why-item">
- <div class="why-item-marker">
- <svg viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/></svg>
- </div>
- <div>
- <h4>We reconcile before we publish</h4>
- <p>Every figure ties to the financial statement first. A dashboard that does not reconcile is a demo, and a general manager will be back in the spreadsheet within a month.</p>
- </div>
- </div>
- </div>
- </div>
- <div class="why-visual reveal reveal-delay-2">
- <img src="images/dashboard.png" alt="Modern operational dashboard visualization" class="why-visual-img" loading="lazy">
- <div class="why-visual-text">
- <blockquote>"We are a consulting and development firm, not a dealer software vendor. We do not have a product to make you fit."</blockquote>
- <p>Dealer software is a crowded market, and much of it is good at the thing it was built for. What it does not handle is the twenty percent specific to your group: your pay plans, your account structure, your reinsurance arrangement, and the report your lender wants in the format your lender wants it.</p>
- </div>
- </div>
- </div>
- </div>
- </section>
+<div class="mbar"><a class="btn btn-teal" href="tel:+18324927169">Call</a><a class="btn btn-ghost" href="sms:+18324927169">Text</a><a class="btn btn-ghost" href="#contact">Free mockup</a></div>
 
- <!-- ========================================
- PROCESS
-
- ======================================== -->
- <section class="process" id="process">
- <div class="container">
- <div class="section-header section-header--center reveal">
- <span class="section-label">How We Work</span>
- <h2 class="section-title">A clear path from the statement<br>to a system people use</h2>
- </div>
- <div class="process-grid">
- <div class="process-step reveal reveal-delay-1">
- <div class="process-number">01</div>
- <h3>Assess</h3>
- <p>We sit with the statement, the DMS, and the people who produce today's reports. Which numbers are trusted, which are rebuilt by hand, and which nobody can reproduce.</p>
- <div class="process-connector"></div>
- </div>
- <div class="process-step reveal reveal-delay-2">
- <div class="process-number">02</div>
- <h3>Define</h3>
- <p>Every metric gets one written definition and one benchmark. This is the step most projects skip, and it is why most dealer dashboards end up disputed rather than used.</p>
- <div class="process-connector"></div>
- </div>
- <div class="process-step reveal reveal-delay-3">
- <div class="process-number">03</div>
- <h3>Build</h3>
- <p>Extracts, reconciliation, then dashboards — shipped in iterative releases. The first release has one job: match the numbers you already trust.</p>
- <div class="process-connector"></div>
- </div>
- <div class="process-step reveal reveal-delay-4">
- <div class="process-number">04</div>
- <h3>Improve</h3>
- <p>Nightly loads, monitoring, and the review cadence the reporting feeds. A scorecard with no meeting attached stops being read within a month.</p>
- </div>
- </div>
- </div>
- </section>
-
- <!-- ========================================
- RESULTS / OUTCOMES
- ======================================== -->
- <section class="results" id="results">
- <img src="images/dashboard.png" alt="" class="results-bg-image" loading="lazy" aria-hidden="true">
- <div class="container" style="position:relative; z-index:1;">
- <div class="section-header section-header--center reveal">
- <span class="section-label section-label--light">Outcomes</span>
- <h2 class="section-title" style="color: white;">Reporting that changes<br>what happens on Monday</h2>
- <p class="section-subtitle section-subtitle--light">A dashboard is worth what its worst number is worth. These are the outcomes we design for, and the limits we state plainly.</p>
- </div>
- <div class="results-grid">
- <div class="result-card reveal reveal-delay-1">
- <div class="result-metric">Time</div>
- <h3>End the month-end assembly</h3>
- <p>The reporting package, the DOC report, and the recurring lender and OEM submissions generated from reconciled data instead of rebuilt by hand.</p>
- </div>
- <div class="result-card reveal reveal-delay-2">
- <div class="result-metric">Cadence</div>
- <h3>See the store daily, not monthly</h3>
- <p>Gross, inventory age, and absorption available the morning after, so a bad week is visible in the week it happens rather than three weeks later.</p>
- </div>
- <div class="result-card reveal reveal-delay-3">
- <div class="result-metric">Consistency</div>
- <h3>Compare rooftops honestly</h3>
- <p>One chart of accounts and one set of definitions across every store, so an outlier is a question about the store rather than about the mapping.</p>
- </div>
- <div class="result-card reveal reveal-delay-1">
- <div class="result-metric">Diagnosis</div>
- <h3>Name the constraint</h3>
- <p>Break an average down far enough that it points at something a manager can change. The expensive answer is frequently the wrong one.</p>
- </div>
- <div class="result-card reveal reveal-delay-2">
- <div class="result-metric">Speed</div>
- <h3>Answer partners in the meeting</h3>
- <p>A what-if is a lever move and a model re-run rather than two days of spreadsheet work after the fact.</p>
- </div>
- <div class="result-card reveal reveal-delay-3">
- <div class="result-metric">Honesty</div>
- <h3>Say what cannot be computed</h3>
- <p>Where a figure cannot be produced reliably, the system reports the limit instead of estimating. One quiet guess costs more credibility than a dozen honest blanks.</p>
- </div>
- </div>
- </div>
- </section>
-
- <!-- ========================================
- CTA - CAPABILITY STATEMENT
- ======================================== -->
- <section class="cta-section">
- <div class="container reveal">
- <h2>Ready to stop rebuilding the same spreadsheet?</h2>
- <p>Send us a recent financial statement and a description of how your reporting works today. We will tell you what can be automated and what it takes.</p>
- <div class="cta-buttons">
- <a href="#contact" class="btn btn-white btn-arrow">Request a Consultation</a>
- <a href="#services" class="btn btn-secondary btn-arrow">View Example Engagements</a>
- <a href="K-Auto-Tech-Capability-Statement.pdf" class="btn btn-secondary btn-arrow" target="_blank">Download Capability Statement</a>
- </div>
- </div>
- </section>
-
- <!-- ========================================
- ABOUT
- ======================================== -->
- <section class="about" id="about">
- <div class="container">
- <div class="about-grid">
- <div class="reveal">
- <span class="section-label">About</span>
- <h2 class="section-title">A development firm built<br>around automotive retail</h2>
- <div class="about-content">
- <p>K Auto Tech LLC is a technical consulting and software development firm working with dealerships and dealer groups. We design and build the dashboards, data integration, and internal tools that turn what a store already records into something its managers can act on.</p>
- <p>We combine software engineering, systems architecture, and operational consulting into a single delivery model. We do not separate "strategy" from "implementation" — the same people who sit with your statement and your DMS are the ones who build and deploy the system.</p>
- <p>We are not trying to be all things to all people. We work in automotive retail, on a specific kind of problem: the gap between the data a dealership already produces and the decisions its people are trying to make with it.</p>
- </div>
- </div>
- <div class="reveal reveal-delay-2">
- <img src="images/about-team.png" alt="K Auto Tech team working on dealership reporting systems" style="width:100%; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 8px 40px rgba(0,0,0,0.15);" loading="lazy">
- <div class="about-highlights">
- <div class="about-highlight">
- <h4>100%</h4>
- <p>In-house development. No outsourced builds.</p>
- </div>
- <div class="about-highlight">
- <h4>DMS</h4>
- <p>Integrated with the platforms dealers actually run</p>
- </div>
- <div class="about-highlight">
- <h4>E2E</h4>
- <p>Assessment through deployment and support</p>
- </div>
- <div class="about-highlight">
- <h4>Ops</h4>
- <p>Reconciled to the statement before anything ships</p>
- </div>
- </div>
- </div>
- </div>
- </div>
- </section>
-
- <!-- ========================================
- CONTACT
- ======================================== -->
- <section class="contact" id="contact">
- <div class="container">
- <div class="contact-grid">
- <div class="reveal">
- <span class="section-label">Contact</span>
- <h2 class="section-title">Discuss a project</h2>
- <p class="section-subtitle">Whether you have a defined scope or a reporting problem you have been working around for years, we are ready to talk.</p>
-
- <h3>Email</h3>
- <p><a href="mailto:info@kautotech.com">info@kautotech.com</a></p>
-
- <h3>Response Time</h3>
- <p>We typically respond within one business day.</p>
-
- <h3>Engagement Types</h3>
- <p>Project-based engagements, ongoing support arrangements, and phased builds. Most clients start with one dashboard or one data source and expand from there.</p>
- </div>
- <div class="reveal reveal-delay-2">
- <div class="contact-options">
- <a href="K-Auto-Tech-Capability-Statement.pdf" class="contact-option" target="_blank">
- <strong>Download Capability Statement</strong>
- <span>One-page overview of automotive capabilities and engagement models</span>
- </a>
- </div>
- <form class="contact-form" onsubmit="handleSubmit(event)">
- <div class="form-row">
- <div class="form-group">
- <label for="name">Name *</label>
- <input type="text" id="name" name="name" required placeholder="Your full name">
- </div>
- <div class="form-group">
- <label for="org">Organization *</label>
- <input type="text" id="org" name="organization" required placeholder="Dealership or group name">
- </div>
- </div>
- <div class="form-row">
- <div class="form-group">
- <label for="email">Email *</label>
- <input type="email" id="email" name="email" required placeholder="you@dealership.com">
- </div>
- <div class="form-group">
- <label for="phone">Phone</label>
- <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000">
- </div>
- </div>
- <div class="form-group">
- <label for="project-type">Project Type</label>
- <select id="project-type" name="project_type">
- <option value="" disabled selected>Select a project type</option>
- <option value="dealership-dashboard">Dealership Dashboard Platform</option>
- <option value="fi-fixed-ops">F&amp;I &amp; Fixed Operations Analytics</option>
- <option value="dms-crm-integration">DMS &amp; CRM Integration</option>
- <option value="used-vehicle">Used Vehicle &amp; Recon Analytics</option>
- <option value="workflow-automation">Workflow &amp; Document Automation</option>
- <option value="acquisition">Acquisition &amp; Diligence Systems</option>
- <option value="custom-software">Custom Software Development</option>
- <option value="consulting">General Consulting</option>
- <option value="other">Other</option>
- </select>
- </div>
- <div class="form-group">
- <label for="message">Message *</label>
- <textarea id="message" name="message" required placeholder="Which DMS do you run, how many rooftops, and what does your reporting look like today?"></textarea>
- </div>
- <button type="submit" class="btn btn-primary btn-arrow" style="width:100%; justify-content: center;">Request a Consultation</button>
- </form>
- </div>
- </div>
- </div>
- </section>
-
- <!-- ========================================
- FOOTER
- ======================================== -->
- <footer class="footer">
- <div class="container">
- <div class="footer-top">
- <div class="footer-brand">
- <div class="logo">
- <img src="/k icon.png" alt="K Auto Tech" class="logo-icon">
- <div class="logo-text">
- <span class="logo-name">K Auto Tech</span>
- <span class="logo-descriptor">Dealership Systems &amp; Analytics</span>
- </div>
- </div>
- <p>Dashboards, data integration, and custom software for automotive retail. We build the systems dealerships and dealer groups run on.</p>
- </div>
- <div class="footer-links">
- <div>
- <h4>Services</h4>
- <a href="/services/dealership-dashboard-platform">Dealership Dashboard Platform</a>
- <a href="/services/fi-fixed-ops-analytics">F&amp;I &amp; Fixed Ops Analytics</a>
- <a href="/services/dms-crm-integration">DMS &amp; CRM Integration</a>
- <a href="/services/used-vehicle-recon-analytics">Used Vehicle &amp; Recon</a>
- <a href="/services/dealership-workflow-automation">Workflow Automation</a>
- <a href="/services/dealer-acquisition-diligence">Acquisition &amp; Diligence</a>
- </div>
- <div>
- <h4>Solutions</h4>
- <a href="/solutions/dealer-group-performance-dashboard">Dealer Group Dashboard</a>
- <a href="/solutions/fixed-ops-performance-dashboard">Fixed Ops Dashboard</a>
- <a href="/solutions/used-vehicle-inventory-dashboard">Used Vehicle Dashboard</a>
- <a href="/solutions/">All Solutions</a>
- </div>
- <div>
- <h4>Who We Serve</h4>
- <a href="/industries/automotive-retail">Automotive Retail Overview</a>
- <a href="/industries/automotive-retail#single-rooftop">Single Rooftop Dealers</a>
- <a href="/industries/automotive-retail#dealer-groups">Dealer Groups</a>
- <a href="/industries/automotive-retail#acquisition">Acquisition Platforms</a>
- </div>
- <div>
- <h4>Company</h4>
- <a href="#about">About</a>
- <a href="#contact">Contact</a>
- <a href="mailto:info@kautotech.com">info@kautotech.com</a>
- <a href="/privacy-policy">Privacy Policy</a>
- </div>
- </div>
- </div>
- <div class="footer-bottom">
- <span>&copy; 2026 K Auto Tech LLC. All rights reserved.</span>
- <span>Houston, Texas</span>
- </div>
- </div>
- </footer>
-
- <!-- ========================================
- JAVASCRIPT
- ======================================== -->
- <script>
- /* Sticky header scroll effect */
- const header = document.getElementById('header');
- window.addEventListener('scroll', () => {
- header.classList.toggle('scrolled', window.scrollY > 50);
+<script>
+(function(){
+ var t=document.querySelector('.menu-t'),l=document.getElementById('links');
+ t.addEventListener('click',function(){var o=l.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});
+ l.addEventListener('click',function(e){if(e.target.tagName==='A'){l.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';}});
+ document.querySelectorAll('[data-plan]').forEach(function(a){a.addEventListener('click',function(){var s=document.getElementById('f-int');s.value=a.getAttribute('data-plan');});});
+ document.getElementById('cf').addEventListener('submit',function(e){
+  e.preventDefault();var f=e.target,v=function(n){return (f.elements[n].value||'').trim();};
+  var body='Name: '+v('name')+'\nPhone: '+v('phone')+'\nBusiness: '+v('business')+'\nInterested in: '+v('interest')+'\n\n'+v('message');
+  var subj='Free mockup request'+(v('business')?' - '+v('business'):'');
+  window.location.href='mailto:colekut4@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
  });
-
- /* Scroll reveal animation */
- const revealElements = document.querySelectorAll('.reveal');
- const revealObserver = new IntersectionObserver((entries) => {
- entries.forEach(entry => {
- if (entry.isIntersecting) {
- entry.target.classList.add('visible');
- revealObserver.unobserve(entry.target);
- }
- });
- }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
- revealElements.forEach(el => revealObserver.observe(el));
-
- /* Mobile navigation */
- function toggleMobileNav() {
- document.getElementById('mobileNav').classList.toggle('active');
- }
-
- /* Form submission handler (placeholder) */
- function handleSubmit(e) {
- e.preventDefault();
- const btn = e.target.querySelector('button[type="submit"]');
- const originalText = btn.innerHTML;
- btn.innerHTML = 'Submitted Successfully &#10003;';
- btn.style.background = '#10b981';
- setTimeout(() => {
- btn.innerHTML = originalText;
- btn.style.background = '';
- e.target.reset();
- }, 3000);
- }
-
- /* Smooth scroll for anchor links */
- document.querySelectorAll('a[href^="#"]').forEach(anchor => {
- anchor.addEventListener('click', function(e) {
- const target = document.querySelector(this.getAttribute('href'));
- if (target) {
- e.preventDefault();
- const offset = 80;
- const pos = target.getBoundingClientRect().top + window.scrollY - offset;
- window.scrollTo({ top: pos, behavior: 'smooth' });
- }
- });
- });
- </script>
+ document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+</script>
 </body>
 </html>

@@ -1,4 +1,22 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/government", "destination": "/", "permanent": true },
+    { "source": "/privacy-policy", "destination": "/", "permanent": false },
+    { "source": "/industries", "destination": "/#services", "permanent": true },
+    { "source": "/industries/:path*", "destination": "/#services", "permanent": true },
+    { "source": "/services", "destination": "/#services", "permanent": true },
+    { "source": "/services/:path*", "destination": "/#services", "permanent": true },
+    { "source": "/solutions", "destination": "/#services", "permanent": true },
+    { "source": "/solutions/:path*", "destination": "/#services", "permanent": true },
+    { "source": "/images/:path*", "destination": "/", "permanent": true },
+    { "source": "/K-Auto-Tech-Capability-Statement.pdf", "destination": "/", "permanent": true },
+    { "source": "/capability-statement.py", "destination": "/", "permanent": true },
+    { "source": "/CNAME", "destination": "/", "permanent": false }
+  ],
+  "headers": [
+    { "source": "/(assets|samples)/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] },
+    { "source": "/favicon.svg", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] }
+  ]
 }

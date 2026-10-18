@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.0 64.0" width="64.0" height="64.0" role="img" aria-label="Automation Technology Consulting"><title>Automation Technology Consulting</title>
+  <rect x="0" y="0" width="64" height="64" rx="15" fill="#16233b"/>
+  <path d="M32.00 13.50 A18.5 18.5 0 1 1 17.42 20.61" fill="none" stroke="#ffffff" stroke-width="5.6" stroke-linecap="butt"/>
+  <path d="M21.16 26.07 L21.39 16.85 L12.17 17.24 Z" fill="#ffffff" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round"/>
+  <circle cx="48.02" cy="41.25" r="5.5" fill="#16233b" stroke="#ffffff" stroke-width="3.1"/>
+  <circle cx="15.98" cy="41.25" r="5.5" fill="#16233b" stroke="#ffffff" stroke-width="3.1"/>
+  <circle cx="32.00" cy="13.50" r="7" fill="#5ec4b6" stroke="#16233b" stroke-width="2.8"/>
+</svg>
